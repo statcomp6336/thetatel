@@ -1,0 +1,399 @@
+body {
+	font-family:calibri;
+	margin:0px;
+	background:#eff7fa;
+	width:100%; font-size:14px; color:#000;overflow-x:hidden;
+}
+
+a:link, a:visited {	
+	color:#323232;
+
+	text-decoration:none
+}
+
+ select { padding:4px; border:1px solid #acacac; }
+
+a:hover, a:active {color:#000;}
+
+img {border:0px;vertical-align:middle;}
+
+.topheader {float:left; display:none; width:99%; margin-left:6px; background:#ff7800; min-height:70px;}
+
+
+.logo {float:left; color:#fff; font-size:15px;font-weight:normal; margin-top:5px;margin-left:5px;}
+
+.customerlogo {float:left; width:900px; border:0px solid red; text-align:center; color:#fff; font-size:15px; margin-top:7px;}
+
+.heading {color:#fff; font-size:25px; font-weight:normal;}
+
+.namelogout {float:right;  color:#fff; font-size:15px; margin:7px 0 0 0; line-height:22px; color:#fff;}
+
+.namelogout a {color:#fff;}
+
+.profile {float:right;  color:#fff; font-size:15px; margin:13px 0 0 0; color:#fff;}
+
+.profilepic { width:30px; height:30px; background:#e8ecea; border:1px solid #fff; }
+
+#maincontainer {margin:0 auto; width:100%;}
+
+.navarea {float:left; width:200px; border:0px solid #cdcdcd; margin:5px 5px 0 0;}
+
+.navarea a {color:#000; text-decoration:none;}
+
+
+.navarea h1 { color:#fff; background:#313131; font-size:18px;margin:0px; padding:4px 3px 4px 5px; font-weight:normal;}
+
+.navcont {float:left;width:198px;border:1px solid #ff7800; background:#fff; min-height:520px; margin-top:2px;}
+
+#middlearea {float:left; width:100%; margin-top:3px; margin-right:5px;  }
+
+#middlearea h1 {color:#fff; background:#342c25; border:0px solid #a8a8a8; font-size:19px;  padding:3px 3px 3px 10px; margin:0px; font-weight:normal;}
+
+.contentarea {float:left; width:98.2%; padding:10px 10px 8px 8px;height:491px;  overflow:auto; margin-top:3px;border:1px solid #a8a8a8;}
+
+#middlearea2 {float:left; width:100%; margin-top:3px; margin-bottom:20px; margin-right:10px;  }
+
+#middlearea2 h1 {color:#fff; width:99.2%; background:#342c25; border:0px solid #a8a8a8; font-size:18px;  padding:3px 3px 3px 10px; margin:0px; font-weight:normal;}
+
+.contentarea2 {float:left; width:98.8%; min-height:510px;  padding:0px 8px 10px 8px;margin-top:3px;border:1px solid #a8a8a8;}
+
+#loginarea { width:100%; margin-top:300px; position:absolute; z-index:10000;}
+
+#loginarea a {color:#000; text-decoration:underline;}
+
+#loginarea h1 {padding:3px 5px 3px 5px; background:#427fed; margin:0 auto;color:#fff; border-radius:10px 10px 0px 0px;  width:388px; text-align:center; font-size:20px; font-weight:normal;}
+
+.loginbox {margin:0 auto; width:360px; background:#e1ecff; color:#fff; padding:12px 17px 8px 17px; border:2px solid #427fed;  border-radius:0px 0px 10px 10px; }
+
+.textbox {
+    width:280px;
+    padding:5px;
+    font-size: 13px;
+    border:0px solid #427fed; background:#eceff5; border-radius:10px;
+   
+}
+
+
+.username {background:#fff url(../../library/img/usericon.jpg) no-repeat left;font-size:14px; width:305px; padding:0px 0px 0px 50px; height:30px; color:#000; border:1px solid #427fed; border-radius:10px; }
+
+.username:focus {background:#fff url(../../library/img/usericon.jpg) no-repeat left;font-size:14px; width:305px; padding:0px 0px 0px 50px; height:30px; color:#000; border:1px solid #427fed; border-radius:10px; }
+
+.password {background:#fff url(../../library/img/passicon.jpg) no-repeat left;font-size:14px; width:305px; padding:0px 0px 0px 50px; height:30px; color:#000; border:1px solid #427fed; border-radius:10px; }
+
+.loginbtn {padding:7px 15px 7px 15px; cursor:pointer; width:100px; background:#0a4eb8; color:#fff;  border:0px solid #ccc; font-size:16px; text-align:center; border-radius:10px;-webkit-border-radius:7px;-moz-border-radius:7px;}
+
+.loginbtn:hover { background:#0043ac;}
+
+
+
+.btnform {
+    padding: 7px 15px 7px 15px;
+    cursor: pointer;
+    background: #427fed;
+    color: #fff;
+    border: 0px solid #ccc;
+    font-size: 14px;
+    text-align: center;
+   
+}
+
+
+
+
+.innerarea {float:left; width:100%; font-size:15px;background:#fff; border:0px solid #acacac; padding:0px 0px 10px 0px;}
+
+.dashrow1 {float:left; width:100%; margin-top:0px;margin-bottom:10px; }
+
+.dashrow1 a {color:#fff}
+
+.dashrow2 a {color:#fff;}
+
+.dashrow2 {float:left; width:100%; background:#fff; }
+
+.dashrow3 {float:left; width:100%; margin-top:10px; background:#fff; }
+
+
+.retailbox {float:left; background:#2b4f8f; color:#fff; line-height:16px; text-align:center; margin-right:5px; width:200px; height:70px; font-size:18px; padding-top:20px;}
+
+.dashnumber {background:#fff; padding:0px 2px 0px 2px; color:#000;}
+
+
+.retailbox2 {float:left; background:#ff3600; color:#fff; line-height:16px; text-align:center; margin-right:5px; width:200px; height:70px; font-size:18px; padding-top:20px;}
+
+.retailbox3 {float:left; background:#993dd3; color:#fff; line-height:16px; text-align:center; margin-right:5px; width:200px; height:70px; font-size:18px; padding-top:20px;}
+
+.retailbox4 {float:left; background:#0d9129; color:#fff; line-height:16px; text-align:center; margin-right:0px; width:200px; height:70px; font-size:18px; padding-top:20px;}
+
+.retailbox5 {float:left; background:#3688c8; color:#fff; line-height:16px; text-align:center; font-weight:normal; margin-left:0px; width:195px; height:168px; font-size:19px; padding-top:100px;}
+
+.graphimg {border:1px solid #bebebe; width:}
+
+.dashleft {float:left; width:81%; border:0px solid red}
+
+.dashleftrow1 {float:left; width:100%; margin-bottom:5px;}
+
+.dashleftrow2 {float:left; width:99%;  border:1px solid #bebebe;}
+
+.dashright {float:right;}
+
+.business {float:left; width:500px; margin-left:170px; text-align:center;border-radius:10px; background:#eb6f00; color:#fff;}
+
+.business:hover {cursor:pointer;}
+
+.businesshdr {float:left;width:98%; background:#ff7800; font-weight:bold;border-radius:10px 10px 0px 0px; padding:3px; }
+
+.businesshdr2 {float:left;width:98%; background:#ff7800;  font-weight:bold;border-radius:0px 0px 10px 10px; padding:3px; }
+
+.businessnumber {float:left; text-align:center; width:100%; min-height:50px;margin-top:20px;}
+
+.businessnumber span {text-align:center; background:#fff; font-size:28px; font-weight:normal; padding:8px; color:#000;border-radius:10px;}
+
+.compreg {float:left; width:205px; margin-right:5px; text-align:center;border-radius:10px; background:#f97d19; color:#fff;}
+
+.compreg:hover {cursor:pointer;}
+
+.compreghdr {float:left;width:97%; background:#dc6a0e; font-weight:bold;border-radius:10px 10px 0px 0px; padding:3px; }
+
+.compreghdr2 {float:left;width:97%; background:#dc6a0e;  font-weight:bold;border-radius:0px 0px 10px 10px; padding:3px; }
+
+.compregnumber {float:left; text-align:center; width:100%; min-height:50px;margin-top:20px;}
+
+.compregnumber span {text-align:center; background:#fff; font-size:28px; font-weight:normal; padding:8px; color:#000;border-radius:10px;}
+
+.compattand {float:left; background:#02a302; width:210px; margin-right:5px; margin-left:8px;text-align:center;border-radius:10px; color:#fff;}
+
+.compattand:hover {cursor:pointer;}
+
+.compattandhdr {float:left;width:97%; background:#029302; font-weight:bold;border-radius:10px 10px 0px 0px; padding:3px; }
+
+.compattandhdr2 {float:left;width:97%; background:#029302;  font-weight:bold;border-radius:0px 0px 10px 10px; padding:3px; }
+
+
+.compattandance {float:left; background:#2d89ef; width:205px; margin-right:5px; text-align:center;border-radius:10px; color:#fff;}
+
+.compattandance:hover {cursor:pointer;}
+
+.compattandancehdr {float:left;width:97%; background:#287cd8; font-weight:bold;border-radius:10px 10px 0px 0px; padding:3px; }
+
+.compattandancehdr2 {float:left;width:97%; background:#287cd8;  font-weight:bold;border-radius:0px 0px 10px 10px; padding:3px; }
+
+
+.complastweek {float:left; background:#c300c9; width:205px; text-align:center;border-radius:10px; color:#fff;}
+.complastweek:hover {cursor:pointer;}
+
+.complastweekhdr {float:left;width:97%; background:#d917df; font-weight:bold;border-radius:10px 10px 0px 0px; padding:3px; }
+
+.complastweekhdr2 {float:left;width:97%; background:#d917df;  font-weight:bold;border-radius:0px 0px 10px 10px; padding:3px; }
+
+.compreps {float:left; width:99%;}
+
+.compreps h2 { color:#0c0c0c; border-bottom:1px solid #0c0c0c; font-size:18px;margin:0px; padding:3px 3px 3px 0px; font-weight:bold;}
+
+.attenreps {float:left; width:482px;border:1px solid #cdcdcd;border-radius:10px; margin-right:10px;}
+
+.attenreps h2 { color:#fff; background:#367cb9; font-size:18px;border-radius:10px 10px 0px 0px; margin:0px; padding:3px 3px 3px 15px; font-weight:normal;}
+
+.attenreps select {border-radius:10px; background:#f2f4f6; color:#000; padding:2px 2px 2px 6px; width:160px;}
+
+.comprepscont {float:left; width:100%;border:0px solid #cdcdcd;padding:14px 0px 0px 0px; font-size:15px;}
+
+.combox {float:left; width:470px; margin-right:10px; }
+
+
+
+.footertext {float:left; width:100%; background:#0c0c0c;color:#fff;}
+
+.footer {margin:0 auto; z-index:1000; width:1200px; text-align:right;}
+
+
+.social {float:right; margin-top:10px;}
+
+.site {float:right;}
+
+.site a {color:#003ead; text-decoration:underline;}
+
+.dropdown-toggle {}
+
+.dropdown {
+  display:none;
+  position: absolute;
+  top:0px; 
+  margin-top:47px; font-size:14px;
+  background: #fff; color:#000; border:1px solid #ccc;
+  min-width:130px;
+  padding:3px 0 10px 5px;
+  border-radius: 0 0 .2em .2em; z-index:10000;
+    
+}
+
+.dropdown a { min-width:130px;color:#323232; float:left; line-height:28px;}
+
+
+.dropdown a:hover {background:#efefef; }
+
+
+.dropdown2 {
+  display:none;
+  position: absolute;
+  top:80px;
+  margin-top:0; font-size:14px;
+  background: #fff; color:#000; border:1px solid #ccc;
+  min-width:130px;
+  padding:3px 0 10px 5px;
+  border-radius: 0 0 .2em .2em;
+    
+}
+
+.dropdown2 a { min-width:130px;color:#323232; float:left; line-height:28px;}
+
+
+.dropdown2 a:hover {background:#efefef; }
+
+
+.dropdown3 {
+  display:none;
+  position: absolute;
+  top:50px;
+  margin-top:0; font-size:14px;
+  background: #fff; color:#000; border:1px solid #ccc;
+  min-width:130px;
+  padding:3px 0 10px 5px;
+  border-radius: 0 0 .2em .2em;
+    
+}
+
+.dropdown3 a { min-width:130px;color:#323232; float:left; line-height:28px;}
+.dropdown3 a:hover {background:#efefef; }
+
+
+
+.toggle_container {
+	padding: 0;
+	
+	background: #f0f0f0;
+	overflow: hidden;
+	font-size: 14px;
+	width:99.4%;	 border:1px solid #cdcdcd;
+	clear: both;
+}
+
+.toggle_container a{ color:#000; text-decoration:none;}
+
+.toggle_container a:hover{ color:#565656; text-decoration:none;}
+
+ hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+ 
+}
+
+.toggle_container .block {
+	width:100%; color:#565656;
+	margin-top:0px; padding:7px 0 7px 8px;
+	line-height:20px;
+}
+
+.bullet {padding-right:5px; padding-top:4px; float:right;}
+
+
+
+
+.logindiv {float:left; width:100%;}
+
+.loginarea h1 {background:#09a3eb; color:#fff; width:100%; padding:4px 0 10px 0; font-size:14px; font-weight:normal; text-align:center;  margin:0px;}
+
+.loginarea {margin:0 auto; width:370px;  border:1px solid #007bb5;}
+
+.heading2 {color:#fdf5a4; font-size:20px; font-weight:bold;}
+
+.railwaylogo {width:100%;float:left; margin-top:10px; text-align:center;}
+
+.railway {width:90px; height:110px;}
+
+.logincontent {float:left;  margin-top:10px; margin-left:15px; font-size:16px;}
+
+.logincontent a {color:#323232; text-decoration:underline; font-size:14px;}
+
+.logincontent select {width:340px; padding:10px 10px 10px 6px; border-radius:7px; background:#fff; border:1px solid #007bb5;}
+
+.logincontent .userinput {width:284px; padding:10px 10px 10px 45px; border-radius:7px; border:1px solid #007bb5; background:url(../img/usericon.jpg) no-repeat left;}
+
+.logincontent .passinput {width:284px; padding:10px 10px 10px 44px;border-radius:7px; border:1px solid #007bb5; background:url(../img/passwordicon.jpg) no-repeat left;}
+
+.btn {background:#007bb5; border:0px; border-radius:7px; padding:7px 20px 7px 20px; color:#fff;font-size:16px; cursor:pointer;}
+
+.btn:hover {background:#0f89c3;}
+
+.formarea {float:left; width:99%; font-size:15px; background:#f3f3f3; border:0px solid #acacac; padding:0px;}
+
+.formarea .note {float:left; margin:0px 0px 15px 0px; font-size:14px;}
+
+.formarea input, textarea {width:260px; padding:8px; border:1px solid #acacac; border-radius:10px;}
+
+.formarea select {width:280px; background:#fff; padding:8px; border:1px solid #acacac; border-radius:10px;}
+
+.formarea label {width:150px; float:left; padding-top:8px;}
+
+.formboxlft {float:left; width:470px; border:0px solid red;}
+
+.formboxrgt {float:left; width:450px; border:0px solid red;}
+
+.formrow {float:left; width:100%; margin-bottom:12px;}
+
+.fileupload {float:left;}
+
+.fileupload input {width:200px; padding:2px; border:0px solid #cbcaca;}
+
+.btnarea {float:left;}
+
+.btnarea2 {float:left; margin-top:20px;}
+
+.bannerarea {margin:0 auto;  width:1200px;margin-top:10px;}
+
+#slider-container {
+	float:left;
+	  width:1200px;
+	 z-index:100; border:0px solid #415ca3;
+}
+#slider {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+#slider li {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+#pager {
+	text-align:right;
+	margin-top:355px; margin-right:10px;
+	height:0px;
+	z-index:9999; width:100%;
+	position:absolute;
+}
+#pager a {
+	width:12px;
+	height:12px;
+	background:url(../files/nav-slide.png) no-repeat;
+	border:0px;
+	margin-right:6px;
+	cursor:pointer;
+	display:inline;
+	display:inline-block;
+	vertical-align:top;
+	font-size: 0;
+	line-height: 0;
+	text-align:right;
+}
+
+/* Safari */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+#pager a {
+text-indent:-9999px;
+}
+}
+#pager a.activeSlide {
+	background-position:-13px 0;
+}
