@@ -20,5 +20,14 @@ if (! function_exists('put_msg')) {
 	  } 
 }
 // ------------------------------------------------------------------------
+if (! function_exists('user_id')) {
+	# code...
+	function user_id()
+	  {
+	  	$CI =& get_instance();
+	      return $CI->session->SESS_CUST_ID;
+	  } 
+}
+// ------------------------------------------------------------------------
 
 ?>

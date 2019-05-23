@@ -93,3 +93,29 @@
 [21-May-2019 09:48:35 Europe/Berlin] PHP Parse error:  syntax error, unexpected ''branch_code'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in C:\xampp\htdocs\thetatel\application\controllers\spg\Spg.php on line 285
 [21-May-2019 11:53:33 Europe/Berlin] PHP Fatal error:  Call to undefined method Spg::CreateCompany() in C:\xampp\htdocs\thetatel\application\controllers\spg\Spg.php on line 105
 [21-May-2019 12:16:59 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')' in C:\xampp\htdocs\thetatel\application\controllers\Company_ext.php on line 74
+[22-May-2019 09:05:29 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in C:\xampp\htdocs\thetatel\application\controllers\Company_ext.php on line 6
+[22-May-2019 09:05:42 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in C:\xampp\htdocs\thetatel\application\controllers\Company_ext.php on line 6
+[22-May-2019 09:06:02 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in C:\xampp\htdocs\thetatel\application\controllers\Company_ext.php on line 6
+[22-May-2019 09:06:15 Europe/Berlin] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR), expecting ',' or ';' in C:\xampp\htdocs\thetatel\application\controllers\Company_ext.php on line 6
+[22-May-2019 09:06:43 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in C:\xampp\htdocs\thetatel\application\controllers\Company_ext.php on line 9
+[22-May-2019 09:11:26 Europe/Berlin] PHP Fatal error:  Using $this when not in object context in C:\xampp\htdocs\thetatel\application\config\constants.php on line 89
+[22-May-2019 09:14:16 Europe/Berlin] PHP Fatal error:  Class 'CI_Controller' not found in C:\xampp\htdocs\thetatel\system\core\CodeIgniter.php on line 369
+[22-May-2019 09:16:19 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'define' (T_STRING), expecting function (T_FUNCTION) in C:\xampp\htdocs\thetatel\application\controllers\Company_ext.php on line 7
+[22-May-2019 11:01:16 Europe/Berlin] PHP Fatal error:  Call to a member function all_companys() on null in C:\xampp\htdocs\thetatel\application\controllers\Company_ext.php on line 390
+[23-May-2019 11:09:26 Europe/Berlin] PHP Fatal error:  Call to undefined method CI_DB_mysqli_driver::form() in C:\xampp\htdocs\thetatel\application\models\Company_model.php on line 107
+[23-May-2019 11:19:15 Europe/Berlin] PHP Fatal error:  Call to undefined method Company_model::get_ac() in C:\xampp\htdocs\thetatel\application\controllers\spg\Spg.php on line 157
+[23-May-2019 11:19:19 Europe/Berlin] PHP Fatal error:  Call to undefined method Company_model::get_ac() in C:\xampp\htdocs\thetatel\application\controllers\spg\Spg.php on line 157
+[23-May-2019 11:19:19 Europe/Berlin] PHP Fatal error:  Call to undefined method Company_model::get_ac() in C:\xampp\htdocs\thetatel\application\controllers\spg\Spg.php on line 157
+[23-May-2019 11:19:37 Europe/Berlin] PHP Fatal error:  Call to undefined method Company_model::get_ac() in C:\xampp\htdocs\thetatel\application\controllers\spg\Spg.php on line 157
+[23-May-2019 11:19:38 Europe/Berlin] PHP Fatal error:  Call to undefined method Company_model::get_ac() in C:\xampp\htdocs\thetatel\application\controllers\spg\Spg.php on line 157
+[23-May-2019 11:19:38 Europe/Berlin] PHP Fatal error:  Call to undefined method Company_model::get_ac() in C:\xampp\htdocs\thetatel\application\controllers\spg\Spg.php on line 157
+[23-May-2019 11:19:38 Europe/Berlin] PHP Fatal error:  Call to undefined method Company_model::get_ac() in C:\xampp\htdocs\thetatel\application\controllers\spg\Spg.php on line 157
+[23-May-2019 11:19:39 Europe/Berlin] PHP Fatal error:  Call to undefined method Company_model::get_ac() in C:\xampp\htdocs\thetatel\application\controllers\spg\Spg.php on line 157
+[23-May-2019 13:09:53 Europe/Berlin] PHP Parse error:  syntax error, unexpected '<' in C:\xampp\htdocs\thetatel\application\views\act_view.php on line 101
+[23-May-2019 13:53:38 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$route' (T_VARIABLE) in C:\xampp\htdocs\thetatel\application\config\routes.php on line 59
+[23-May-2019 13:53:47 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')' in C:\xampp\htdocs\thetatel\application\controllers\Company_ext.php on line 408
+[23-May-2019 14:19:39 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ')' in C:\xampp\htdocs\thetatel\application\controllers\Company_ext.php on line 407
+[23-May-2019 14:19:54 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\thetatel\application\controllers\Company_ext.php on line 427
+[23-May-2019 14:20:30 Europe/Berlin] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in C:\xampp\htdocs\thetatel\application\models\Company_model.php on line 126
+[23-May-2019 14:21:18 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'cust_id' (T_STRING) in C:\xampp\htdocs\thetatel\application\models\Company_model.php on line 126
+[23-May-2019 14:27:08 Europe/Berlin] PHP Fatal error:  Call to a member function attach_act_to_company() on null in C:\xampp\htdocs\thetatel\application\controllers\Company_ext.php on line 417

@@ -20,9 +20,9 @@ class Base_model extends CI_Model
 	{
 		# code...
 	}
-	protected function get()
+	protected function get($table)
 	{
-
+		return $this->db->get($table);
 	}
 	protected function get_id()
 	{
@@ -53,5 +53,12 @@ class Base_model extends CI_Model
 		}
 			return $query=$this->db->get();
 	}
+
+
+	/*SELECT act,act_code, IF(EXISTS(
+             SELECT *
+             FROM act_applicable_to_customer
+             WHERE `custid` =  '14000590001'), 'true','false') AS is_act
+FROM act_particular*/
 	
 }

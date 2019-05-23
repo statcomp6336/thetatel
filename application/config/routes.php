@@ -55,8 +55,12 @@ $route['translate_uri_dashes'] = FALSE;
 
 /*spg role controller*/
 //dashboard
+$route['install']					='spg/Spg/CREATE_SYSTEM';
 $route['spg'] 						= 'spg/Spg';
 $route['spg/logout'] 				= 'spg/Spg/logout';// logout and redirect to login page
 $route['spg/notification']			= 'spg/Spg/notification_view';// display notification
 $route['spg/company/registration']	= 'spg/Spg/company_registration_view';// display company registration view
 $route['spg/company/save']			= 'spg/Spg/add_company';// display company registration view
+
+$route['spg/company/act']			= 'spg/Spg/act_view'; //display act view for company
+$route['spg/company/attachAct']		= 'spg/Spg/attachAct'; //display act view for company

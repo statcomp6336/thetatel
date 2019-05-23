@@ -38,6 +38,7 @@ class Base_controller extends CI_Controller
       return FALSE;
     }
   }
+  
 
   /* ----- GET THE TYPE OF USER ----- */
   protected function user_type_is()// get the access level

@@ -219,4 +219,110 @@ class DB_install extends Base_model
 	}
 
 
+	public function CreateTable_act_particular()
+	{
+		$fields = array(
+            		'srno' 			=> array(
+					                    'type' => 'INT',					                 
+					                    'auto_increment' => TRUE
+							            ),
+		            'act_code'		=> array(
+					                    'type' =>'INT',
+					                    'constraint' => '6'					                    
+							            ),
+		            'act'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '105'
+					                    			                    
+							            ),
+		            'pcr_code'		=> array(
+					                    'type' =>'INT',
+					                    'constraint' => '6',
+					                    'unique' => TRUE							                    
+							            ),
+		            'Paritcular'	=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '200'					                    
+							            ),
+		            'shortname'	   	=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '60'					                    
+							            ),
+		            'act_type'			=> array(
+		            					'type' =>'VARCHAR',
+					                    'constraint' => '50'		            						
+		            		            ),
+		            'freq'			=> array(
+		            					'type' =>'VARCHAR',
+					                    'constraint' => '12'	
+		            						),
+		            'weight'		=> array(
+					                    'type' =>'INT',
+					                    'constraint' => '1'					                    
+							            ),
+		            'obligantion'	=> array(
+		            					'type' =>'VARCHAR',
+					                    'constraint' => '241'		            						
+		            		            ),
+		            'due_date'		=> array(
+		            					'type' =>'DATE',					                   	
+		            						),
+		            'stat_date'	=> array(
+		            					'type' =>'DATE',                               						
+		            		            ),
+		            'comp_req'		=> array(
+		            					'type' =>'VARCHAR',
+					                    'constraint' => '10'	
+		            						),
+		             'created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		            		);
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('act_particular',TRUE);
+	}
+	public function DropTable_act_particular()
+	{
+		$this->dbforge->drop_table('act_particular');
+	}
+
+
+	public function CreateTable_act_applicable_to_customer()
+	{
+		$fields = array(
+            		'srno' 			=> array(
+					                    'type' => 'INT',					                 
+					                    'auto_increment' => TRUE
+							            ),
+		            'custid'		=> array(
+					                    'type' =>'BIGINT',
+					                    'constraint' => '20'					                    
+							            ),
+		            'name'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '50'
+					                    			                    
+							            ),
+		            'act_code'		=> array(
+					                    'type' =>'INT',
+					                    'constraint' => '11'
+					                						                    
+							            ),
+		            'spgid'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '200'					                    
+							            ),
+		            
+		             'date TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		            		);
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('act_applicable_to_customer',TRUE);
+	}
+	public function DropTable_act_applicable_to_customer()
+	{
+		$this->dbforge->drop_table('act_applicable_to_customer');
+	}
+
+
+
 }	

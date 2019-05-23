@@ -3,64 +3,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
  
 trait Company_ext {
+	public $type;
+
+	public function __construct() {
+		$this->load->model('Company_model');
+         $type=$this->session->TYPE;
+    }
 
 	public function company_registration($page_data="")
 	{
-		$this->load->model('Dashboard_model','dash');
-		 $type=$this->session->TYPE;
-		switch ($type) {
-			
-			case '1':
-				echo "1";
-				break;
-			case '2':
-				echo "2";
-				break;
-			case '3':
-				echo "3";
-				break;
-			case '4':
-				echo "4";
-				break;
-			case '5':
-				echo "5";
-				break;
-			case '55':
-				echo "55";
-				break;
-			case '9':
-			 $this->data['page_title'] = $page_data['page_title'];
+		// $this->load->model('Dashboard_model','dash');
+		
+		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		 	 $this->data['page_title'] = $page_data['page_title'];
 			 $this->data['where'] = 'Company';
 			 $this->data['sub_menu'] = 'Registration';
 			 $this->data['user_type'] = $page_data['user_type'];
 			 $this->data['menu'] = $page_data['menu'];
-
-			$this->data['total_scope'] = $this->dash->countOfScope();
-			$this->data['total_bulk_update'] = $this->dash->countOfBultUpdate();
-			$this->data['total_complience'] = $this->dash->countOfComplience();
-			$this->data['total_non_complience'] = $this->dash->countOfNonComplience();
-			$this->data['total_pending'] = $this->dash->countOfPending();
-			$this->data['total_compl'] = $this->dash->countOfcomplatence();
-			$this->data['total_alerts'] = $this->dash->countOfAlert();
-			$this->data['total_approves'] = $this->dash->countOfMyApprovals();
-			$this->data['total_notis'] = $this->dash->countOfNotis();
-
-				
-			
-		}
-		$this->render('company_registration');		
+			 $this->render('company_registration');
+		 }
+		 else
+		 {
+		 	echo "404 no access";
+		 }				
 		// $this->render('example');		
 	}
+	/*++++++ create a  COMPANY ++++++*/
 	protected function CreateCompany($user)
 	{
 		$this->load->model('Company_model');
+		$cust_type=2;	
 		$this->form_validation->set_rules($this->rules());
-		$custid=$this->Company_model->get_custid($this->input->post('comp_pin'),1);
+		$custid=$this->Company_model->get_custid($this->input->post('comp_pin'),$cust_type);
 		// echo $custid;
 		
 		
 		
-		$save_data = $this->security->xss_clean($this->fillup_data(1,$custid));
+		$save_data = $this->security->xss_clean($this->fillup_data($cust_type,$custid));
 		 if ($this->form_validation->run() == FALSE) { 
 	         	// echo validation_errors();
 	         	 put_msg(validation_errors());
@@ -70,8 +49,43 @@ trait Company_ext {
 	        {
 	         	// return TRUE;
 	         
-	         	if ($this->Company_model->create_company($this->fillup_data(1,$custid))) {
-	         		$this->Company_model->create_backup_company($this->backup_fillup_data(1,$custid));
+	         	if ($this->Company_model->create_company($this->fillup_data($cust_type,$custid))) {
+	         		$this->Company_model->create_backup_company($this->backup_fillup_data($cust_type,$custid));
+	         		 put_msg("your Company is registerd successfully..!!");
+	         		 redirect(base_url( $user.'/company/registration'));
+	         	}
+	         	else
+	         	{
+	         		put_msg("somthing went wronge...!");
+	         		 redirect(base_url( $user.'/company/registration'));
+	         	}
+	        }
+
+	}
+
+/*++++++ CREATE A BARANCH ++++++*/
+	protected function CreateBranch($user)
+	{
+		$this->load->model('Company_model');
+		$cust_type=1;	
+		$this->form_validation->set_rules($this->rules());
+		$custid=$this->Company_model->get_custid($this->input->post('comp_pin'),$cust_type);
+		// echo $custid;
+		
+		
+		
+		$save_data = $this->security->xss_clean($this->fillup_data($cust_type,$custid));
+		 if ($this->form_validation->run() == FALSE) { 
+	         	// echo validation_errors();
+	         	 put_msg(validation_errors());
+	         	redirect(base_url( $user.'/company/registration'));   
+	        } 
+	        else
+	        {
+	         	// return TRUE;
+	         
+	         	if ($this->Company_model->create_company($this->fillup_data($cust_type,$custid))) {
+	         		$this->Company_model->create_backup_company($this->backup_fillup_data($cust_type,$custid));
 	         		 put_msg("your Company is registerd successfully..!!");
 	         		 redirect(base_url( $user.'/company/registration'));
 	         	}
@@ -84,6 +98,79 @@ trait Company_ext {
 
 
 	}
+	/*++++++ CREATE A CONTRACTORE +++++*/
+	protected function CreateContractore($user)
+	{
+		$this->load->model('Company_model');
+		$cust_type=3;	
+		$this->form_validation->set_rules($this->rules());
+		$custid=$this->Company_model->get_custid($this->input->post('comp_pin'),$cust_type);
+		// echo $custid;
+		
+		
+		
+		$save_data = $this->security->xss_clean($this->fillup_data($cust_type,$custid));
+		 if ($this->form_validation->run() == FALSE) { 
+	         	// echo validation_errors();
+	         	 put_msg(validation_errors());
+	         	redirect(base_url( $user.'/company/registration'));   
+	        } 
+	        else
+	        {
+	         	// return TRUE;
+	         
+	         	if ($this->Company_model->create_company($this->fillup_data($cust_type,$custid))) {
+	         		$this->Company_model->create_backup_company($this->backup_fillup_data($cust_type,$custid));
+	         		 put_msg("your Company is registerd successfully..!!");
+	         		 redirect(base_url( $user.'/company/registration'));
+	         	}
+	         	else
+	         	{
+	         		put_msg("somthing went wronge...!");
+	         		 redirect(base_url( $user.'/company/registration'));
+	         	}
+	        }
+
+	}
+
+	/*+++++ CREATE A SUBCONTRACTOR +++++++*/
+	protected function CreateSub_Contractor($user)
+	{
+		// $this->load->model('Company_model');
+		$cust_type=4;	
+		$this->form_validation->set_rules($this->rules());
+		$custid=$this->Company_model->get_custid($this->input->post('comp_pin'),$cust_type);
+		// echo $custid;
+		
+		
+		
+		$save_data = $this->security->xss_clean($this->fillup_data($cust_type,$custid));
+		 if ($this->form_validation->run() == FALSE) { 
+	         	// echo validation_errors();
+	         	 put_msg(validation_errors());
+	         	redirect(base_url( $user.'/company/registration'));   
+	        } 
+	        else
+	        {
+	         	// return TRUE;
+	         
+	         	if ($this->Company_model->create_company($this->fillup_data($cust_type,$custid))) {
+	         		$this->Company_model->create_backup_company($this->backup_fillup_data($cust_type,$custid));
+	         		 put_msg("your Company is registerd successfully..!!");
+	         		 redirect(base_url( $user.'/company/registration'));
+	         	}
+	         	else
+	         	{
+	         		put_msg("somthing went wronge...!");
+	         		 redirect(base_url( $user.'/company/registration'));
+	         	}
+	        }
+
+	}
+
+
+
+
 	protected function rules()
 	{
 		$company_rules = array(
@@ -290,5 +377,60 @@ trait Company_ext {
 	{
 		# code...
 	}
+
+	public function company_act($page_data='')
+	{
+		$this->load->model('Company_model');
+		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		 	 $this->data['page_title'] = $page_data['page_title'];
+			 $this->data['where'] = 'Company';
+			 $this->data['sub_menu'] = 'Select Act for Compailation';
+			 $this->data['user_type'] = $page_data['user_type'];
+			 $this->data['menu'] = $page_data['menu'];
+			 /*main act data*/
+			 $this->data['source']=$this->Company_model->all_companys();
+			 $this->render('act_view');
+		 }
+		 else
+		 {
+		 	echo "404 no access";
+		 }		
+	}
+
+	/*+++ attach the act to the specific company +++*/
+
+	public function put_on_act_to_company($user)
+	{
+		$this->load->model('Company_model');
+		$save_acts=array('custid'	 => $this->input->post('custId') ,
+						  'name'	 => $this->input->post('compName'),
+						  'act_code' => $this->input->post('actCode'),
+						  'spgid'	 => user_id()
+						  );
+		$save_ats = $this->security->xss_clean($save_acts);
+		 // if ($this->form_validation->run() == FALSE) { 
+	  //        	// echo validation_errors();
+	  //        	 put_msg(validation_errors());
+	  //        	// redirect(base_url( $user.'/company/act'));   
+	  //       } 
+	  //       else
+	        // {	
+	        	$this->Company_model->attach_act_to_company($save_acts);
+	        echo show_msg();         
+	         	// if ($this->Company_model->attach_act_to_company($save_acts)) {
+	         		
+	         	// 	 put_msg("your Company Acts is registerd successfully..!!");
+	         	// 	 redirect(base_url( $user.'/company/act'));
+	         	// }
+	         	// else
+	         	// {
+	         	// 	put_msg("somthing went wronge...!");
+	         	// 	 redirect(base_url( $user.'/company/act'));
+	         	// }
+	        // }
+	}
+
+
+
 	
 }

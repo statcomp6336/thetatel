@@ -507,7 +507,7 @@
 
 								<ul class="submenu">
 									<li class="active hover">
-										<a href="top-menu.html">
+										<a href="<?php echo base_url('spg/company/act');?>">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Add Compliance
 										</a>
