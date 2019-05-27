@@ -18,6 +18,8 @@ class Spg extends Base_controller {
 	use Dashboard;
 	use Notification;
 	use Company_ext;
+	use Act;
+	use Employee;
 
 	 var $page=array();
 
@@ -64,7 +66,7 @@ class Spg extends Base_controller {
 		* CREATE SYSTEM FUNCTION CREATE A TABLES IN YOUR SELCTION DATABASE.
 		* IT IS AUTOMATIC GENRATED TABLES USING THIS FUNCTION.
 		* YOU CANN DESTROY THE ALL TABLE WHEN USING "DESTROY_SYSTEM()";
-		* WHEN USING THE DESTROY FUNCTION THEN SYSTEM HAS DOWN AND MULTIPLY THE BUGS.
+		* WHEN USING THE DESTROY FUNCTION THEN SYSTEM HAS DOWN AND MULTIPLY THE BUGS. 
 	*/
 	public function CREATE_SYSTEM()
 	{
@@ -72,6 +74,7 @@ class Spg extends Base_controller {
 		$this->DB_install->CreateTable_custid_backup();
 		$this->DB_install->CreateTable_act_particular();
 		$this->DB_install->CreateTable_act_applicable_to_customer();
+		$this->DB_install->CreateTable_compliance_scope();
 
 	}
 	public function DESTROY_SYSTEM()
@@ -80,6 +83,7 @@ class Spg extends Base_controller {
 		$this->DB_install->DropTable_custid_backup();
 		$this->DB_install->DropTable_act_particular();
 		$this->DB_install->DropTable_act_applicable_to_customer();
+		$this->DB_install->DropTable_compliance_scope();
 
 	}
 
@@ -177,6 +181,37 @@ class Spg extends Base_controller {
 		// var_dump($set_data);
 		$this->put_on_act_to_company('spg');
 	}
+
+	/*++++++ Act form dispaly ++++*/
+	public function create_Act($value='')
+	{
+		$this->CreateActs($this->page); // this function store in Act trait
+	}
+	/*++++++ Act form insert ++++*/
+	public function save_Act($value='')
+	{
+		$this->SaveActs('spg'); // this function store in Act trait
+	}
+	public function sub_act_id()
+	{
+		$this->get_sub_act_id(); // this function store in Act trait
+	}
+
+
+	/* start process with employee */
+	// display employee details with master setup
+	public function view_employee_master($value='')
+	{
+		# code...
+	}
+	// display employee form
+	public function view_employee_form($value='')
+	{
+		$this->CreateEmployee($this->page); // this function store in Employee trait
+	}
+
+
+
 
 
 	public function logout()

@@ -64,3 +64,11 @@ $route['spg/company/save']			= 'spg/Spg/add_company';// display company registra
 
 $route['spg/company/act']			= 'spg/Spg/act_view'; //display act view for company
 $route['spg/company/attachAct']		= 'spg/Spg/attachAct'; //display act view for company
+
+
+/* create acts*/
+$route['spg/act/create']		= 'spg/Spg/create_Act'; // display register act form
+$route['spg/act/save']		= 'spg/Spg/save_Act'; // insert act to database
+
+/* work with Employee*/
+$route['spg/employee/create']		= 'spg/Spg/view_employee_form'; // show Employee master form

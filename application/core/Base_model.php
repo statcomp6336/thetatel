@@ -40,7 +40,7 @@ class Base_model extends CI_Model
 	{
 
 	}
-	protected function join($f_table,$s_table,$match,$select='',$where='',$id )
+	protected function join($f_table,$s_table,$match,$select='',$where='',$id='' )
 	{
 		$select=!empty($select)?$select:'*';
 
@@ -48,8 +48,13 @@ class Base_model extends CI_Model
 			$this->db->from($f_table);
 		
 		$this->db->join($s_table,$match);
-		if (!empty($where)) {			
+		if (!empty($where)) {
+			if (!empty($id)) {
+					
 			$this->db->where($where,$id);
+			}else{
+				$this->db->where($where);
+			}		
 		}
 			return $query=$this->db->get();
 	}

@@ -2,6 +2,8 @@
  require_once APPPATH."controllers\Dashboard.php";
  require_once APPPATH."controllers\Notification.php";
  require_once APPPATH."controllers\Company_ext.php";
+ require_once APPPATH."controllers\Act.php";
+ require_once APPPATH."controllers\Employee.php";
 
 class Base_controller extends CI_Controller
 {

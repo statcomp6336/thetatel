@@ -323,6 +323,156 @@ class DB_install extends Base_model
 		$this->dbforge->drop_table('act_applicable_to_customer');
 	}
 
+	public function CreateTable_compliance_scope()
+	{
+		$fields = array(
+            		'srno' 			=> array(
+					                    'type' => 'INT',					                 
+					                    'auto_increment' => TRUE
+							            ),
+		            'custid'		=> array(
+					                    'type' =>'BIGINT',
+					                    'constraint' => '20'					                    
+							            ),
+		            'spg_id'		=> array(
+					                    'type' =>'BIGINT',
+					                    'constraint' => '20'
+					                    			                    
+							            ),
+		            'act_code'		=> array(
+					                    'type' =>'INT',
+					                    'constraint' => '11'
+					                						                    
+							            ),
+		            'act'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '200'					                    
+							            ),
+
+		            // 
+		            'Particular' 	=> array(
+					                    'type' => 'TEXT'
+					                    
+							            ),
+		            'year'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '10'					                    
+							            ),
+		            'Reg_freq'		=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '200'
+					                    			                    
+							            ),
+		            'due_date'		=> array(
+					                    'type' =>'DATE'     						                    
+							            ),
+		            'Statutory_due_date'=> array(
+					                    'type' =>'DATE'                   				                    
+							            ),
+		            //
+		            'doc_req' 			=> array(
+					                    'type' => 'VARCHAR',					                 
+					                    'constraint' => '100'
+							            ),
+		            'Application_date'	=> array(
+					                    'type' =>'DATETIME'
+					                   				                    
+							            ),
+		            'Certi_rece_date'	=> array(
+					                    'type' =>'DATETIME'                    			                    
+							            ),
+		            'Valid_upto'		=> array(
+					                    'type' =>'DATE'
+					                						                    
+							            ),
+		            'Renewal_date'		=> array(
+					                    'type' =>'DATE'					                    
+							            ),
+
+		            // 
+		            'Issuing_authority' => array(
+					                   'type' =>'TEXT'
+							            ),
+		            'Copy_of_docu'		=> array(
+					                    'type' =>'TEXT'					                    
+							            ),
+		            'Resp_prsn_frm_client'	=> array(
+					                    'type' =>'TEXT'
+					                    			                    
+							            ),
+		            'Resp_prsn'			=> array(
+					                    'type' =>'TEXT'
+					                						                    
+							            ),
+		            'Remarks'			=> array(
+					                    'type' =>'TEXT'				                    
+							            ),
+		            //
+		            'Data_recev_frm_client' => array(
+					                   'type' =>'TEXT'
+							            ),
+		            'Task_complitn_date'=> array(
+					                    'type' =>'DATE'					                    
+							            ),
+		            'Retrn/Chanllan_genrtn_date'=> array(
+					                   'type' =>'DATE'		
+					                    			                    
+							            ),
+		            'Submisn/Pay_date'	=> array(
+					                    'type' =>'DATE'		
+					                						                    
+							            ),
+		            'Docu_submit_to_GOVT_in_nos'=> array(
+					                    'type' =>'INT',
+					                    'constraint' => '10'					                    
+							            ),
+
+		            // 
+		            'Pend_docu_in_nos' 	=> array(
+					                   'type' =>'INT',
+					                    'constraint' => '10'
+							            ),
+		            'status'			=> array(
+					                    'type' =>'INT',
+					                    'constraint' => '10'					                    
+							            ),
+		            'act_type'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '300'
+					                    			                    
+							            ),
+		            'approval'			=> array(
+					                    'type' =>'INT',
+					                    'constraint' => '11'
+					                						                    
+							            ),
+		            'Applicable_date'	=> array(
+					                    'type' =>'DATETIME'					                    
+							            ),
+		            //
+		           
+		            'registration_no'	=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '100'					                    
+							            ),
+		            'pcr_code'			=> array(
+					                    'type' =>'INT',
+					                    'constraint' => '6'
+					                    			                    
+							            ),
+		            
+		            // 
+		             'date TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		            		);
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('compliance_scope',TRUE);
+	}
+	public function DropTable_compliance_scope()
+	{
+		$this->dbforge->drop_table('compliance_scope');
+	}
+
 
 
 }	

@@ -121,25 +121,48 @@ class Company_model extends Base_model
 	 }
 	 public function attach_act_to_company($value='')
 	 {
-	 	$len=count($value['act_code']);
-	 	$valuesArr1=[];
-	 	for ($i=0; $i < $len ; $i++) { 
-	 		// $valuesArr[] = "('".$value['custid']."', '".$value['name']."', '".$value['act_code'][$i]."','".$value['spgid']."')";
-	 		$valuesArr1[] = array('custid' => $value['custid'],
+	 	$len=count($value['act_code']);	
+	 	// $valuesArr1=[];
+	 	// $valuesArr=[];
+	 	for ($i=0; $i < $len ; $i++) {
+
+	 		$valuesArr1 = array('custid' => $value['custid'],
 	 							'name'=>$value['name'],
 	 							'act_code'=>$value['act_code'][$i],
 	 							'spgid'=>$value['spgid']	 );
-	 		
-	 		
-	 		
-	 	
-	 		}
-	 	
-	 	echo "<pre>";
-	 	var_dump($valuesArr1);
-	 	// implode(',', $valuesArr);
 
-	 	$this->newdb->insert_batch('act_applicable_to_customer', $valuesArr1);
+	 			if($this->newdb->insert('act_applicable_to_customer', $valuesArr1))
+				 	{
+				 		$get_act_data=$this->join('act_applicable_to_customer as A','act_particular as B','B.act_code = A.act_code','A.custid as id, A.act_code as code, B.act as act, B.particular as p',array('A.custid' =>$value['custid'], 'A.act_code' => $value['act_code'][$i] ));
+	 		 	$get_act_data=$get_act_data->result();
+	 		 // 	echo "<pre>";
+	 			// var_dump($get_act_data);
+				 		$valuesArr = array('custid' => $get_act_data->id,
+	 							'act'=>$get_act_data->act,
+	 							'act_code'=>$get_act_data->code,
+	 							'spg_id'=>$value['spgid'],	 	
+	 							'Particular'=>$get_act_data->p);
+	 					$this->newdb->insert('compliance_scope', $valuesArr1);	
+	 					return TRUE;		 	
+				 	}
+				 	else
+				 	{
+				 		return FALSE;
+				 	}
+
+	 		} 	
+	 	
+	 	// implode(',', $valuesArr);
+	 	/*
+SELECT A.custid ,'$spgid', A.act_code, B.act, B.particular
+	  FROM act_applicable_to_customer A
+	INNER   JOIN act_particular B
+		ON B.act_code = A.act_code
+	 WHERE A.custid  ='$entid' and A.act_code='$act_code'";
+	 	*/
+	 	
+
+	 	
 	 }
 
 }	

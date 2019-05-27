@@ -119,3 +119,16 @@
 [23-May-2019 14:20:30 Europe/Berlin] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in C:\xampp\htdocs\thetatel\application\models\Company_model.php on line 126
 [23-May-2019 14:21:18 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'cust_id' (T_STRING) in C:\xampp\htdocs\thetatel\application\models\Company_model.php on line 126
 [23-May-2019 14:27:08 Europe/Berlin] PHP Fatal error:  Call to a member function attach_act_to_company() on null in C:\xampp\htdocs\thetatel\application\controllers\Company_ext.php on line 417
+[24-May-2019 07:43:08 Europe/Berlin] PHP Fatal error:  Cannot redeclare DB_install::DropTable_act_applicable_to_customer() in C:\xampp\htdocs\thetatel\application\models\DB_install.php on line 472
+[24-May-2019 07:43:10 Europe/Berlin] PHP Fatal error:  Cannot redeclare DB_install::DropTable_act_applicable_to_customer() in C:\xampp\htdocs\thetatel\application\models\DB_install.php on line 472
+[24-May-2019 13:30:30 Europe/Berlin] PHP Fatal error:  Call to undefined method CI_DB_mysqli_driver::form() in C:\xampp\htdocs\thetatel\application\models\Act_model.php on line 16
+[24-May-2019 13:36:40 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\thetatel\application\controllers\Act.php on line 71
+[24-May-2019 13:37:38 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\thetatel\application\controllers\Act.php on line 71
+[24-May-2019 13:38:55 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'act_code' (T_STRING) in C:\xampp\htdocs\thetatel\application\models\Act_model.php on line 16
+[24-May-2019 13:41:26 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=' in C:\xampp\htdocs\thetatel\application\controllers\Act.php on line 71
+[24-May-2019 13:56:28 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')' in C:\xampp\htdocs\thetatel\application\controllers\Act.php on line 74
+[24-May-2019 14:03:01 Europe/Berlin] PHP Fatal error:  Call to a member function get_act_code() on null in C:\xampp\htdocs\thetatel\application\controllers\Act.php on line 18
+[24-May-2019 14:03:03 Europe/Berlin] PHP Fatal error:  Call to a member function get_act_code() on null in C:\xampp\htdocs\thetatel\application\controllers\Act.php on line 18
+[24-May-2019 14:08:25 Europe/Berlin] PHP Fatal error:  Call to undefined method Act_model::get_act() in C:\xampp\htdocs\thetatel\application\controllers\Act.php on line 20
+[25-May-2019 07:27:32 Europe/Berlin] PHP Fatal error:  Cannot redeclare Act::sub_act_rules() in C:\xampp\htdocs\thetatel\application\controllers\Act.php on line 167
+[25-May-2019 07:27:59 Europe/Berlin] PHP Fatal error:  Cannot redeclare Act::sub_act_rules() in C:\xampp\htdocs\thetatel\application\controllers\Act.php on line 167
