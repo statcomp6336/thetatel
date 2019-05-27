@@ -473,6 +473,41 @@ class DB_install extends Base_model
 		$this->dbforge->drop_table('compliance_scope');
 	}
 
+	public function CreateTable_compliance_scope()
+	{
+		$fields = array(
+            		'srno' 			=> array(
+					                    'type' => 'INT',					                 
+					                    'auto_increment' => TRUE
+							            ),
+		            'custid'		=> array(
+					                    'type' =>'BIGINT',
+					                    'constraint' => '20'					                    
+							            ),
+		            'spg_id'		=> array(
+					                    'type' =>'BIGINT',
+					                    'constraint' => '20'
+					                    			                    
+							            ),
+		            'act_code'		=> array(
+					                    'type' =>'INT',
+					                    'constraint' => '11'
+					                						                    
+							            ),
+		            'act'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '200'					                    
+							            ),
+		            'date TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		        );
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('compliance_scope',TRUE);
+	}
 
+	public function DropTable_compliance_scope()
+	{
+		$this->dbforge->drop_table('compliance_scope');
+	}
 
 }	

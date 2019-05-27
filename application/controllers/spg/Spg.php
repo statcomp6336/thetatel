@@ -209,6 +209,11 @@ class Spg extends Base_controller {
 	{
 		$this->CreateEmployee($this->page); // this function store in Employee trait
 	}
+	// save employee details//
+	public function save_employee($value='')
+	{
+		$this->SaveEmployee('spg');//  this function store in Employee trait
+	}
 
 
 
