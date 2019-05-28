@@ -137,3 +137,14 @@
 [28-May-2019 09:29:07 Europe/Berlin] PHP Parse error:  syntax error, unexpected ''.employee/create'' (T_CONSTANT_ENCAPSED_STRING) in C:\xampp\htdocs\git\thetatel\application\views\master_employee.php on line 15
 [28-May-2019 11:49:19 Europe/Berlin] PHP Parse error:  syntax error, unexpected ''fath_hus_name'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 259
 [28-May-2019 11:49:28 Europe/Berlin] PHP Parse error:  syntax error, unexpected ''fath_hus_name'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 259
+[28-May-2019 12:47:19 Europe/Berlin] PHP Fatal error:  Cannot redeclare class Employee in C:\xampp\htdocs\git\thetatel\application\models\Employee.php on line 19
+[28-May-2019 12:52:21 Europe/Berlin] PHP Fatal error:  Call to undefined method Employee_model::select() in C:\xampp\htdocs\git\thetatel\application\models\Employee_model.php on line 17
+[28-May-2019 12:56:12 Europe/Berlin] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in C:\xampp\htdocs\git\thetatel\application\controllers\Employee.php on line 62
+[28-May-2019 13:43:19 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\git\thetatel\application\views\master_employee.php on line 1145
+[28-May-2019 13:44:11 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 231
+[28-May-2019 13:44:20 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 231
+[28-May-2019 13:46:38 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\application\views\errors\html\error_php.php on line 19
+[28-May-2019 13:47:07 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 231
+[28-May-2019 13:48:21 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 231
+[28-May-2019 13:50:17 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 231
+[28-May-2019 15:10:00 Europe/Berlin] PHP Fatal error:  Call to a member function get_allemployee() on null in C:\xampp\htdocs\git\thetatel\application\controllers\Employee.php on line 29

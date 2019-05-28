@@ -58,6 +58,18 @@ class Base_model extends CI_Model
 		}
 			return $query=$this->db->get();
 	}
+	protected function is_uniq($table,$arr)
+	{
+		$u = $this->db->select('*')->from($table)->where($arr)->get()->num_rows();
+		if ($u>0) {
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
+
+	}
 
 
 	/*SELECT act,act_code, IF(EXISTS(

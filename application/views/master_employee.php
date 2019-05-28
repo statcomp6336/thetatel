@@ -1,3 +1,6 @@
+
+
+
 <link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/css/jquery-ui.custom.min.css" />
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/css/chosen.min.css" />
 		
@@ -65,11 +68,15 @@
 	</thead>
 
 	<tbody>
+		<?php $count =0;
+		foreach ($result as $key) {
+			$count++;
+		?>
 		<tr>
 			<td class="center">
 				<label class="pos-rel">
-					<input type="checkbox" class="ace" />
-					<span class="lbl"></span>
+					
+					<span class="lbl"><?php echo $count++; ?></span>
 				</label>
 			</td>
 
@@ -83,69 +90,21 @@
 			</td>
 
 			<td>
-				<a href="#">ace.com</a>
+				<a href="#"><?php echo $key->emp_id;?></a>
 			</td>
-			<td>$45</td>
-			<td class="hidden-480">3,330</td>
-			<td>Feb 12</td>
+			<td><?php echo $key->emp_name;?></td>
+			<td class="hidden-480"><?php echo $key->entity_name;?></td>
+			<td><?php echo $key->dept;?></td>
 
+			
+			<td class="hidden-480">
+				<span class="label label-sm label-warning"><?php echo $key->designation;?></span>
+			</td>
 			<td class="hidden-480">
 				<span class="label label-sm label-warning">Expiring</span>
 			</td>
 
-			<td>
-				<div class="hidden-sm hidden-xs btn-group">
-					<button class="btn btn-xs btn-success">
-						<i class="ace-icon fa fa-check bigger-120"></i>
-					</button>
-
-					<button class="btn btn-xs btn-info">
-						<i class="ace-icon fa fa-pencil bigger-120"></i>
-					</button>
-
-					<button class="btn btn-xs btn-danger">
-						<i class="ace-icon fa fa-trash-o bigger-120"></i>
-					</button>
-
-					<button class="btn btn-xs btn-warning">
-						<i class="ace-icon fa fa-flag bigger-120"></i>
-					</button>
-				</div>
-
-				<div class="hidden-md hidden-lg">
-					<div class="inline pos-rel">
-						<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-							<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-						</button>
-
-						<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-							<li>
-								<a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-									<span class="blue">
-										<i class="ace-icon fa fa-search-plus bigger-120"></i>
-									</span>
-								</a>
-							</li>
-
-							<li>
-								<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-									<span class="green">
-										<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-									</span>
-								</a>
-							</li>
-
-							<li>
-								<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-									<span class="red">
-										<i class="ace-icon fa fa-trash-o bigger-120"></i>
-									</span>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</td>
+			
 		</tr>
 
 		<tr class="detail-row">
@@ -158,42 +117,42 @@
 									<div class="profile-info-name"> Employee Name </div>
 
 									<div class="profile-info-value">
-										<span>alexdoe</span>
+										<span><?php echo $key->emp_name;?></span>
 									</div>
 								</div>
 								<div class="profile-info-row">
 									<div class="profile-info-name"> Date of Birth </div>
 
 									<div class="profile-info-value">
-										<span>10-Nov-1996</span>
+										<span><?php echo $key->birth_date;?></span>
 									</div>
 								</div>
 								<div class="profile-info-row">
 									<div class="profile-info-name"> Gender </div>
 
 									<div class="profile-info-value">
-										<span>Male</span>
+										<span><?php echo $key->gender;?></span>
 									</div>
 								</div>
 								<div class="profile-info-row">
 									<div class="profile-info-name"> Current Address </div>
 
 									<div class="profile-info-value">
-										<span>At/Post: Vhanali, Dist:Kolhapur</span>
+										<span><?php echo $key->temp_address;?></span>
 									</div>
 								</div>
 								<div class="profile-info-row">
 									<div class="profile-info-name"> Email Address </div>
 
 									<div class="profile-info-value">
-										<span>goutampalkar6336@gmail.com</span>
+										<span><?php echo $key->email;?></span>
 									</div>
 								</div>
 								<div class="profile-info-row">
 									<div class="profile-info-name"> Employee Phone Number </div>
 
 									<div class="profile-info-value">
-										<span>830893828</span>
+										<span><?php echo $key->mob;?></span>
 									</div>
 								</div>
 
@@ -209,7 +168,7 @@
 									<div class="profile-info-name"> Bank Name </div>
 
 									<div class="profile-info-value">
-										<span>Bank Of Baroda</span>
+										<span><?php echo $key->bank_name;?></span>
 									</div>
 								</div>
 
@@ -218,7 +177,7 @@
 
 									<div class="profile-info-value">
 										<i class="fa fa-map-marker light-orange bigger-110"></i>
-										<span>Netherlands, Amsterdam</span>
+										<span><?php echo $key->bank_branch;?></span>
 									</div>
 								</div>
 
@@ -226,7 +185,7 @@
 									<div class="profile-info-name">Account Number </div>
 
 									<div class="profile-info-value">
-										<span>210222200006</span>
+										<span><?php echo $key->bank_ac;?></span>
 									</div>
 								</div>
 
@@ -234,7 +193,7 @@
 									<div class="profile-info-name"> IFSC Code </div>
 
 									<div class="profile-info-value">
-										<span>FKSK00041D</span>
+										<span><?php echo $key->ifsc;?></span>
 									</div>
 								</div>
 
@@ -242,7 +201,7 @@
 									<div class="profile-info-name"> PAN Number </div>
 
 									<div class="profile-info-value">
-										<span>dsfaf12205</span>
+										<span><?php echo $key->pan;?></span>
 									</div>
 								</div>
 
@@ -250,7 +209,7 @@
 									<div class="profile-info-name"> AADHAR Number </div>
 
 									<div class="profile-info-value">
-										<span>222526225122</span>
+										<span><?php echo $key->adhaar;?></span>
 									</div>
 								</div>
 							</div>
@@ -264,7 +223,7 @@
 									<div class="profile-info-name"> Company Name </div>
 
 									<div class="profile-info-value">
-										<span>Statcomp pvt ltd pune</span>
+										<span><?php echo $key->entity_name;?></span>
 									</div>
 								</div>
 
@@ -273,7 +232,7 @@
 
 									<div class="profile-info-value">
 										<i class="fa fa-map-marker light-orange bigger-110"></i>
-										<span>Netherlands, Amsterdam</span>
+										<span><?php echo $key->dept;?></span>
 									</div>
 								</div>
 
@@ -281,7 +240,7 @@
 									<div class="profile-info-name"> Designation </div>
 
 									<div class="profile-info-value">
-										<span>IT Officer</span>
+										<span><?php echo $key->designation;?></span>
 									</div>
 								</div>
 
@@ -289,7 +248,7 @@
 									<div class="profile-info-name"> Location </div>
 
 									<div class="profile-info-value">
-										<span>pune</span>
+										<span><?php echo $key->location;?></span>
 									</div>
 								</div>
 
@@ -297,15 +256,15 @@
 									<div class="profile-info-name"> Join Date </div>
 
 									<div class="profile-info-value">
-										<span>dsfaf12205</span>
+										<span><?php echo $key->join_date;?></span>
 									</div>
 								</div>
 
 								<div class="profile-info-row">
-									<div class="profile-info-name"> Existing Date </div>
+									<div class="profile-info-name"> Exiting Date </div>
 
 									<div class="profile-info-value">
-										<span>222526225122</span>
+										<span><?php echo $key->exit_date;?></span>
 									</div>
 								</div>
 								<button> Know More..</button>
@@ -315,764 +274,11 @@
 				</div>
 			</td>
 		</tr>
-
-		<tr>
-			<td class="center">
-				<label class="pos-rel">
-					<input type="checkbox" class="ace" />
-					<span class="lbl"></span>
-				</label>
-			</td>
-
-			<td class="center">
-				<div class="action-buttons">
-					<a href="#" class="green bigger-140 show-details-btn" title="Show Details">
-						<i class="ace-icon fa fa-angle-double-down"></i>
-						<span class="sr-only">Details</span>
-					</a>
-				</div>
-			</td>
-
-			<td>
-				<a href="#">base.com</a>
-			</td>
-			<td>$35</td>
-			<td class="hidden-480">2,595</td>
-			<td>Feb 18</td>
-
-			<td class="hidden-480">
-				<span class="label label-sm label-success">Registered</span>
-			</td>
-
-			<td>
-				<div class="hidden-sm hidden-xs btn-group">
-					<button class="btn btn-xs btn-success">
-						<i class="ace-icon fa fa-check bigger-120"></i>
-					</button>
-
-					<button class="btn btn-xs btn-info">
-						<i class="ace-icon fa fa-pencil bigger-120"></i>
-					</button>
-
-					<button class="btn btn-xs btn-danger">
-						<i class="ace-icon fa fa-trash-o bigger-120"></i>
-					</button>
-
-					<button class="btn btn-xs btn-warning">
-						<i class="ace-icon fa fa-flag bigger-120"></i>
-					</button>
-				</div>
-
-				<div class="hidden-md hidden-lg">
-					<div class="inline pos-rel">
-						<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-							<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-						</button>
-
-						<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-							<li>
-								<a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-									<span class="blue">
-										<i class="ace-icon fa fa-search-plus bigger-120"></i>
-									</span>
-								</a>
-							</li>
-
-							<li>
-								<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-									<span class="green">
-										<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-									</span>
-								</a>
-							</li>
-
-							<li>
-								<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-									<span class="red">
-										<i class="ace-icon fa fa-trash-o bigger-120"></i>
-									</span>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</td>
-		</tr>
-
-		<tr class="detail-row">
-			<td colspan="8">
-				<div class="table-detail">
-					<div class="row">
-						<div class="col-xs-12 col-sm-2">
-							<div class="text-center">
-								<img height="150" class="thumbnail inline no-margin-bottom" alt="Domain Owner's Avatar" src="<?php echo base_url();?>assets/dashboard/images/avatars/profile-pic.jpg" />
-								<br />
-								<div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
-									<div class="inline position-relative">
-										<a class="user-title-label" href="#">
-											<i class="ace-icon fa fa-circle light-green"></i>
-											&nbsp;
-											<span class="white">Alex M. Doe</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-xs-12 col-sm-7">
-							<div class="space visible-xs"></div>
-
-							<div class="profile-user-info profile-user-info-striped">
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Username </div>
-
-									<div class="profile-info-value">
-										<span>alexdoe</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Location </div>
-
-									<div class="profile-info-value">
-										<i class="fa fa-map-marker light-orange bigger-110"></i>
-										<span>Netherlands, Amsterdam</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Age </div>
-
-									<div class="profile-info-value">
-										<span>38</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Joined </div>
-
-									<div class="profile-info-value">
-										<span>2010/06/20</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Last Online </div>
-
-									<div class="profile-info-value">
-										<span>3 hours ago</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> About Me </div>
-
-									<div class="profile-info-value">
-										<span>Bio</span>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-xs-12 col-sm-3">
-							<div class="space visible-xs"></div>
-							<h4 class="header blue lighter less-margin">Send a message to Alex</h4>
-
-							<div class="space-6"></div>
-
-							<form>
-								<fieldset>
-									<textarea class="width-100" resize="none" placeholder="Type something…"></textarea>
-								</fieldset>
-
-								<div class="hr hr-dotted"></div>
-
-								<div class="clearfix">
-									<label class="pull-left">
-										<input type="checkbox" class="ace" />
-										<span class="lbl"> Email me a copy</span>
-									</label>
-
-									<button class="pull-right btn btn-sm btn-primary btn-white btn-round" type="button">
-										Submit
-										<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
-									</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</td>
-		</tr>
-
-		<tr>
-			<td class="center">
-				<label class="pos-rel">
-					<input type="checkbox" class="ace" />
-					<span class="lbl"></span>
-				</label>
-			</td>
-
-			<td class="center">
-				<div class="action-buttons">
-					<a href="#" class="green bigger-140 show-details-btn" title="Show Details">
-						<i class="ace-icon fa fa-angle-double-down"></i>
-						<span class="sr-only">Details</span>
-					</a>
-				</div>
-			</td>
-
-			<td>
-				<a href="#">max.com</a>
-			</td>
-			<td>$60</td>
-			<td class="hidden-480">4,400</td>
-			<td>Mar 11</td>
-
-			<td class="hidden-480">
-				<span class="label label-sm label-warning">Expiring</span>
-			</td>
-
-			<td>
-				<div class="hidden-sm hidden-xs btn-group">
-					<button class="btn btn-xs btn-success">
-						<i class="ace-icon fa fa-check bigger-120"></i>
-					</button>
-
-					<button class="btn btn-xs btn-info">
-						<i class="ace-icon fa fa-pencil bigger-120"></i>
-					</button>
-
-					<button class="btn btn-xs btn-danger">
-						<i class="ace-icon fa fa-trash-o bigger-120"></i>
-					</button>
-
-					<button class="btn btn-xs btn-warning">
-						<i class="ace-icon fa fa-flag bigger-120"></i>
-					</button>
-				</div>
-
-				<div class="hidden-md hidden-lg">
-					<div class="inline pos-rel">
-						<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-							<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-						</button>
-
-						<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-							<li>
-								<a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-									<span class="blue">
-										<i class="ace-icon fa fa-search-plus bigger-120"></i>
-									</span>
-								</a>
-							</li>
-
-							<li>
-								<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-									<span class="green">
-										<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-									</span>
-								</a>
-							</li>
-
-							<li>
-								<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-									<span class="red">
-										<i class="ace-icon fa fa-trash-o bigger-120"></i>
-									</span>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</td>
-		</tr>
-
-		<tr class="detail-row">
-			<td colspan="8">
-				<div class="table-detail">
-					<div class="row">
-						<div class="col-xs-12 col-sm-2">
-							<div class="text-center">
-								<img height="150" class="thumbnail inline no-margin-bottom" alt="Domain Owner's Avatar" src="<?php echo base_url();?>assets/dashboard/images/avatars/profile-pic.jpg" />
-								<br />
-								<div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
-									<div class="inline position-relative">
-										<a class="user-title-label" href="#">
-											<i class="ace-icon fa fa-circle light-green"></i>
-											&nbsp;
-											<span class="white">Alex M. Doe</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-xs-12 col-sm-7">
-							<div class="space visible-xs"></div>
-
-							<div class="profile-user-info profile-user-info-striped">
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Username </div>
-
-									<div class="profile-info-value">
-										<span>alexdoe</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Location </div>
-
-									<div class="profile-info-value">
-										<i class="fa fa-map-marker light-orange bigger-110"></i>
-										<span>Netherlands, Amsterdam</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Age </div>
-
-									<div class="profile-info-value">
-										<span>38</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Joined </div>
-
-									<div class="profile-info-value">
-										<span>2010/06/20</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Last Online </div>
-
-									<div class="profile-info-value">
-										<span>3 hours ago</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> About Me </div>
-
-									<div class="profile-info-value">
-										<span>Bio</span>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-xs-12 col-sm-3">
-							<div class="space visible-xs"></div>
-							<h4 class="header blue lighter less-margin">Send a message to Alex</h4>
-
-							<div class="space-6"></div>
-
-							<form>
-								<fieldset>
-									<textarea class="width-100" resize="none" placeholder="Type something…"></textarea>
-								</fieldset>
-
-								<div class="hr hr-dotted"></div>
-
-								<div class="clearfix">
-									<label class="pull-left">
-										<input type="checkbox" class="ace" />
-										<span class="lbl"> Email me a copy</span>
-									</label>
-
-									<button class="pull-right btn btn-sm btn-primary btn-white btn-round" type="button">
-										Submit
-										<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
-									</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</td>
-		</tr>
-
-		<tr>
-			<td class="center">
-				<label class="pos-rel">
-					<input type="checkbox" class="ace" />
-					<span class="lbl"></span>
-				</label>
-			</td>
-
-			<td class="center">
-				<div class="action-buttons">
-					<a href="#" class="green bigger-140 show-details-btn" title="Show Details">
-						<i class="ace-icon fa fa-angle-double-down"></i>
-						<span class="sr-only">Details</span>
-					</a>
-				</div>
-			</td>
-
-			<td>
-				<a href="#">best.com</a>
-			</td>
-			<td>$75</td>
-			<td class="hidden-480">6,500</td>
-			<td>Apr 03</td>
-
-			<td class="hidden-480">
-				<span class="label label-sm label-inverse arrowed-in">Flagged</span>
-			</td>
-
-			<td>
-				<div class="hidden-sm hidden-xs btn-group">
-					<button class="btn btn-xs btn-success">
-						<i class="ace-icon fa fa-check bigger-120"></i>
-					</button>
-
-					<button class="btn btn-xs btn-info">
-						<i class="ace-icon fa fa-pencil bigger-120"></i>
-					</button>
-
-					<button class="btn btn-xs btn-danger">
-						<i class="ace-icon fa fa-trash-o bigger-120"></i>
-					</button>
-
-					<button class="btn btn-xs btn-warning">
-						<i class="ace-icon fa fa-flag bigger-120"></i>
-					</button>
-				</div>
-
-				<div class="hidden-md hidden-lg">
-					<div class="inline pos-rel">
-						<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-							<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-						</button>
-
-						<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-							<li>
-								<a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-									<span class="blue">
-										<i class="ace-icon fa fa-search-plus bigger-120"></i>
-									</span>
-								</a>
-							</li>
-
-							<li>
-								<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-									<span class="green">
-										<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-									</span>
-								</a>
-							</li>
-
-							<li>
-								<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-									<span class="red">
-										<i class="ace-icon fa fa-trash-o bigger-120"></i>
-									</span>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</td>
-		</tr>
-
-		<tr class="detail-row">
-			<td colspan="8">
-				<div class="table-detail">
-					<div class="row">
-						<div class="col-xs-12 col-sm-2">
-							<div class="text-center">
-								<img height="150" class="thumbnail inline no-margin-bottom" alt="Domain Owner's Avatar" src="<?php echo base_url();?>assets/dashboard/images/avatars/profile-pic.jpg" />
-								<br />
-								<div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
-									<div class="inline position-relative">
-										<a class="user-title-label" href="#">
-											<i class="ace-icon fa fa-circle light-green"></i>
-											&nbsp;
-											<span class="white">Alex M. Doe</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-xs-12 col-sm-7">
-							<div class="space visible-xs"></div>
-
-							<div class="profile-user-info profile-user-info-striped">
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Username </div>
-
-									<div class="profile-info-value">
-										<span>alexdoe</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Location </div>
-
-									<div class="profile-info-value">
-										<i class="fa fa-map-marker light-orange bigger-110"></i>
-										<span>Netherlands, Amsterdam</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Age </div>
-
-									<div class="profile-info-value">
-										<span>38</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Joined </div>
-
-									<div class="profile-info-value">
-										<span>2010/06/20</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Last Online </div>
-
-									<div class="profile-info-value">
-										<span>3 hours ago</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> About Me </div>
-
-									<div class="profile-info-value">
-										<span>Bio</span>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-xs-12 col-sm-3">
-							<div class="space visible-xs"></div>
-							<h4 class="header blue lighter less-margin">Send a message to Alex</h4>
-
-							<div class="space-6"></div>
-
-							<form>
-								<fieldset>
-									<textarea class="width-100" resize="none" placeholder="Type something…"></textarea>
-								</fieldset>
-
-								<div class="hr hr-dotted"></div>
-
-								<div class="clearfix">
-									<label class="pull-left">
-										<input type="checkbox" class="ace" />
-										<span class="lbl"> Email me a copy</span>
-									</label>
-
-									<button class="pull-right btn btn-sm btn-primary btn-white btn-round" type="button">
-										Submit
-										<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
-									</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</td>
-		</tr>
-
-		<tr>
-			<td class="center">
-				<label class="pos-rel">
-					<input type="checkbox" class="ace" />
-					<span class="lbl"></span>
-				</label>
-			</td>
-
-			<td class="center">
-				<div class="action-buttons">
-					<a href="#" class="green bigger-140 show-details-btn" title="Show Details">
-						<i class="ace-icon fa fa-angle-double-down"></i>
-						<span class="sr-only">Details</span>
-					</a>
-				</div>
-			</td>
-
-			<td>
-				<a href="#">pro.com</a>
-			</td>
-			<td>$55</td>
-			<td class="hidden-480">4,250</td>
-			<td>Jan 21</td>
-
-			<td class="hidden-480">
-				<span class="label label-sm label-success">Registered</span>
-			</td>
-
-			<td>
-				<div class="hidden-sm hidden-xs btn-group">
-					<button class="btn btn-xs btn-success">
-						<i class="ace-icon fa fa-check bigger-120"></i>
-					</button>
-
-					<button class="btn btn-xs btn-info">
-						<i class="ace-icon fa fa-pencil bigger-120"></i>
-					</button>
-
-					<button class="btn btn-xs btn-danger">
-						<i class="ace-icon fa fa-trash-o bigger-120"></i>
-					</button>
-
-					<button class="btn btn-xs btn-warning">
-						<i class="ace-icon fa fa-flag bigger-120"></i>
-					</button>
-				</div>
-
-				<div class="hidden-md hidden-lg">
-					<div class="inline pos-rel">
-						<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-							<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-						</button>
-
-						<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-							<li>
-								<a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-									<span class="blue">
-										<i class="ace-icon fa fa-search-plus bigger-120"></i>
-									</span>
-								</a>
-							</li>
-
-							<li>
-								<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-									<span class="green">
-										<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-									</span>
-								</a>
-							</li>
-
-							<li>
-								<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-									<span class="red">
-										<i class="ace-icon fa fa-trash-o bigger-120"></i>
-									</span>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</td>
-		</tr>
-
-		<tr class="detail-row">
-			<td colspan="8">
-				<div class="table-detail">
-					<div class="row">
-						<div class="col-xs-12 col-sm-2">
-							<div class="text-center">
-								<img height="150" class="thumbnail inline no-margin-bottom" alt="Domain Owner's Avatar" src="<?php echo base_url();?>assets/dashboard/images/avatars/profile-pic.jpg" />
-								<br />
-								<div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
-									<div class="inline position-relative">
-										<a class="user-title-label" href="#">
-											<i class="ace-icon fa fa-circle light-green"></i>
-											&nbsp;
-											<span class="white">Alex M. Doe</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-xs-12 col-sm-7">
-							<div class="space visible-xs"></div>
-
-							<div class="profile-user-info profile-user-info-striped">
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Username </div>
-
-									<div class="profile-info-value">
-										<span>alexdoe</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Location </div>
-
-									<div class="profile-info-value">
-										<i class="fa fa-map-marker light-orange bigger-110"></i>
-										<span>Netherlands, Amsterdam</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Age </div>
-
-									<div class="profile-info-value">
-										<span>38</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Joined </div>
-
-									<div class="profile-info-value">
-										<span>2010/06/20</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Last Online </div>
-
-									<div class="profile-info-value">
-										<span>3 hours ago</span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> About Me </div>
-
-									<div class="profile-info-value">
-										<span>Bio</span>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-xs-12 col-sm-3">
-							<div class="space visible-xs"></div>
-							<h4 class="header blue lighter less-margin">Send a message to Alex</h4>
-
-							<div class="space-6"></div>
-
-							<form>
-								<fieldset>
-									<textarea class="width-100" resize="none" placeholder="Type something…"></textarea>
-								</fieldset>
-
-								<div class="hr hr-dotted"></div>
-
-								<div class="clearfix">
-									<label class="pull-left">
-										<input type="checkbox" class="ace" />
-										<span class="lbl"> Email me a copy</span>
-									</label>
-
-									<button class="pull-right btn btn-sm btn-primary btn-white btn-round" type="button">
-										Submit
-										<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
-									</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</td>
-		</tr>
+	<?php }?>
+		
 	</tbody>
 </table>
+<?php echo $links; ?>
 
 
 		<script src="<?php echo base_url();?>assets/dashboard/js/jquery.dataTables.min.js"></script>
