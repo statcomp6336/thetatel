@@ -68,7 +68,9 @@ $route['spg/company/attachAct']		= 'spg/Spg/attachAct'; //display act view for c
 
 /* create acts*/
 $route['spg/act/create']		= 'spg/Spg/create_Act'; // display register act form
-$route['spg/act/save']		= 'spg/Spg/save_Act'; // insert act to database
+$route['spg/act/save']			= 'spg/Spg/save_Act'; // insert act to database
 
 /* work with Employee*/
 $route['spg/employee/create']		= 'spg/Spg/view_employee_form'; // show Employee master form
+$route['spg/employee/save']			= 'spg/Spg/save_employee'; // insert Employee master form
+$route['spg/employee/show']			= 'spg/Spg/view_employee_master'; // show Employee master table

@@ -133,3 +133,7 @@
 [25-May-2019 07:27:32 Europe/Berlin] PHP Fatal error:  Cannot redeclare Act::sub_act_rules() in C:\xampp\htdocs\thetatel\application\controllers\Act.php on line 167
 [25-May-2019 07:27:59 Europe/Berlin] PHP Fatal error:  Cannot redeclare Act::sub_act_rules() in C:\xampp\htdocs\thetatel\application\controllers\Act.php on line 167
 [27-May-2019 08:46:27 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 216
+[28-May-2019 09:28:32 Europe/Berlin] PHP Parse error:  syntax error, unexpected ''.employee/create'' (T_CONSTANT_ENCAPSED_STRING) in C:\xampp\htdocs\git\thetatel\application\views\master_employee.php on line 15
+[28-May-2019 09:29:07 Europe/Berlin] PHP Parse error:  syntax error, unexpected ''.employee/create'' (T_CONSTANT_ENCAPSED_STRING) in C:\xampp\htdocs\git\thetatel\application\views\master_employee.php on line 15
+[28-May-2019 11:49:19 Europe/Berlin] PHP Parse error:  syntax error, unexpected ''fath_hus_name'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 259
+[28-May-2019 11:49:28 Europe/Berlin] PHP Parse error:  syntax error, unexpected ''fath_hus_name'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 259

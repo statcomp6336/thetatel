@@ -75,6 +75,7 @@ class Spg extends Base_controller {
 		$this->DB_install->CreateTable_act_particular();
 		$this->DB_install->CreateTable_act_applicable_to_customer();
 		$this->DB_install->CreateTable_compliance_scope();
+		$this->DB_install->CreateTable_employee_master_new();
 
 	}
 	public function DESTROY_SYSTEM()
@@ -84,6 +85,7 @@ class Spg extends Base_controller {
 		$this->DB_install->DropTable_act_particular();
 		$this->DB_install->DropTable_act_applicable_to_customer();
 		$this->DB_install->DropTable_compliance_scope();
+		$this->DB_install->DropTable_employee_master_new();
 
 	}
 
@@ -202,7 +204,7 @@ class Spg extends Base_controller {
 	// display employee details with master setup
 	public function view_employee_master($value='')
 	{
-		# code...
+		$this->ShowEmployees($this->page);
 	}
 	// display employee form
 	public function view_employee_form($value='')
@@ -213,6 +215,112 @@ class Spg extends Base_controller {
 	public function save_employee($value='')
 	{
 		$this->SaveEmployee('spg');//  this function store in Employee trait
+	}
+	public function save_master_emp($value='')
+	{
+
+		$path = 'uploads/';
+		
+            require_once APPPATH . "/third_party/excel/Classes/PHPExcel.php";
+            $config['upload_path'] = $path;
+            $config['allowed_types'] = 'xlsx|xls';
+            $config['remove_spaces'] = TRUE;
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);            
+            if (!$this->upload->do_upload('file')) {
+                $error = array('error' => $this->upload->display_errors());
+            } else {
+                $data = array('upload_data' => $this->upload->data());
+            }
+            if(empty($error)){
+              if (!empty($data['upload_data']['file_name'])) {
+                $import_xls_file = $data['upload_data']['file_name'];
+            } else {
+                $import_xls_file = 0;
+            }
+            $inputFileName = $path . $import_xls_file;
+            
+            try {
+                $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+                $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+                $objPHPExcel = $objReader->load($inputFileName);
+                $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+                $flag = true;
+                $i=0;
+                foreach ($allDataInSheet as $value) {
+                  if($flag){
+                    $flag =false;
+                    continue;
+                  }
+
+                  $inserdata[$i]=array(
+                  	'emp_name' 			=> $value['C'], 
+                  	'emp_code'			=> $value['D'],
+					'fath_hus_name' 	=> $value['O'],
+					'gender' 			=>$value['E'],
+					'marital_status'	=> $value['F'],
+					'birth_date' 		=> $value['X'],
+					'education' 		=> $value['AL'],
+					'per_address' 		=> $value['Z'],
+					'temp_address' 		=> $value['AA'],
+					'email' 			=> $value['X'],
+					'mob' 				=> $value['Y'],
+					'phy_handi' 		=> $value['AN'],
+					'phy_handi_cat' 	=> $value['AO'],
+					'relname' 			=> $value['R'],
+					'reldob' 			=> $value['P'],
+					'relage' 			=> $value['S'],
+					'reladhr' 			=> $value['Q'],
+					'nom1' 				=> $value['T'],
+					'nom2' 				=> $value['U'],
+					'nom3' 				=> $value['V'],
+					'nom4' 				=> $value['W'],
+					'bank_name' 		=> $value['AH'],
+					'bank_branch' 		=> $value['AI'],
+					'bank_ac' 			=> $value['AF'],
+					'ifsc' 				=> $value['AG'],
+					'pan' 				=> $value['AB'],
+					'namepan' 			=> $value['AC'],
+					'adhaar' 			=> $value['AD'],
+					'nameadhr' 			=> $value['AE'],
+					'pf_deduct' 		=> $value['G'],
+					'ul_pf' 			=> $value['H'],
+					'esic_deduct' 		=> $value['I'],
+					'esic_no' 			=> $value['J'],
+					'una_no' 			=> $value['K'],
+					'dobadhr' 			=> $value['AK'],
+					'entity_name'		=> $value['B'],
+					'branch' 			=> $value['L'],
+					'custid' 			=> $value['A'],
+					'dept' 				=> $value['M'],
+					'designation' 		=> $value['N'],
+					'location' 			=> $value['AW'],
+					'join_date' 		=> $value['AQ'],
+					'exit_date' 		=> $value['AS'],
+					'member_date' 		=> $value['AR'],
+					'int_worker' 		=> $value['AT'],
+					'emp_status' 		=> $value['AM'],
+					'contractor_name' 	=> $value['AV'],
+					'vendor_id' 		=> $value['AU']
+				);
+                  $i++;
+                }               
+                // $result = $this->import->importdata($inserdata);   
+                // if($result){
+                //   echo "Imported successfully";
+                // }else{
+                //   echo "ERROR !";
+                // } 
+                echo "<pre>";
+                var_dump($inserdata);            
+ 
+          } catch (Exception $e) {
+               die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME)
+                        . '": ' .$e->getMessage());
+            }
+          }else{
+              echo $error['error'];
+            }
 	}
 
 

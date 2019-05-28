@@ -473,41 +473,190 @@ class DB_install extends Base_model
 		$this->dbforge->drop_table('compliance_scope');
 	}
 
-	public function CreateTable_compliance_scope()
+	public function CreateTable_employee_master_new()
 	{
 		$fields = array(
             		'srno' 			=> array(
-					                    'type' => 'INT',					                 
+					                    'type' => 'INT',                 
 					                    'auto_increment' => TRUE
 							            ),
-		            'custid'		=> array(
+		            'spgid'		=> array(
 					                    'type' =>'BIGINT',
-					                    'constraint' => '20'					                    
+					                    'constraint' => '12'					                    
 							            ),
-		            'spg_id'		=> array(
+		            'custid'		=> array(
 					                    'type' =>'BIGINT',
 					                    'constraint' => '20'
 					                    			                    
 							            ),
-		            'act_code'		=> array(
-					                    'type' =>'INT',
-					                    'constraint' => '11'
+		            'entity_name'		=> array(
+					                    'type' =>'TEXT'
 					                						                    
 							            ),
-		            'act'			=> array(
-					                    'type' =>'VARCHAR',
-					                    'constraint' => '200'					                    
+		            'emp_name'			=> array(
+					                    'type' =>'TEXT'                  
 							            ),
+		            'emp_id'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '100'                  
+							            ),
+		            'gender'			=> array(
+					                    'type' =>'TEXT'                  
+							            ),
+		            'pf_deduct'			=> array(
+					                    'type' =>'TEXT'                 
+							            ),
+		            'ul_pf'			=> array(
+					                    'type' =>'INT',
+					                    'constraint' => '7'                  
+							            ),
+		            'esic_deduct'			=> array(
+					                    'type' =>'TEXT'                 
+							            ),
+		            'esic_no'			=> array(
+					                    'type' =>'TEXT'                 
+							            ),
+		            'uan_no'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '12'                  
+							            ),
+		            'brnach'			=> array(
+					                    'type' =>'TEXT'                 
+							            ),
+		            'dept'			=> array(
+					                    'type' =>'TEXT'                
+							            ),
+		            'designation'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '300'                  
+							            ),
+		            'fath_hus_name'			=> array(
+					                    'type' =>'TEXT'                 
+							            ),
+		            'nom1'			=> array(
+					                    'type' =>'TEXT'                  
+							            ),
+		            'nom2'			=> array(
+					                    'type' =>'TEXT'                
+							            ),
+		            'nom3'			=> array(
+					                   'type' =>'TEXT'                
+							            ),
+		            'nom4'			=> array(
+					                   'type' =>'TEXT'             
+							            ),
+		            'email'			=> array(
+					                   'type' =>'TEXT'                  
+							            ),
+		            'mob'			=> array(
+					                    'type' =>'BIGINT',
+					                    'constraint' => '20'                  
+							            ),
+		            'per_address'			=> array(
+					                    'type' =>'TEXT'                  
+							            ),
+		            'temp_address'			=> array(
+					                    'type' =>'TEXT'                
+							            ),
+		            'pan'			=> array(
+					                   'type' =>'TEXT'                
+							            ),
+		            'adhaar'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '20'                  
+							            ),
+		            'bank_ac'			=> array(
+					                    'type' =>'TEXT'                  
+							            ),
+		            'ifsc'			=> array(
+					                   'type' =>'TEXT'                  
+							            ),
+		            'bank_name'			=> array(
+					                    'type' =>'TEXT'                  
+							            ),
+		            'bank_branch'			=> array(
+					                    'type' =>'TEXT'                  
+							            ),
+		            'education'			=> array(
+					                   'type' =>'TEXT'                  
+							            ),
+		            'phy_handi'			=> array(
+					                    'type' =>'TEXT'                  
+							            ),
+		            'phy_handi_cat'			=> array(
+					                   'type' =>'TEXT'                
+							            ),
+		            'marital_status'			=> array(
+					                    'type' =>'TEXT'         
+							            ),
+		            'emp_status'			=> array(
+					                   'type' =>'TEXT'                 
+							            ),
+		            'birth_date'			=> array(
+					                    'type' =>'DATE'                  
+							            ),
+		            'join_date'			=> array(
+					                    'type' =>'DATE'                 
+							            ),
+		            'member_date'			=> array(
+					                    'type' =>'DATE'
+
+							            ),
+		            'exit_date'			=> array(
+					                    'type' =>'DATE'                
+							            ),
+		            'int_worker'			=> array(
+					                    'type' =>'TEXT'                 
+							            ),
+		            'reldob'			=> array(
+					                    'type' =>'DATE'               
+							            ),
+		            'reladhr'			=> array(
+					                    'type' =>'BIGINT',
+					                    'constraint' => '20'                  
+							            ),
+		            'relname'			=> array(
+					                    'type' =>'TEXT'               
+							            ),
+		            'relage'			=> array(
+					                    'type' =>'INT',
+					                    'constraint' => '11'                  
+							            ),
+		            'namepan'			=> array(
+					                   'type' =>'TEXT'                  
+							            ),
+		            'nameadhr'			=> array(
+					                    'type' =>'TEXT'                  
+							            ),
+		            'nameinbank'			=> array(
+					                    'type' =>'TEXT'                 
+							            ),
+		            'dobadhr'			=> array(
+					                   'type' =>'DATE'                 
+							            ),
+		            'vendor_id'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '20'                  
+							            ),
+		            'contractor_name'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '30'                  
+							            ),
+		            'location'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '50'                  
+							            ),
+
 		            'date TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
 		        );
 		$this->dbforge->add_key('srno', TRUE);
 	    $this->dbforge->add_field($fields);
-	    return $this->dbforge->create_table('compliance_scope',TRUE);
+	    return $this->dbforge->create_table('employee_master_new',TRUE);
 	}
 
-	public function DropTable_compliance_scope()
+	public function DropTable_employee_master_new()
 	{
-		$this->dbforge->drop_table('compliance_scope');
+		$this->dbforge->drop_table('employee_master_new');
 	}
 
 }	

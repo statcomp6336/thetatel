@@ -89,10 +89,11 @@
 
 								<div class="form-group">
                     			    <label>Physical Handicap: <span>*</span></label>
-                                     <select class="form-control" ng-model="handicap" name="handicap">
+                                     <select class="form-control" ng-init="handicap=NO" ng-model="handicap" name="handicap">
 									  <option value="YES">Yes</option>
-									  <option value="NO" selected>No</option>						 
+									  <option value="NO" selected="selected" >No</option>						 
 									</select>
+                                  
 								</div>
 
 								<div class="form-group">
@@ -157,13 +158,14 @@
 								
                             <div class="form-group">
                 			    <label>Physically Handicap Catogay: <span>*</span></label>
-                                	<select class="form-control" ng-mode="phy_handi_cat" name="phy_handi_cat">
-                                    <option selected>--Select--</option>
+                                	<select class="form-control" ng-init="phy_handi_cat=selected" ng-model="phy_handi_cat" name="phy_handi_cat">
+                                    <option value="selected" selected="selected">--Select--</option>
                                     <option value="N/A">N/A</option>
                                     <option value="Locomotive">Locomotive</option>
                                     <option value="Visual">Visual</option>
                                     <option value="Hearing">Hearing</option>
                                   </select>
+                                  
                             </div>
 							<div class="form-group">
                 			    <label>Relation DOB : <span>*</span></label>
@@ -259,7 +261,7 @@
                             </div>
 							<div class="form-group">
                 			    <label>Name as per Aadhar Card	 : <span>*</span></label>
-                                	<input type="text" ng-model="addhar_name" name="addhar_name" placeholder="Name as per Aadhar Card	" class="form-control required">
+                                	<input type="text" ng-model="adhar_name" name="adhar_name" placeholder="Name as per Aadhar Card	" class="form-control required">
                             </div>
 
                             <div class="form-group">
@@ -299,7 +301,7 @@
                            
 							<div class="form-group" >
                 			    <label> Company Branch Name: <span>*</span></label>
-                                <input type="text" ng-model="comp_brach" name="comp_brach" placeholder="Branch Name" class="form-control required">
+                                <input type="text" ng-model="comp_branch" name="comp_branch" placeholder="Branch Name" class="form-control required">
                             </div>
 
 							<div class="form-group">
@@ -333,7 +335,7 @@
     		    	<div class="col-sm-6 col-md-6  col-lg-6 ">
     		    		<div class="form-group">
             			    <label>Company Register ID: <span>*</span></label>
-                                <input type="text" placeholder="Company Code" class="form-control required" disabled>
+                                <input type="text" placeholder="Company Code" class="form-control required"     >
                                  <input type="text" ng-model="comp_code" name="comp_code" >
                         </div>
 
@@ -455,7 +457,7 @@
         		    	</div>
         		    	<div class="col-sm-6 col-md-6 col-lg-6 ">
         		    		<div class="form-group">
-        		    			 <label>Physically Handicap Catogary : </label><strong>{{phy_handi_cap}}</strong>
+        		    			 <label>Physically Handicap Catogary : </label><strong>{{phy_handi_cat}}</strong>
         		    		</div>
         		    	</div>
         		    </div>

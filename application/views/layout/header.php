@@ -548,7 +548,7 @@
 
 								<ul class="submenu">
 									<li class="active hover">
-										<a href="<?php echo base_url(''.$user_type.'/employee/create'); ?>">
+										<a href="<?php echo base_url(''.$user_type.'/employee/show'); ?>">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Employee Registration
 										</a>
