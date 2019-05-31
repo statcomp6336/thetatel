@@ -20,6 +20,8 @@ class Spg extends Base_controller {
 	use Company_ext;
 	use Act;
 	use Employee;
+	use Salary;
+	use Reports;
 
 	 var $page=array();
 
@@ -68,6 +70,7 @@ class Spg extends Base_controller {
 		* YOU CANN DESTROY THE ALL TABLE WHEN USING "DESTROY_SYSTEM()";
 		* WHEN USING THE DESTROY FUNCTION THEN SYSTEM HAS DOWN AND MULTIPLY THE BUGS. 
 	*/
+
 	public function CREATE_SYSTEM()
 	{
 		$this->DB_install->CreateTable_customer_master();
@@ -76,6 +79,7 @@ class Spg extends Base_controller {
 		$this->DB_install->CreateTable_act_applicable_to_customer();
 		$this->DB_install->CreateTable_compliance_scope();
 		$this->DB_install->CreateTable_employee_master_new();
+		$this->DB_install->CreateTable_salary_master();
 
 	}
 	public function DESTROY_SYSTEM()
@@ -204,6 +208,7 @@ class Spg extends Base_controller {
 	// display employee details with master setup
 	public function view_employee_master($value='')
 	{
+
 		$this->ShowEmployees($this->page);
 	}
 	// display employee form
@@ -221,6 +226,35 @@ class Spg extends Base_controller {
 		$this->SaveMasterEmployee('spg');			
 	}
 
+	/*start salary process*/
+	//show import salary form excel sheet
+	public function import_salary()
+	{
+		$this->ShowSalaryExcel($this->page);// salary trait class
+	}
+	public function save_import_salary($value='')
+	{
+		$this->SaveSalary($this->page,'spg');
+	}
+	public function edit_import_salary($value='')
+	{
+		$this->SaveExcelSalary('spg');
+		// var_dump($this->input->post('cust_id'));
+	}
+
+	/* santize process start */
+	public function genrate_santize_rec()
+	{
+		ini_set('max_execution_time', 0); 
+ini_set('memory_limit','2048M');
+		$this->GenrateSantizeRec($this->page);
+	}
+	public function sanitize_process($value='')
+	{
+		$this->CreateSanitize();
+	}
+
+
 
 
 
@@ -232,10 +266,12 @@ class Spg extends Base_controller {
 	
 	public function f($value='')
 	{
-		$this->load->model('Company_model');
-		$d=$this->Company_model->get_acts('14000590008');
-		echo "<pre>";
-		var_dump($d);
-	}
+		$this->load->model('Report_model','report');
+	$e=	$this->report->get_BackloagSalary();
+	echo "<pre>";
+	var_dump($e);
+}
+
+	
 	
 }	

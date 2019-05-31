@@ -30,4 +30,12 @@ if (! function_exists('user_id')) {
 }
 // ------------------------------------------------------------------------
 
+if (! function_exists('goto_back')) {
+	# code...
+	function goto_back()
+	  {	  	
+	    echo "<script> window.history.back(); </script>";
+	  } 
+}
+// ------------------------------------------------------------------------
 ?>

@@ -589,9 +589,9 @@
 
 								<ul class="submenu">
 									<li class="active hover">
-										<a href="top-menu.html">
+										<a href="<?php echo base_url(''.$user_type.'/salary/import');?>">
 											<i class="menu-icon fa fa-caret-right"></i>
-											Add salary
+											Import salary
 										</a>
 
 										<b class="arrow"></b>
@@ -1116,7 +1116,7 @@
 
 								<ul class="submenu">
 									<li class="hover">
-										<a href="#">
+										<a href="<?php echo base_url(''.$user_type.'/report/sanitize');?>">
 											<i class="menu-icon fa fa-leaf green"></i>
 										  Sanitize Reconcile
 										</a>

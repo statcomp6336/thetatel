@@ -32,7 +32,7 @@ trait Company_ext {
 	protected function CreateCompany($user)
 	{
 		$this->load->model('Company_model');
-		$cust_type=2;	
+		$cust_type=1;	
 		$this->form_validation->set_rules($this->rules());
 		$custid=$this->Company_model->get_custid($this->input->post('comp_pin'),$cust_type);
 		// echo $custid;
@@ -321,7 +321,7 @@ trait Company_ext {
 		$branch_code= $this->Company_model->get_branchCode($this->input->post('comp_pan'));
 		$save_data = array('custtype' 		=> 1 ,
 							'custid'		=>$custid,
-							'allianceid'	=> $this->input->post('ent_code') ,
+							'allianceid'	=> user_id(),//$this->input->post('ent_code') ,
 							'entity_pan' 	=> $this->input->post('comp_pan') ,
 							'entity_name' 	=> $this->input->post('comp_name') ,
 							'address' 		=> $this->input->post('comp_addr') ,

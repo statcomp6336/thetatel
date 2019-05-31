@@ -1,10 +1,11 @@
 
 
-
+<?php echo show_msg();?>
 <link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/css/jquery-ui.custom.min.css" />
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/css/chosen.min.css" />
 		
  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+ <div class="container">
  <div class="widget-box">
 	<div class="widget-header">
 		<h4 class="widget-title">Employee Master Table</h4>
@@ -70,13 +71,13 @@
 	<tbody>
 		<?php $count =0;
 		foreach ($result as $key) {
-			$count++;
+			$count++;			
 		?>
 		<tr>
 			<td class="center">
 				<label class="pos-rel">
 					
-					<span class="lbl"><?php echo $count++; ?></span>
+					<span class="lbl"><?php echo $count; ?></span>
 				</label>
 			</td>
 
@@ -279,6 +280,7 @@
 	</tbody>
 </table>
 <?php echo $links; ?>
+</div>
 
 
 		<script src="<?php echo base_url();?>assets/dashboard/js/jquery.dataTables.min.js"></script>

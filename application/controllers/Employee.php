@@ -16,19 +16,20 @@ trait Employee {
        $this->data['user_type'] = $page_data['user_type'];
        $this->data['menu'] = $page_data['menu'];
        // $this->data['result'] = $this->emp->get_allemployee();
-       $config["base_url"] = base_url() . "authors";
+       $config["base_url"] = base_url() .$page_data['user_type']."/employee/show";
         $config["total_rows"] = $this->emp->get_count();
         $config["per_page"] = 10;
         $config["uri_segment"] = 2;
             $this->pagination->initialize($config);
 
-        $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
+        $page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+       
 
         $this->data["links"] = $this->pagination->create_links();
 
         $this->data['result'] = $this->emp->get_allemployee($config["per_page"], $page);
 
-      
+        
        $this->render('master_employee');
      }
      else
@@ -75,8 +76,9 @@ trait Employee {
                   }
                   $e_code = $this->emp->is_uniqemployee($value['A'],$value['D'])?$value['D']:"N/A";
                   if ($e_code == "N/A") {
-                    echo $value['D']."employee id is not uniq ";
-                    exit();
+                    put_msg($value['D']."employee id is not uniq ");
+                   goto_back();
+                   exit();
                     # code...
                   }
 
@@ -149,6 +151,8 @@ trait Employee {
               echo $error['error'];
             }
   }
+ 
+
   
 
 	public function CreateEmployee($page_data="")
@@ -170,7 +174,7 @@ trait Employee {
 	/* insert employee details in database */
 	public function SaveEmployee($user)
 	{
-		// $this->load->model('Employee_model','emp');
+		$this->load->model('Employee_model','emp');
 		// $ruls=!empty($this->input->post('acts'))?$this->act_rules():$this->sub_act_rules();
 		$this->form_validation->set_rules($this->employee_rules());
 		 if ($this->form_validation->run() == FALSE) { 
@@ -183,16 +187,16 @@ trait Employee {
 	         	echo "<pre>";
 	         	var_dump($this->fillup_employee());
 	         
-	         	// if ($this->Act_model->create_act($this->fillup_acts())) {
+	         	if ($this->emp->create_Employee($this->fillup_employee())) {
 	         		
-	         	// 	 put_msg("your Act is registerd successfully..!!");
-	         	// 	 // redirect(base_url( $user.'/act/create'));
-	         	// }
-	         	// else
-	         	// {
-	         	// 	put_msg("somthing went wronge...!");
-	         	// 	 // redirect(base_url( $user.'/act/create'));
-	         	// }
+	         		 put_msg("your Employee is registerd successfully..!!");
+	         		 // redirect(base_url( $user.'/act/create'));
+	         	}
+	         	else
+	         	{
+	         		put_msg("somthing went wronge...!");
+	         		 // redirect(base_url( $user.'/act/create'));
+	         	}
 	        }
 	}
 
@@ -233,7 +237,7 @@ trait Employee {
 		'ul_pf' 			=> $this->input->post('user_limit'),
 		'esic_deduct' 		=> $this->input->post('esic_dud'),
 		'esic_no' 			=> $this->input->post('ex_esic_no'),
-		'una_no' 			=> $this->input->post('una_no'),
+		'uan_no' 			=> $this->input->post('una_no'),
 		'dobadhr' 			=> $this->input->post('dob_as_adhar'),
 		'entity_name'		=> $this->input->post('comp_name'),
 		'branch' 			=> $this->input->post('comp_branch'),

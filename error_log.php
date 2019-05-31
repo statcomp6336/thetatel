@@ -148,3 +148,55 @@
 [28-May-2019 13:48:21 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 231
 [28-May-2019 13:50:17 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 231
 [28-May-2019 15:10:00 Europe/Berlin] PHP Fatal error:  Call to a member function get_allemployee() on null in C:\xampp\htdocs\git\thetatel\application\controllers\Employee.php on line 29
+[29-May-2019 11:56:02 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\git\thetatel\application\views\edit_salary.php on line 93
+[29-May-2019 11:56:45 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\git\thetatel\application\views\edit_salary.php on line 93
+[29-May-2019 12:48:22 Europe/Berlin] PHP Parse error:  syntax error, unexpected '.0' (T_DNUMBER) in C:\xampp\htdocs\git\thetatel\application\controllers\Salary.php on line 144
+[29-May-2019 14:03:28 Europe/Berlin] PHP Fatal error:  Call to a member function num_rows() on array in C:\xampp\htdocs\git\thetatel\application\models\Employee_model.php on line 37
+[29-May-2019 14:05:01 Europe/Berlin] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in C:\xampp\htdocs\git\thetatel\application\models\Employee_model.php on line 36
+[29-May-2019 14:06:24 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$year' (T_VARIABLE), expecting ',' or ';' in C:\xampp\htdocs\git\thetatel\application\models\Employee_model.php on line 43
+[29-May-2019 14:23:18 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\git\thetatel\application\controllers\Salary.php on line 234
+[30-May-2019 09:30:02 Europe/Berlin] PHP Fatal error:  require_once(): Failed opening required 'C:\xampp\htdocs\git\thetatel\application\controllers\Reports.php' (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\git\thetatel\application\core\Base_controller.php on line 8
+[30-May-2019 09:31:37 Europe/Berlin] PHP Parse error:  syntax error, unexpected ''date'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 56
+[30-May-2019 09:39:38 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\database\drivers\mysqli\mysqli_driver.php on line 307
+[30-May-2019 09:40:13 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\database\drivers\mysqli\mysqli_driver.php on line 307
+[30-May-2019 09:40:36 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\database\drivers\mysqli\mysqli_driver.php on line 307
+[30-May-2019 09:40:36 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\database\drivers\mysqli\mysqli_result.php on line 229
+[30-May-2019 09:41:11 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\database\drivers\mysqli\mysqli_driver.php on line 307
+[30-May-2019 09:42:56 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 231
+[30-May-2019 09:43:03 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 231
+[30-May-2019 09:43:25 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 231
+[30-May-2019 09:43:39 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 231
+[30-May-2019 09:48:40 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 231
+[30-May-2019 09:52:42 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')' in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 66
+[30-May-2019 10:58:27 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\database\drivers\mysqli\mysqli_driver.php on line 307
+[30-May-2019 11:19:30 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\database\drivers\mysqli\mysqli_driver.php on line 307
+[30-May-2019 11:20:20 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\database\drivers\mysqli\mysqli_driver.php on line 307
+[30-May-2019 11:22:01 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\database\drivers\mysqli\mysqli_driver.php on line 307
+[30-May-2019 13:13:56 Europe/Berlin] PHP Parse error:  syntax error, unexpected ''emp_id'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 253
+[30-May-2019 13:19:48 Europe/Berlin] PHP Fatal error:  Call to undefined method Report_model::SaveEmployee() in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 142
+[30-May-2019 13:21:39 Europe/Berlin] PHP Fatal error:  Call to undefined method Report_model::SaveEmployee() in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 142
+[30-May-2019 13:34:55 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'var' (T_VAR), expecting variable (T_VARIABLE) in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 20
+[30-May-2019 13:43:56 Europe/Berlin] PHP Fatal error:  Call to undefined method Report_model::salaryProcess() in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 263
+[30-May-2019 13:49:59 Europe/Berlin] PHP Fatal error:  Call to a member function result() on array in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 214
+[30-May-2019 13:52:27 Europe/Berlin] PHP Fatal error:  Call to a member function result() on array in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 205
+[30-May-2019 13:53:01 Europe/Berlin] PHP Fatal error:  Call to undefined method Report_model::SaveEmployee() in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 177
+[30-May-2019 14:32:54 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 231
+[30-May-2019 14:35:41 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 231
+[30-May-2019 14:48:26 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 254
+[30-May-2019 14:49:22 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 231
+[30-May-2019 14:51:48 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 231
+[30-May-2019 14:52:43 Europe/Berlin] PHP Fatal error:  Call to undefined method Report_model::salaryProcess() in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 264
+[30-May-2019 15:07:18 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\database\drivers\mysqli\mysqli_driver.php on line 307
+[30-May-2019 15:11:53 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\database\drivers\mysqli\mysqli_driver.php on line 307
+[31-May-2019 07:16:39 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 275
+[31-May-2019 07:18:43 Europe/Berlin] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR), expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 20
+[31-May-2019 07:25:45 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')' in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 20
+[31-May-2019 07:30:08 Europe/Berlin] PHP Fatal error:  Call to undefined method Report_model::year() in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 30
+[31-May-2019 07:31:23 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')' in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 30
+[31-May-2019 07:54:54 Europe/Berlin] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR), expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 200
+[31-May-2019 08:24:22 Europe/Berlin] PHP Fatal error:  Call to undefined method Report_model::year() in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 20
+[31-May-2019 08:25:21 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 188
+[31-May-2019 08:26:03 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 231
+[31-May-2019 08:26:41 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\git\thetatel\system\core\Log.php on line 231
+[31-May-2019 09:14:25 Europe/Berlin] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 22
+[31-May-2019 12:09:19 Europe/Berlin] PHP Fatal error:  Call to undefined method Employee_model::save_salary() in C:\xampp\htdocs\git\thetatel\application\controllers\Salary.php on line 230

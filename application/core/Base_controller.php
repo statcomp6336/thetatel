@@ -4,6 +4,8 @@
  require_once APPPATH."controllers\Company_ext.php";
  require_once APPPATH."controllers\Act.php";
  require_once APPPATH."controllers\Employee.php";
+ require_once APPPATH."controllers\Salary.php";
+ require_once APPPATH."controllers\Reports.php";
 
 class Base_controller extends CI_Controller
 {
@@ -15,12 +17,7 @@ class Base_controller extends CI_Controller
     $this->data['before_head'] = '';
     $this->data['before_body'] ='';
     $this->data['msg'] ='';
-  }
-  public function goto_back()
-  {
-      echo "<script> window.history.back(); </script>";
-  }
- 
+  }  
 
   protected function render($template = '')
   {

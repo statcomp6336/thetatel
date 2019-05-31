@@ -56,6 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 /*spg role controller*/
 //dashboard
 $route['install']					='spg/Spg/CREATE_SYSTEM';
+$route['destroy']					='spg/Spg/DESTROY_SYSTEM';
 $route['spg'] 						= 'spg/Spg';
 $route['spg/logout'] 				= 'spg/Spg/logout';// logout and redirect to login page
 $route['spg/notification']			= 'spg/Spg/notification_view';// display notification
@@ -74,3 +75,14 @@ $route['spg/act/save']			= 'spg/Spg/save_Act'; // insert act to database
 $route['spg/employee/create']		= 'spg/Spg/view_employee_form'; // show Employee master form
 $route['spg/employee/save']			= 'spg/Spg/save_employee'; // insert Employee master form
 $route['spg/employee/show']			= 'spg/Spg/view_employee_master'; // show Employee master table
+$route['spg/employee/show/(:num)']	= 'spg/Spg/view_employee_master'; // show Employee master table
+
+
+/* work with salary*/
+$route['spg/salary/import']	= 'spg/Spg/import_salary';//display salary file upload form
+
+
+/* work with Reports */
+$route['spg/report/sanitize']	= 'spg/Spg/genrate_santize_rec';//display salary file upload form
+$route['spg/report/sanitize']	= 'spg/Spg/genrate_santize_rec';//display salary file upload form
+$route['spg/report/sanitize/genrate']	= 'spg/Spg/sanitize_process';//display salary file upload form
