@@ -6,6 +6,8 @@
  require_once APPPATH."controllers\Employee.php";
  require_once APPPATH."controllers\Salary.php";
  require_once APPPATH."controllers\Reports.php";
+ require_once APPPATH."controllers\Users.php";
+ require_once APPPATH."controllers\Files.php";
 
 class Base_controller extends CI_Controller
 {

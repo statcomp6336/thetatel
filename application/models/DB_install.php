@@ -806,4 +806,188 @@ class DB_install extends Base_model
 		$this->dbforge->drop_table('salary_master');
 	}
 
+	public function CreateTable_master_process()
+	{
+		$fields = array(
+	'srno' 			=> array(
+	                    'type' => 'INT',                 
+	                    'auto_increment' => TRUE
+			            ),
+    'spgid'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'					                    
+			            ),
+    'custid'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'
+	                    			                    
+			            ),
+    'entity_name'		=> array(
+	                    'type' =>'TEXT'
+	                						                    
+			            ),
+    'empid'			=> array(
+	                    'type' =>'TEXT'                  
+			            ),
+	'month'		=> array(
+	                    'type' =>'VARCHAR',
+	                    'constraint' => '20'            
+			            ),
+    'year'		=> array(
+	                    'type' =>'INT',
+	                    'constraint' => '20'            
+			            ),			                
+
+	'created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		        );
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('master_process',TRUE);
+	}
+
+	public function DropTable_master_process()
+	{
+		$this->dbforge->drop_table('master_process');
+	}
+
+	public function CreateTable_backlog_process()
+	{
+		$fields = array(
+	'srno' 			=> array(
+	                    'type' => 'INT',                 
+	                    'auto_increment' => TRUE
+			            ),
+    'spgid'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'					                    
+			            ),
+    'custid'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'
+	                    			                    
+			            ),
+    'entity_name'		=> array(
+	                    'type' =>'TEXT'
+	                						                    
+			            ),
+    'empid'			=> array(
+	                    'type' =>'TEXT'                  
+			            ),
+    'month'		=> array(
+	                    'type' =>'VARCHAR',
+	                    'constraint' => '20'            
+			            ),
+    'year'		=> array(
+	                    'type' =>'INT',
+	                    'constraint' => '20'            
+			            ), 
+    'is_sal'			=> array(
+	                    'type' =>'TEXT'                  
+			            ), 
+
+
+		            'created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		        );
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('backlog_process',TRUE);
+	}
+
+	public function DropTable_backlog_process()
+	{
+		$this->dbforge->drop_table('backlog_process');
+	}
+
+	public function CreateTable_pf_template()
+	{
+		$fields = array(
+	'srno' 			=> array(
+	                    'type' => 'INT',                 
+	                    'auto_increment' => TRUE
+			            ),
+    'spgid'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'					                    
+			            ),
+    'custid'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'
+	                    			                    
+			            ),
+    'entity_name'		=> array(
+	                    'type' =>'TEXT'
+	                						                    
+			            ),
+    'empid'			=> array(
+	                    'type' =>'TEXT'                  
+			            ), 
+
+    'UANno'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'            
+			            ),
+    'member_name'		=> array(
+	                    'type' =>'TEXT'
+			            ),
+    'gross_wages'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'            
+			            ),
+    'EPF_wages'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'            
+			            ),
+    'EPS_wages'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'            
+			            ),
+    'EDLI_wages'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'            
+			            ),
+    'EPF_contri_remitted'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'            
+			            ),
+    'EPS_contri_remitted'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'            
+			            ),
+    'EPS_EPF_diff'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'            
+			            ),
+    'NCP_days'		=> array(
+	                    'type' =>'INT',
+	                    'constraint' => '20'            
+			            ),
+    'refund_advance'		=> array(
+	                    'type' =>'INT',
+	                    'constraint' => '20'            
+			            ),
+    'month'		=> array(
+	                    'type' =>'VARCHAR',
+	                    'constraint' => '20'            
+			            ),
+    'year'		=> array(
+	                    'type' =>'INT',
+	                    'constraint' => '20'            
+			            ),
+    'flag'		=> array(
+	                    'type' =>'INT',
+	                    'constraint' => '20'            
+			            ),
+    'created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		        );
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('pf_template',TRUE);
+	}
+
+	public function DropTable_pf_template()
+	{
+		$this->dbforge->drop_table('pf_template');
+	}
+
+
 }	

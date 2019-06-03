@@ -36,9 +36,17 @@ class Base_model extends CI_Model
 		return $query;
 
 	}
-	protected function remove()
+	protected function fetch($table,$select,$where)
 	{
+		$this->newdb->select($select);
+		$this->newdb->where($where);
+		$query=$this->newdb->get($table);
+		return $query;
 
+	}
+	protected function remove($table,$where)
+	{
+		return $this->newdb->delete($table,$where);
 	}
 	protected function join($f_table,$s_table,$match,$select='',$where='',$id='' )
 	{
@@ -70,6 +78,19 @@ class Base_model extends CI_Model
 		}
 
 	}
+	protected function is_exist($table,$arr)
+	{
+		$u = $this->newdb->select('*')->from($table)->where($arr)->get()->num_rows();
+		if ($u>0) {
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
+
+	}
+
 
 
 	/*SELECT act,act_code, IF(EXISTS(

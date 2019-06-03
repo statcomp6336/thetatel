@@ -720,22 +720,14 @@
 
 						<ul class="submenu">
 							<li class="hover">
-								<a href="tables.html">
+								<a href="<?php echo base_url(''.$user_type.'/users'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									All User
 								</a>
 
 								<b class="arrow"></b>
 							</li>
-
-							<li class="hover">
-								<a href="jqgrid.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Create User
-								</a>
-
-								<b class="arrow"></b>
-							</li>
+							
 							<li class="hover">
 								<a href="jqgrid.html">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -757,7 +749,7 @@
 
 
 					<li class="hover">
-						<a href="gallery.html">
+						<a href="<?php echo base_url(''.$user_type.'/explore');?>">
 							<i class="menu-icon fa fa-picture-o"></i>
 							<span class="menu-text"> File Explore </span>
 						</a>
@@ -1125,7 +1117,7 @@
 									</li>
 
 									<li class="hover">
-										<a href="#" class="dropdown-toggle">
+										<a href="<?php echo base_url(''.$user_type.'/report/backlog');?>" class="dropdown-toggle">
 											<i class="menu-icon fa fa-pencil orange"></i>
 											Backlog Reconcile			
 										</a>
@@ -1135,7 +1127,7 @@
 										
 									</li>
 									<li class="hover">
-										<a href="#">
+										<a href="<?php echo base_url(''.$user_type.'/report/process');?>">
 											<i class="menu-icon fa fa-leaf green"></i>
 											Process Reconcile
 										</a>

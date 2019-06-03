@@ -22,6 +22,8 @@ class Spg extends Base_controller {
 	use Employee;
 	use Salary;
 	use Reports;
+	use Users;
+	use Files;					
 
 	 var $page=array();
 
@@ -80,6 +82,9 @@ class Spg extends Base_controller {
 		$this->DB_install->CreateTable_compliance_scope();
 		$this->DB_install->CreateTable_employee_master_new();
 		$this->DB_install->CreateTable_salary_master();
+		$this->DB_install->CreateTable_master_process();
+		$this->DB_install->CreateTable_backlog_process();
+		$this->DB_install->CreateTable_pf_template();
 
 	}
 	public function DESTROY_SYSTEM()
@@ -90,6 +95,11 @@ class Spg extends Base_controller {
 		$this->DB_install->DropTable_act_applicable_to_customer();
 		$this->DB_install->DropTable_compliance_scope();
 		$this->DB_install->DropTable_employee_master_new();
+		$this->DB_install->DropTable_salary_master();
+		$this->DB_install->DropTable_master_process();
+		$this->DB_install->DropTable_backlog_process();
+		$this->DB_install->DropTable_pf_template();
+
 
 	}
 
@@ -246,12 +256,42 @@ class Spg extends Base_controller {
 	public function genrate_santize_rec()
 	{
 		ini_set('max_execution_time', 0); 
-ini_set('memory_limit','2048M');
-		$this->GenrateSantizeRec($this->page);
+		ini_set('memory_limit','2048M');
+		$this->GenrateSantizeRec($this->page); // this function include in report class
 	}
 	public function sanitize_process($value='')
 	{
-		$this->CreateSanitize();
+		$this->CreateSanitize();// this function include in report class
+	}
+	public function genrate_process_report($value='')
+	{
+		$this->GenrateProccessReport($this->page);// this function include in report class
+	}
+	
+	public function process_for_pf($value='')
+	{
+		$this->CreatePFReport();// this function include in report class
+	}
+	public function process_for_esic($value='')
+	{
+		$this->CreateESICReport();// this function include in report class
+	}
+
+
+
+
+
+
+	/* work with users*/
+	public function show_user_list($value='')
+	{
+		$this->ShowUsers($this->page);
+	}
+
+	/* work with File-Explore*/
+	public function show_explore($value='')
+	{
+		$this->ShowExplore($this->page);
 	}
 
 
@@ -266,11 +306,8 @@ ini_set('memory_limit','2048M');
 	
 	public function f($value='')
 	{
-		$this->load->model('Report_model','report');
-	$e=	$this->report->get_BackloagSalary();
-	echo "<pre>";
-	var_dump($e);
-}
+		$this->load->view('success');
+	}
 
 	
 	

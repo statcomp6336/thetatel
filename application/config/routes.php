@@ -83,6 +83,18 @@ $route['spg/salary/import']	= 'spg/Spg/import_salary';//display salary file uplo
 
 
 /* work with Reports */
-$route['spg/report/sanitize']	= 'spg/Spg/genrate_santize_rec';//display salary file upload form
-$route['spg/report/sanitize']	= 'spg/Spg/genrate_santize_rec';//display salary file upload form
-$route['spg/report/sanitize/genrate']	= 'spg/Spg/sanitize_process';//display salary file upload form
+$route['spg/report/sanitize']			= 'spg/Spg/genrate_santize_rec';//display sanitize report
+$route['spg/report/sanitize/genrate']	= 'spg/Spg/sanitize_process';//genrate santizing report
+$route['spg/report/process']			= 'spg/Spg/genrate_process_report';//display process table data for pf
+$route['spg/report/proccess/genrate/pf/(:num)/(:num)']	= 'spg/Spg/process_for_pf';//display process table data for pf
+$route['spg/report/proccess/genrate/esic/(:num)/(:num)']	= 'spg/Spg/process_for_esic';//display process table data for esic
+
+
+
+/* work with users */
+$route['spg/users']	= 'spg/Spg/show_user_list';//display salary file upload form
+
+
+
+/* work with users */
+$route['spg/explore']	= 'spg/Spg/show_explore';//display salary file upload form
