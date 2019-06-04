@@ -989,5 +989,79 @@ class DB_install extends Base_model
 		$this->dbforge->drop_table('pf_template');
 	}
 
+	public function CreateTable_esic_template()
+	{
+		$fields = array(
+	'srno' 			=> array(
+	                    'type' => 'INT',                 
+	                    'auto_increment' => TRUE
+			            ),
+    'spgid'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'					                    
+			            ),
+    'custid'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'
+	                    			                    
+			            ),
+    'entity_name'		=> array(
+	                    'type' =>'TEXT'
+	                						                    
+			            ),
+    'empid'			=> array(
+	                    'type' =>'TEXT'                  
+			            ), 
+
+    'esicno'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'            
+			            ),
+    'name'		=> array(
+	                    'type' =>'TEXT'
+			            ),
+    'no_of_days'		=> array(
+	                    'type' =>'INT',
+	                    'constraint' => '20'            
+			            ),
+    'monthly_wages'		=> array(
+	                    'type' =>'INT',
+	                    'constraint' => '20'            
+			            ),
+    'reason_code'		=> array(
+	                    'type' =>'INT',
+	                    'constraint' => '20'            
+			            ),
+    'last_working_day'	=> array(
+	                    'type' =>'VARCHAR',
+	                    'constraint' => '20'            
+			            ),
+	'month'				=> array(
+	                    'type' =>'VARCHAR',
+	                    'constraint' => '20'            
+			            ),
+    'year'				=> array(
+	                    'type' =>'INT',
+	                    'constraint' => '20'            
+			            ),    
+    'flag'				=> array(
+	                    'type' =>'INT',
+	                    'constraint' => '20'            
+			            ),
+    
+    'created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		        );
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('esic_template',TRUE);
+	}
+
+	public function DropTable_esic_template()
+	{
+		$this->dbforge->drop_table('esic_template');
+	}
+
+
+
 
 }	

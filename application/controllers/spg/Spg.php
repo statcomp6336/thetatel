@@ -85,6 +85,7 @@ class Spg extends Base_controller {
 		$this->DB_install->CreateTable_master_process();
 		$this->DB_install->CreateTable_backlog_process();
 		$this->DB_install->CreateTable_pf_template();
+		$this->DB_install->CreateTable_esic_template();
 
 	}
 	public function DESTROY_SYSTEM()
@@ -99,6 +100,7 @@ class Spg extends Base_controller {
 		$this->DB_install->DropTable_master_process();
 		$this->DB_install->DropTable_backlog_process();
 		$this->DB_install->DropTable_pf_template();
+		$this->DB_install->DropTable_esic_template();
 
 
 	}
@@ -276,6 +278,7 @@ class Spg extends Base_controller {
 	{
 		$this->CreateESICReport();// this function include in report class
 	}
+	
 
 
 

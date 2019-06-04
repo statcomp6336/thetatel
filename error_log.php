@@ -222,3 +222,5 @@
 [03-Jun-2019 12:39:50 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO), expecting function (T_FUNCTION) in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 533
 [03-Jun-2019 13:22:05 Europe/Berlin] PHP Parse error:  syntax error, unexpected ''member_name'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 538
 [03-Jun-2019 13:56:31 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$pf' (T_VARIABLE) in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 552
+[04-Jun-2019 06:58:00 Europe/Berlin] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR), expecting variable (T_VARIABLE) or '$' in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 594
+[04-Jun-2019 06:58:33 Europe/Berlin] PHP Parse error:  syntax error, unexpected ',' in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 664

@@ -386,7 +386,11 @@ class Report_model extends Base_model
 						->from('employee_master_new b')						
 						->join('salary_master c', 'b.spgid=c.spgid AND b.custid=c.custid')
 						->where('b.emp_id',$key->empid)		
-						->where('c.empid',$key->empid)		
+						->where('c.empid',$key->empid)
+						->where('c.custid',$cust)
+						->where('b.custid',$cust)
+						->where('month',$this->lastmonth())	
+						->where('year',$this->get_year())	
 						->get()->result();
 			foreach ($mainPro as $k) 
 			{
@@ -564,183 +568,108 @@ class Report_model extends Base_model
 	public function CreateESICProcess($spg,$cust)
 	{
 		ini_set('memory_limit', '128M');
-		$this->remove('pf_template',array('spgid'=>$spg,'custid' =>$cust,'month'=>$this->lastmonth(),'year'=>$this->get_year()));
+		$this->remove('esic_template',array('spgid'=>$spg,'custid' =>$cust,'month'=>$this->lastmonth(),'year'=>$this->get_year()));
 		
-		$pf=[];
+		$esic=[];
 		$pro=$this->fetch('master_process','spgid,custid,empid',array('spgid'=>$spg,'custid' =>$cust,'month'=>$this->lastmonth(),'year'=>$this->get_year()))->result();
 		$count=0;
 		foreach ($pro as $key) {
 		$count++;
-			$mainPro=$this->newdb->select('c.basic,c.name,c.DA,c.VPF,c.monthly_gross,c.entity_name,c.Month_Days,c.paid_days,c.empid,c.epf_wages,YEAR(b.birth_date) AS age_year,MONTH(b.birth_date) AS age_month,b.uan_no,b.birth_date,b.ul_pf,b.join_date,b.exit_date')
+			$mainPro=$this->newdb->select('*')
 						->from('employee_master_new b')						
 						->join('salary_master c', 'b.spgid=c.spgid AND b.custid=c.custid')
 						->where('b.emp_id',$key->empid)		
-						->where('c.empid',$key->empid)		
+						->where('c.empid',$key->empid)
+						->where('c.custid',$cust)
+						->where('b.custid',$cust)
+						->where('month',$this->lastmonth())	
+						->where('year',$this->get_year())	
 						->get()->result();
 			foreach ($mainPro as $k) 
-			{
-				$basic			= $k->basic;			
-				$DA 			= $k->DA;
-				$VPF			= $k->VPF;
-				$monthly_gross 	= $k->monthly_gross;
-				$name_slash 	= $k->name;				
+			{				
+				$empid 		 	= $k->empid;			
 				$entity_name 	= $k->entity_name;
-				$month_days 	= $k->Month_Days;
-				$paid_days		= $k->paid_days;
-				$empid 			= $k->empid;
-				$epfwages 		= $k->epf_wages;
-				$name 			= addslashes($name_slash);
-				$refund			= 0;
-				$age_year		= $k->age_year;
-				$age_month		= $k->age_month;
-				$uan_no			= $k->uan_no;
-				$birth_date		= $k->birth_date;
-				$ul_pf 			= $k->ul_pf;
-				$join_date		=$k->join_date;
-				$exit_date		= $k->exit_date;				
-				
-				$age=$this->get_year()-$age_year;//2019-1995=24
-				if($age_month<=$this->lastmonth())//11 wrong condition
-				{
-					$age;
-				}
-				else
-				{
-					$age=$age-1;
-				}
-				//-----------condition related to epfwages-------------------//
-					
-				if($ul_pf <= $epfwages and $ul_pf!='0')
-				{	
-						$epfwages=$ul_pf;
-				}
-				else
-				{
-					$epfwages=$epfwages;
-				}
+				$name 			= $k->name;
+				$monthly_gross 	= $k->monthly_gross;
+				$esicno			= $k->esic_no;
+				$paid_days 		= $k->paid_days;
+				$reason_code 	= !empty($k->reason_code)?$k->reason_code:11;
+				$fix_gross 		= $k->fixgross;				
+				$exit_date		= $k->exit_date;
+				$date 			= date("d-m-Y");
+				$year 			= date('m-d', strtotime($date));
+				$current_year	= date('Y', strtotime($date));
+				$last_date 		= '09-30';
+				$last_dat 		= '03-31';
 
-				$epswages=$basic+$DA;
-
-				if($epswages>='15000' && $age<'58')
+				if($fix_gross>21000 and ($year='10-01' || $year='03-01'))
 				{
-					$epswages="15000";
-				}
-				else if($epswages<'15000' and $age<'58')
-				{
-					$epswages=$epfwages;
-				}
-				else if($age>='58' && ($epswages>='15000' || $epswages<='15000'))
-				{
-					$epswages="0";
-				}
-			//echo "</br>";
-				//---------condition related to edliwages------------//
-				if($epfwages>='15000')
-				{
-					$edliwages="15000";
-				}
-				else if($epfwages<'15000')
-				{
-					$edliwages=$epfwages;
-				}else{
-					$edliwages="0";
-				}
+            		$paid_days = '0';
+	 			} 
+	 			else
+ 				{ 
+ 					$paid_days= $paid_days;
+ 				}
+				 //--------------------reason code------------------//
+				 if($fix_gross>21000 and ($year='10-01' || $year='04-01'))
+				 {
+            		$reason_code_1 = '4';			                    		
+			     }
+			     elseif($paid_days == 0)
+			     {
+          			$reason_code_1 = $reason_code; 
+          		 }
+      			 else
+      			 {
+      				$reason_code_1 = '0';
+      			 }
 
-				//----------condition related to epf contribution------------------//
 
-				$epfcontri=((($epfwages*12)/100)+$VPF);
-				$epfcontri=round($epfcontri);
-				
-				//----------condition related to eps contrbution-------------------//
+		        //--------------------------exit date-----------------//
+		        if($reason_code_1 == 2 || $reason_code_1 == 3 || $reason_code_1 == 5 || $reason_code_1 == 6 || $reason_code_1 == 10|| $reason_code_1 == 11)
+		        {
+		        	$date=$exit_date;                    	
+		        }                 
+		        else
+		        {
+		        	$date='0';
+		        }
 
-				$epscontri=(($epswages*8.33)/100);
-				$epscontri1=round($epscontri);
-				
-				//----------condition  related to Employer difference Contribution---------//
-
-				$epfepsdiff=(round(($epfwages*12)/100)-$epscontri1);
-
+		        //-----------------------monthly wages----------------------------//
+		         if($fix_gross>21000){
+		         	$monthly_gross_1=0;
+		         }else{
+		         	$monthly_gross_1=$monthly_gross;
+		         }	
 
 				
-	
-			
-				$join_pieces = explode("-", $join_date);//
-				$join_year=$join_pieces[0];//2018 
-				$join_month=$join_pieces[1];//12
-				$join_days=$join_pieces[2]-1;//26
 
-				//--------calculation for exit date---------//
-			
-				$exit_pieces = explode("-", $exit_date);//
-				$exit_year=$exit_pieces[0];//2018
-				$exit_month=$exit_pieces[1];//12
-				$exit_days=$exit_pieces[2];//26
-
-				$currmonth=date("F");//Janaury
-				$lastmonth=Date('m', strtotime($currmonth . " last month"));//12
-
-				$curryear=date("Y");//2019
-				$lastyear=Date('Y', strtotime($curryear . " last year"));//2018
-
-
-				if($lastmonth==12)
-				{
-					if($join_month==$lastmonth && $join_year==$lastyear)
-					{
-						$ncp=$month_days-$join_days-$paid_days;
-					}
-					else if($exit_month==$lastmonth && $exit_year==$lastyear)
-					{
-						$ncp=$month_days-$exit_days;
-					}
-					else
-					{
-						$ncp=$month_days-$paid_days;
-					}
-				}
-				else
-				{
-					if($join_month==$lastmonth && $join_year==$curryear)
-					{
-						$ncp=$month_days-$join_days-$paid_days;
-					}
-					else if($exit_month==$lastmonth && $exit_year==$curryear)
-					{
-						$ncp=$month_days-$exit_days;
-					}
-					else
-					{
-						$ncp=$month_days-$paid_days;
-					}
-				}
-
-				$pf[]=array(
+				$esic[]=array(
 					'spgid'=>$spg,
 					'entity_name'=> $entity_name,
 					'empid'=>$key->empid,
-					'UANno'=>$uan_no,
+					'name'=>$name,
 					'custid'=> $cust,
-					'member_name'=>$name,
-					'gross_wages'=> $monthly_gross,
-					'EPF_wages'=>$epfwages,
-					 'EPS_wages'=> $epswages,
-					'EDLI_wages'=> $edliwages,
-					'EPF_contri_remitted'=>$epfcontri,
-					'EPS_contri_remitted'=>$epscontri,
-				    'EPS_EPF_diff'=>$epfepsdiff,
-				    'NCP_days'=>$ncp,
-			        'refund_advance'=>$refund,
+					'esicno'=>$esicno,
+					'no_of_days'=> $paid_days,
+					'monthly_wages'=>$monthly_gross_1,
+					 'reason_code'=> $reason_code_1,
+					'last_working_day'=> $date,
+					'flag'=>'1',					
 			        'month'=>$this->lastmonth(),
 			        'year'=>$this->get_year(),
 			        'flag'=>'1'					      
 				);
+
+				
 			}
 			
 		}
 
 		echo "<pre>";
-		var_dump($pf);
-		$this->newdb->insert_batch('pf_template',$pf);
+		var_dump($esic);
+
+		$this->newdb->insert_batch('esic_template',$esic);
 		
 
 	}
