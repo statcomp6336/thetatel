@@ -520,7 +520,7 @@ class DB_install extends Base_model
 					                    'type' =>'VARCHAR',
 					                    'constraint' => '12'                  
 							            ),
-		            'brnach'			=> array(
+		            'branch'			=> array(
 					                    'type' =>'TEXT'                 
 							            ),
 		            'dept'			=> array(
@@ -657,6 +657,203 @@ class DB_install extends Base_model
 	public function DropTable_employee_master_new()
 	{
 		$this->dbforge->drop_table('employee_master_new');
+	}
+
+
+	public function CreateTable_employee_error()
+	{
+		$fields = array(
+            		'srno' 			=> array(
+					                    'type' => 'INT',                 
+					                    'auto_increment' => TRUE
+							            ),
+		            'spgid'		=> array(
+					                    'type' =>'BIGINT',
+					                    'constraint' => '12'					                    
+							            ),
+		            'custid'		=> array(
+					                    'type' =>'BIGINT',
+					                    'constraint' => '20'
+					                    			                    
+							            ),
+		            'entity_name'		=> array(
+					                    'type' =>'TEXT'
+					                						                    
+							            ),
+		            'emp_name'			=> array(
+					                    'type' =>'TEXT'                  
+							            ),
+		            'emp_id'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '100'                  
+							            ),
+		            'gender'			=> array(
+					                    'type' =>'TEXT'                  
+							            ),
+		            'pf_deduct'			=> array(
+					                    'type' =>'TEXT'                 
+							            ),
+		            'ul_pf'			=> array(
+					                    'type' =>'INT',
+					                    'constraint' => '7'                  
+							            ),
+		            'esic_deduct'			=> array(
+					                    'type' =>'TEXT'                 
+							            ),
+		            'esic_no'			=> array(
+					                    'type' =>'TEXT'                 
+							            ),
+		            'uan_no'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '12'                  
+							            ),
+		            'branch'			=> array(
+					                    'type' =>'TEXT'                 
+							            ),
+		            'dept'			=> array(
+					                    'type' =>'TEXT'                
+							            ),
+		            'designation'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '300'                  
+							            ),
+		            'fath_hus_name'			=> array(
+					                    'type' =>'TEXT'                 
+							            ),
+		            'nom1'			=> array(
+					                    'type' =>'TEXT'                  
+							            ),
+		            'nom2'			=> array(
+					                    'type' =>'TEXT'                
+							            ),
+		            'nom3'			=> array(
+					                   'type' =>'TEXT'                
+							            ),
+		            'nom4'			=> array(
+					                   'type' =>'TEXT'             
+							            ),
+		            'email'			=> array(
+					                   'type' =>'TEXT'                  
+							            ),
+		            'mob'			=> array(
+					                    'type' =>'BIGINT',
+					                    'constraint' => '20'                  
+							            ),
+		            'per_address'			=> array(
+					                    'type' =>'TEXT'                  
+							            ),
+		            'temp_address'			=> array(
+					                    'type' =>'TEXT'                
+							            ),
+		            'pan'			=> array(
+					                   'type' =>'TEXT'                
+							            ),
+		            'adhaar'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '20'                  
+							            ),
+		            'bank_ac'			=> array(
+					                    'type' =>'TEXT'                  
+							            ),
+		            'ifsc'			=> array(
+					                   'type' =>'TEXT'                  
+							            ),
+		            'bank_name'			=> array(
+					                    'type' =>'TEXT'                  
+							            ),
+		            'bank_branch'			=> array(
+					                    'type' =>'TEXT'                  
+							            ),
+		            'education'			=> array(
+					                   'type' =>'TEXT'                  
+							            ),
+		            'phy_handi'			=> array(
+					                    'type' =>'TEXT'                  
+							            ),
+		            'phy_handi_cat'			=> array(
+					                   'type' =>'TEXT'                
+							            ),
+		            'marital_status'			=> array(
+					                    'type' =>'TEXT'         
+							            ),
+		            'emp_status'			=> array(
+					                   'type' =>'TEXT'                 
+							            ),
+		            'birth_date'			=> array(
+					                    'type' =>'DATE'                  
+							            ),
+		            'join_date'			=> array(
+					                    'type' =>'DATE'                 
+							            ),
+		            'member_date'			=> array(
+					                    'type' =>'DATE'
+
+							            ),
+		            'exit_date'			=> array(
+					                    'type' =>'DATE'                
+							            ),
+		            'int_worker'			=> array(
+					                    'type' =>'TEXT'                 
+							            ),
+		            'reldob'			=> array(
+					                    'type' =>'DATE'               
+							            ),
+		            'reladhr'			=> array(
+					                    'type' =>'BIGINT',
+					                    'constraint' => '20'                  
+							            ),
+		            'relname'			=> array(
+					                    'type' =>'TEXT'               
+							            ),
+		            'relage'			=> array(
+					                    'type' =>'INT',
+					                    'constraint' => '11'                  
+							            ),
+		            'namepan'			=> array(
+					                   'type' =>'TEXT'                  
+							            ),
+		            'nameadhr'			=> array(
+					                    'type' =>'TEXT'                  
+							            ),
+		            'nameinbank'			=> array(
+					                    'type' =>'TEXT'                 
+							            ),
+		            'dobadhr'			=> array(
+					                   'type' =>'DATE'                 
+							            ),
+		            'vendor_id'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '20'                  
+							            ),
+		            'contractor_name'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '30'                  
+							            ),
+		            'location'			=> array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '50'                  
+							            ),
+		            'current_emp_id'    => array(
+					                    'type' =>'VARCHAR',
+					                    'constraint' => '50'                  
+							            ),
+		            'current_entity_name'=> array(
+					                    'type' =>'TEXT'	                                      
+							            ),
+		            'flag'=> array(
+					                    'type' =>'INT'	                                      
+							            ),
+
+		            'date TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		        );
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('employee_error',TRUE);
+	}
+
+	public function DropTable_employee_error()
+	{
+		$this->dbforge->drop_table('employee_error');
 	}
 
 	public function CreateTable_salary_master()
@@ -804,6 +1001,151 @@ class DB_install extends Base_model
 	public function DropTable_salary_master()
 	{
 		$this->dbforge->drop_table('salary_master');
+	}
+
+	public function CreateTable_temp_salary_master()
+	{
+		$fields = array(
+	'srno' 			=> array(
+	                    'type' => 'INT',                 
+	                    'auto_increment' => TRUE
+			            ),
+    'spgid'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'					                    
+			            ),
+    'custid'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'
+	                    			                    
+			            ),
+    'entity_name'		=> array(
+	                    'type' =>'TEXT'
+	                						                    
+			            ),
+    'empid'			=> array(
+	                    'type' =>'TEXT'                  
+			            ),
+    'pfno'			=> array(
+	                    'type' =>'VARCHAR',
+	                    'constraint' => '20'                  
+			            ),
+    'esicno'			=> array(
+	                     'type' =>'VARCHAR',
+	                    'constraint' => '20'            
+			            ),
+    'name'			=> array(
+	                     'type' =>'VARCHAR',
+	                    'constraint' => '50'          
+			            ),
+    'Month_days'			=> array(
+	                    'type' =>'INT',
+	                    'constraint' => '11'                  
+			            ),
+    'paid_days'			=> array(
+	                     'type' =>'VARCHAR',
+	                    'constraint' => '20'                
+			            ),
+    'fixgross'			=> array(
+	                     'type' =>'VARCHAR',
+	                    'constraint' => '20'               
+			            ),
+    'basic'			=> array(
+	                  'type' =>'TEXT'                 
+			            ),
+    'DA'			=> array(
+	                    'type' =>'TEXT'                 
+			            ),
+    'HRA'			=> array(
+	                    'type' =>'TEXT'                
+			            ),
+    'CA'			=> array(
+	                    'type' =>'TEXT'               
+			            ),
+    'CCA'			=> array(
+	                    'type' =>'TEXT'                 
+			            ),
+    'EA'			=> array(
+	                    'type' =>'TEXT'                  
+			            ),
+    'Other_reimb'			=> array(
+	                    'type' =>'TEXT'                
+			            ),
+    'OA'			=> array(
+	                   'type' =>'TEXT'                
+			            ),
+    'OT'			=> array(
+	                   'type' =>'TEXT'             
+			            ),
+    'WA'			=> array(
+	                   'type' =>'TEXT'                  
+			            ),
+    'LTA'			=> array(
+	                    'type' =>'TEXT'                 
+			            ),
+    'monthly_gross'			=> array(
+	                    'type' =>'TEXT'                  
+			            ),
+    'PF'			=> array(
+	                    'type' =>'TEXT'                
+			            ),
+    'VPF'			=> array(
+	                    'type' =>'VARCHAR',
+	                    'constraint' => '20'                
+			            ),
+    'ESIC'			=> array(
+	                     'type' =>'TEXT'                    
+			            ),
+    'PT'			=> array(
+	                    'type' =>'TEXT'                  
+			            ),
+    'IT'			=> array(
+	                   'type' =>'INT',
+	                    'constraint' => '20'                  
+			            ),
+    'LWF'			=> array(
+	                   'type' =>'INT',
+	                    'constraint' => '20'                  
+			            ),
+    'OD'			=> array(
+	                    'type' =>'INT',
+	                    'constraint' => '20'                  
+			            ),
+    'net_pay'			=> array(
+	                   'type' =>'INT',
+	                    'constraint' => '20'                 
+			            ),
+    'paymentmode'			=> array(
+	                   'type' =>'VARCHAR',
+	                    'constraint' => '20'                
+			            ),
+    'year'			=> array(
+	                  'type' =>'VARCHAR',
+	                    'constraint' => '20'                   
+			            ),
+    'month'			=> array(
+	                   'type' =>'VARCHAR',
+	                    'constraint' => '20'         
+			            ),
+    'epf_wages'			=> array(
+	                   'type' =>'VARCHAR',
+	                    'constraint' => '20'                    
+			            ),
+    'total_deduction'			=> array(
+	                    'type' =>'VARCHAR',
+	                    'constraint' => '20'                     
+			            ),  
+
+		            'present_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		        );
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('temp_salary_master',TRUE);
+	}
+
+	public function DropTable_temp_salary_master()
+	{
+		$this->dbforge->drop_table('temp_salary_master');
 	}
 
 	public function CreateTable_master_process()

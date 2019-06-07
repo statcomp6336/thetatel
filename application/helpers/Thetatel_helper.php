@@ -38,4 +38,81 @@ if (! function_exists('goto_back')) {
 	  } 
 }
 // ------------------------------------------------------------------------
+
+
+if (! function_exists('is')) {
+	# code...
+	function is($value)
+	  {	  	
+	    $i=!empty($value)?$value:" ";
+		return $i;
+	  } 
+}
+// ------------------------------------------------------------------------
+if (! function_exists('this_month')) {
+	
+	function this_month($month,$year='')
+	{	  	
+	    $year=!empty($year)?$year:date('Y');
+	    if (strtotime($month." ".$year) == strtotime(date('M Y'))) {
+	    	return TRUE;
+	    }
+	    else
+	    {
+	    	return FALSE;
+	    }
+		
+	} 
+}
+
+	// ------------------------------------------------------------------------
+if (! function_exists('is_last_month')) {
+	
+	function is_last_month($month,$year='')
+	{	  	
+	   $ab = date_default_timezone_get(); 
+			date_default_timezone_set($ab);
+		$lastyear=!empty($year)?$year:date('Y'); 
+		$currmonth=date("M");//Janaury
+		$lastmonth=Date('M', strtotime($currmonth . " last month"));//Janaury
+			if (strtotime($lastmonth." ".date('Y')) == strtotime($month." ".$lastyear)) {
+	    		return TRUE;
+		    }
+		    else
+		    {
+		    	return FALSE;
+		    }
+		
+	} 
+}
+// ------------------------------------------------------------------------
+	if (! function_exists('before_months')) {
+	
+	function before_months($month,$year='')
+	{	  	
+	   $ab = date_default_timezone_get(); 
+			date_default_timezone_set($ab);
+			$a= 12 - date('m');
+		$byear=!empty($year)?$year:date('Y');
+		for ($i = 1; $i <= $a; $i++) 
+		{
+		   $months = date("M", strtotime( date( 'M' )." +$i months"));
+		   if (strtotime($months." ".date('Y')) == strtotime($month." ".$byear)) {
+	    		$a = TRUE;	    		
+		    }
+		    else
+		    {
+		    	$a = FALSE;
+		    }
+		    if ($a == TRUE) {
+		    	return TRUE;
+		    	break;
+		    }		   
+		}		
+		
+	} 
+}
+// ------------------------------------------------------------------------
+
+
 ?>

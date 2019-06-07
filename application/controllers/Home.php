@@ -55,12 +55,12 @@ class Home extends Base_controller {
 			}
 			else
 			{				
-				$this->goto_back();
+				goto_back();
 			}
 		}
 		else
 		{
-			$this->goto_back();
+			goto_back();
 		    // redirect(base_url('Home/user_login'));
 		}		
 	}

@@ -11,7 +11,10 @@ class Employee_model extends Base_model
 		parent::__construct();
 			$this->newdb=$this->load->database('db1',TRUE);
 	}
-
+public function emp_error()
+{
+	return $this->newdb->count_all('employee_error');
+}
 	public function create_Employee($dta)
 	{
 		if ($this->newdb->insert('employee_master_new',$dta)) {
@@ -34,20 +37,22 @@ class Employee_model extends Base_model
 	}
 
 
-	public function is_uniqemployee($custid,$emp_id)
+	public function is_uniqemployee($custid,$emp_id,$pan,$uan,$adhar)
 	{
-		return $this->is_uniq('employee_master_new',array('custid'=>$custid,'emp_id'=>$emp_id));
-			// $w=$this->db->select('custid,emp_id')->from('employee_master_new')->where(array('custid'=>$custid,'emp_id'=>$emp_id))->get()->result();
-			// var_dump($w);
-			// exit();
-
+		return $this->is_uniq('employee_master_new',array('custid'=> $custid,'emp_id'=>$emp_id,'pan'=>$pan,'uan_no' =>$uan,'adhaar' =>$adhar));
+		
 	}
+	public function in_employee_error($custid,$emp_id)
+	{
+		return $this->is_uniq('employee_error',array('custid'=>$custid,'emp_id'=>$emp_id));		
+	}
+	
 	public function get_allemployee($limit, $start)
 	{
 		// $w=$this->db->select('*')->from('employee_master_new')->get()->result();
 		// return $w;
-		$this->db->limit($limit, $start);
-        $query = $this->db->get('employee_master_new');
+		$this->newdb->limit($limit, $start);
+        $query = $this->newdb->get('employee_master_new');
 
         return $query->result();
 	}

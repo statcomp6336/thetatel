@@ -81,7 +81,9 @@ class Spg extends Base_controller {
 		$this->DB_install->CreateTable_act_applicable_to_customer();
 		$this->DB_install->CreateTable_compliance_scope();
 		$this->DB_install->CreateTable_employee_master_new();
+		$this->DB_install->CreateTable_employee_error();
 		$this->DB_install->CreateTable_salary_master();
+		$this->DB_install->CreateTable_temp_salary_master();
 		$this->DB_install->CreateTable_master_process();
 		$this->DB_install->CreateTable_backlog_process();
 		$this->DB_install->CreateTable_pf_template();
@@ -96,6 +98,8 @@ class Spg extends Base_controller {
 		$this->DB_install->DropTable_act_applicable_to_customer();
 		$this->DB_install->DropTable_compliance_scope();
 		$this->DB_install->DropTable_employee_master_new();
+		$this->DB_install->DropTable_employee_error();
+		$this->DB_install->DropTable_temp_salary_master();
 		$this->DB_install->DropTable_salary_master();
 		$this->DB_install->DropTable_master_process();
 		$this->DB_install->DropTable_backlog_process();
@@ -278,6 +282,25 @@ class Spg extends Base_controller {
 	{
 		$this->CreateESICReport();// this function include in report class
 	}
+	public function genrate_backloag_report($value='')
+	{
+		$this->GenrateBacklogReport($this->page);
+	}
+	public function edit_backlog_emp($value='')
+	{
+		$this->ExportBacklog();
+	}
+	public function edit_backlog_sal($value='')
+	{
+		$this->ExportBacklog();
+	}
+
+
+	/* show company wise pf report view */
+	public function show_company_pf()
+	{
+		$this->ShowCompanyPF($this->page);
+	}
 	
 
 
@@ -298,6 +321,13 @@ class Spg extends Base_controller {
 	}
 
 
+	/*
+	download will be start here
+	*/
+	public function download_pf($value='')
+	{
+		$this->downloadPF();
+	}
 
 
 

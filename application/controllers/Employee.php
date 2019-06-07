@@ -69,26 +69,151 @@ trait Employee {
                 $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
                 $flag = true;
                 $i=0;
+                $ids=FALSE;
                 foreach ($allDataInSheet as $value) {
                   if($flag){
                     $flag =false;
                     continue;
                   }
-                  $e_code = $this->emp->is_uniqemployee($value['A'],$value['D'])?$value['D']:"N/A";
-                  if ($e_code == "N/A") {
-                    put_msg($value['D']."employee id is not uniq ");
-                   goto_back();
-                   exit();
-                    # code...
-                  }
+                  // echo "birth_date:".$value['AP'];
+                  // exit();
+                 
 
-                  $inserdata[$i]=array(
+    $e_code = $this->emp->is_uniqemployee(is($value['A']),is($value['D']),is($value['AB']),is($value['K']),is($value['AD']))?$value['D']:"N/A";
+                  if ($e_code !== "N/A") {
+                    if (!empty($value['A'])) {
+                       if ($this->emp->in_employee_error($value['A'],$value['D']) == FALSE) {
+                        // echo " error inserted <br>";
+                         $inserErrorData[$i]=array(
+                                        'spgid'           => user_id(),
+                                        'emp_name'        => $value['C'], 
+                                        'emp_id'          => $value['D'],
+                                        'fath_hus_name'   => $value['O'],
+                                        'gender'          => $value['E'],
+                                        'marital_status'  => $value['F'],
+                                        'birth_date'      => $value['AP'],
+                                        'education'       => $value['AL'],
+                                        'per_address'     => $value['Z'],
+                                        'temp_address'    => $value['AA'],
+                                        'email'           => $value['X'],
+                                        'mob'             => $value['Y'],
+                                        'phy_handi'       => $value['AN'],
+                                        'phy_handi_cat'   => $value['AO'],
+                                        'relname'         => $value['R'],
+                                        'reldob'          => $value['P'],
+                                        'relage'          => $value['S'],
+                                        'reladhr'         => $value['Q'],
+                                        'nom1'            => $value['T'],
+                                        'nom2'            => $value['U'],
+                                        'nom3'            => $value['V'],
+                                        'nom4'            => $value['W'],
+                                        'bank_name'       => $value['AH'],
+                                        'bank_branch'     => $value['AI'],
+                                        'bank_ac'         => $value['AF'],
+                                        'ifsc'            => $value['AG'],
+                                        'pan'             => $value['AB'],
+                                        'namepan'         => $value['AC'],
+                                        'adhaar'          => $value['AD'],
+                                        'nameadhr'        => $value['AE'],
+                                        'pf_deduct'       => $value['G'],
+                                        'ul_pf'           => $value['H'],
+                                        'esic_deduct'     => $value['I'],
+                                        'esic_no'         => $value['J'],
+                                        'uan_no'          => $value['K'],
+                                        'dobadhr'         => $value['AK'],
+                                        'entity_name'     => $value['B'],
+                                        'branch'          => $value['L'],
+                                        'custid'          => $value['A'],
+                                        'dept'            => $value['M'],
+                                        'designation'     => $value['N'],
+                                        'location'        => !empty($value['AW'])?$value['AW']:'',
+                                        'join_date'       => $value['AQ'],
+                                        'exit_date'       => $value['AS'],
+                                        'member_date'     => $value['AR'],
+                                        'int_worker'      => $value['AT'],
+                                        'emp_status'      => $value['AM'],
+                                        'contractor_name' => !empty($value['AV'])?$value['AV']:'',
+                                        'current_emp_id'  => !empty($value['A'])?$value['A']:'',
+                                        'current_entity_name'=> !empty($value['D'])?$value['D']:'',
+                                        'flag'       => 1,
+
+                                        );
+                       }
+                       else
+                       {
+                        // echo "error updated<br>";
+                        $editErrorData=array(
+                                        'spgid'           => user_id(),
+                                        'emp_name'        => $value['C'], 
+                                        'emp_id'          => $value['D'],
+                                        'fath_hus_name'   => $value['O'],
+                                        'gender'          => $value['E'],
+                                        'marital_status'  => $value['F'],
+                                        'birth_date'      => $value['AP'],
+                                        'education'       => $value['AL'],
+                                        'per_address'     => $value['Z'],
+                                        'temp_address'    => $value['AA'],
+                                        'email'           => $value['X'],
+                                        'mob'             => $value['Y'],
+                                        'phy_handi'       => $value['AN'],
+                                        'phy_handi_cat'   => $value['AO'],
+                                        'relname'         => $value['R'],
+                                        'reldob'          => $value['P'],
+                                        'relage'          => $value['S'],
+                                        'reladhr'         => $value['Q'],
+                                        'nom1'            => $value['T'],
+                                        'nom2'            => $value['U'],
+                                        'nom3'            => $value['V'],
+                                        'nom4'            => $value['W'],
+                                        'bank_name'       => $value['AH'],
+                                        'bank_branch'     => $value['AI'],
+                                        'bank_ac'         => $value['AF'],
+                                        'ifsc'            => $value['AG'],
+                                        'pan'             => $value['AB'],
+                                        'namepan'         => $value['AC'],
+                                        'adhaar'          => $value['AD'],
+                                        'nameadhr'        => $value['AE'],
+                                        'pf_deduct'       => $value['G'],
+                                        'ul_pf'           => $value['H'],
+                                        'esic_deduct'     => $value['I'],
+                                        'esic_no'         => $value['J'],
+                                        'uan_no'          => $value['K'],
+                                        'dobadhr'         => $value['AK'],
+                                        'entity_name'     => $value['B'],
+                                        'branch'          => $value['L'],
+                                        'custid'          => $value['A'],
+                                        'dept'            => $value['M'],
+                                        'designation'     => $value['N'],
+                                        'location'        => !empty($value['AW'])?$value['AW']:'',
+                                        'join_date'       => $value['AQ'],
+                                        'exit_date'       => $value['AS'],
+                                        'member_date'     => $value['AR'],
+                                        'int_worker'      => $value['AT'],
+                                        'emp_status'      => $value['AM'],
+                                        'contractor_name' => !empty($value['AV'])?$value['AV']:'',
+                                        'current_emp_id'  => !empty($value['A'])?$value['A']:'',
+                                        'current_entity_name'=> !empty($value['D'])?$value['D']:'',
+                                        'flag'       => 1,
+
+                                        );
+                       }
+                    }
+                    
+                  } 
+                  else{                 
+                   if (!empty($value['A'])) {
+                    // echo "inserted<br>";
+                    // echo "birth_date: ".$value['AQ'];
+
+                     
+                    $inserdata[$i]=array(
+                    'spgid'           => user_id(),
                     'emp_name'        => $value['C'], 
-                    'emp_code'        => $value['D'],
+                    'emp_id'          => $value['D'],
                     'fath_hus_name'   => $value['O'],
-                    'gender'          =>$value['E'],
+                    'gender'          => $value['E'],
                     'marital_status'  => $value['F'],
-                    'birth_date'      => $value['X'],
+                    'birth_date'      => date('Y-m-d',strtotime($value['AP'])),
                     'education'       => $value['AL'],
                     'per_address'     => $value['Z'],
                     'temp_address'    => $value['AA'],
@@ -97,7 +222,7 @@ trait Employee {
                     'phy_handi'       => $value['AN'],
                     'phy_handi_cat'   => $value['AO'],
                     'relname'         => $value['R'],
-                    'reldob'          => $value['P'],
+                    'reldob'          => date('Y-m-d',strtotime($value['P'])),
                     'relage'          => $value['S'],
                     'reladhr'         => $value['Q'],
                     'nom1'            => $value['T'],
@@ -116,32 +241,37 @@ trait Employee {
                     'ul_pf'           => $value['H'],
                     'esic_deduct'     => $value['I'],
                     'esic_no'         => $value['J'],
-                    'una_no'          => $value['K'],
-                    'dobadhr'         => $value['AK'],
+                    'uan_no'          => $value['K'],
+                    'dobadhr'         => date('Y-m-d',strtotime($value['AK'])),
                     'entity_name'     => $value['B'],
                     'branch'          => $value['L'],
                     'custid'          => $value['A'],
                     'dept'            => $value['M'],
                     'designation'     => $value['N'],
-                    'location'        => $value['AW'],
-                    'join_date'       => $value['AQ'],
-                    'exit_date'       => $value['AS'],
+                    'location'        => !empty($value['AW'])?$value['AW']:'',
+                    'join_date'       => date('Y-m-d',strtotime($value['AQ'])),
+                    'exit_date'       => date('Y-m-d',strtotime($value['AS'])),
                     'member_date'     => $value['AR'],
                     'int_worker'      => $value['AT'],
                     'emp_status'      => $value['AM'],
-                    'contractor_name' => $value['AV'],
-                    'vendor_id'       => $value['AU']
+                    'contractor_name' => !empty($value['AV'])?$value['AV']:'',
+                    'vendor_id'       => !empty($value['AU'])?$value['AU']:''
                   );
+                }
+              }
                   $i++;
-                }               
-                // $result = $this->import->importdata($inserdata);   
-                // if($result){
-                //   echo "Imported successfully";
-                // }else{
-                //   echo "ERROR !";
-                // } 
-                echo "<pre>";
-                var_dump($inserdata);            
+                }  
+                // var_dump($inserdata);        
+                 $this->newdb=$this->load->database('db1',TRUE);     
+               if (!empty($inserdata)) {
+                 $this->newdb->insert_batch('employee_master_new',$inserdata);
+               }
+               elseif (!empty($inserErrorData)) {
+                 $this->newdb->insert_batch('employee_error',$inserErrorData);
+               }
+             goto_back();
+
+                          
  
           } catch (Exception $e) {
                die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME)
@@ -206,6 +336,7 @@ trait Employee {
 		$save_employee = 
 		array(
 		'emp_name' 			=> $this->input->post('emp_name'), 
+    'emp_id'        =>$this->input->post('emp_id'),
 		'fath_hus_name' 	=> $this->input->post('parent_name'),
 		'gender' 			=> $this->input->post('gender'),
 		'marital_status'	=> $this->input->post('m_status'),

@@ -10,6 +10,7 @@ class Report_model extends Base_model
 	{
 		parent::__construct();
 			$this->newdb=$this->load->database('db1',TRUE);
+			$this->load->library('Excel');
 	}
 
 	public function get_BackloagEmployee($value='')
@@ -35,26 +36,42 @@ class Report_model extends Base_model
 							->result();
 		return $sal_backlog;
 	}
+	/* Get don't match data in employee master and salary master */
 	public function backlog_process($value='')
 	{
 		$select="SELECT a.spgid,a.custid,a.entity_name,a.emp_id AS emp, IF(b.empid = NULL,'YES','NO') AS is_sal FROM employee_master_new a LEFT OUTER JOIN salary_master b ON a.spgid=b.spgid AND a.custid=b.custid AND a.emp_id=b.empid WHERE b.empid IS NULL
 			UNION
 			SELECT b.spgid,b.custid,b.entity_name,b.empid AS emp, IF(a.emp_id = NULL,'NO','YES') AS is_sal FROM employee_master_new a RIGHT OUTER JOIN salary_master b ON a.spgid=b.spgid AND a.custid=b.custid AND a.emp_id=b.empid  WHERE a.emp_id IS NULL";
 
-		$m_backlog=$this->db->query($select)
+		$m_backlog=$this->newdb->query($select)
 							->result();
 		return $m_backlog;
 	}
+	/* Get all data in backolog process table */
+	public function get_BacklogTable()
+	{		
+		$backlog=$this->newdb->select("a.spgid,a.month,a.year, a.custid,b.entity_name,SUM(IF(a.is_sal='NO',1,0)) AS diffempdata, SUM(IF(a.is_sal='YES',1,0)) AS diffsaldata")
+							->from('backlog_process AS a')
+							->join('customer_master AS b ','a.spgid=b.allianceid AND a.custid=b.custid')
+							->group_by(array("a.spgid", "a.custid"))
+							->get()
+							->result();						
+		return $backlog;
+	}
+	/* Get compair data in employee master and salary master  */
 	public function get_MasterProcess($value='')
 	{
-		$sal_backlog=$this->db->select('s.spgid,s.custid,s.entity_name, s.empid,s.month,s.year')
+			$sal_backlog=$this->newdb->select('s.spgid,s.custid,s.entity_name, s.empid,s.month,s.year')
 							->from('employee_master_new AS e')
 							->join('salary_master AS s','s.spgid=e.spgid AND s.custid=e.custid AND s.empid=e.emp_id')
 							->where('s.month' ,$this->lastmonth())
 							->where('s.year' ,$this->get_year())
-
+							->group_by('s.empid ')
 							->get()
 							->result();
+	// $select="SELECT DISTINCT `s`.`spgid`, `s`.`custid`, `s`.`entity_name`, `s`.`empid`, `s`.`month`, `s`.`year` FROM `employee_master_new` AS `e` JOIN `salary_master` AS `s` ON `s`.`spgid`=`e`.`spgid` AND `s`.`custid`=`e`.`custid` AND `s`.`empid`=`e`.`emp_id` WHERE `s`.`month` = '".$this->lastmonth()."' AND `s`.`year` = '".$this->get_year()."' GROUP BY `s`.`empid`";						
+	// 	$sal_backlog=$this->newdb->query($select)
+	// 						->result();
 		return $sal_backlog;
 	}
 
@@ -62,32 +79,10 @@ class Report_model extends Base_model
 	/* genrate sanitize report main process start*/
 	public function CreateSanitizeReport($value='')
 	{
-
-		
 		$setData_master=[];
 		$editData_master=[];
 		$editBacklogData =[];
-		$setBacklogData =[];
-
-
-		// $backlog_emp=$this->get_BackloagEmployee();
-		// foreach ($backlog_emp as $key ) {
-		// 	$setData_empBacklog[] = array('spgid' 	=> $key->spgid,
-		// 								'custid'	=>$key->custid,
-		// 								'empid' 	=>$key->emp_id,
-		// 								'month' 	=>$key->month,
-		// 								'year'		=>$key->year
-		//  						);
-		// }
-		// $backlog_sal=$this->get_BackloagSalary();
-		// foreach ($backlog_sal as $val ) {
-		// 	$setData_salBacklog[] = array('spgid' 	=> $val->spgid,
-		// 								'custid'	=>$val->custid,
-		// 								'empid' 	=>$val->empid,
-		// 								'month' 	=>$val->month,
-		// 								'year'		=>$val->year
-		//  						);
-		// }
+		$setBacklogData =[];		
 		/*
 			backlog process
 		*/
@@ -96,12 +91,12 @@ class Report_model extends Base_model
 		{
 			if ($this->is_exist('backlog_process',array('spgid' => $log->spgid,
 										'custid'	=>$log->custid,
-										'empid' 	=>$log->emp//,
-										// 'month' 	=>$this->lastmonth(),
-										// 'year'		=>$this->get_year()
+										'empid' 	=>$log->emp,
+										'month' 	=>$this->lastmonth(),
+										'year'		=>$this->get_year()
 		 						))== TRUE) 
 			{
-
+				//data already insert then updata the data
 				$editBacklogData[]=array('spgid' 	=> $log->spgid,
 										'custid'	=>$log->custid,
 										'entity_name'=>$log->entity_name,
@@ -113,6 +108,7 @@ class Report_model extends Base_model
 			}
 			else
 			{
+				// insert data
 				$setBacklogData[]=array('spgid' 	=> $log->spgid,
 										'custid'	=>$log->custid,
 										'entity_name'=>$log->entity_name,
@@ -130,7 +126,7 @@ class Report_model extends Base_model
 		$master=$this->get_MasterProcess();
 		foreach ($master as $put ) {
 			if ($this->is_exist('master_process',array('spgid'=> $put->spgid,'custid' => $put->custid,'empid'=>$put->empid))== TRUE) {//'month'=>$put->month,'year'=>$put->year
-
+				//data already inserted then updataed
 				$editData_master[] = array('spgid' 	=> $put->spgid,
 										'custid'	=>$put->custid,
 										'entity_name'=>$put->entity_name,
@@ -141,6 +137,7 @@ class Report_model extends Base_model
 			}
 			else
 			{
+				//insert data
 			$setData_master[] = array('spgid' 	=> $put->spgid,
 										'custid'	=>$put->custid,
 										'entity_name'=>$put->entity_name,
@@ -151,54 +148,37 @@ class Report_model extends Base_model
 			}
 		}
 
-		echo "<pre>";
+		// echo "<pre>";
 		
 		if (!empty($setData_master)) {
-			echo "master process first time <br>";
-			echo sizeof($setData_master);
+			// echo "master process first time <br>";
+			// echo sizeof($setData_master);
 			$this->newdb->insert_batch('master_process',$setData_master);
-
+			$D=TRUE;
 		}
 		if (!empty($editData_master)) {
 			# code...
-			echo "master process already <br>";
-			echo sizeof($editData_master);
+			// echo "master process already <br>";
+			// echo sizeof($editData_master);
 			// $this->newdb->update_batch('master_process', $editData_master,'spgid,custid,empid'); 
+			$D=TRUE;
 		}
 		if (!empty($setBacklogData)) {
 			# code...
-			echo "backlog process first time <br>";
-			var_dump($setBacklogData);
+			// echo "backlog process first time <br>";
+			// var_dump($setBacklogData);
 			$this->newdb->insert_batch('backlog_process',$setBacklogData);
+			$D=TRUE;
 		}
 		if (!empty($editBacklogData)) {
 			# code...
-			echo "backlog process already <br>";
-			echo sizeof($editBacklogData);
-			// $this->db->update_batch('backlog_process', $editBacklogData,'spgid,custid,empid'); 
+			// echo "backlog process already <br>";
+			// echo sizeof($editBacklogData);
+			// $this->db->update_batch('backlog_process', $editBacklogData,'spgid,custid,empid');
+			$D=TRUE; 
 		}
 
-		
-
-
-		
-
-		// ini_set('max_execution_time', 300);
-		// $this->db->truncate('employee_process');
-		// $this->db->truncate('salary_process');
-		// $getData=$this->getCust();
-		// $diff_sal=[];
-		// foreach ($getData as $key ) {	
-		// 	// echo $key->custid."<br>";
-		// 	$this->SaveSalary($key->custid,'backlog');//store salary data on backlog table
-		// 	$this->SaveEmployee($key->custid,'backlog');// store employee Date on backlog table
-
-		// 	// //-Start Matched Data into Salary and Employee-//
-
-		// 	$this->SaveSalary($key->custid,'process'); //store salary data on process table
-		// 	$this->SaveEmployee($key->custid,'process'); //store employee data on process table
-			 
-		// }
+		return $D;
 
 	}
 
@@ -249,27 +229,6 @@ class Report_model extends Base_model
 
 	public function get_SanitizeTable($value='')
 	{
-		$currmonth=date("F");//Janaury
-			$this->lastmonth=Date('F', strtotime($currmonth . " last month"));//Janaury
-
-			if($this->lastmonth=="December")
-			{
-				$this->year=date('Y' , strtotime('-1 year'));
-			}
-			else
-			{
-				$this->year=date('Y');
-			}
-			if($currmonth=="March")
-			{
-			  $this->lastmonth="February";
-			}
-			else
-			{
-			  $this->lastmonth=Date('F', strtotime($currmonth . " last month"));//Janaury
-			} 
-
-
 		$getData=$this->getCust();
 		$returnData=[];
 		foreach ($getData as $key ) {
@@ -280,17 +239,18 @@ class Report_model extends Base_model
 								'sal_data' => $this->sal_data($key->custid),
 								'diff_emp'	=>$this->diff_emp($key->custid),
 								'diff_sal'  =>$this->diff_sal($key->custid),
-								'date'		=> $this->lastmonth
+								'date'		=> $this->lastmonth()
 			 );
 		}
 		return $returnData;
 	}
 	private function getCust()
 	{
-		$cust=$this->db->select('b.custid,b.entity_name')
-						->from('compliance_scope a')
+		$cust=$this->newdb->select('b.custid,b.entity_name')
+						// ->from('compliance_scope a')
+						->from('customer_master a')
 						->join('customer_master b', 'a.custid=b.custid')
-						->where('a.spg_id',user_id())
+						->where('a.allianceid',user_id())
 						->group_by('a.custid')
 						->order_by('b.entity_name')
 						->get()->result();
@@ -299,59 +259,59 @@ class Report_model extends Base_model
 
 	private function emp_data($id='')
 	{
-		$emps=$this->db->select('count(emp_id) emp')->from('employee_master_new')->where('custid',$id)->get()->row()->emp;
+		$emps=$this->newdb->select('count(emp_id) emp')->from('employee_master_new')->where('custid',$id)->get()->row()->emp;
 		return $emps;
 	}
 	private function sal_data($id='')
 	{
-		$sal=$this->db->select('count(empid) salary')->from('salary_master')->where(array('custid' => $id, 'month' =>$this->lastmonth,'year'=>$this->year))->get()->row()->salary;
+		$sal=$this->newdb->select('count(empid) salary')->from('salary_master')->where(array('custid' => $id, 'month' =>$this->lastmonth(),'year'=>$this->get_year()))->get()->row()->salary;
 		return $sal;
 	}
 	private function diff_sal($id='',$d='')
 	{
 		
-		$this->db->select('emp_id');
-		$this->db->from('employee_master_new');
-		$this->db->where('custid',$id);
-		$where_clause = $this->db->get_compiled_select();
+		$this->newdb->select('emp_id');
+		$this->newdb->from('employee_master_new');
+		$this->newdb->where('custid',$id);
+		$where_clause = $this->newdb->get_compiled_select();
 
 		#Create main query
-		$this->db->select('count(empid) as empid');//
-		$this->db->from('salary_master a');
-		$this->db->where('a.custid',$id);
-		$this->db->where('a.month',$this->lastmonth());
-		$this->db->where('a.year',$this->get_year());	
+		$this->newdb->select('count(empid) as empid');//
+		$this->newdb->from('salary_master a');
+		$this->newdb->where('a.custid',$id);
+		$this->newdb->where('a.month',$this->lastmonth());
+		$this->newdb->where('a.year',$this->get_year());	
 		if (!empty($d) && $d == 'IN') {
-		$this->db->where("a.empid IN ($where_clause)", NULL, FALSE);		
+		$this->newdb->where("a.empid IN ($where_clause)", NULL, FALSE);		
 		}
 		else{	
-		$this->db->where("a.empid NOT IN ($where_clause)", NULL, FALSE);
+		$this->newdb->where("a.empid NOT IN ($where_clause)", NULL, FALSE);
 		}
-		$emps=$this->db->get()->row()->empid;
+		$emps=$this->newdb->get()->row()->empid;
 		return $emps;
 	}
 	
 	private function diff_emp($id='',$d='')
 	{
-		$this->db->select('empid');
-		$this->db->from('salary_master');
-		$this->db->where('custid',$id);
-		$this->db->where('month',$this->lastmonth);
-		$this->db->where('year',$this->year);	
-		$where_clause = $this->db->get_compiled_select();
+		$this->newdb->select('empid');
+		$this->newdb->from('salary_master');
+		$this->newdb->where('custid',$id);
+		$this->newdb->where('month',$this->lastmonth());
+		$this->newdb->where('year',$this->get_year());	
+		$where_clause = $this->newdb->get_compiled_select();
 
 		#Create main query
-		$this->db->select('count(a.emp_id) as emp_id');//
-		$this->db->from('employee_master_new a');
-		$this->db->where('a.custid',$id);	
+		$this->newdb->select('count(a.emp_id) as emp_id');//
+		$this->newdb->from('employee_master_new a');
+		$this->newdb->where('a.custid',$id);	
 		if (!empty($d) && $d == 'IN') {		
-		$this->db->where("a.emp_id IN ($where_clause)", NULL, FALSE);
+		$this->newdb->where("a.emp_id IN ($where_clause)", NULL, FALSE);
 		}
 		else
 		{
-			$this->db->where("a.emp_id NOT IN ($where_clause)", NULL, FALSE);
+			$this->newdb->where("a.emp_id NOT IN ($where_clause)", NULL, FALSE);
 		}
-		$emps=$this->db->get()->row()->emp_id;
+		$emps=$this->newdb->get()->row()->emp_id;
 		return $emps;
 	}
 
@@ -412,12 +372,15 @@ class Report_model extends Base_model
 				$birth_date		= $k->birth_date;
 				$ul_pf 			= $k->ul_pf;
 				$join_date		=$k->join_date;
-				$exit_date		= $k->exit_date;				
+				$exit_date		= $k->exit_date;
+				// echo "epfwages".$epfwages;
+				// exit();				
 				
 				$age=$this->get_year()-$age_year;//2019-1995=24
-				if($age_month<=$this->lastmonth())//11 wrong condition
+				// echo "birth date:".$birth_date."<br>";
+				if($age_month<=$this->lastmonth())
 				{
-					$age;
+					$age;					
 				}
 				else
 				{
@@ -428,13 +391,21 @@ class Report_model extends Base_model
 				if($ul_pf <= $epfwages and $ul_pf!='0')
 				{	
 						$epfwages=$ul_pf;
+						// echo "ul epfwages:".$epfwages;
 				}
 				else
 				{
 					$epfwages=$epfwages;
+					// echo "epfwages:".$epfwages;
+
 				}
+				// exit();
 
 				$epswages=$basic+$DA;
+			// 	echo "</br>";
+			// echo $age;
+			// echo "</br>";
+			// exit();
 
 				if($epswages>='15000' && $age<'58')
 				{
@@ -446,9 +417,12 @@ class Report_model extends Base_model
 				}
 				else if($age>='58' && ($epswages>='15000' || $epswages<='15000'))
 				{
+					// echo "dk";
 					$epswages="0";
 				}
-			//echo "</br>";
+	// 			echo $epswages;
+	// exit();
+
 				//---------condition related to edliwages------------//
 				if($epfwages>='15000')
 				{
@@ -474,10 +448,6 @@ class Report_model extends Base_model
 				//----------condition  related to Employer difference Contribution---------//
 
 				$epfepsdiff=(round(($epfwages*12)/100)-$epscontri1);
-
-
-				
-	
 			
 				$join_pieces = explode("-", $join_date);//
 				$join_year=$join_pieces[0];//2018 
@@ -553,11 +523,9 @@ class Report_model extends Base_model
 			
 		}
 
-		echo "<pre>";
-		var_dump($pf);
+		// echo "<pre>";
+		// var_dump($pf);
 		$this->newdb->insert_batch('pf_template',$pf);
-		
-
 	}
 
 
@@ -666,12 +634,227 @@ class Report_model extends Base_model
 			
 		}
 
-		echo "<pre>";
-		var_dump($esic);
+		// echo "<pre>";
+		// var_dump($esic);
 
 		$this->newdb->insert_batch('esic_template',$esic);
 		
 
+	}
+
+	/* get pf data from pf template table */
+	public function get_newPF($spgid,$custid,$month,$year,$location='')
+	{
+		return $this->fetch('pf_template','custid,entity_name,empid,member_name,UANno,gross_wages,EPF_wages,EPS_wages,EDLI_wages,EPF_contri_remitted,EPS_EPF_diff,NCP_days,refund_advance,month,year',array('spgid' =>$spgid,
+													'custid'=>$custid,
+													'month'	=>$month,
+													'year'	=>$year
+													// 'loc'	=>$location
+													))->result();
+	}
+	/* get pf data from pf history table */
+	public function get_oldPF($spgid,$custid,$month,$year,$location='')
+	{
+		//change after create pf_history table
+		return $this->fetch('pf_template','*',array('spgid' =>$spgid,
+													'custid'=>$custid,
+													'month'	=>$month,
+													'year'	=>$year
+													// 'loc'	=>$location
+													))->result();
+	}
+
+
+
+	/* export backlog data in excel sheet */
+	//  export employee data in excel sheet for editable 
+	public function export_EmployeeBacklog($spgid,$custid)
+	{
+		$obj = new PHPExcel();
+		$obj->setActiveSheetIndex(0);
+																	
+
+		$table_cols = array("CustiID","Entity Name","Employee Name","Empid","Gender","Marital Status","PF deduction","PF Upper Limit","ESIC Deduction","ESIC No","UAN No","Branch","Department","Designation","Father/Husband Name","Relations DOB","Relations Adhar no","Relations Name","Relations Age","Nomination1","Nomination2","Nomination3","Nomination4","Email","Phone","Permant Address","Temporary Address","Pan No","Name as per PAN Card","Adhar No","Name as per Adhar Card","Bank Account No","IFSC Code","Bank Name","Bank Branch","DOB as per Adhar Card","Education Qualification","Employee Status","Physically handicap","Physically handicap Category","Birth Date","Join Date","Membership Date","Exit Date","International Worker","Vendor ID","Contractor Name","Location");
+		$col= 0;
+		foreach ($table_cols as $k) {
+			$obj->getActiveSheet()->setCellValueByColumnAndRow($col,1,$k);
+			$col++;
+		}
+		$emp_data=$this->newdb->select('b.*')
+							  ->from('backlog_process AS a')
+							  ->join('salary_master AS b','a.spgid=b.spgid AND a.custid=b.custid AND a.empid=b.empid')
+							  ->where(array('a.spgid'=>$spgid,'a.custid' => $custid,'a.is_sal' => 'YES'))
+							  ->group_by('a.empid')
+							  ->get()
+							  ->result();	
+		
+		$start_row = 2;
+
+		foreach ($emp_data as $key) {
+
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(0,$start_row,$key->custid);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(1,$start_row,$key->entity_name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(2,$start_row,$key->name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(3,$start_row,$key->empid);
+			for ($i=4; $i < 49; $i++) { 
+				$obj->getActiveSheet()->setCellValueByColumnAndRow($i,$start_row,'');
+			}
+			$start_row++;
+			// $comp_name=$key->entity_name;
+		}
+
+		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
+	 	header("Content-Type: application/vnd.ms-excel");
+	    header('Content-Disposition: attachment;filename="BacklogEmployee.xlsx"');
+		$obj_writer->save('php://output');
+
+
+	}
+	//  export salary data in excel sheet for editable
+	public function export_SalaryBacklog($spgid,$custid)
+	{
+		$obj = new PHPExcel();
+		$obj->setActiveSheetIndex(0);											
+			 	 				
+
+		$table_cols = array("CustiID","Entity Name","Empid","PF No","ESIC No","Employee Name","Month Days","Paid Days","Fix Gross","Basic","Dearness Allowance(DA)","House Rent Allowance(HRA)","Convenience Allowance(CA)","CCA","Education Allowance(EA)","Other Rembusment(OR)","Other Allowance(OA)","Overtime(OT)","Washing Allounce(WA)","LTA","Monthly Gross","PF","VPF","ESIC","PT","IT","LWF","Other Deduction(OD)","Net Pay","Payment Mode","Year","Month","EPF Wages","Total Deduction");
+		$col= 0;
+		foreach ($table_cols as $k) {
+			$obj->getActiveSheet()->setCellValueByColumnAndRow($col,1,$k);
+			$col++;
+		}
+		$emp_data=$this->newdb->select('b.*')
+							  ->from('backlog_process AS a')
+							  ->join('employee_master_new AS b','a.spgid=b.spgid AND a.custid=b.custid AND a.empid=b.emp_id')
+							  ->where(array('a.spgid'=>$spgid,'a.custid' => $custid,'a.is_sal' => 'NO'))
+							  ->group_by('a.empid')
+							  ->get()
+							  ->result();	
+		$start_row = 2;
+
+		foreach ($emp_data as $key) {
+
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(0,$start_row,$key->custid);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(1,$start_row,$key->entity_name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(2,$start_row,$key->emp_id);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(3,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(4,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(5,$start_row,$key->emp_name);
+			for ($i=6; $i < 34; $i++) { 
+				$obj->getActiveSheet()->setCellValueByColumnAndRow($i,$start_row,'');
+			}
+			$start_row++;
+			$comp_name=$key->entity_name;
+		}
+
+		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
+	 	header("Content-Type: application/vnd.ms-excel");
+	  header('Content-Disposition: attachment;filename="'.$comp_name.'BacklogSalary.xlsx"');
+		$obj_writer->save('php://output');
+
+	}
+
+
+
+	/* EXPORT PF REPORT COMPANY WIZE */
+	public function DownloadPFReport($spgid,$custid)
+	{
+		$obj = new PHPExcel();
+		$obj->setActiveSheetIndex(0);		 	 				
+
+
+		$table_cols = array("custid","entity_name","empid","UANno","member_name","gross_wages","EPF_wages","EPS_wages","EDLI_wages","EPF_contri_remitted","EPS_contri_remitted","EPS_EPF_diff","NCP_days","refund_advance","month","year","flag","created_at");
+		$col= 0;
+		foreach ($table_cols as $k) {
+			$obj->getActiveSheet()->setCellValueByColumnAndRow($col,1,$k);
+			$col++;
+		}
+		$emp_data=$this->newdb->select('*')
+							  ->from('pf_template')							  
+							  ->where(array('spgid'=>$spgid,'custid' => $custid))
+							  ->group_by('empid')
+							  ->get()
+							  ->result();	
+		$start_row = 2;
+
+		foreach ($emp_data as $key) {
+
+			
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(0,$start_row,$key->custid);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(1,$start_row,$key->entity_name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(2,$start_row,$key->empid);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(3,$start_row,$key->UANno);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(4,$start_row,$key->member_name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(5,$start_row,$key->gross_wages);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(6,$start_row,$key->EPF_wages);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(7,$start_row,$key->EPS_wages);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(8,$start_row,$key->EDLI_wages);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(9,$start_row,$key->EPF_contri_remitted);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(10,$start_row,$key->EPS_contri_remitted);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(11,$start_row,$key->EPS_EPF_diff);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(12,$start_row,$key->NCP_days);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(13,$start_row,$key->refund_advance);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(14,$start_row,$key->month);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(15,$start_row,$key->year);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(16,$start_row,$key->flag);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(17,$start_row,$key->created_at);
+			
+			$start_row++;
+			$comp_name=$key->entity_name;
+		}
+
+		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
+	 	header("Content-Type: application/vnd.ms-excel");
+	  header('Content-Disposition: attachment;filename="'.$comp_name.'PFReport.xlsx"');
+		$obj_writer->save('php://output');
+	}
+
+	/* EXPORT ESIC REPORT COMPANY WIZE */
+	public function DownloadESICReport($spgid,$custid)
+	{
+		$obj = new PHPExcel();
+		$obj->setActiveSheetIndex(0);		 	 				
+
+		$table_cols = array("custid","entity_name","empid","esicno","name","no_of_days","monthly_wages","reason_code","last_working_day","month","year","flag","created_at");
+		$col= 0;
+		foreach ($table_cols as $k) {
+			$obj->getActiveSheet()->setCellValueByColumnAndRow($col,1,$k);
+			$col++;
+		}
+		$emp_data=$this->newdb->select('*')
+							  ->from('esic_template')							  
+							  ->where(array('spgid'=>$spgid,'custid' => $custid))
+							  ->group_by('empid')
+							  ->get()
+							  ->result();	
+		$start_row = 2;
+
+		foreach ($emp_data as $key) {
+
+			
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(0,$start_row,$key->custid);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(1,$start_row,$key->entity_name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(2,$start_row,$key->empid);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(3,$start_row,$key->esicno);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(4,$start_row,$key->name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(5,$start_row,$key->no_of_days);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(6,$start_row,$key->monthly_wages);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(7,$start_row,$key->reason_code);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(8,$start_row,$key->last_working_day);
+		
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(9,$start_row,$key->month);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(10,$start_row,$key->year);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(11,$start_row,$key->flag);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(12,$start_row,$key->created_at);
+			
+			$start_row++;
+			$comp_name=$key->entity_name;
+		}
+
+		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
+	 	header("Content-Type: application/vnd.ms-excel");
+	  header('Content-Disposition: attachment;filename="'.$comp_name.'ESICReport.xlsx"');
+		$obj_writer->save('php://output');
 	}
 
 

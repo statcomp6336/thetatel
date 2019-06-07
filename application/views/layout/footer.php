@@ -125,7 +125,15 @@
 				$(document).triggerHandler('settings.ace.top_menu', ['sidebar_fixed' , $sidebar.hasClass('sidebar-fixed')]);
 			 });
 			
-			
+			function blink(selector){
+				$(selector).fadeOut('slow', function(){
+				    $(this).fadeIn('slow', function(){
+				        blink(this);
+				    });
+				});
+				}
+    
+			blink('.blink');
 			});
 		</script>
 	</body>

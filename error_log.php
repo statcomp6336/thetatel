@@ -224,3 +224,35 @@
 [03-Jun-2019 13:56:31 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$pf' (T_VARIABLE) in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 552
 [04-Jun-2019 06:58:00 Europe/Berlin] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR), expecting variable (T_VARIABLE) or '$' in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 594
 [04-Jun-2019 06:58:33 Europe/Berlin] PHP Parse error:  syntax error, unexpected ',' in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 664
+[04-Jun-2019 11:21:48 Europe/Berlin] PHP Fatal error:  Call to undefined method CI_DB_mysqli_result::get() in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 51
+[05-Jun-2019 08:31:36 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\git\thetatel\application\controllers\Salary.php on line 241
+[05-Jun-2019 09:07:42 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in C:\xampp\htdocs\git\thetatel\application\controllers\Salary.php on line 210
+[05-Jun-2019 09:08:01 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in C:\xampp\htdocs\git\thetatel\application\controllers\Salary.php on line 228
+[05-Jun-2019 09:08:14 Europe/Berlin] PHP Fatal error:  Cannot redeclare DB_install::CreateTable_salary_master() in C:\xampp\htdocs\git\thetatel\application\models\DB_install.php on line 809
+[05-Jun-2019 09:09:10 Europe/Berlin] PHP Fatal error:  Cannot redeclare DB_install::CreateTable_salary_master() in C:\xampp\htdocs\git\thetatel\application\models\DB_install.php on line 809
+[05-Jun-2019 12:36:33 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$obj' (T_VARIABLE) in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 835
+[05-Jun-2019 14:23:59 Europe/Berlin] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR), expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 64
+[05-Jun-2019 14:25:30 Europe/Berlin] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR), expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in C:\xampp\htdocs\git\thetatel\application\models\Report_model.php on line 64
+[06-Jun-2019 08:37:22 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'elseif' (T_ELSEIF) in C:\xampp\htdocs\git\thetatel\application\controllers\Employee.php on line 204
+[06-Jun-2019 08:50:21 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'catch' (T_CATCH) in C:\xampp\htdocs\git\thetatel\application\controllers\Employee.php on line 277
+[06-Jun-2019 09:08:29 Europe/Berlin] PHP Fatal error:  Call to a member function result() on integer in C:\xampp\htdocs\git\thetatel\application\core\Base_model.php on line 74
+[06-Jun-2019 09:14:25 Europe/Berlin] PHP Parse error:  syntax error, unexpected '{' in C:\xampp\htdocs\git\thetatel\application\controllers\Employee.php on line 79
+[06-Jun-2019 09:52:47 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in C:\xampp\htdocs\git\thetatel\application\core\Base_controller.php on line 19
+[06-Jun-2019 12:21:36 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'elseif' (T_ELSEIF) in C:\xampp\htdocs\git\thetatel\application\controllers\Reports.php on line 201
+[06-Jun-2019 12:22:39 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'elseif' (T_ELSEIF) in C:\xampp\htdocs\git\thetatel\application\controllers\Reports.php on line 202
+[06-Jun-2019 12:23:11 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'elseif' (T_ELSEIF) in C:\xampp\htdocs\git\thetatel\application\controllers\Reports.php on line 202
+[06-Jun-2019 12:23:50 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'elseif' (T_ELSEIF) in C:\xampp\htdocs\git\thetatel\application\controllers\Reports.php on line 202
+[06-Jun-2019 14:54:07 Europe/Berlin] PHP Fatal error:  Call to a member function post() on null in C:\xampp\htdocs\git\thetatel\application\controllers\Salary.php on line 244
+[06-Jun-2019 21:06:37 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\git\thetatel\application\helpers\Thetatel_helper.php on line 86
+[07-Jun-2019 06:27:31 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\git\thetatel\application\helpers\Thetatel_helper.php on line 86
+[07-Jun-2019 06:27:31 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\git\thetatel\application\helpers\Thetatel_helper.php on line 86
+[07-Jun-2019 06:28:23 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\git\thetatel\application\helpers\Thetatel_helper.php on line 86
+[07-Jun-2019 06:28:39 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\git\thetatel\application\helpers\Thetatel_helper.php on line 86
+[07-Jun-2019 06:29:37 Europe/Berlin] PHP Fatal error:  Call to undefined method Home::goto_back() in C:\xampp\htdocs\git\thetatel\application\controllers\Home.php on line 58
+[07-Jun-2019 06:30:16 Europe/Berlin] PHP Fatal error:  Call to undefined method Home::goto_back() in C:\xampp\htdocs\git\thetatel\application\controllers\Home.php on line 58
+[07-Jun-2019 08:56:35 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in C:\xampp\htdocs\git\thetatel\application\controllers\Reports.php on line 245
+[07-Jun-2019 09:21:14 Europe/Berlin] PHP Fatal error:  Call to undefined method Report_model::get_oldPF() in C:\xampp\htdocs\git\thetatel\application\controllers\Reports.php on line 229
+[07-Jun-2019 09:53:08 Europe/Berlin] PHP Fatal error:  Call to undefined function before_months() in C:\xampp\htdocs\git\thetatel\application\controllers\Reports.php on line 238
+[07-Jun-2019 10:28:13 Europe/Berlin] PHP Fatal error:  Call to undefined function before_months() in C:\xampp\htdocs\git\thetatel\application\controllers\Reports.php on line 238
+[07-Jun-2019 11:24:58 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\git\thetatel\application\views\export_table.php on line 43
+[07-Jun-2019 11:44:41 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\git\thetatel\application\views\export_table.php on line 171

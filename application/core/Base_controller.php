@@ -15,10 +15,13 @@ class Base_controller extends CI_Controller
   function __construct()
   {
     parent::__construct();
-     $this->data['page_title'] = 'Complaincetrack';
+    $this->load->model('Employee_model','emp');
+    $this->data['page_title'] = 'Complaincetrack';
     $this->data['before_head'] = '';
     $this->data['before_body'] ='';
     $this->data['msg'] ='';
+    $this->data['error_count'] = $this->emp->emp_error();
+
   }  
 
   protected function render($template = '')

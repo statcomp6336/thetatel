@@ -637,7 +637,13 @@
 					<li class="hover">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-list"></i>
-							<span class="menu-text"> Display error </span>
+							<span class="menu-text "> Display error </span><?php 
+							if (!empty($error_count)) {
+								echo "<span class='badge badge-warning blink'> ".$error_count."</span>";
+							}
+
+							?>
+							
 
 							<b class="arrow fa fa-angle-down"></b>
 						</a>
@@ -847,9 +853,7 @@
 							<i class="menu-icon fa fa-file-o"></i>
 
 							<span class="menu-text">
-								Report
-
-								<span class="badge badge-primary">5</span>
+								Report								
 							</span>
 
 							<b class="arrow fa fa-angle-down"></b>
@@ -965,7 +969,7 @@
 
 								<ul class="submenu">
 									<li class="hover">
-										<a href="#">
+										<a href="<?php echo base_url(''.$user_type.'/export/pf'); ?>" class="dropdown-toggle">
 											<i class="menu-icon fa fa-leaf green"></i>
 										   PF New joinee Report
 										</a>
@@ -974,7 +978,7 @@
 									</li>
 
 									<li class="hover">
-										<a href="#" class="dropdown-toggle">
+										<a href="<?php echo base_url(''.$user_type.'/export/pf'); ?>" >
 											<i class="menu-icon fa fa-pencil orange"></i>
 											PF Template				
 										</a>
@@ -984,7 +988,7 @@
 										
 									</li>
 									<li class="hover">
-										<a href="#">
+										<a href="<?php echo base_url(''.$user_type.'/export/pf'); ?>" >
 											<i class="menu-icon fa fa-leaf green"></i>
 											PF Summary
 										</a>
@@ -1115,17 +1119,16 @@
 
 										<b class="arrow"></b>
 									</li>
-
 									<li class="hover">
-										<a href="<?php echo base_url(''.$user_type.'/report/backlog');?>" class="dropdown-toggle">
-											<i class="menu-icon fa fa-pencil orange"></i>
-											Backlog Reconcile			
+										<a href="<?php echo base_url(''.$user_type.'/report/backlog');?>">
+											<i class="menu-icon fa fa-leaf green"></i>
+										 Backlog Reconcile
 										</a>
 
 										<b class="arrow"></b>
-
-										
 									</li>
+
+									
 									<li class="hover">
 										<a href="<?php echo base_url(''.$user_type.'/report/process');?>">
 											<i class="menu-icon fa fa-leaf green"></i>

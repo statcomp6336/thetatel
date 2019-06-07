@@ -88,7 +88,13 @@ $route['spg/report/sanitize/genrate']	= 'spg/Spg/sanitize_process';//genrate san
 $route['spg/report/process']			= 'spg/Spg/genrate_process_report';//display process table data for pf
 $route['spg/report/proccess/genrate/pf/(:num)/(:num)']	= 'spg/Spg/process_for_pf';//display process table data for pf
 $route['spg/report/proccess/genrate/esic/(:num)/(:num)']	= 'spg/Spg/process_for_esic';//display process table data for esic
+$route['spg/report/backlog']	= 'spg/Spg/genrate_backloag_report';//display backlog table data 
+$route['spg/report/backlog/employee/edit/(:num)/(:num)']	= 'spg/Spg/edit_backlog_emp';//display backlog table data  edit and correct
+$route['spg/report/backlog/salary/edit/(:num)/(:num)']	= 'spg/Spg/edit_backlog_sal';//display backlog table data  edit and correct
 
+/*export report start*/
+$route['spg/export/pf'] = 'spg/Spg/show_company_pf';
+$route['spg/download/pf/(:num)/(:num)'] = 'spg/Spg/download_pf';
 
 
 /* work with users */

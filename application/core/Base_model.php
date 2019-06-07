@@ -68,13 +68,20 @@ class Base_model extends CI_Model
 	}
 	protected function is_uniq($table,$arr)
 	{
-		$u = $this->db->select('*')->from($table)->where($arr)->get()->num_rows();
-		if ($u>0) {
+		$u = $this->newdb->select('*')->from($table)->where($arr)->get();
+		if ($u->num_rows() > 0) {
+			// echo " TRUE";
+			// var_dump($u->result());
 			return TRUE;
+			// exit();
 		}
 		else
 		{
+			// echo "FALSE";
+			// var_dump($u->result());
 			return FALSE;
+
+			// exit();
 		}
 
 	}
