@@ -76,6 +76,7 @@ $route['spg/employee/create']		= 'spg/Spg/view_employee_form'; // show Employee 
 $route['spg/employee/save']			= 'spg/Spg/save_employee'; // insert Employee master form
 $route['spg/employee/show']			= 'spg/Spg/view_employee_master'; // show Employee master table
 $route['spg/employee/show/(:num)']	= 'spg/Spg/view_employee_master'; // show Employee master table
+$route['spg/employee/missing-uan']	= 'spg/Spg/view_missing_uan'; // show Employee master table
 
 
 /* work with salary*/
