@@ -15,13 +15,13 @@
 [14-May-2019 11:02:58 Europe/Berlin] PHP Fatal error:  Call to a member function xss_clean() on null in C:\xampp\htdocs\thetatel\application\third_party\Thetatel_login.php on line 53
 [14-May-2019 11:09:45 Europe/Berlin] PHP Fatal error:  Call to a member function xss_clean() on null in C:\xampp\htdocs\thetatel\application\third_party\Thetatel_login.php on line 58
 [14-May-2019 11:10:36 Europe/Berlin] PHP Fatal error:  Call to a member function xss_clean() on null in C:\xampp\htdocs\thetatel\application\third_party\Thetatel_login.php on line 60
-[14-May-2019 11:13:58 Europe/Berlin] PHP Fatal error:  Call to a member function xss_clean() on null in C:\xampp\htdocs\thetatel\application\third_party\Thetatel_login.php on line 62
+[14-May-2019 11:13:58 Europe/Berlin] PHP Fatal errdor:  Call to a member function xss_clean() on null in C:\xampp\htdocs\thetatel\application\third_party\Thetatel_login.php on line 62
 [14-May-2019 11:14:46 Europe/Berlin] PHP Fatal error:  Call to a member function set_rules() on null in C:\xampp\htdocs\thetatel\application\third_party\Thetatel_login.php on line 64
 [14-May-2019 11:21:23 Europe/Berlin] PHP Fatal error:  Call to a member function set_rules() on null in C:\xampp\htdocs\thetatel\application\controllers\Home.php on line 67
 [14-May-2019 11:22:47 Europe/Berlin] PHP Fatal error:  Call to a member function set_flashdata() on null in C:\xampp\htdocs\thetatel\application\core\Base_controller.php on line 15
 [14-May-2019 11:23:33 Europe/Berlin] PHP Fatal error:  Call to a member function set_flashdata() on null in C:\xampp\htdocs\thetatel\application\core\Base_controller.php on line 15
 [14-May-2019 12:55:24 Europe/Berlin] PHP Fatal error:  Call to a member function check_login() on null in C:\xampp\htdocs\thetatel\application\controllers\Home.php on line 48
-[14-May-2019 12:56:06 Europe/Berlin] PHP Fatal error:  Call to a member function where() on null in C:\xampp\htdocs\thetatel\application\models\Login_model.php on line 19
+[14-May-2019 12:56:06 Europe/Berlin] PHP Fatal error:  Call to a membe r function where() on null in C:\xampp\htdocs\thetatel\application\models\Login_model.php on line 19
 [14-May-2019 12:57:44 Europe/Berlin] PHP Fatal error:  Call to a member function where() on null in C:\xampp\htdocs\thetatel\application\models\Login_model.php on line 22
 [14-May-2019 13:02:12 Europe/Berlin] PHP Fatal error:  Call to undefined method CI_Loader::show_msg() in C:\xampp\htdocs\thetatel\application\views\user_login.php on line 64
 [14-May-2019 13:02:57 Europe/Berlin] PHP Fatal error:  Call to undefined method CI_Loader::show_msg() in C:\xampp\htdocs\thetatel\application\views\user_login.php on line 64
