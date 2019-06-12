@@ -46,4 +46,13 @@ class Act_model extends Base_model
 		}
 
 	}
+	public function get_bulk($custid)
+	{
+		$select="a.custid,a.name,b.act_code,b.act,b.Particular,b.`act type`,b.freq,b.due_date,b.stat_date";
+		$query=$this->db->select($select)->from('act_applicable_to_customer a')
+							->join('act_particular b','a.act_code = b.act_code')
+							->where(array('custid' => $custid))
+							->get()->result();
+							return $query;
+	}
 }

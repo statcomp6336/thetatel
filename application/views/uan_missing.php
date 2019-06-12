@@ -394,4 +394,4 @@
 		<script src="<?php echo base_url();?>assets/dashboard/js/autosize.min.js"></script>
 		<script src="<?php echo base_url();?>assets/dashboard/js/jquery.inputlimiter.min.js"></script>
 		<script src="<?php echo base_url();?>assets/dashboard/js/jquery.maskedinput.min.js"></script>
-		<script src="<?php echo base_url();?>assets/dashboard/js/bootstrap-tag.min.js"></script>
+		<script src="<?php echo base_url();?>assets/dashboard/js/bootstrap-tag.min.js"></script> 

@@ -256,3 +256,11 @@
 [07-Jun-2019 10:28:13 Europe/Berlin] PHP Fatal error:  Call to undefined function before_months() in C:\xampp\htdocs\git\thetatel\application\controllers\Reports.php on line 238
 [07-Jun-2019 11:24:58 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\git\thetatel\application\views\export_table.php on line 43
 [07-Jun-2019 11:44:41 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\git\thetatel\application\views\export_table.php on line 171
+[11-Jun-2019 11:02:25 Europe/Berlin] PHP Parse error:  syntax error, unexpected '"Temporary Address"' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in C:\xampp\htdocs\git\thetatel\application\controllers\Employee.php on line 650
+[11-Jun-2019 11:02:57 Europe/Berlin] PHP Parse error:  syntax error, unexpected '"Employee Status"' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in C:\xampp\htdocs\git\thetatel\application\controllers\Employee.php on line 650
+[12-Jun-2019 07:46:00 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE), expecting function (T_FUNCTION) in C:\xampp\htdocs\git\thetatel\application\controllers\Act.php on line 323
+[12-Jun-2019 07:47:07 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in C:\xampp\htdocs\git\thetatel\application\controllers\Act.php on line 326
+[12-Jun-2019 07:47:23 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\git\thetatel\application\models\Act_model.php on line 54
+[12-Jun-2019 09:17:41 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\git\thetatel\application\views\export_table.php on line 71
+[12-Jun-2019 09:58:40 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\git\thetatel\application\views\export_table.php on line 61
+[12-Jun-2019 10:00:37 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\git\thetatel\application\views\export_table.php on line 61

@@ -565,7 +565,7 @@
 										<b class="arrow"></b>
 									</li>
 									<li class="hover">
-										<a href="two-menu-1.html">
+										<a href="<?php echo base_url(''.$user_type.'/export/missing-uan');?>">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Missing UAN Number
 										</a>
@@ -679,15 +679,53 @@
 						</ul>
 					</li>
 
+					
+
 					<li class="hover">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-pencil-square-o"></i>
-							<span class="menu-text"> Company Compliaence </span>
+							<span class="menu-text">  Company Compliaence Task </span>
 
 							<b class="arrow fa fa-angle-down"></b>
 						</a>
 
-						
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="hover">
+								<a href="<?php echo base_url(''.$user_type.'/compliance/bulk-update'); ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Bulk Update
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							
+							<li class="hover">
+								<a href="<?php echo base_url(''.$user_type.'/compliance/bulk-compliance'); ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Bulk Compliance
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="hover">
+								<a href="<?php echo base_url(''.$user_type.'/compliance/bulk-approval'); ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									My Approval
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="hover">
+								<a href="<?php echo base_url(''.$user_type.'/compliance/bulk-timeline'); ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Compilence Timeline
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
 					</li>
 
 					<li class="hover">

@@ -71,5 +71,10 @@ public function emp_error()
     	}
 
     }
+    public function get_missinguan()
+    {
+    	$result=$this->fetch('employee_master_new','`srno`,`entity_name`, `custid`,  `emp_name`, `emp_id`, `gender`,`marital_status`, `pf_deduct`, `ul_pf`, `esic_deduct`, `esic_no`, `uan_no`, `branch`, `dept`, `designation`, `fath_hus_name`, `nom1`, `nom2`, `nom3`, `nom4`, `email`, `mob`, `per_address`, `temp_address`, `pan`, `adhaar`, `bank_ac`, `ifsc`, `bank_name`, `bank_branch`, `education`, `phy_handi`, `phy_handi_cat`,  `emp_status`, `birth_date`, `join_date`, `member_date`, `exit_date`, `int_worker`, `reldob`, `reladhr`, `relname`, `relage`, `namepan`, `nameadhr`, `dobadhr`, `vendor_id`, `contractor_name`, `location`',array('uan_no' => ''))->result();
+    	return $result;
+    }
 
 }	

@@ -319,6 +319,11 @@ class Spg extends Base_controller {
 	{
 		$this->ShowExplore($this->page);
 	}
+	public function show_missing_uan($value='')
+	{
+		$this->ShowMissingUan($this->page);
+	}
+
 
 
 	/*
@@ -327,6 +332,30 @@ class Spg extends Base_controller {
 	public function download_pf($value='')
 	{
 		$this->downloadPF();
+	}
+
+
+
+	/* work with Compilence */
+	//display view bulk update
+	public function show_bulk_update($value='')
+	{
+		$this->ShowBulkUpdate($this->page);
+	}
+	//display view bulk compilence
+	public function show_bulk_compliance($value='')
+	{
+		$this->ShowBulkCompliance($this->page);
+	}
+	//display view bulk approval
+	public function show_bulk_approval($value='')
+	{
+		$this->ShowBulkApproval($this->page);
+	}
+	//display view bulk timeline
+	public function show_bulk_timeline($value='')
+	{
+		$this->ShowBulkTimeline($this->page);
 	}
 
 

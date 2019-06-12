@@ -215,4 +215,162 @@ trait Act {
 	}
 
 
+
+
+	/* work with Compilence */
+	//display view bulk update
+	public function ShowBulkUpdate($page_data='')
+	{
+		if (!empty($this->input->post('submit'))) {
+			
+			$this->bulk_update($page_data);
+		}else{
+		$this->load->model('Act_model');
+		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		 	 $this->data['page_title'] = $page_data['page_title'];
+			 $this->data['where'] = 'Compilance';
+			 $this->data['sub_menu'] = 'Bulk-Update';
+			 $this->data['user_type'] = $page_data['user_type'];
+			 $this->data['menu'] = $page_data['menu'];
+
+			 // act detatails data
+			  $this->data['act_data']=array('act_code'=> $this->Act_model->get_act_code(),
+			  								'data'    => $this->Act_model->get_acts()
+											);
+			 $this->render('bulk_update');
+		 }
+		 else
+		 {
+		 	echo "404 no access";
+		 }
+		 }	
+	}
+	//display view bulk compilence
+	public function ShowBulkCompliance($page_data='')
+	{
+		if (!empty($this->input->post('submit'))) {
+			
+			$this->bulk_update();
+		}
+		else{
+			$this->load->model('Act_model');
+			 if ($page_data['access'][$this->session->TYPE] == TRUE) {
+			 	 $this->data['page_title'] = $page_data['page_title'];
+				 $this->data['where'] = 'Compilance';
+				 $this->data['sub_menu'] = 'Bulk-Update';
+				 $this->data['user_type'] = $page_data['user_type'];
+				 $this->data['menu'] = $page_data['menu'];
+
+				 // act detatails data
+				  $this->data['act_data']=array('act_code'=> $this->Act_model->get_act_code(),
+				  								'data'    => $this->Act_model->get_acts()
+												);
+				 $this->render('bulk_update');
+			 }
+			 else
+			 {
+			 	echo "404 no access";
+			 }
+		}
+	}
+	private function bulk_update($page_data='')
+	{
+		$custid =!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;		
+ 		if ($page_data['access'][$this->session->TYPE] == TRUE) {
+ 			$this->load->model('Act_model','act');
+            $this->data['page_title'] = $page_data['page_title'];
+              $this->data['where'] = 'Compilance';
+              $this->data['sub_menu'] = 'Bulk-Update';
+              $this->data['user_type'] = $page_data['user_type'];
+              $this->data['menu'] = $page_data['menu'];
+              /* table data */	
+              // Table header name
+          $this->data['tableHeading'] = "Show Company compliance "; 
+          // tools data
+          $this->data['tableTools'] = array(
+                          0 =>array(
+                            'link'=> base_url(''.$page_data['user_type'].'/download/pf/'.$custid.''),
+                            'button' =>'Download in Excel',
+                            'class'  =>'btn-success'
+                              ),
+                          1 =>array(
+                            'link'=> base_url(''.$page_data['user_type'].'/compliance/bulk-update'),
+                            'button' =>'Bulk-Update',
+                            'class'  =>'btn-warning'
+                              )
+                        );  
+          // colomns name
+          $this->data['tableCol'] = array("Cust ID",	"Customer Name",	"Act Code",	"Act Name",	"Particulars",	"Act Type",	"Frequency","Due Date",	"Statutary Due Date",	"Action");
+          //data  
+          $this->data['tableData']=$this->act->get_bulk($custid);//
+         
+          // $this->data['tableButtons']  = array(
+          //                       0 =>array(                                      
+          //                                 'function'  =>'compliance/update',
+          //                                 'action' =>'edit',
+          //                                 'para'  =>'custid,act_code',
+          //                               ),
+          //                       1 =>array(
+          //                             'function'  =>'compliance/remove',
+          //                             'action' =>'remove',
+          //                             'para'  =>'custid,act_code',
+
+          //                               )
+          //                      );
+        
+         return $this->render('export_table');
+           }
+           else
+           {
+            echo "404 no access";
+           }
+      
+      
+	}
+	//display view bulk approval
+	public function ShowBulkApproval($page_data='')
+	{
+		$this->load->model('Act_model');
+		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		 	 $this->data['page_title'] = $page_data['page_title'];
+			 $this->data['where'] = 'Compilance';
+			 $this->data['sub_menu'] = 'Bulk-Update';
+			 $this->data['user_type'] = $page_data['user_type'];
+			 $this->data['menu'] = $page_data['menu'];
+
+			 // act detatails data
+			  $this->data['act_data']=array('act_code'=> $this->Act_model->get_act_code(),
+			  								'data'    => $this->Act_model->get_acts()
+											);
+			 $this->render('bulk_update');
+		 }
+		 else
+		 {
+		 	echo "404 no access";
+		 }
+	}
+	//display view bulk timeline
+	public function ShowBulkTimeline($page_data='')
+	{
+		$this->load->model('Act_model');
+		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		 	 $this->data['page_title'] = $page_data['page_title'];
+			 $this->data['where'] = 'Compilance';
+			 $this->data['sub_menu'] = 'Bulk-Update';
+			 $this->data['user_type'] = $page_data['user_type'];
+			 $this->data['menu'] = $page_data['menu'];
+
+			 // act detatails data
+			  $this->data['act_data']=array('act_code'=> $this->Act_model->get_act_code(),
+			  								'data'    => $this->Act_model->get_acts()
+											);
+			 $this->render('bulk_update');
+		 }
+		 else
+		 {
+		 	echo "404 no access";
+		 }
+	}
+
+
 }
