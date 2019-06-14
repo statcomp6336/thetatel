@@ -12,8 +12,8 @@
 				<div class="footer-inner">
 					<div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">Ace</span>
-							Application &copy; 2013-2014
+							<span class="blue bolder">Compliance</span>
+							Application &copy; 2019-2020
 						</span>
 
 						&nbsp; &nbsp;
@@ -74,6 +74,7 @@
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			jQuery(function($) {
+
 			 var $sidebar = $('.sidebar').eq(0);
 			 if( !$sidebar.hasClass('h-sidebar') ) return;
 			
@@ -124,6 +125,7 @@
 			 $(window).on('resize.ace.top_menu', function() {
 				$(document).triggerHandler('settings.ace.top_menu', ['sidebar_fixed' , $sidebar.hasClass('sidebar-fixed')]);
 			 });
+			 
 			
 			function blink(selector){
 				$(selector).fadeOut('slow', function(){

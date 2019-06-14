@@ -264,3 +264,11 @@
 [12-Jun-2019 09:17:41 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\git\thetatel\application\views\export_table.php on line 71
 [12-Jun-2019 09:58:40 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\git\thetatel\application\views\export_table.php on line 61
 [12-Jun-2019 10:00:37 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\git\thetatel\application\views\export_table.php on line 61
+[14-Jun-2019 10:02:24 Europe/Berlin] PHP Parse error:  syntax error, unexpected ',' in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 388
+[14-Jun-2019 11:32:01 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 424
+[14-Jun-2019 12:18:37 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 441
+[14-Jun-2019 12:23:51 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 441
+[14-Jun-2019 13:21:46 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$key' (T_VARIABLE) in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 380
+[14-Jun-2019 13:22:14 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$key' (T_VARIABLE) in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 380
+[14-Jun-2019 13:23:03 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$key' (T_VARIABLE) in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 380
+[14-Jun-2019 13:25:13 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 386

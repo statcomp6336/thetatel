@@ -358,6 +358,8 @@ class Spg extends Base_controller {
 		$this->ShowBulkTimeline($this->page);
 	}
 
+	
+
 
 
 
@@ -368,7 +370,67 @@ class Spg extends Base_controller {
 	
 	public function f($value='')
 	{
-		$this->load->view('success');
+		// $custid=$this->input->post('custid');
+		$srno=$this->input->post('srno');
+		// $srno=29;
+		$this->load->model('Act_model','act');
+		$result=$this->act->docs($srno);
+		$out="";
+		foreach ($result as $key) {//
+			$out.=$key->doc_path."<button class='remove1' data-id='".$key->srno."'>Remove</button><br>";
+		}
+		echo $out;
+	}
+	public function r()
+	{
+		$id=$this->uri->segment('4');
+		
+		if($this->db->delete('comp_doc_temp', array('srno' => $id )))
+		{
+			echo "file has deleted Successfully";
+		}
+		else
+		{
+			echo "failed delete";
+		}
+	}
+
+	public function g($value='')
+	{
+	
+		$sr=$this->input->post('sr');
+		$path = 'files/'; 
+		 $config['upload_path'] = $path;
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|xlsx|xls|docs';
+        $config['remove_spaces'] = TRUE;
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('image')) {
+                $error = array('error' => $this->upload->display_errors());
+        }
+        else {
+                $data = array('upload_data' => $this->upload->data());
+        }
+        if(empty($error)){
+          if (!empty($data['upload_data']['file_name'])) {
+            $import_xls_file = $data['upload_data']['file_name'];
+        } else {
+            $import_xls_file = 0;
+        }
+        $inputFileName = $path . $import_xls_file;        
+        $d = array('sl' => $sr, 'doc_path' =>  $inputFileName );
+		$this->load->model('Act_model','act');
+		$result=$this->act->add_docs($d);
+		if ($result==TRUE) {
+			echo "Document uploaded Successfully";
+		}
+		else
+		{
+			echo "failed";
+		}
+    }
+
+		
 	}
 
 	

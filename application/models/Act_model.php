@@ -35,6 +35,10 @@ class Act_model extends Base_model
 	{
 		return $this->newdb->get('act_particular')->result();
 	}
+	public function get_compActs($id)
+	{
+		return $this->newdb->where('spgid',$id)->get('act_applicable_to_customer')->result();
+	}
 	public function Create_act($value='')
 	{
 		if($this->newdb->insert('act_particuler',$value)){
@@ -54,5 +58,44 @@ class Act_model extends Base_model
 							->where(array('custid' => $custid))
 							->get()->result();
 							return $query;
+	}
+	/* bulk compliance start*/
+	public function bulk_compliance($id,$type,$month)
+	{
+		$this->db->select('*');
+		$this->db->from('compliance_working_prior a');
+		$this->db->join('act_particular b','a.act=b.act AND a.Particular=b.Particular');		
+		if ($type == 'Preventive_Compliance') {
+		$this->db->where();
+		}
+		elseif ($type == 'Compliance') {
+			// $this->db->where(array('custid' => $id, 'monthname(due_date)'=> $month, 'spg_id'=>user_id(),'act_type' => 'Compliance'));
+			$this->db->where(array('a.custid' => $id, 'a.spg_id'=>user_id(),'a.act_type' => 'Compliance'));
+		}
+		elseif ($type == 'Registration') {
+			$this->db->where();
+		}
+		$result=$this->db->limit(10)->get();
+
+	$result= $result->result();
+	return $result;
+	
+
+	}
+	/* end bulk compliance */
+	public function docs($srno)
+	{
+		$result=$this->db->select('*')->from('comp_doc_temp')->where('sl',$srno)->get()->result();
+		return $result;
+	}
+	public function add_docs($docs)
+	{
+		if($this->db->insert('comp_doc_temp',$docs)){
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
 	}
 }

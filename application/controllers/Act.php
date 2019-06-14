@@ -248,30 +248,39 @@ trait Act {
 	//display view bulk compilence
 	public function ShowBulkCompliance($page_data='')
 	{
+		$this->load->model('Act_model','act');
+		$extract="";
 		if (!empty($this->input->post('submit'))) {
-			
-			$this->bulk_update();
+			$custid = $this->input->post('custid');
+			$act_type =$this->input->post('act_type');
+			$month = $this->input->post('month');
+			$extract = $this->act->bulk_compliance($custid,$act_type,$month);
+
+			$extract = !empty($extract)?$extract:"N/A";
 		}
 		else{
-			$this->load->model('Act_model');
+			$extract=NULL;
+		}
+		
+			
 			 if ($page_data['access'][$this->session->TYPE] == TRUE) {
 			 	 $this->data['page_title'] = $page_data['page_title'];
 				 $this->data['where'] = 'Compilance';
-				 $this->data['sub_menu'] = 'Bulk-Update';
+				 $this->data['sub_menu'] = 'Bulk-Compliance';
 				 $this->data['user_type'] = $page_data['user_type'];
 				 $this->data['menu'] = $page_data['menu'];
 
 				 // act detatails data
-				  $this->data['act_data']=array('act_code'=> $this->Act_model->get_act_code(),
-				  								'data'    => $this->Act_model->get_acts()
+				  $this->data['bulk_data']=array('companys'=> $this->act->get_compActs(user_id()),
+				  								'data'    => $extract
 												);
-				 $this->render('bulk_update');
+				 $this->render('bulk_compliance');
 			 }
 			 else
 			 {
 			 	echo "404 no access";
 			 }
-		}
+		
 	}
 	private function bulk_update($page_data='')
 	{
