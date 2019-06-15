@@ -69,7 +69,8 @@ $route['spg/company/attachAct']		= 'spg/Spg/attachAct'; //display act view for c
 /* work with complince */
 $route['spg/compliance/bulk-update']= 'spg/Spg/show_bulk_update'; //display bulk update view for company
 $route['spg/compliance/bulk-compliance']= 'spg/Spg/show_bulk_compliance'; //display bulk compliance view for company
-$route['spg/compliance/bulk-approval']= 'spg/Spg/show_bulk_approval'; //display bulk approval view for company
+$route['spg/compliance/bulk-compliance/update']= 'spg/Spg/edit_bulk_compliance'; //display bulk compliance view for company
+$route['spg/compliance/bulk-approval']= 'spg/Spg/show_bulk_approval'; //display bulk approval view for company 
 $route['spg/compliance/bulk-timeline']= 'spg/Spg/show_bulk_timeline'; //display bulk timeline view for company
 
 /* create acts*/
@@ -112,3 +113,7 @@ $route['spg/users']	= 'spg/Spg/show_user_list';//display salary file upload form
 
 /* work with users */
 $route['spg/explore']	= 'spg/Spg/show_explore';//display salary file upload form
+
+
+
+

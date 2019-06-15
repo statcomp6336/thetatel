@@ -347,6 +347,11 @@ class Spg extends Base_controller {
 	{
 		$this->ShowBulkCompliance($this->page);
 	}
+	//display update information of bulk compilence
+	public function edit_bulk_compliance($value='')
+	{
+		$this->UpdateBulkCompliance('spg');
+	}
 	//display view bulk approval
 	public function show_bulk_approval($value='')
 	{
@@ -357,6 +362,7 @@ class Spg extends Base_controller {
 	{
 		$this->ShowBulkTimeline($this->page);
 	}
+
 
 	
 
@@ -383,16 +389,24 @@ class Spg extends Base_controller {
 	}
 	public function r()
 	{
-		$id=$this->uri->segment('4');
 		
-		if($this->db->delete('comp_doc_temp', array('srno' => $id )))
-		{
-			echo "file has deleted Successfully";
+		$id=$this->input->post('srno');
+		$file=$this->db->select('doc_path')->from('comp_doc_temp')->where('srno',$id)->get()->row()->doc_path;
+		if (!empty($file)) {
+			unlink(''.$file.'');
+			if($this->db->delete('comp_doc_temp', array('srno' => $id )))
+				{
+					echo "file has deleted Successfully";
+				}
+				else
+				{
+					echo "failed delete";
+				}
 		}
-		else
-		{
-			echo "failed delete";
-		}
+		
+
+		
+		
 	}
 
 	public function g($value='')

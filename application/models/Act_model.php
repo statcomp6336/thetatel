@@ -62,7 +62,8 @@ class Act_model extends Base_model
 	/* bulk compliance start*/
 	public function bulk_compliance($id,$type,$month)
 	{
-		$this->db->select('*');
+		
+		$this->db->select("a.Particular,a.Remarks,a.status,a.Task_complitn_date,a.Retrn_Challan_genrtn_date,a.Submisn_Pay_date,a.Pend_docu_in_nos,a.srno,b.obligation,b.act,b.act_code");
 		$this->db->from('compliance_working_prior a');
 		$this->db->join('act_particular b','a.act=b.act AND a.Particular=b.Particular');		
 		if ($type == 'Preventive_Compliance') {
@@ -97,5 +98,10 @@ class Act_model extends Base_model
 		{
 			return FALSE;
 		}
+	}
+	/* update data of bulk compilence */
+	public function edit_bulkComplince($data,$id)
+	{
+		return $this->db->where('srno',$id)->update('compliance_working_prior',$data);
 	}
 }

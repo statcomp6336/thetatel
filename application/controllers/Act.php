@@ -380,6 +380,58 @@ trait Act {
 		 	echo "404 no access";
 		 }
 	}
+	/* update bulk compilence */
+	public function UpdateBulkCompliance($user)
+	{
+		if (!empty($this->input->post('srno'))) {
+			$this->load->model('Act_model','act');
+			$count=sizeof($this->input->post('srno'));
+			for ($i=0; $i < $count; $i++) {
+
+				if(empty($this->input->post('Challan_genrtn_date')[$i]) || empty($this->input->post('Pay_date')[$i]))
+	      		{
+		          $this->input->post('Challan_genrtn_date')[$i]='0000-00-00';
+		          $this->input->post('Pay_date')[$i]='0000-00-00';
+	      		}
+	      		
+	      		if (!empty($this->input->post('remark')[$i]) && !empty($this->input->post('statusforpending')[$i]))
+	      		{
+	      			
+	      			$status=$this->input->post('statusforpending')[$i];
+      				if ($status == 'cust' ) {
+      					$sts=1;
+      				}
+      				elseif ($status == 'spg') {
+      					$sts=2;
+      				}
+      				elseif ($status == 'approval') {
+      					$sts=3;
+      				}	      			
+	      			$task_date=date('Y-m-d');
+      		 	  $editComplience = array(
+				      		 	  'Remarks' 		=> $this->input->post('remark')[$i],
+				                  'status' 			=> $sts,                 
+				                  'Task_complitn_date' => $task_date,
+				                  'Retrn_Challan_genrtn_date' => $this->input->post('Challan_genrtn_date')[$i],
+				                  'Submisn_Pay_date' => $this->input->post('Pay_date')[$i],
+				                  'Pend_docu_in_nos' => $this->input->post('Pend_doc_no')[$i]
+	                      
+	                     );
+      		 	  var_dump($editComplience);
+      		 	  if($this->act->edit_bulkComplince($editComplience,$this->input->post('srno')[$i]))
+      		 	  {
+      		 	  	$return=TRUE;
+      		 	  }
+
+	      		} 
+				
+			}
+			if ($return == TRUE) {
+				put_msg('Data Save successfully..!');
+				redirect(base_url(''.$user.'/compliance/bulk-compliance'));
+			}
+		}
+	}
 
 
 }

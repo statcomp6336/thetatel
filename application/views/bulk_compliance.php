@@ -48,9 +48,9 @@ table td .up:hover:before {
 				<button class="btn btn-success" id="import" > Extract Data</button> 
 			</a>
 
-			<!-- <a href="#modal-wizard-up" data-toggle="modal" class="pink" >
-			<button class="up" > Create User</button> 
-			</a> --> 
+			
+			 
+			
 		</div>
 
 	</div>
@@ -79,7 +79,9 @@ table td .up:hover:before {
 			<th>Flow of work</th>
 		</tr>
 	</thead>
-
+<?php 
+$attributes = array('name' => 'frmRegistration', 'id' => 'signup-form');
+ echo form_open_multipart(base_url(''.$user_type.'/compliance/bulk-compliance/update'),$attributes );?>
 	<tbody>
 		<?php $count =0;
 		foreach ($bulk_data['data'] as $key) {
@@ -104,7 +106,7 @@ table td .up:hover:before {
 				<input type="date" name="Pay_date[]" value="<?php echo $key->Submisn_Pay_date;?>">
 			</td>
 			<td >
-				<input type="text" name="Pend_docu_no[]" value="<?php echo $key->Pend_docu_in_nos;?>">
+				<input type="text" name="Pend_doc_no[]" value="<?php echo $key->Pend_docu_in_nos;?>">
 
 			</td>
 			<td class="center">
@@ -115,198 +117,34 @@ table td .up:hover:before {
 				<a href="#modal-wizard-up" data-toggle="modal" class="pink" >
 					<button class="up" id="up" data-upload="<?php echo $key->srno; ?>"> 6 </button> 
 				</a> 
-				<!-- <div class="action-buttons">
-					<a href="#" class="green bigger-140 show-details-btn" title="Show Details">
-						<i class="ace-icon fa fa-angle-double-down"></i>
-						<span class="sr-only">Details</span>
-					</a>
-				</div> -->
+				
 			</td>
 			<td><input type="text" name="remark[]" value="<?php echo $key->Remarks;?>"></td>
 			<td><select  name="statusforpending[]">
-	              			<option value=" " selected>--Select--</option>
+	              			
 	                        <option value="cust">Pending with Customer</option>
-	                        <option value="spg">Pending with SPG</option> 
+	                        <option value="spg" selected>Pending with SPG</option> 
 	                        <option value="approval" >Pending For Approval</option>     
 	                </select>
 	            </td>
-	            <td></td>
+	            <td>
+	            	<input type="text" name="srno[]" value="<?php echo $key->srno; ?>">
+	            </td>
+
 		
 
 			
 		</tr>
 
-		<!-- <tr class="detail-row">
-			<td colspan="8">
-				<div class="table-detail">
-					<div class="row">
-						<div class="col-xs-4 col-sm-4">
-							<div class="profile-user-info profile-user-info-striped">
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Employee Name </div>
-
-									<div class="profile-info-value">
-										<span><?php echo $key->emp_name;?></span>
-									</div>
-								</div>
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Date of Birth </div>
-
-									<div class="profile-info-value">
-										<span><?php echo $key->birth_date;?></span>
-									</div>
-								</div>
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Gender </div>
-
-									<div class="profile-info-value">
-										<span><?php echo $key->gender;?></span>
-									</div>
-								</div>
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Current Address </div>
-
-									<div class="profile-info-value">
-										<span><?php echo $key->temp_address;?></span>
-									</div>
-								</div>
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Email Address </div>
-
-									<div class="profile-info-value">
-										<span><?php echo $key->email;?></span>
-									</div>
-								</div>
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Employee Phone Number </div>
-
-									<div class="profile-info-value">
-										<span><?php echo $key->mob;?></span>
-									</div>
-								</div>
-
-
-							</div>
-						</div>
-
-						<div class="col-xs-4 col-sm-4">
-							<div class="space visible-xs"></div>
-
-							<div class="profile-user-info profile-user-info-striped">
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Bank Name </div>
-
-									<div class="profile-info-value">
-										<span><?php echo $key->bank_name;?></span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Branch Name </div>
-
-									<div class="profile-info-value">
-										<i class="fa fa-map-marker light-orange bigger-110"></i>
-										<span><?php echo $key->bank_branch;?></span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name">Account Number </div>
-
-									<div class="profile-info-value">
-										<span><?php echo $key->bank_ac;?></span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> IFSC Code </div>
-
-									<div class="profile-info-value">
-										<span><?php echo $key->ifsc;?></span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> PAN Number </div>
-
-									<div class="profile-info-value">
-										<span><?php echo $key->pan;?></span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> AADHAR Number </div>
-
-									<div class="profile-info-value">
-										<span><?php echo $key->adhaar;?></span>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-xs-4 col-sm-4">
-							<div class="space visible-xs"></div>
-
-							<div class="profile-user-info profile-user-info-striped">
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Company Name </div>
-
-									<div class="profile-info-value">
-										<span><?php echo $key->entity_name;?></span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Department </div>
-
-									<div class="profile-info-value">
-										<i class="fa fa-map-marker light-orange bigger-110"></i>
-										<span><?php echo $key->dept;?></span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Designation </div>
-
-									<div class="profile-info-value">
-										<span><?php echo $key->designation;?></span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Location </div>
-
-									<div class="profile-info-value">
-										<span><?php echo $key->location;?></span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Join Date </div>
-
-									<div class="profile-info-value">
-										<span><?php echo $key->join_date;?></span>
-									</div>
-								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Exiting Date </div>
-
-									<div class="profile-info-value">
-										<span><?php echo $key->exit_date;?></span>
-									</div>
-								</div>
-								<button> Know More..</button>
-							</div>
-						</div>>
-					</div>
-				</div>
-			</td>
-		</tr> -->
+		
 	<?php }?>
 		
 	</tbody>
+
+	<button class="btn btn-warning" type="submit" > Save Compilence </button>
+		<?php echo form_close(); ?>
 </table>
+
 <?php
 }
 		?>	
@@ -438,12 +276,9 @@ table td .up:hover:before {
 					    });
 				}));
 
-			$('.modal-body #docs_up .remove1').on('click',(function(e){
+			$(document).on('click','#docs_up .remove1',(function(e){
 				e.preventDefault();
-					var id=$(this).data("id");
-					alert(id);
-
-					
+					var id=$(this).data("id");					
 					$.ajax({    //create an ajax request to display.php
 					        type: "POST",
 					        url: "<?php echo base_url('spg/Spg/r');?>",       //echo base_url(''.$user_type.'/fetch/uploaded-acts-files');?>      
@@ -451,11 +286,9 @@ table td .up:hover:before {
 					       data: {
 								   srno:id,								   
 								  }, 
-								  contentType: false,
-							cache: false,
-							processData:false,
-					        success: function(response){                    
-					            alert(response);			            
+							
+					        success: function(set){                    
+					            alert(set);			            
 					        }
 					    });
 				}));
@@ -693,3 +526,72 @@ table td .up:hover:before {
 		</div>
 	</div>
 </div>
+
+
+
+<div id="modal-wizard-upload" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="container">
+				<div class="modal-header">
+					<h4>Bulk Update	</h4>
+				</div>
+				<!-- <form id="form" name="upl" id="upl" enctype="multipart/form-data"> -->
+				 	<?php 
+					$attributes = array('name' => 'upl', 'id' => 'upl');
+					 echo form_open_multipart('',$attributes );?>	
+				<div class="modal-body">										
+					<div class="form-group">
+						<label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">srno</label>
+
+						<div class="col-xs-12 col-sm-5">
+							<span class="block input-icon input-icon-right">
+								<input type="text" id="inputWarning" class="width-100 srn" disabled />
+								<input type="hidden" name="sr" class="srn" />
+								<i class="ace-icon fa fa-leaf green"></i>
+							</span>
+						</div>
+						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+					</div>
+
+					
+					<div class="form-group ">
+						<label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">Upload File</label>
+
+						<div class="col-xs-12 col-sm-5">
+							<span class="block input-icon input-icon-right">
+								
+								<input multiple="" type="file" name="image" id="id-input-file-3" />
+								<i class="ace-icon fa fa-leaf green"></i>
+							</span>
+						</div>
+						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+					</div>				
+
+					
+					
+				</div>
+			</div>
+
+			<div class="modal-footer wizard-actions">
+				
+
+				<!-- <input class="btn btn-success btn-sm btn-next" data-last="Finish" type="submit" value="Extract" name="submit"> -->
+				<!-- <button class="btn btn-success btn-sm btn-next"  > submit</button>  -->
+				
+				<button class="btn btn-warning btn-sm pull-right" id="sub" type="submit" data-last="Finish">
+					<i class="ace-icon fa fa-times"></i>
+					next
+				</button>
+
+				<button class="btn btn-danger btn-sm pull-left" data-dismiss="modal">
+					<i class="ace-icon fa fa-times"></i>
+					Cancel
+				</button>
+			</div>
+			<?php echo form_close(); ?>
+		</div>
+	</div>
+</div>
+
+

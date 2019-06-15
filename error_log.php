@@ -272,3 +272,11 @@
 [14-Jun-2019 13:22:14 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$key' (T_VARIABLE) in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 380
 [14-Jun-2019 13:23:03 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$key' (T_VARIABLE) in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 380
 [14-Jun-2019 13:25:13 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 386
+[15-Jun-2019 07:26:32 Europe/Berlin] PHP Fatal error:  Function name must be a string in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 387
+[15-Jun-2019 07:26:34 Europe/Berlin] PHP Fatal error:  Function name must be a string in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 387
+[15-Jun-2019 09:54:30 Europe/Berlin] PHP Fatal error:  Call to a member function edit_bulkComplince() on null in C:\xampp\htdocs\git\thetatel\application\controllers\Act.php on line 421
+[15-Jun-2019 09:57:37 Europe/Berlin] PHP Fatal error:  Call to a member function edit_bulkComplince() on null in C:\xampp\htdocs\git\thetatel\application\controllers\Act.php on line 421
+[15-Jun-2019 10:00:18 Europe/Berlin] PHP Fatal error:  Call to undefined method Act_model::where() in C:\xampp\htdocs\git\thetatel\application\models\Act_model.php on line 104
+[15-Jun-2019 10:40:34 Europe/Berlin] PHP Fatal error:  Call to undefined function show() in C:\xampp\htdocs\git\thetatel\application\views\bulk_compliance.php on line 600
+[15-Jun-2019 10:42:03 Europe/Berlin] PHP Fatal error:  Call to undefined function show() in C:\xampp\htdocs\git\thetatel\application\views\bulk_compliance.php on line 600
+[15-Jun-2019 10:42:15 Europe/Berlin] PHP Fatal error:  Call to undefined function show() in C:\xampp\htdocs\git\thetatel\application\views\bulk_compliance.php on line 600
