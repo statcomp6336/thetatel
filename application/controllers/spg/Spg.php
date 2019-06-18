@@ -347,6 +347,7 @@ class Spg extends Base_controller {
 
 
 
+
 	/* work with Compilence */
 	//display view bulk update
 	public function show_bulk_update($value='')
@@ -463,6 +464,96 @@ class Spg extends Base_controller {
 		
 	}
 
+<<<<<<< HEAD
+
+
+
+	/*working with esic reports*/
+	public function show_esic_newjoinee()
+	{
+		$this->ShowEsicnNewoinee($this->page);
+	}
+
+	public function download_esicnewjoinee($value='')
+	{
+		$this->DownloadESICnewjoinee();
+	}
+	public function show_esic_template()
+	{
+		$this->ShowEsicTemplate($this->page);
+	}
+	public function download_esic_template($value='')
+	{
+		$this->DownloadESICTemplate();
+	}
+	public function show_esic_template_empid()
+	{
+		$this->ShowEsicTemplateEmpID($this->page);
+	}
+	public function download_esic_template_empid($value='')
+	{
+		$this->DownloadESICTemplateEmpID();
+	}
+
+
+	/*working with compliance report*/
+	public function show_compliance()
+	{
+		$this->ShowCompliance($this->page);
+	}
+
+	public function download_compliance($value='')
+	{
+		$this->DownloadCompliance();
+	}
+
+	public function show_noncompliance()
+	{
+		$this->ShowNonCompliance($this->page);
+	}
+
+	public function download_noncompliance($value='')
+	{
+		$this->DownloadNonCompliance();
+	}
+
+	public function show_approval()
+	{
+		$this->ShowApproval($this->page);
+	}
+	public function show_rejected()
+	{
+		$this->ShowRejected($this->page);
+	}
+	public function show_compliance_document()
+	{
+		$this->ShowComplianceDocument($this->page);
+	}
+	public function show_entity_details()
+	{
+		$this->ShowEntityDetails($this->page);
+	}
+	public function show_employee_details()
+	{
+		$this->ShowEmployeeDetails($this->page);
+	}
+	public function Show_compliance_request_details()
+	{
+		$this->ShowComplianceRequestDetails($this->page);
+	}
+	public function show_salary_details()
+	{
+		$this->ShowSalaryDetails($this->page);
+	}
+
+	// public function download_noncompliance($value='')
+	// {
+	// 	$this->DownloadNonCompliance();
+	// }
+
+	
+	
+=======
 	public function flow_of_work($value='')
 	{
 		$srno=$this->input->post('srno');
@@ -486,5 +577,6 @@ class Spg extends Base_controller {
 	}
 
 
+>>>>>>> 2c7673b04d3d6b4d08a941c677ad937764486a35
 	
 }	

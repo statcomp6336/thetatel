@@ -71,8 +71,9 @@ if (! function_exists('is_last_month')) {
 	
 	function is_last_month($month,$year='')
 	{	  	
-	   $ab = date_default_timezone_get(); 
-			date_default_timezone_set($ab);
+	   //$ab = date_default_timezone_get(); 
+			//date_default_timezone_set($ab);
+			date_default_timezone_set("Asia/Kolkata");
 		$lastyear=!empty($year)?$year:date('Y'); 
 		$currmonth=date("M");//Janaury
 		$lastmonth=Date('M', strtotime($currmonth . " last month"));//Janaury
@@ -91,8 +92,9 @@ if (! function_exists('is_last_month')) {
 	
 	function before_months($month,$year='')
 	{	  	
-	   $ab = date_default_timezone_get(); 
-			date_default_timezone_set($ab);
+	   //$ab = date_default_timezone_get(); 
+			//date_default_timezone_set($ab);
+		date_default_timezone_set("Asia/Kolkata");
 			$a= 12 - date('m');
 		$byear=!empty($year)?$year:date('Y');
 		for ($i = 1; $i <= $a; $i++) 

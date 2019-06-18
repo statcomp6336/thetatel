@@ -58,6 +58,49 @@ $route['spg/download/pf/(:num)/(:num)'] = 'spg/Spg/download_pf';
 /* export missing uan no*/
 $route['spg/export/missing-uan'] = 'spg/Spg/show_missing_uan';
 
+/*export esic new joinee report start*/
+$route['spg/export/esicnewjoinee'] = 'spg/Spg/show_esic_newjoinee';
+$route['spg/download/esicnewjoin/(:num)/(:num)']= 'spg/Spg/download_esicnewjoinee';
+
+/*export esic Template report start*/
+$route['spg/export/esictemplate'] = 'spg/Spg/show_esic_template';
+$route['spg/download/esictemplate/(:num)/(:num)']= 'spg/Spg/download_esic_template';
+
+/*export esic Template report start*/
+$route['spg/export/esictemplateempid'] = 'spg/Spg/show_esic_template_empid';
+$route['spg/download/esictemplateempid/(:num)/(:num)']= 'spg/Spg/download_esic_template_empid';
+
+/*export compliance report start*/
+$route['spg/export/compliance'] = 'spg/Spg/show_compliance';
+$route['spg/download/compliance/(:num)/(:num)']= 'spg/Spg/download_compliance';
+
+/*export non compliance report start*/
+$route['spg/export/noncompliance'] = 'spg/Spg/show_noncompliance';
+$route['spg/download/noncompliance/(:num)/(:num)']= 'spg/Spg/download_noncompliance';
+
+/*export approval(current month(duedate) approved) report start*/
+$route['spg/export/approval'] = 'spg/Spg/show_approval';
+
+/*export Rejected report start*/
+$route['spg/export/rejected'] = 'spg/Spg/show_rejected';
+
+/*export Compliance Document report start*/
+$route['spg/export/compliancedocument'] = 'spg/Spg/show_compliance_document';
+
+/*export entity details(company registered details) report start*/
+$route['spg/export/entitydetails'] = 'spg/Spg/show_entity_details';
+
+/*export Employee Details report start*/
+$route['spg/export/employeedetails'] = 'spg/Spg/show_employee_details';
+
+/*export Compliance Request Details report start*/
+$route['spg/export/compliancerequest'] = 'spg/Spg/Show_compliance_request_details';
+
+/*export Salary Details report start*/
+$route['spg/export/salarydetails'] = 'spg/Spg/show_salary_details';
+
+
+
 
 /* work with users */
 $route['spg/users']	= 'spg/Spg/show_user_list';//display salary file upload form

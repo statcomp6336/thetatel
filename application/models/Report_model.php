@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * 
  */
- require_once APPPATH."core\Base_model.php";
+ require_once APPPATH."core/Base_model.php";
 class Report_model extends Base_model
 {
 	function __construct()
@@ -652,6 +652,7 @@ class Report_model extends Base_model
 													// 'loc'	=>$location
 													))->result();
 	}
+
 	/* get pf data from pf history table */
 	public function get_oldPF($spgid,$custid,$month,$year,$location='')
 	{
@@ -857,9 +858,351 @@ class Report_model extends Base_model
 		$obj_writer->save('php://output');
 	}
 
+	/* get esic new joinee data from employee master new table */
+	public function get_esicnewjoinee($spgid,$custid)
+	{
+		//displaying data from table		
+		return $this->db->select("custid,entity_name,nameadhr,fath_hus_name,if(fath_hus_name!=NULL,`fath_hus_name`,'NIL'),birth_date,join_date,gender,marital_status,mob,adhaar,temp_address,per_address,relname,reldob,relage,if(relname!=NULL,`relname`,'NIL'),reladhr,if(reladhr!=NULL,`reladhr`,'NIL')")
+							->from('employee_master_new')
+							->where(array(	'spgid' =>$spgid,
+											'custid'=>$custid,
+											'esic_no'=>'0'))
+							->get()
+							->result();
+	}
 
+	/* get ESIC data from esic_template table */
+	public function get_newEsicTemplate($spgid,$custid,$month,$year)
+	{
+		return $this->db->select("esicno,name,no_of_days,monthly_wages,reason_code,last_working_day")
+						->from('esic_template')
+						
+						->where(array(	'spgid' => $spgid,
+										'custid' => $custid,
+										'month'	 => $month,
+										'year'	 => $year   ))
+						->get()->result();
+
+						//print_r($result1);
+	}
+
+	/* get esic data from esic_template_history table */
+	public function get_oldEsicTemplate($spgid,$custid,$month,$year)
+	{
+		//change after create esic_template_history table
+		return $this->db->select("esicno,name,no_of_days,monthly_wages,reason_code,last_working_day")
+						->from('esic_template_history')
+						
+						->where(array(	'spgid' => $spgid,
+										'custid' => $custid,
+										'month'	 => $month,
+										'year'	 => $year   ))
+						->get()->result();
+	}
+
+	/* get ESIC data (EmpID) from esic_template table */
+	public function get_newEsicTemplate_empid($spgid,$custid,$month,$year,$location)
+	{
+				$this->db->select("a.esicno,a.empid,a.name,a.no_of_days,a.monthly_wages,a.reason_code,a.last_working_day,b.join_date,b.birth_date,b.vendor_id,b.contractor_name,b.location");
+				$this->db->from('esic_template a');
+				$this->db->join('employee_master_new b', 'a.empid=b.emp_id');
+				if($location=="ALL")
+				{
+				$this->db->where(array(	'a.spgid'    => $spgid,
+											'a.custid'   => $custid,
+											'a.month'	 => $month,
+											'a.year'	 => $year   ));
+				}
+				else
+				{
+				$this->db->where(array(	'a.spgid'    => $spgid,
+											'a.custid'   => $custid,
+											'a.month'	 => $month,
+											'a.year'	 => $year,
+											'b.location' => $location  ));
+				}			
+				$result = $this->db->get()->result();
+
+				foreach ($result as $key) 
+				{
+				# code...
+				$monthly_wages=$key->a.monthly_wages;
+				$emp_contri=ceil(($monthly_wages*1.75)/100);
+				$empr_contri=($monthly_wages*4.75)/100;
+
+				echo $monthly_wages;
+				}
+				//return $result;
+
+				//$arrayName = array("$custid","$cname","$path","$act","$date");
+	//return $arrayName;
+	}
+
+	/* get esic data from esic_template_history table */
+	public function get_oldEsicTemplate_empid($spgid,$custid,$month,$year,$location)
+	{
+		echo "hello";echo $location;
+		//change after create esic_template_history table
+		$this->db->select("*");
+				$this->db->from('esic_template_history a');
+				$this->db->join('employee_master_new b', 'a.empid=b.emp_id');
+				if($location=="ALL")
+				{
+				$this->db->where(array(	'a.spgid'    => $spgid,
+											'a.custid'   => $custid,
+											'a.month'	 => $month,
+											'a.year'	 => $year   ));
+				}
+				else
+				{
+				$this->db->where(array(	'a.spgid'    => $spgid,
+											'a.custid'   => $custid,
+											'a.month'	 => $month,
+											'a.year'	 => $year,
+											'b.location' => $location  ));
+				}			
+				$result = $this->db->get()->result();
+
+				foreach ($result as $key) 
+				{
+				# code...
+				$esicno=$key->esicno;
+				$empid=$key->empid;
+				//echo $empid;
+				$name=$key->name;
+				$no_of_days=$key->no_of_days;
+				$monthly_wages=$key->monthly_wages;
+				$emp_contri=ceil(($monthly_wages*1.75)/100);
+				$empr_contri=($monthly_wages*4.75)/100;
+				$reason_code=$key->reason_code;
+				$last_working_day=$key->last_working_day;
+				$join_date=$key->join_date;
+				$birth_date=$key->birth_date;
+				$vendor_id=$key->vendor_id;
+				$contractor_name=$key->contractor_name;
+				$location=$key->location;
+				
+
+				//echo $empr_contri;
+				}
+
+				$arrayName = array("$esicno","$empid","$name","$no_of_days","$monthly_wages","$emp_contri","$empr_contri","$reason_code","$last_working_day","$join_date","$birth_date","$vendor_id","$contractor_name","$location");
+					return $arrayName;
+				//return $result;
+	}
+
+	/* get Compliance data from completed_compliance table */
+	public function get_compliance($spgid,$custid)
+	{
+		//displaying data from table		
+	return $this->db->select("a.custid,a.entity_name,b.Particular,b.Statutory_due_date,b.Task_complitn_date,b.`Retrn/Challan_genrtn_date`,b.`Submisn/Pay_date`,b.Docu_submit_to_GOVT_in_nos,b.Pend_docu_in_nos,b.Copy_of_docu,b.Resp_prsn_frm_client,b.Resp_prsn,b.Remarks")
+						->from('customer_master a')
+						->join('completed_compliance b', 'a.custid=b.custid')
+						->where(array(	'b.spg_id' =>$spgid,
+											'b.custid'=>$custid))
+						->get()->result();
+	}
+
+	/* get Approval data from completed_compliance table */
+	public function get_approval($spgid,$custid)
+	{
+		//displaying data from table		
+			$this->db->select("a.custid ,b.entity_name,a.year,a.act,a.Particular,a.Reg_freq,a.Statutory_due_date,a.act_type,a.Certi_rece_date");
+			$this->db->from('customer_master b');
+			$this->db->join('completed_compliance a', 'a.custid=b.custid');
+			$where="`a`.`spg_id` =".$spgid." AND a.custid =".$custid." AND MONTH(a.due_date) = MONTH(CURRENT_DATE())";
+			$this->db->where($where);
+			$result = $this->db->get()->result();
+		 	return $result;
+	}
+
+	/* get Rejected data from compliance_working_prior table */
+	public function get_rejected($spgid,$custid)
+	{
+		//displaying data from table		
+		 	return $this->db->select("a.custid ,b.entity_name,a.year,a.act,a.Particular,a.Reg_freq,a.Statutory_due_date,a.act_type,a.Certi_rece_date")
+						->from('customer_master b')
+						->join('compliance_working_prior a', 'a.custid=b.custid')
+						->where(array(	'a.spg_id' =>$spgid,
+										'a.custid' =>$custid,
+										'a.status' =>'4'))
+						->get()->result();
+	}
+
+	/* get non Compliance data from compliance_working_prior table */
+	public function get_noncompliance($spgid,$custid)
+	{
+		//displaying data from table		
+	return $this->db->select("a.custid,a.entity_name,b.Particular,b.Statutory_due_date,b.Task_complitn_date,b.`Retrn/Challan_genrtn_date`,b.`Submisn/Pay_date`,b.Docu_submit_to_GOVT_in_nos,b.Pend_docu_in_nos,b.Copy_of_docu,b.Resp_prsn_frm_client,b.Resp_prsn,b.Remarks")
+						->from('customer_master a')
+						->join('compliance_working_prior b', 'a.custid=b.custid')
+						->where(array(	'b.spg_id' =>$spgid,
+											'b.custid'=>$custid))
+						->get()->result();
+	}
+
+	/* get Compliance document data from comp_doc_temp table */
+	public function get_compliancedocument($spgid,$custid,$cname)
+	{
+		//displaying data from table
+
+		//$sql = "SELECT * FROM `comp_doc_temp` WHERE `doc_path` like '%$compname%'";		
+//echo $cname;
+
+			$this->db->select("*");
+			$this->db->from('comp_doc_temp');
+			$this->db->like('doc_path', $custid);
+			$result=$this->db->get()->result();
+
+			foreach ($result as $key) {
+				# code...
+				$doc_path=$key->doc_path;
+				//echo $doc_path;
+
+				//$splittedstring=explode("_",$doc_path);
+				//foreach ($splittedstring as $key => $value) {
+				//echo "splittedstring[".$key."] = ".$value."<br>";
+
+					$str_arr = explode ("_", $doc_path);
+					//preg_match_all('!d+!', $str_arr[0], $cust);
+					//$custid=$cust[0];
+					//$cstid=$str_arr[0];
+					$date=$str_arr[1];
+					$act=$str_arr[2];
+					$path=$str_arr[3];
+					// echo $custid;echo "</br>";
+					// echo $date;echo "</br>";
+					// echo $act; echo "</br>";
+					// echo $path; echo "</br>";
+				///}
+
+			}
+			//$doc_path=$result->row()->doc_path;
+			//$keywords = explode('_', $doc_path);
+			//echo $keywords;
+			//echo $doc_path;
+			// $data="How to split a string using explode";
+			// $splittedstring=explode(" ",$data);
+			// foreach ($splittedstring as $key => $value) {
+			// echo "splittedstring[".$key."] = ".$value."<br>";
+			//}
+
+		
+	$arrayName = array("$custid","$cname","$path","$act","$date");
+	return $arrayName;
+	}
+
+	/* get entity Details data from customer_master table */
+	public function get_entitydetails()
+	{
+		//displaying data from table
+		// $spgid=$this->session->SESS_CUST_ID;
+			return $this->db->select("custid,entity_name")
+					->from('customer_master')
+					->where(array(	'spgid' =>user_id()))
+					->get()->result();
+	}
+
+	/* get Employee Details data from employee_master_new table */
+	public function get_employeedetails($spgid,$custid,$location)
+	{
+		//displaying data from table
+		
+			$this->db->select("custid,entity_name,emp_id,emp_name,gender,fath_hus_name,marital_status,designation,mob,email,join_date,birth_date,uan_no,esic_no,pan,bank_name,bank_branch,ifsc,bank_ac,adhaar,location");
+			$this->db->from('employee_master_new');
+			if($location=="ALL")
+			{
+				$this->db->where(array(	'custid'=>$custid,
+										'spgid' =>$spgid));
+			}
+			else
+			{
+				$this->db->where(array(	'custid'=>$custid,
+										'spgid' =>$spgid,
+										'location'=>$location));
+			}
+			
+			$result=$this->db->get()->result();
+			return $result;
+	}
+
+	/* get location data from employee_master_new table */
+	public function get_location()
+	{
+		//displaying data from tabl
+		// which cocmpany loccation. there is all locaton you are fetch?
+			return $this->db->select("location")
+							->from('employee_master_new')
+							//->where('location != ',NULL,FALSE);
+							->where(array(	'location!=' =>NULL))
+							->group_by(array("location"))
+							->get()->result();
+	}
+
+	/* get Compliance Request Details data from act_particular table */
+	public function get_compliancerequest()
+	{
+		//displaying data from table
+		//$sql="SELECT a.act,a.particular,b.name,a.comp_req FROM `act_particular` a inner join act_applicable_to_customer b on(a.act_code=b.act_code) where comp_req='YES'"; 
+			return $this->db->select("a.act,a.particular,b.name")
+							->from('act_particular a')
+							->join('act_applicable_to_customer b', 'a.act_code=b.act_code')
+							->where(array(	'a.comp_req' =>'YES'))
+							->get()->result();
+	}
+
+	/* get salary Details data from salary_master_history table */
+	public function get_salarydetails($spgid,$custid)
+	{
+		//displaying data from table
+				$this->db->select("custid,entity_name,count(empid) emp,month,year");
+				$this->db->from('salary_master_history');
+				$this->db->where(array(	'custid'=>$custid,'spgid' =>$spgid));
+				$this->db->group_by(array("MONTH(present_date)"));
+				$result=$this->db->get()->result();
+
+				// foreach ($result as $key) 
+				// {
+				// 	# code...
+				// 	$emp=$key->emp;
+				// 	$month=$key->month;
+				// 	$year=$key->year;
+				// 	//echo $emp;
+				// 	$arrayName[] = array('$custid','$cname','$emp','$month','$year');
+				// }
+			
+				return $result;
+	}
+
+
+	// public function get_complince_data($spgid,$custid,$action)
+	// {
+		
+	// 	if ($action == 'compliance') {
+	// 		$this->db->select("a.custid,a.entity_name,b.Particular,b.Statutory_due_date,b.Task_complitn_date,b.`Retrn/Challan_genrtn_date`,b.`Submisn/Pay_date`,b.Docu_submit_to_GOVT_in_nos,b.Pend_docu_in_nos,b.Copy_of_docu,b.Resp_prsn_frm_client,b.Resp_prsn,b.Remarks")
+	// 		$this->db->from('customer_master b');
+	// 	$this->db->join('completed_compliance a', 'a.custid=b.custid');
+	// 		$this->db->where(array(	'a.spg_id' =>$spgid,
+	// 										'a.custid'=>$custid)
+	// 						);
+	// 	}
+	// 	elseif ($action == 'approval') {
+	// 		$this->db->select("a.custid ,b.entity_name,a.year,a.act,a.Particular,a.Reg_freq,a.Statutory_due_date,a.act_type,a.Certi_rece_date");
+	// 		$this->db->from('customer_master b');
+	// 	$this->db->join('completed_compliance a', 'a.custid=b.custid');
+	// 		$where="`a`.`spg_id` =".$spgid." AND a.custid =".$custid." AND MONTH(a.due_date) = MONTH(CURRENT_DATE())";
+	// 		$this->db->where($where);
+			
+	// 	}
+		
+	// 	$result = $this->db->get()->result();
+	// 	return $result;
+
+	// }
 	
 
+
+	
 
 	
 
