@@ -586,15 +586,11 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			 		$this->data['tableHeading'] = "ESIC Template(Emp ID) Reports";	// colomns name
 			 		$this->data['tableTools'] = array(
 			 										0 =>array(
-			 											'link'=> base_url(''.$page_data['user_type'].'/download/pf/'.$spgid.'/'.$custid.''),
-														'button' =>'Download pf Excel',
+			 											'link'=> base_url(''.$page_data['user_type'].'/download/esictemplateempid/'.$spgid.'/'.$custid.''),
+														'button' =>'Download ESIC',
 														'class'	 =>'btn-success'
-			 												),
-			 										1 =>array(
-			 											'link'=> base_url(),
-														'button' =>'Download pf Text',
-														'class'	 =>'btn-warning'
 			 												)
+			 										
 			 									);	
 			 		// colomns name
 			 		$this->data['tableCol'] = array("IP No","EMP ID","IP Name","No of days for which wages paid","Total Monthly Wages","Employee Contribution","Employer Contribution","Reasons code for zero working days","Last working days","Date of Join","Date of Birth","Vender ID","Contractor Name","Location");
@@ -659,7 +655,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 					
 	 					if (is_last_month($month,$year) == TRUE) {
 
-	 						 echo "is last month";
+	 						 //echo "is last month";
 	 						if ($location == "ALL") 
 				 			{
 				 				$result=$this->report->get_newEsicTemplate_empid($spgid,$custid,$month,$year,"ALL");
@@ -682,7 +678,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 					// }
 	 					else
 	 					{
-	 						echo "is old month";
+	 						//echo "is old month";
 	 						if ($location == "ALL") 
 				 			{
 				 				$result=$this->report->get_oldEsicTemplate_empid($spgid,$custid,$month,$year,"ALL");
@@ -720,6 +716,160 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 				goto_back();
 	 		}	 	
 	 }
+
+	 /* download esic Template report in excel formate*/
+	 public function DownloadESICTemplateEmpID()
+	 {
+	 	$this->load->model('Export');
+	 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+	 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
+	 	// echo $spg;
+	 	// exit();
+	 	$this->Export->ESICTemplateEmpid($spg,$cust);
+	 }
+
+	 /* show Esic summary report companiwise */
+	 public function ShowEsicSummary($page_data = '')
+	 {
+	 	if (!empty($this->input->post('submit'))) 
+	 	{
+			$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+			$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+			$month 		=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
+			$year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
+			//$location 	=!empty($this->input->post('location'))?$this->input->post('location'):NULL;
+
+		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		{
+		 		    $this->data['page_title'] = $page_data['page_title'];
+			        $this->data['where'] = 'Reports';
+			        $this->data['sub_menu'] = 'ESIC Summmary';
+			        $this->data['user_type'] = $page_data['user_type'];
+			        $this->data['menu'] = $page_data['menu'];
+			        /* table data */
+			 		$this->data['tableHeading'] = "ESIC Summary Report";	// colomns name
+			 		$this->data['tableTools'] = array(
+			 										0 =>array(
+			 											//'link'=> base_url(''.$page_data['user_type'].'/download/esictemplate/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.''),
+			 											'link'=> base_url(''.$page_data['user_type'].'/download/esicsummary/'.$spgid.'/'.$custid.''),
+														'button' =>'Download',
+														'class'	 =>'btn-success'
+			 												)
+			 									);	
+			 		// colomns name
+			 		$this->data['tableCol'] = array("Total IP Contribution","Total Employer Contribution","Grand Total Employee & Employer Contribution","Total Central Government Contribution","Total Wages");
+			 		//data	
+			 		$this->data['tableData']=$this->GenrateEsicSummary();//
+			 		// $this->data['tableButtons']	= array();
+			 	
+		 		 	$this->render('export_table');
+			     }
+			     else
+			     {
+			      echo "404 no access";
+			     }
+	 		 	
+	 	}
+	 	else
+	 	{
+			if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 	{
+			    $this->load->model('Report_model','report');
+			    $this->load->library("pagination");
+
+		       $this->data['page_title'] = $page_data['page_title'];
+		       $this->data['where'] = 'Reports';
+		       $this->data['sub_menu'] = 'ESIC Summary';
+		       $this->data['user_type'] = $page_data['user_type'];
+		       $this->data['menu'] = $page_data['menu'];
+		    	      
+		       $this->render('export_esicsummary');
+		     }
+		     else
+		     {
+		      echo "404 no access";
+		     }
+		}
+	 }
+
+	 /* genrate esic Summary report with validation */
+	 public function GenrateEsicSummary($value='')
+	 {
+	 	$this->load->model('Report_model','report');
+	 	
+	 		$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+	 		$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+	 		$month 		=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
+	 		$year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
+
+	 		if ($custid !== NULL && $spgid !== NULL) 
+	 		{
+	 			if ($month !==NULL && $year !==NULL) 
+	 			{
+	 				if ($year == "ALL" && $month == "ALL") 
+	 				{	 					
+	 					put_msg('Please Select Year and Month');
+	 					goto_back();
+	 				}
+	 				elseif ($year !== "ALL" && $month !== "ALL") 
+	 				{
+	 					// echo "2year is".$year."and month is ".$month;
+	 					
+	 					if (is_last_month($month,$year) == TRUE) 
+	 					{
+	 						 //echo "is last month";
+	 						$result=$this->report->get_newEsicSummary($spgid,$custid,$month,$year);
+	 						return $result;
+	 					}
+	 					elseif (this_month($month,$year) == TRUE) 
+	 					{
+	 						put_msg('till not genrate pf and esic report');
+	 						goto_back();
+	 					}
+	 					else
+	 					{
+	 						//echo "is old month";
+	 						$result=$this->report->get_oldEsicSummary($spgid,$custid,$month,$year);
+	 						return $result;
+	 					}
+
+	 				}
+	 				elseif ($year !== "ALL" && $month == "ALL") {
+	 					// echo "3year is".$year."and month is ".$month;
+	 					put_msg('Please Select Month');
+	 					goto_back();
+	 				}
+	 				elseif ($year == "ALL" && $month !== "ALL") {
+	 					// echo "4year is".$year."and month is ".$month;
+	 					put_msg('Please Select Year');
+	 					goto_back();
+
+	 				}
+
+	 			}
+	 			else
+	 			{
+	 				put_msg('Sorry month and year is invalid');
+	 				goto_back();
+	 			}					
+	 		}
+ 			else
+ 			{
+	 			put_msg('Sorry custid and user are invalid');
+	 				goto_back();
+	 		}	
+	 }
+
+	 /* download esic Template report in excel formate*/
+	 // public function DownloadESICSummary()
+	 // {
+	 // 	$this->load->model('Export');
+	 // 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+	 // 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
+	 // 	// echo $spg;
+	 // 	// exit();
+	 // 	$this->Export->ESICSummary($spg,$cust);
+	 // }
 
 	 /* show compliance report companiwise */
 	 public function ShowCompliance($page_data = '')

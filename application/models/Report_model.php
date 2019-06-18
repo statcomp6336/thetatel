@@ -903,9 +903,10 @@ class Report_model extends Base_model
 	/* get ESIC data (EmpID) from esic_template table */
 	public function get_newEsicTemplate_empid($spgid,$custid,$month,$year,$location)
 	{
-				$this->db->select("a.esicno,a.empid,a.name,a.no_of_days,a.monthly_wages,a.reason_code,a.last_working_day,b.join_date,b.birth_date,b.vendor_id,b.contractor_name,b.location");
+//=======Note: CAST(value as UNSIGNED) in mysql query is used to get integer values============//
+				$this->db->select("a.esicno,a.empid,a.name,a.no_of_days,a.monthly_wages,CAST(((a.monthly_wages*1.75)/100) as UNSIGNED) as emp_contri,CAST(((a.monthly_wages*4.75)/100) as UNSIGNED) as empr_contri,a.reason_code,a.last_working_day,b.join_date,b.birth_date,b.vendor_id,b.contractor_name,b.location");
 				$this->db->from('esic_template a');
-				$this->db->join('employee_master_new b', 'a.empid=b.emp_id');
+				$this->db->join('employee_master_new b', 'a.empid=b.emp_id AND a.custid=b.custid');
 				if($location=="ALL")
 				{
 				$this->db->where(array(	'a.spgid'    => $spgid,
@@ -922,30 +923,17 @@ class Report_model extends Base_model
 											'b.location' => $location  ));
 				}			
 				$result = $this->db->get()->result();
-
-				foreach ($result as $key) 
-				{
-				# code...
-				$monthly_wages=$key->a.monthly_wages;
-				$emp_contri=ceil(($monthly_wages*1.75)/100);
-				$empr_contri=($monthly_wages*4.75)/100;
-
-				echo $monthly_wages;
-				}
-				//return $result;
-
-				//$arrayName = array("$custid","$cname","$path","$act","$date");
-	//return $arrayName;
+				return $result;
 	}
 
 	/* get esic data from esic_template_history table */
 	public function get_oldEsicTemplate_empid($spgid,$custid,$month,$year,$location)
 	{
-		echo "hello";echo $location;
 		//change after create esic_template_history table
-		$this->db->select("*");
+//=======Note: CAST(value as UNSIGNED) in mysql query is used to get integer values============//
+		$this->db->select("a.esicno,a.empid,a.name,a.no_of_days,a.monthly_wages,CAST(((a.monthly_wages*1.75)/100) as UNSIGNED) as emp_contri,CAST(((a.monthly_wages*4.75)/100) as UNSIGNED) as empr_contri,a.reason_code,a.last_working_day,b.join_date,b.birth_date,b.vendor_id,b.contractor_name,b.location");
 				$this->db->from('esic_template_history a');
-				$this->db->join('employee_master_new b', 'a.empid=b.emp_id');
+				$this->db->join('employee_master_new b', 'a.empid=b.emp_id AND a.custid=b.custid');
 				if($location=="ALL")
 				{
 				$this->db->where(array(	'a.spgid'    => $spgid,
@@ -962,33 +950,40 @@ class Report_model extends Base_model
 											'b.location' => $location  ));
 				}			
 				$result = $this->db->get()->result();
+				return $result;		
+	}
 
-				foreach ($result as $key) 
-				{
-				# code...
-				$esicno=$key->esicno;
-				$empid=$key->empid;
-				//echo $empid;
-				$name=$key->name;
-				$no_of_days=$key->no_of_days;
-				$monthly_wages=$key->monthly_wages;
-				$emp_contri=ceil(($monthly_wages*1.75)/100);
-				$empr_contri=($monthly_wages*4.75)/100;
-				$reason_code=$key->reason_code;
-				$last_working_day=$key->last_working_day;
-				$join_date=$key->join_date;
-				$birth_date=$key->birth_date;
-				$vendor_id=$key->vendor_id;
-				$contractor_name=$key->contractor_name;
-				$location=$key->location;
-				
+	/* get Esic Summary data from esic_template table */
+	public function get_newEsicSummary($spgid,$custid,$month,$year)
+	{
+		$this->db->select("CAST(sum((a.monthly_wages*(1.75/100))) as UNSIGNED) as eps_contri,CAST(sum((a.monthly_wages)*4.75/100) as UNSIGNED) as total_contri,CAST(((sum((a.monthly_wages*(1.75/100))))+(sum((a.monthly_wages)*4.75/100))) as UNSIGNED) as grand,if(monthly_wages!=NULL,`monthly_wages`,'-'),sum(a.monthly_wages) as gross_wages");
+						$this->db->from('esic_template a');
+						$this->db->join('employee_master_new b', 'a.empid=b.emp_id AND a.custid=b.custid');
+						
+						$this->db->where(array(	'a.spgid' => $spgid,
+										'a.custid' => $custid,
+										'a.month'	 => $month,
+										'a.year'	 => $year,
+										'b.esic_deduct'=>'Yes'   ));
+						$result=$this->db->get()->result();
+						return $result;
+	}
 
-				//echo $empr_contri;
-				}
+	/* get Esic Summary data from esic_template_history table */
+	public function get_oldEsicSummary($spgid,$custid,$month,$year)
+	{
+		 $this->db->select("CAST(sum((a.monthly_wages*(1.75/100))) as UNSIGNED) as eps_contri,CAST(sum((a.monthly_wages)*4.75/100) as UNSIGNED) as total_contri,CAST(((sum((a.monthly_wages*(1.75/100))))+(sum((a.monthly_wages)*4.75/100))) as UNSIGNED) as grand,if(monthly_wages!=NULL,`monthly_wages`,'-'),sum(a.monthly_wages) as gross_wages");
+						$this->db->from('esic_template_history a');
+						$this->db->join('employee_master_new b', 'a.empid=b.emp_id AND a.custid=b.custid');
+						
+						$this->db->where(array(	'a.spgid' => $spgid,
+										'a.custid' => $custid,
+										'a.month'	 => $month,
+										'a.year'	 => $year,
+										'b.esic_deduct'=>'Yes'   ));
+						$result=$this->db->get()->result();
+						return $result;
 
-				$arrayName = array("$esicno","$empid","$name","$no_of_days","$monthly_wages","$emp_contri","$empr_contri","$reason_code","$last_working_day","$join_date","$birth_date","$vendor_id","$contractor_name","$location");
-					return $arrayName;
-				//return $result;
 	}
 
 	/* get Compliance data from completed_compliance table */

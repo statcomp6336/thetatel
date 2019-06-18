@@ -464,7 +464,7 @@ class Spg extends Base_controller {
 		
 	}
 
-<<<<<<< HEAD
+
 
 
 
@@ -493,6 +493,14 @@ class Spg extends Base_controller {
 	public function download_esic_template_empid($value='')
 	{
 		$this->DownloadESICTemplateEmpID();
+	}
+	public function show_esic_summary()
+	{
+		$this->ShowEsicSummary($this->page);
+	}
+	public function download_esic_summary($value='')
+	{
+		$this->DownloadESICSummary();
 	}
 
 
@@ -553,7 +561,7 @@ class Spg extends Base_controller {
 
 	
 	
-=======
+
 	public function flow_of_work($value='')
 	{
 		$srno=$this->input->post('srno');
@@ -577,6 +585,6 @@ class Spg extends Base_controller {
 	}
 
 
->>>>>>> 2c7673b04d3d6b4d08a941c677ad937764486a35
+
 	
 }	
