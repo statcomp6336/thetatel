@@ -859,7 +859,7 @@
 
 								<ul class="submenu">
 									<li class="hover">
-										<a href="#">
+										<a href="<?php echo base_url(''.$user_type.'/export/esicnewjoinee'); ?>">
 											<i class="menu-icon fa fa-leaf green"></i>
 										  ESIC New Joinee Report
 										</a>
@@ -868,7 +868,7 @@
 									</li>
 
 									<li class="hover">
-										<a href="#" class="dropdown-toggle">
+										<a href="<?php echo base_url(''.$user_type.'/export/esictemplate'); ?>">
 											<i class="menu-icon fa fa-pencil orange"></i>
 											ESIC Template Report		
 										</a>
@@ -878,7 +878,7 @@
 										
 									</li>
 									<li class="hover">
-										<a href="#">
+										<a href="<?php echo base_url(''.$user_type.'/export/esictemplateempid'); ?>">
 											<i class="menu-icon fa fa-leaf green"></i>
 											ESIC Template Report(EMP ID)
 										</a>
@@ -942,7 +942,7 @@
 					<li class="hover">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-pencil-square-o"></i>
-							<span class="menu-text">  My Compliaence  </span>
+							<span class="menu-text">  My Compliance  </span>
 
 							<b class="arrow fa fa-angle-down"></b>
 						</a>
@@ -1153,6 +1153,7 @@
 
 							<!-- +++++++++++++ -->
 									<li class="hover">
+
 								<a href="#" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
 										Compliance Reports
@@ -1163,7 +1164,7 @@
 
 								<ul class="submenu">
 									<li class="hover">
-										<a href="#">
+										<a href="<?php echo base_url(''.$user_type.'/export/compliance'); ?>">
 											<i class="menu-icon fa fa-leaf green"></i>
 											Compliance
 										</a>
@@ -1172,7 +1173,7 @@
 									</li>
 
 									<li class="hover">
-										<a href="#" class="dropdown-toggle">
+										<a href="<?php echo base_url(''.$user_type.'/export/noncompliance'); ?>">
 											<i class="menu-icon fa fa-pencil orange"></i>
 
 										Non-Compliance
@@ -1202,7 +1203,7 @@
 										</ul> -->
 									</li>
 									<li class="hover">
-										<a href="#">
+										<a href="<?php echo base_url(''.$user_type.'/export/compliancedocument'); ?>">
 											<i class="menu-icon fa fa-leaf green"></i>
 											Compliance Documents
 										</a>
@@ -1210,7 +1211,7 @@
 										<b class="arrow"></b>
 									</li>
 									<li class="hover">
-										<a href="#">
+										<a href="<?php echo base_url(''.$user_type.'/export/approval'); ?>">
 											<i class="menu-icon fa fa-leaf green"></i>
 											Approval Report
 										</a>
@@ -1218,21 +1219,21 @@
 										<b class="arrow"></b>
 									</li>
 									<li class="hover">
-										<a href="#">
+										<a href="<?php echo base_url(''.$user_type.'/export/rejected'); ?>">
 											<i class="menu-icon fa fa-leaf green"></i>
 											Rejected Report
 										</a>
 
 										<b class="arrow"></b>
 									</li>
-									<li class="hover">
+									<!-- <li class="hover">
 										<a href="#">
 											<i class="menu-icon fa fa-leaf green"></i>
 											Compliance  NonCompliance
 										</a>
 
 										<b class="arrow"></b>
-									</li>
+									</li> -->
 								</ul>
 							</li>
 
@@ -1330,16 +1331,25 @@
 
 							<!-- +++++++++++++ -->
 							<li class="hover">
-								<a href="error-404.html">
+								<a href="<?php echo base_url(''.$user_type.'/export/employeedetails'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Register Menu
+									Emplyoee details
 								</a>
 
 								<b class="arrow"></b>
 							</li>
 
 							<li class="hover">
-								<a href="error-500.html">
+								<a href="<?php echo base_url(''.$user_type.'/export/salarydetails'); ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Salary details
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="hover">
+								<a href="<?php echo base_url(''.$user_type.'/export/entitydetails'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Entities Details
 								</a>
@@ -1348,9 +1358,9 @@
 							</li>
 
 							<li class="hover">
-								<a href="grid.html">
+								<a href="<?php echo base_url(''.$user_type.'/export/compliancerequest'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Emplyoee details
+									Compliance Request Details
 								</a>
 
 								<b class="arrow"></b>
@@ -1364,22 +1374,30 @@
 
 								<b class="arrow"></b>
 							</li>
+
 							<li class="hover">
+								<a href="error-404.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Register Menu
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							
+
+							
+
+							
+							<!-- <li class="hover">
 								<a href="blank.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Challan Generated Details
 								</a>
 
 								<b class="arrow"></b>
-							</li>
-							<li class="hover">
-								<a href="blank.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Compliance Request Details
-								</a>
-
-								<b class="arrow"></b>
-							</li>
+							</li> -->
+							
 								<!-- +++++++++++++ -->
 							<!-- <li class="hover">
 								<a href="#" class="dropdown-toggle">
