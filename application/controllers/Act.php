@@ -339,24 +339,37 @@ trait Act {
 	//display view bulk approval
 	public function ShowBulkApproval($page_data='')
 	{
-		$this->load->model('Act_model');
-		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
-		 	 $this->data['page_title'] = $page_data['page_title'];
-			 $this->data['where'] = 'Compilance';
-			 $this->data['sub_menu'] = 'Bulk-Update';
-			 $this->data['user_type'] = $page_data['user_type'];
-			 $this->data['menu'] = $page_data['menu'];
+		$this->load->model('Act_model','act');
+		$extract="";
+		if (!empty($this->input->post('submit'))) {
+			$custid = $this->input->post('custid');
+			$act_type =$this->input->post('act_type');
+			$act = $this->input->post('act');
+			$extract = $this->act->bulk_approval($custid,$act,$act_type);
 
-			 // act detatails data
-			  $this->data['act_data']=array('act_code'=> $this->Act_model->get_act_code(),
-			  								'data'    => $this->Act_model->get_acts()
-											);
-			 $this->render('bulk_update');
-		 }
-		 else
-		 {
-		 	echo "404 no access";
-		 }
+			$extract = !empty($extract)?$extract:"N/A";
+			// var_dump($extract);exit();
+		}
+		else{
+			$extract=NULL;
+		}			
+			 if ($page_data['access'][$this->session->TYPE] == TRUE) {
+			 	 $this->data['page_title'] = $page_data['page_title'];
+				 $this->data['where'] = 'Compilance';
+				 $this->data['sub_menu'] = 'Bulk-Approval';
+				 $this->data['user_type'] = $page_data['user_type'];
+				 $this->data['menu'] = $page_data['menu'];
+
+				 // act detatails data
+				  $this->data['bulk_data']=array('acts'=> $this->act->get_act(),
+				  								'data'    => $extract
+												);
+				 $this->render('my_approval');
+			 }
+			 else
+			 {
+			 	echo "404 no access";
+			 }
 	}
 	//display view bulk timeline
 	public function ShowBulkTimeline($page_data='')
@@ -386,13 +399,7 @@ trait Act {
 		if (!empty($this->input->post('srno'))) {
 			$this->load->model('Act_model','act');
 			$count=sizeof($this->input->post('srno'));
-			for ($i=0; $i < $count; $i++) {
-
-				if(empty($this->input->post('Challan_genrtn_date')[$i]) || empty($this->input->post('Pay_date')[$i]))
-	      		{
-		          $this->input->post('Challan_genrtn_date')[$i]='0000-00-00';
-		          $this->input->post('Pay_date')[$i]='0000-00-00';
-	      		}
+			for ($i=0; $i < $count; $i++) {				
 	      		
 	      		if (!empty($this->input->post('remark')[$i]) && !empty($this->input->post('statusforpending')[$i]))
 	      		{
@@ -408,16 +415,54 @@ trait Act {
       					$sts=3;
       				}	      			
 	      			$task_date=date('Y-m-d');
-      		 	  $editComplience = array(
+	      			if (empty($this->input->post('compliance_form')[$i]) && empty($this->input->post('registration_form')[$i])) {
+	      				$editComplience = array(
 				      		 	  'Remarks' 		=> $this->input->post('remark')[$i],
 				                  'status' 			=> $sts,                 
-				                  'Task_complitn_date' => $task_date,
-				                  'Retrn_Challan_genrtn_date' => $this->input->post('Challan_genrtn_date')[$i],
-				                  'Submisn_Pay_date' => $this->input->post('Pay_date')[$i],
-				                  'Pend_docu_in_nos' => $this->input->post('Pend_doc_no')[$i]
+				                  'Task_complitn_date' => $task_date,                 
+	                      
+	                     );      				
+
+	      			}
+	      			elseif (!empty($this->input->post('compliance_form')[$i])) {
+	      				$editComplience = array(
+ 	'Remarks' 				=> $this->input->post('remark')[$i],
+	'status' 				=> $sts,                 
+	'Task_complitn_date' 	=> $task_date,
+	'Retrn_Challan_genrtn_date' => is($this->input->post('Challan_genrtn_date')[$i],'0000-00-00'),
+	'Submisn_Pay_date' 		=> is($this->input->post('Pay_date')[$i],'0000-00-00'),
+	'Pend_docu_in_nos' 		=> $this->input->post('Pend_doc_no')[$i]
 	                      
 	                     );
-      		 	  var_dump($editComplience);
+
+	      			}
+	      			elseif (!empty($this->input->post('registration_form')[$i])) {
+
+	      				$editComplience = array(
+ 	'Remarks' 				=> $this->input->post('remark')[$i],
+    'status' 				=> $sts,                 
+    'Task_complitn_date' 	=> $task_date,
+    'registration_no' 		=> $this->input->post('registration_no')[$i],
+    'Application_date' 		=> is($this->input->post('Application_date')[$i],'0000-00-00'),
+    'Applicable_date' 		=> is($this->input->post('Applicable_date')[$i],'0000-00-00'),
+    'Valid_upto' 			=> is($this->input->post('Valid_upto')[$i],'0000-00-00'),
+    'Renewal_date' 			=> is($this->input->post('Renewal_date')[$i],'0000-00-00')                      
+	                     );
+
+	      			}
+
+
+	      			$saveFlowOfWork= array(
+	      								'row_id'=> $this->input->post('srno')[$i],
+	      								'custid'=> $this->input->post('custid'),
+	      								'spgid'=> user_id(),
+	      								'spg_name'=>"admin",//user_name(),
+	      								'comment'=>$this->input->post('remark')[$i],
+	      								'action' =>$sts
+	      							);
+	      			//      		 	  	
+      		 	  // var_dump($editComplience);
+	      			$this->act->saveFlowOfWork($saveFlowOfWork);
       		 	  if($this->act->edit_bulkComplince($editComplience,$this->input->post('srno')[$i]))
       		 	  {
       		 	  	$return=TRUE;
@@ -429,6 +474,57 @@ trait Act {
 			if ($return == TRUE) {
 				put_msg('Data Save successfully..!');
 				redirect(base_url(''.$user.'/compliance/bulk-compliance'));
+			}
+		}
+	}
+
+
+	/* update bulk approval */
+	public function UpdateBulkApproval($user)
+	{
+		if (!empty($this->input->post('srno'))) {
+			$this->load->model('Act_model','act');
+			$count=sizeof($this->input->post('srno'));
+			for ($i=0; $i < $count; $i++) {				
+	      		
+	      		if (!empty($this->input->post('comment')[$i]) && !empty($this->input->post('compliancestatus')[$i]))
+	      		{
+	      			
+	      			$status=$this->input->post('compliancestatus')[$i];
+      				if ($status == 'approval' ) {
+      					$sts=5;      					
+      				}
+      				elseif ($status == 'rejection') {
+      					$sts=4;      					
+      				}
+      				$editComplience = array('status'=> $sts); 	      				
+
+
+	      			$saveFlowOfWork= array(
+	      								'row_id'=> $this->input->post('srno')[$i],
+	      								'custid'=> $this->input->post('custid'),
+	      								'spgid'=> user_id(),
+	      								'spg_name'=>"admin",//user_name(),
+	      								'comment'=>$this->input->post('comment')[$i],
+	      								'action' =>$sts
+	      							);
+	      			//      		 	  	
+      		 	  // var_dump($editComplience);
+	      			$this->act->saveFlowOfWork($saveFlowOfWork);
+      		 	  if($this->act->edit_bulkComplince($editComplience,$this->input->post('srno')[$i]))
+      		 	  {
+      		 	  	$return=TRUE;
+      		 	  }
+
+	      		} 
+				
+			}
+			if ($return == TRUE) {
+				put_msg('Data Save successfully..!');
+				$this->act->complete_compliance();
+				
+
+				// redirect(base_url(''.$user.'/compliance/bulk-compliance'));
 			}
 		}
 	}

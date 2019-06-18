@@ -12,8 +12,15 @@ class Base_model extends CI_Model
 		parent::__construct();
 		$this->newdb=$this->load->database('db1',TRUE);
 	}
-	protected function add()
+	protected function add($table,$data)
 	{
+		if($this->newdb->insert($table,$data)){
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
 
 	}
 	protected function edit($value='')

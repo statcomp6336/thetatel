@@ -48,10 +48,28 @@
 					    height: -webkit-fill-available;
 					    display: block;
 					    overflow: scroll;}
+			a:visited {
+				color: #0254EB
+			}
+			a.morelink {
+				text-decoration:none;
+				outline: none;
+			}
+			.morecontent span {
+				display: none;
+			}
+			.comment {
+				width: 400px;
+				background-color: #f0f0f0;
+				margin: 10px;
+			}		    
+
+					    
 		</style>
 	</head>
 
 	<body class="skin-1">
+
 		<div id="navbar" class="navbar navbar-default    navbar-collapse       h-navbar ace-save-state">
 			<div class="navbar-container ace-save-state" id="navbar-container">
 				<div class="navbar-header pull-left">
@@ -940,14 +958,7 @@
 
 								<b class="arrow"></b>
 							</li>
-							<!-- <li class="hover">
-								<a href="<?php echo base_url(''.$user_type.'/compliance/bulk-approval'); ?>">
-									<i class="menu-icon fa fa-caret-right"></i>
-									My Approval
-								</a>
-
-								<b class="arrow"></b>
-							</li> -->
+							
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/compliance/bulk-timeline'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -960,7 +971,7 @@
 					</li>
 
 					<li class="hover">
-						<a href="widgets.html">
+						<a href="<?php echo base_url(''.$user_type.'/compliance/bulk-approval'); ?>">
 							<i class="menu-icon fa fa-list-alt"></i>
 							<span class="menu-text"> My Approval </span>
 						</a>

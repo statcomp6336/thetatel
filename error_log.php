@@ -280,3 +280,16 @@
 [15-Jun-2019 10:40:34 Europe/Berlin] PHP Fatal error:  Call to undefined function show() in C:\xampp\htdocs\git\thetatel\application\views\bulk_compliance.php on line 600
 [15-Jun-2019 10:42:03 Europe/Berlin] PHP Fatal error:  Call to undefined function show() in C:\xampp\htdocs\git\thetatel\application\views\bulk_compliance.php on line 600
 [15-Jun-2019 10:42:15 Europe/Berlin] PHP Fatal error:  Call to undefined function show() in C:\xampp\htdocs\git\thetatel\application\views\bulk_compliance.php on line 600
+[15-Jun-2019 14:11:52 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\git\thetatel\application\views\bulk_compliance.php on line 88
+[17-Jun-2019 07:56:54 Europe/Berlin] PHP Parse error:  syntax error, unexpected ''Valid_upto'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in C:\xampp\htdocs\git\thetatel\application\controllers\Act.php on line 438
+[17-Jun-2019 07:57:13 Europe/Berlin] PHP Parse error:  syntax error, unexpected ''Valid_upto'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in C:\xampp\htdocs\git\thetatel\application\controllers\Act.php on line 438
+[17-Jun-2019 09:32:32 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')' in C:\xampp\htdocs\git\thetatel\application\views\bulk_compliance.php on line 73
+[17-Jun-2019 09:33:56 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')' in C:\xampp\htdocs\git\thetatel\application\views\bulk_compliance.php on line 73
+[18-Jun-2019 07:15:26 Europe/Berlin] PHP Parse error:  syntax error, unexpected ',' in C:\xampp\htdocs\git\thetatel\application\models\Act_model.php on line 147
+[18-Jun-2019 07:56:37 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';', expecting ')' in C:\xampp\htdocs\git\thetatel\application\controllers\Act.php on line 461
+[18-Jun-2019 08:16:28 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in C:\xampp\htdocs\git\thetatel\application\controllers\Act.php on line 565
+[18-Jun-2019 09:06:29 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'array' (T_ARRAY) in C:\xampp\htdocs\git\thetatel\application\models\Act_model.php on line 152
+[18-Jun-2019 09:43:01 Europe/Berlin] PHP Parse error:  syntax error, unexpected ''created_at TIMESTAMP DEFAULT ' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in C:\xampp\htdocs\git\thetatel\application\models\DB_install.php on line 1509
+[18-Jun-2019 10:04:41 Europe/Berlin] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in C:\xampp\htdocs\git\thetatel\application\models\DB_install.php on line 1536
+[18-Jun-2019 10:04:42 Europe/Berlin] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in C:\xampp\htdocs\git\thetatel\application\models\DB_install.php on line 1536
+[18-Jun-2019 10:04:44 Europe/Berlin] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in C:\xampp\htdocs\git\thetatel\application\models\DB_install.php on line 1536

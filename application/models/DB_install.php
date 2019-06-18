@@ -1403,6 +1403,170 @@ class DB_install extends Base_model
 		$this->dbforge->drop_table('esic_template');
 	}
 
+	public function CreateTable_compliance_working_priore()
+	{
+		$fields = array(
+			"srno"		=> array('type' =>'INT',
+		 							'auto_increment' => TRUE			                    
+	    				), 
+			"custid"	=> array('type' =>'BIGINT',
+					 		 'constraint' => '20'), 
+			"spg_id"	=> array('type' =>'BIGINT',
+					 		 'constraint' => '20'),
+			"act_code"	=> array('type' =>'INT',
+					 		   'constraint' => '20'),
+			"act"		=> array('type' =>'VARCHAR',
+					 	  'constraint' => '20'),
+			"Particular"=> array('type' =>'TEXT'),
+			"year"		=> array('type' =>'VARCHAR',
+					 			 'constraint' => '20'),
+			"Reg_freq"	=> array('type' =>'VARCHAR',
+					 			 'constraint' => '200'),
+			"due_date"	=> array('type' =>'date' ),
+			"Statutory_due_date"=> array('type' =>'date'),
+			"doc_req"	=> array('type' =>'VARCHAR',
+								'constraint' => '200'), 
+			"Application_date"	=> array('type' =>'date'), 			
+			"Valid_upto"		=> array('type' =>'date'), 
+			"Renewal_date"		=> array('type' =>'date'), 
+			"Issuing_authority" => array('type' =>'BIGINT',
+					 					 'constraint' => '20'), 
+			"Copy_of_docu"		=> array('type' =>'TEXT'), 
+			"Resp_prsn_frm_client"=> array('type' =>'TEXT'), 
+			"Resp_prsn"			=> array('type' =>'TEXT'), 
+			"Remarks"			=> array('type' =>'TEXT'), 
+			"Data _recev_frm_client"=> array('type' =>'TEXT'), 
+			"Task_complitn_date"=> array('type' =>'date'), 
+			"Retrn_Challan_genrtn_date"=> array('type' =>'date'), 
+			"Submisn_Pay_date"	=> array('type' =>'date'), 
+			"Docu_submit_to_GOVT_in_nos"=> array('type' =>'INT',
+					 							 'constraint' => '20'), 
+			"Pend_docu_in_nos"	=> array('type' =>'INT',
+					 				   'constraint' => '20'), 
+			"status"			=> array('type' =>'INT',
+					 		 				'constraint' => '20'), 
+			"act_type"			=> array('type' =>'VARCHAR',
+					 			 'constraint' => '300'), 
+			"approval"			=> array('type' =>'BIGINT',
+					 					 'constraint' => '20'), 
+			"Applicable_date"	=> array('type' =>'INT',
+					 						'constraint' => '20'), 
+			
+			"registration_no" 	=> array('type' =>'VARCHAR',
+					 					 'constraint' => '200'					                    
+				    					), 
+			"pcr_code"			=> array('type' =>'INT',
+					 					'constraint' => '20'					                    
+				    						),
+			'Certi_rece_date TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+			'date TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		        );
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('compliance_working_priore',TRUE);
+	}
+	public function DropTable_compliance_working_prior()
+	{
+		$this->dbforge->drop_table('compliance_working_prior');
+	}
+	public function CreateTable_completed_compliance()
+	{
+		$fields = array(
+			"srno"		=> array('type' =>'INT',
+		 							'auto_increment' => TRUE			                    
+	    				), 
+			"custid"	=> array('type' =>'BIGINT',
+					 		 'constraint' => '20'), 
+			"spg_id"	=> array('type' =>'BIGINT',
+					 		 'constraint' => '20'),
+			"act_code"	=> array('type' =>'INT',
+					 		   'constraint' => '20'),
+			"act"		=> array('type' =>'VARCHAR',
+					 	  'constraint' => '20'),
+			"Particular"=> array('type' =>'TEXT'),
+			"year"		=> array('type' =>'VARCHAR',
+					 			 'constraint' => '20'),
+			"Reg_freq"	=> array('type' =>'VARCHAR',
+					 			 'constraint' => '200'),
+			"due_date"	=> array('type' =>'date' ),
+			"Statutory_due_date"=> array('type' =>'date'),
+			"doc_req"	=> array('type' =>'VARCHAR',
+								'constraint' => '200'), 
+			"Application_date"	=> array('type' =>'date'), 			
+			"Valid_upto"		=> array('type' =>'date'), 
+			"Renewal_date"		=> array('type' =>'date'), 
+			"Issuing_authority" => array('type' =>'BIGINT',
+					 					 'constraint' => '20'), 
+			"Copy_of_docu"		=> array('type' =>'TEXT'), 
+			"Resp_prsn_frm_client"=> array('type' =>'TEXT'), 
+			"Resp_prsn"			=> array('type' =>'TEXT'), 
+			"Remarks"			=> array('type' =>'TEXT'), 
+			"Data _recev_frm_client"=> array('type' =>'TEXT'), 
+			"Task_complitn_date"=> array('type' =>'date'), 
+			"Retrn_Challan_genrtn_date"=> array('type' =>'date'), 
+			"Submisn_Pay_date"	=> array('type' =>'date'), 
+			"Docu_submit_to_GOVT_in_nos"=> array('type' =>'INT',
+					 							 'constraint' => '20'), 
+			"Pend_docu_in_nos"	=> array('type' =>'INT',
+					 				   'constraint' => '20'), 
+			"status"			=> array('type' =>'INT',
+					 		 				'constraint' => '20'), 
+			"act_type"			=> array('type' =>'VARCHAR',
+					 			 'constraint' => '300'), 
+			"approval"			=> array('type' =>'BIGINT',
+					 					 'constraint' => '20'), 
+			"Applicable_date"	=> array('type' =>'INT',
+					 						'constraint' => '20'), 
+			
+			"registration_no" 	=> array('type' =>'VARCHAR',
+					 					 'constraint' => '200'					                    
+				    					), 
+			"pcr_code"			=> array('type' =>'INT',
+					 					'constraint' => '20'					                    
+				    						),
+			'Certi_rece_date TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+			'date TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		        );
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('completed_compliance',TRUE);
+	}
+	public function DropTable_completed_compliance()
+	{
+		$this->dbforge->drop_table('completed_compliance');
+	}
+	public function CreateTable_flow_of_timeline()
+	{
+		$fields = array(
+			"srno"		=> array('type' =>'INT',
+		 						'auto_increment' => TRUE			                    
+	    				), 
+			"row_id"	=> array('type' =>'INT',
+					 		 'constraint' => '20'), 
+			"spgid"	=> array('type' =>'INT',
+					 		 'constraint' => '20'),
+			"spg_name"	=> array('type' =>'VARCHAR',
+					 		   'constraint' => '200'),
+			"custid"		=> array('type' =>'INT',
+					 	  'constraint' => '20'),
+			"cust_name"=> array('type' =>'TEXT'),
+			"comment"		=> array('type' =>'VARCHAR',
+					 			 'constraint' => '300'),			
+			"action"	=> array('type' =>'VARCHAR','constraint' => '30' ),			
+			
+			'date TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		        );
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('flow_of_timeline',TRUE);
+	}
+
+	public function DropTable_flow_of_timeline()
+	{
+		$this->dbforge->drop_table('flow_of_timeline');
+	}
+
+
 
 
 

@@ -71,6 +71,11 @@ class Spg extends Base_controller {
 		* IT IS AUTOMATIC GENRATED TABLES USING THIS FUNCTION.
 		* YOU CANN DESTROY THE ALL TABLE WHEN USING "DESTROY_SYSTEM()";
 		* WHEN USING THE DESTROY FUNCTION THEN SYSTEM HAS DOWN AND MULTIPLY THE BUGS. 
+
+		
+
+
+
 	*/
 
 	public function CREATE_SYSTEM()
@@ -88,6 +93,9 @@ class Spg extends Base_controller {
 		$this->DB_install->CreateTable_backlog_process();
 		$this->DB_install->CreateTable_pf_template();
 		$this->DB_install->CreateTable_esic_template();
+		$this->DB_install->CreateTable_compliance_working_priore();
+		$this->DB_install->CreateTable_completed_compliance();
+		$this->DB_install->CreateTable_flow_of_timeline();
 
 	}
 	public function DESTROY_SYSTEM()
@@ -104,7 +112,10 @@ class Spg extends Base_controller {
 		$this->DB_install->DropTable_master_process();
 		$this->DB_install->DropTable_backlog_process();
 		$this->DB_install->DropTable_pf_template();
-		$this->DB_install->DropTable_esic_template();
+		$this->DB_install->DropTable_esic_template();		
+		$this->DB_install->DropTable_compliance_working_prior();
+		$this->DB_install->DropTable_completed_compliance();
+		$this->DB_install->DropTable_flow_of_timeline();
 
 
 	}
@@ -352,10 +363,14 @@ class Spg extends Base_controller {
 	{
 		$this->UpdateBulkCompliance('spg');
 	}
-	//display view bulk approval
+	//display view bulk approval 
 	public function show_bulk_approval($value='')
 	{
 		$this->ShowBulkApproval($this->page);
+	}
+	public function edit_bulk_approval($value='')
+	{
+		$this->UpdateBulkApproval('spg');
 	}
 	//display view bulk timeline
 	public function show_bulk_timeline($value='')
@@ -383,7 +398,8 @@ class Spg extends Base_controller {
 		$result=$this->act->docs($srno);
 		$out="";
 		foreach ($result as $key) {//
-			$out.=$key->doc_path."<button class='remove1' data-id='".$key->srno."'>Remove</button><br>";
+		
+			$out.="<a href='".$key->doc_path."' target='_blank'>".$key->doc_path."</a><button class='remove1' data-id='".$key->srno."'>Remove</button><br>";
 		}
 		echo $out;
 	}
@@ -447,6 +463,28 @@ class Spg extends Base_controller {
 		
 	}
 
-	
+	public function flow_of_work($value='')
+	{
+		$srno=$this->input->post('srno');
+		$this->load->model('Act_model','act');
+		$timeline=$this->act->flowOfWork($srno);
+
+		$box= "<div class='history-tl-container'>
+					  <ul class='tl'>";
+					  foreach ($timeline as $key) {
+					  	
+					   $box .="<li class='tl-item' ng-repeat='item in retailer_history'>
+					      <div class='timestamp'>".$key->date
+					        // 3rd March 2015<br> 7:00 PM
+					      ."</div>
+					      <div class='item-title'>".$key->comment."</div>
+					      <div class='item-detail'>".$key->spg_name."</div>
+					    </li>";
+					}
+					  $box .="</ul></div>";
+					  echo $box;
+	}
+
+
 	
 }	

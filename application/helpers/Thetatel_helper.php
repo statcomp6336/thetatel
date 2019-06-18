@@ -42,9 +42,10 @@ if (! function_exists('goto_back')) {
 
 if (! function_exists('is')) {
 	# code...
-	function is($value)
-	  {	  	
-	    $i=!empty($value)?$value:" ";
+	function is($value,$val="")
+	  {	 
+	  	$val=!empty($val)?$val:" "; 	
+	    $i=!empty($value)?$value:$val;
 		return $i;
 	  } 
 }
