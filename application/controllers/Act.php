@@ -479,7 +479,7 @@ trait Act {
 	}
 
 
-	/* update bulk approval */
+	/* update bulk approval  */
 	public function UpdateBulkApproval($user)
 	{
 		if (!empty($this->input->post('srno'))) {
@@ -522,7 +522,7 @@ trait Act {
 			if ($return == TRUE) {
 				put_msg('Data Save successfully..!');
 				$this->act->complete_compliance();
-				
+
 
 				// redirect(base_url(''.$user.'/compliance/bulk-compliance'));
 			}
