@@ -1,4 +1,4 @@
-[14-May-2019 07:08:18 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\thetatel\application\controllers\Welcome.php on line 24
+[kaypan14-May-2019 07:08:18 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\thetatel\application\controllers\Welcome.php on line 24
 
 [14-May-2019 07:09:04 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\thetatel\application\controllers\Welcome.php on line 24
 
