@@ -59,7 +59,7 @@
         <br>
         <br>
         <input type="submit" name="button" id="button" value="Login"  class="loginbtn">
-        <a href="forgot_password.php">Forgot Password?</a>
+        <a href="<?php echo base_url('Home/forgot_password');?>">Forgot Password?</a>
      <?php echo form_close();
          
 

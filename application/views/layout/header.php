@@ -1023,7 +1023,7 @@
 								<b class="arrow"></b>
 							</li>
 							<li class="hover">
-								<a href="jqgrid.html">
+								<a href="<?php echo base_url(''.$user_type.'/user/reset-password');?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Reset Password
 								</a>

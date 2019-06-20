@@ -83,6 +83,53 @@ class User_model extends Base_model
     	return $this->remove('add_companies_for_users',array('userid'=>$userid,'custid'=>$custid));
 
     }
+    //set the password
+    public function set_password($custid,$user,$email,$password,$newpassword,$is_master='')
+    {
+        $this->load->helper('Password');
+        $hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
+        $reset=array(
+                      'password'=>is( $hasher->HashPassword($newpassword))
+                    );
+        $username=$this->get_id('users','password,username',array('email'=>$email,'custid'=>$custid));       
+
+       
+        if (!empty($username->username) && $username->username!==NULL) {
+            $name=$username->username;
+
+            $name=$this->encrypt->decode($name);      
+           
+                if ($name == $user){
+                    if($hasher->CheckPassword($password, $username->password)) {
+                    
+                       $id=$this->get_id('users','srno',array('email'=>$email,'custid'=>$custid))->srno;
+                       if($this->edit('users',array('srno'=>$id),$reset))
+                       {
+                        $msg="set password";
+                        return $msg;
+                       }
+                       else
+                       {
+                        $msg="not updated ";
+                        return $msg;
+                       }
+                   }
+                   else
+                   {
+                     $msg="old password not match..!";
+                    return $msg; 
+                   }
+
+                }
+                else
+                {
+                     $msg="Invalid User..!";
+                    return $msg;                 
+                }
+            }
+
+
+    }
 
 
 

@@ -222,9 +222,50 @@ trait Users {
       }
         goto_back();
 
+    }   
+    
+  }
+
+  //Reste passwoord for user 
+  public function RestePassword($page_data='')
+  {
+     $this->load->model('User_model','users');
+     $getmessage="";
+    if (!empty($this->input->post('submit'))) {        
+        $user=is($this->input->post('username'),'N/A');
+        $oldpassword=is($this->input->post('oldpassword'),'N/A');
+        $newpassword=is($this->input->post('newpassword'),'N/A');
+        $custid=is($this->input->post('custid'),'N/A');
+        $email=is($this->input->post('email'),'N/A');
+        
+        $getmessage=$this->users->set_password($custid,$user,$email,$oldpassword,$newpassword); 
+        echo $getmessage;
+        exit();     
+
     }
+    else
+    {
+      $getmessage=NULL;
+    }
+      if ($page_data['access'][$this->session->TYPE] == TRUE) {
      
-   
+
+       $this->data['page_title'] = $page_data['page_title'];
+       $this->data['where'] = 'Users';
+       $this->data['sub_menu'] = 'Rest-Password';
+       $this->data['user_type'] = $page_data['user_type'];
+       $this->data['menu'] = $page_data['menu'];
+       $this->data['result'] = $getmessage;
+        
+
+        
+       $this->render('reset_password');
+       
+     }
+     else
+     {
+      echo "404 no access";
+     }
     
   }
 

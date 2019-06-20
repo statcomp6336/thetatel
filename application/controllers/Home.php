@@ -142,5 +142,10 @@ class Home extends Base_controller {
 			redirect(base_url('Home/user_login'));
 		}
 
+	public function forgot_password($value='')
+		{
+			$this->load->view('forgot_password');
+		}	
+
 
 }
