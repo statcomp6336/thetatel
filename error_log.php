@@ -588,3 +588,32 @@
 
 [18-Jun-2019 10:04:44 Europe/Berlin] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in C:\xampp\htdocs\git\thetatel\application\models\DB_install.php on line 1536
 
+[18-Jun-2019 12:45:39 Europe/Berlin] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting function (T_FUNCTION) in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 467
+[18-Jun-2019 12:45:45 Europe/Berlin] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting function (T_FUNCTION) in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 467
+[18-Jun-2019 12:46:15 Europe/Berlin] PHP Parse error:  syntax error, unexpected '>>' (T_SR), expecting function (T_FUNCTION) in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 579
+[18-Jun-2019 14:05:09 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')', expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in C:\xampp\htdocs\git\thetatel\application\controllers\Users.php on line 56
+[18-Jun-2019 14:05:31 Europe/Berlin] PHP Parse error:  syntax error, unexpected '{' in C:\xampp\htdocs\git\thetatel\application\controllers\Users.php on line 58
+[18-Jun-2019 14:06:04 Europe/Berlin] PHP Parse error:  syntax error, unexpected '{' in C:\xampp\htdocs\git\thetatel\application\controllers\Users.php on line 58
+[18-Jun-2019 14:09:26 Europe/Berlin] PHP Fatal error:  Non-abstract method Base_model::save() must contain body in C:\xampp\htdocs\git\thetatel\application\core\Base_model.php on line 15
+[18-Jun-2019 14:09:48 Europe/Berlin] PHP Fatal error:  Class Base_model contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (Base_model::save) in C:\xampp\htdocs\git\thetatel\application\core\Base_model.php on line 118
+[18-Jun-2019 14:11:36 Europe/Berlin] PHP Fatal error:  Non-abstract method Base_model::save() must contain body in C:\xampp\htdocs\git\thetatel\application\core\Base_model.php on line 15
+[18-Jun-2019 14:11:50 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';', expecting function (T_FUNCTION) in C:\xampp\htdocs\git\thetatel\application\core\Base_model.php on line 15
+[18-Jun-2019 14:18:08 Europe/Berlin] PHP Fatal error:  Class DB_install contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (Base_model::save) in C:\xampp\htdocs\git\thetatel\application\models\DB_install.php on line 9
+[18-Jun-2019 14:18:47 Europe/Berlin] PHP Fatal error:  Non-abstract method Base_model::save() must contain body in C:\xampp\htdocs\git\thetatel\application\core\Base_model.php on line 15
+[18-Jun-2019 14:19:07 Europe/Berlin] PHP Fatal error:  Non-abstract method Base_model::save() must contain body in C:\xampp\htdocs\git\thetatel\application\core\Base_model.php on line 15
+[19-Jun-2019 09:55:58 Europe/Berlin] PHP Fatal error:  Cannot redeclare Users::EditUser() in C:\xampp\htdocs\git\thetatel\application\controllers\Users.php on line 103
+[19-Jun-2019 09:56:20 Europe/Berlin] PHP Fatal error:  Cannot redeclare Users::EditUser() in C:\xampp\htdocs\git\thetatel\application\controllers\Users.php on line 103
+[19-Jun-2019 12:22:37 Europe/Berlin] PHP Fatal error:  Call to undefined function varify_id() in C:\xampp\htdocs\git\thetatel\application\controllers\Users.php on line 134
+[19-Jun-2019 12:28:45 Europe/Berlin] PHP Fatal error:  Call to undefined method Act_model::get_acts() in C:\xampp\htdocs\git\thetatel\application\controllers\Act.php on line 20
+[19-Jun-2019 12:30:55 Europe/Berlin] PHP Fatal error:  Call to undefined method Act_model::get_actss() in C:\xampp\htdocs\git\thetatel\application\controllers\Act.php on line 20
+[19-Jun-2019 13:18:27 Europe/Berlin] PHP Parse error:  syntax error, unexpected '''' (T_CONSTANT_ENCAPSED_STRING) in C:\xampp\htdocs\git\thetatel\application\models\User_model.php on line 47
+[19-Jun-2019 13:20:26 Europe/Berlin] PHP Parse error:  syntax error, unexpected ''"'' (T_CONSTANT_ENCAPSED_STRING) in C:\xampp\htdocs\git\thetatel\application\models\User_model.php on line 47
+[19-Jun-2019 13:56:46 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\git\thetatel\application\controllers\Users.php on line 147
+[19-Jun-2019 14:01:10 Europe/Berlin] PHP Parse error:  syntax error, unexpected '"</td><td>"' (T_CONSTANT_ENCAPSED_STRING) in C:\xampp\htdocs\git\thetatel\application\controllers\Users.php on line 148
+[19-Jun-2019 14:26:37 Europe/Berlin] PHP Fatal error:  Call to a member function result() on null in C:\xampp\htdocs\git\thetatel\application\models\User_model.php on line 58
+[19-Jun-2019 14:26:43 Europe/Berlin] PHP Fatal error:  Call to a member function result() on null in C:\xampp\htdocs\git\thetatel\application\models\User_model.php on line 58
+[20-Jun-2019 07:05:51 Europe/Berlin] PHP Fatal error:  Call to a member function encode() on null in C:\xampp\htdocs\git\thetatel\application\controllers\Users.php on line 51
+[20-Jun-2019 08:48:49 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 623
+[20-Jun-2019 09:51:02 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'elseif' (T_ELSEIF) in C:\xampp\htdocs\git\thetatel\application\controllers\Users.php on line 203
+[20-Jun-2019 09:54:01 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in C:\xampp\htdocs\git\thetatel\application\controllers\Users.php on line 212
+[20-Jun-2019 09:55:12 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in C:\xampp\htdocs\git\thetatel\application\controllers\Users.php on line 213

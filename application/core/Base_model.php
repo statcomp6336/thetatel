@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * 
  */
 
-class Base_model extends CI_Model
+ class Base_model extends CI_Model
 {
 	
 	function __construct()
@@ -12,6 +12,8 @@ class Base_model extends CI_Model
 		parent::__construct();
 		$this->newdb=$this->load->database('db1',TRUE);
 	}
+	
+	
 	protected function add($table,$data)
 	{
 		if($this->newdb->insert($table,$data)){
@@ -23,9 +25,17 @@ class Base_model extends CI_Model
 		}
 
 	}
-	protected function edit($value='')
+	protected function edit($table,$where,$data)
 	{
-		# code...
+		$this->newdb->where($where);
+ 		if( $this->newdb->update($table,$data))
+	      {
+	        return TRUE;
+	      }
+	      else
+	      {
+	        return FALSE;
+	      }
 	}
 	protected function get($table)
 	{

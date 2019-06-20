@@ -31,7 +31,7 @@ class Act_model extends Base_model
 		}       	
      	return $p_code;
 	}
-	public function get_act()
+	public function get_actss()
 	{
 		return $this->db->group_by('act')->get('act_particular')->result();
 	}

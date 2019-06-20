@@ -17,7 +17,7 @@ trait Act {
 
 			 // act detatails data
 			  $this->data['act_data']=array('act_code'=> $this->Act_model->get_act_code(),
-			  								'data'    => $this->Act_model->get_acts()
+			  								'data'    => $this->Act_model->get_actss()
 											);
 			 $this->render('create_act');
 		 }

@@ -1566,6 +1566,65 @@ class DB_install extends Base_model
 		$this->dbforge->drop_table('flow_of_timeline');
 	}
 
+	public function CreateTable_users()
+	{
+		$fields = array(
+			"srno"		=> array('type' =>'INT',
+		 						'auto_increment' => TRUE			                    
+	    				), 			 
+			"custid"		=>array('type' =>'BIGINT',
+								'constraint' => '11'), 
+			"email"			=>array('type' =>'TEXT','unique' => TRUE), 
+			"username"		=>array('type' =>'TEXT','unique' => TRUE), 
+			"password"		=>array('type' =>'TEXT'), 
+			"access_code"	=>array('type' =>'INT',
+								'constraint' => '3'), 
+			"user_type"		=>array('type' =>'INT',
+								'constraint' => '3'), 
+			"entity_name"	=>array('type' =>'VARCHAR',
+								'constraint' => '300'),			
+			
+			'date TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		        );
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('users',TRUE);
+	}
+
+	public function DropTable_users()
+	{
+		$this->dbforge->drop_table('users');
+	}
+
+	public function CreateTable_add_companies_for_users()
+	{
+		$fields = array(
+			"srno"		=> array('type' =>'INT',
+		 						'auto_increment' => TRUE			                    
+	    				), 			 
+			"spgid"		=>array('type' =>'BIGINT',
+								'constraint' => '11'),
+			"userid"		=>array('type' =>'BIGINT',
+								'constraint' => '11'), 					 
+
+			"custid"		=>array('type' =>'BIGINT',
+								'constraint' => '11'),		
+			"username"		=>array('type' =>'TEXT',),
+			"entity_name"	=>array('type' =>'VARCHAR',
+								'constraint' => '300'),			
+			
+			'date TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		        );
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('add_companies_for_users',TRUE);
+	}
+
+	public function DropTable_add_companies_for_users()
+	{
+		$this->dbforge->drop_table('add_companies_for_users');
+	}
+
 
 
 
