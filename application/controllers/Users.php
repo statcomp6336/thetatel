@@ -44,12 +44,14 @@ trait Users {
   {
     
     $this->load->model('User_model','users');
+     $this->load->helper('Password');
+    $hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
     if (!empty($this->input->post('spg_user'))) {
 
       $saveUser = array("custid"    => is($this->input->post('custid'),'NULL'), 
                         "email"     => is($this->input->post('mailid'),'NULL'), 
                         "username"  => is($this->encrypt->encode($this->input->post('username')),'NULL'), 
-                        "password"  => is($this->encrypt->encode($this->input->post('password')),'NULL'), 
+                        "password"  => is($hasher->HashPassword($this->input->post('password')),'NULL'), 
                         "access_code"=> is($this->input->post('code'),'NULL'), 
                         "user_type" => is($this->input->post('type'),'NULL'), 
                         "entity_name"=> is($this->input->post('cust_name'),'NULL')      
@@ -60,7 +62,7 @@ trait Users {
       $saveUser = array("custid"    => is($this->input->post('custid'),'NULL'), 
                         "email"     => is($this->input->post('mailid'),'NULL'), 
                         "username"  => is($this->encrypt->encode($this->input->post('username')),'NULL'), 
-                        "password"  => is($this->encrypt->encode($this->input->post('password')),'NULL'), 
+                        "password"  => is($hasher->HashPassword($this->input->post('password')),'NULL'), 
                         "access_code"=> is($this->input->post('code'),'NULL'), 
                         "user_type" => is($this->input->post('type'),'NULL'), 
                         "entity_name"=> is($this->input->post('cust_name'),'NULL')      
@@ -84,7 +86,7 @@ trait Users {
       $saveUser = array("custid"    => is($this->input->post('custid'),'NULL'), 
                         "email"     => is($this->input->post('mailid'),'NULL'), 
                         "username"  => is($this->encrypt->encode($this->input->post('username')),'NULL'), 
-                        "password"  => is($this->encrypt->encode($this->input->post('password')),'NULL'), 
+                        // "password"  => is($hasher->HashPassword($this->input->post('password')),'NULL'), 
                         "access_code"=> is($this->input->post('code'),'NULL'), 
                         "user_type" => is($this->input->post('type'),'NULL'), 
                         "entity_name"=> is($this->input->post('cust_name'),'NULL')      
