@@ -623,6 +623,12 @@ class Spg extends Base_controller {
 	{
 		$this->RestePassword($this->page);//this funtion store in user controller
 	}
+	//Set Access for Commany
+	public function company_access($value='')
+	{
+		$this->SetAccess($this->page);//this funtion store in user controller
+	}
+
 
 
 

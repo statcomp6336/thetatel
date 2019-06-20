@@ -130,6 +130,28 @@ class User_model extends Base_model
 
 
     }
+    /* set access for commany */
+    public function set_access($id,$access)
+    { 
+        // $message='';
+
+        if($access == 0)
+        {
+        $message = "The User is suspended to access this service";
+        }
+        elseif($access == 1)
+        {
+        $message = "The User access is restored";
+        }
+        if ($this->edit('users',array('custid'=>$id),array('access_code'=>$access))) {
+           return $message;
+        }
+        else
+        {
+             return $message="NOT Update";
+        }
+
+    }
 
 
 
