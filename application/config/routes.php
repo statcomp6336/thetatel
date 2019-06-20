@@ -64,7 +64,7 @@ $route['spg/download/pfnewjoin/(:num)/(:num)']= 'spg/Spg/download_pfnewjoinee';
 
 /*export PF Summary report start*/
 $route['spg/export/pfsummary'] = 'spg/Spg/show_pf_summary';
-//$route['spg/download/pfnewjoin/(:num)/(:num)']= 'spg/Spg/download_pfnewjoinee';
+$route['spg/download/pfsummary/(:num)/(:num)']= 'spg/Spg/download_pfsummary';
 
 /*export esic new joinee report start*/
 $route['spg/export/esicnewjoinee'] = 'spg/Spg/show_esic_newjoinee';
@@ -116,7 +116,13 @@ $route['spg/export/salarydetails'] = 'spg/Spg/show_salary_details';
 
 /* work with users */
 $route['spg/users']	= 'spg/Spg/show_user_list';//display salary file upload form
+$route['spg/user/save']	= 'spg/Spg/create_user';//Save the user detailes in db
+$route['spg/user/update']	= 'spg/Spg/edit_user';//Save the user detailes in db
+$route['spg/user/remove/(:any)']	= 'spg/Spg/remove_user';//Save the user detailes in db
 
+$route['spg/user/remove-companys/(:any)']	= 'spg/Spg/user_remove_companys';//Save the user detailes in db
+$route['spg/user/get-companys/(:any)']	= 'spg/Spg/user_get_companys';//Save the user detailes in db
+$route['spg/user/add-remove-comany']	= 'spg/Spg/user_AddRemove_companys';//Save the user detailes in db
 
 
 /* work with users */

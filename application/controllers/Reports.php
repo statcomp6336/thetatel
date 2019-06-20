@@ -404,6 +404,17 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 		}	
 	 }
 
+	 /* download pf new joinee report in excel formate*/
+	 public function DownloadPFnewjoinee()
+	 {
+	 	$this->load->model('Export');
+	 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+	 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
+	 	// echo $spg;
+	 	// exit();
+	 	$this->Export->PFnewjoinee($spg,$cust);
+	 }
+
 	 /* show PF summary report companiwise */
 	 public function ShowPFSummary($page_data = '')
 	 {
@@ -534,6 +545,17 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 			put_msg('Sorry custid and user are invalid');
 	 				goto_back();
 	 		}	
+	 }
+
+	 /* download PF Summary report in excel formate*/
+	 public function DownloadPFSummary()
+	 {
+	 	$this->load->model('Export');
+	 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+	 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
+	 	// echo $spg;
+	 	// exit();
+	 	$this->Export->PFSummary($spg,$cust);
 	 }
 
 	 /* show Esic newjoinee report companiwise */
@@ -1078,16 +1100,16 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 		}	
 	 }
 
-	 /* download esic Template report in excel formate*/
-	 // public function DownloadESICSummary()
-	 // {
-	 // 	$this->load->model('Export');
-	 // 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
-	 // 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
-	 // 	// echo $spg;
-	 // 	// exit();
-	 // 	$this->Export->ESICSummary($spg,$cust);
-	 // }
+	 /* download esic Summary report in excel formate*/
+	 public function DownloadESICSummary()
+	 {
+	 	$this->load->model('Export');
+	 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+	 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
+	 	// echo $spg;
+	 	// exit();
+	 	$this->Export->ESICSummary($spg,$cust);
+	 }
 
 	 /* show compliance report companiwise */
 	 public function ShowCompliance($page_data = '')

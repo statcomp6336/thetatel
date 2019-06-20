@@ -116,6 +116,33 @@ if (! function_exists('is_last_month')) {
 	} 
 }
 // ------------------------------------------------------------------------
+if (! function_exists('hash_id')) {
+	
+	function hash_id($id)
+	{	  	
+	    $CI =& get_instance();
+	    $CI->load->library('encrypt');
+	    $enc_id=$CI->encrypt->encode($id);
+		$enc_id=str_replace(array('+', '/', '='), array('-', '_', '~'), $enc_id);
+		return $enc_id;
+		
+	} 
+}
+// ------------------------------------------------------------------------
+if (! function_exists('verify_id')) {
+	
+	function verify_id($id)
+	{	  	
+	    $CI =& get_instance();
+	    $CI->load->library('encrypt');
+	    $dec_id=str_replace(array('-', '_', '~'), array('+', '/', '='), $id);
+		$dec_id=$CI->encrypt->decode($dec_id);
+		return $dec_id;
+		
+	} 
+}
+
+// ------------------------------------------------------------------------
 
 
 ?>

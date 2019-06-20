@@ -96,6 +96,8 @@ class Spg extends Base_controller {
 		$this->DB_install->CreateTable_compliance_working_priore();
 		$this->DB_install->CreateTable_completed_compliance();
 		$this->DB_install->CreateTable_flow_of_timeline();
+		$this->DB_install->CreateTable_users();
+		$this->DB_install->CreateTable_add_companies_for_users();
 
 	}
 	public function DESTROY_SYSTEM()
@@ -116,6 +118,8 @@ class Spg extends Base_controller {
 		$this->DB_install->DropTable_compliance_working_prior();
 		$this->DB_install->DropTable_completed_compliance();
 		$this->DB_install->DropTable_flow_of_timeline();
+		$this->DB_install->DropTable_users();
+		$this->DB_install->DropTable_add_companies_for_users();
 
 
 	}
@@ -478,6 +482,10 @@ class Spg extends Base_controller {
 	{
 		$this->ShowPFSummary($this->page);
 	}
+	public function download_pfsummary($value='')
+	{
+		$this->DownloadPFSummary();
+	}
 
 	/*working with esic reports*/
 	public function show_esic_newjoinee()
@@ -570,7 +578,7 @@ class Spg extends Base_controller {
 	// }
 
 	
-	
+
 
 	public function flow_of_work($value='')
 	{
@@ -593,6 +601,50 @@ class Spg extends Base_controller {
 					  $box .="</ul></div>";
 					  echo $box;
 	}
+
+	/* work with user createtion  */
+	public function create_user($value='')
+	{
+		$this->CreateUser('spg');//this funtion store in user controller
+	}
+	//update user log
+	public function edit_user($value='')
+	{
+		$this->EditUser('spg');//this funtion store in user controller
+	}
+	//remove user log
+	public function remove_user($value='')
+	{
+		$this->RemoveUser('spg');//this funtion store in user controller
+	}
+	//remove user log
+	public function user_get_companys($value='')
+	{
+		$this->ShowAddCompanysToUser('spg');//this funtion store in user controller
+	}
+	//
+	public function user_remove_companys($value='')
+	{
+		$this->ShowRemoveCompanysToUser('spg');//this funtion store in user controller
+	}
+	//
+	public function user_AddRemove_companys($value='')
+	{
+		$this->attach_companies('spg');//this funtion store in user controller
+	}
+	public function kaypn($value='')
+	{
+		 $this->load->helper('Password');
+                $hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
+                // if (!$hasher->CheckPassword($password, $user->password)) {
+                //     // Password failed, return
+                //     return false;
+                // }
+                echo  $hasher->HashPassword('hitler');
+                var_dump($hasher->CheckPassword('hitler', $hasher->HashPassword('hitler')));
+
+	}
+
 
 
 

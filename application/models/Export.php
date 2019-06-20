@@ -66,6 +66,107 @@ class Export extends Base_model
 		$obj_writer->save('php://output');
 	}
 
+	/* export PF newjoinee report */
+	public function PFnewjoinee($spgid,$custid)
+	{
+		$obj = new PHPExcel();
+		$obj->setActiveSheetIndex(0);		 	 				
+
+
+		$table_cols = array("Custid","Company name","Name","UAN No.(if any)","DOB as per Aadhar","Gender","Fathers name","Spouse Name","Marital Status","Mobile NO","Email ID","Date of Joining","Bank Account no","IFSC code no","Name as per Bank A/c","PAN No","Name as per PAN card","AADHAAR","Name as per Aadhar card");
+		$col= 0;
+		foreach ($table_cols as $k) {
+			$obj->getActiveSheet()->setCellValueByColumnAndRow($col,1,$k);
+			$col++;
+		}
+
+		$emp_data=$this->db->select("custid,entity_name,emp_name,uan_no,dobadhr,gender,fath_hus_name,if(fath_hus_name!=NULL,`fath_hus_name`,'NIL')as spouse,marital_status,mob,email,join_date,bank_ac,ifsc,nameinbank,pan,namepan,adhaar,nameadhr")
+							  ->from('employee_master_new')							  
+							  ->where(array('spgid'=>$spgid,'custid' => $custid,'uan_no'=>'0','uan_no'=>' '))
+							  ->get()
+							  ->result();	
+							 
+		$start_row = 2;
+
+		foreach ($emp_data as $key) {
+
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(0,$start_row,$key->custid);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(1,$start_row,$key->entity_name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(2,$start_row,$key->emp_name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(3,$start_row,$key->uan_no);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(4,$start_row,$key->dobadhr);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(5,$start_row,$key->gender);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(6,$start_row,$key->fath_hus_name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(7,$start_row,$key->spouse);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(8,$start_row,$key->marital_status);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(9,$start_row,$key->mob);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(10,$start_row,$key->email);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(11,$start_row,$key->join_date);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(12,$start_row,$key->bank_ac);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(13,$start_row,$key->ifsc);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(14,$start_row,$key->nameinbank);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(15,$start_row,$key->pan);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(16,$start_row,$key->namepan);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(17,$start_row,$key->adhaar);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(18,$start_row,$key->nameadhr);
+			
+			$start_row++;
+			$comp_name=$key->entity_name;
+			//echo $comp_name;
+		}
+
+		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
+	 	header("Content-Type: application/vnd.ms-excel");
+	  header('Content-Disposition: attachment;filename="'.$comp_name.'PFnewJoinee.xlsx"');
+		$obj_writer->save('php://output');
+	}
+
+	/* export PF Summary report */
+	public function PFSummary($spgid,$custid)
+	{
+		$obj = new PHPExcel();
+		$obj->setActiveSheetIndex(0);		 	 				
+
+
+		$table_cols = array("NOE","Gross Salary","PF Sal","EPS Sal","EDLI Sal","PF","EPS","Co PF","Admin charges","Other Charges","Total");
+		$col= 0;
+		foreach ($table_cols as $k) {
+			$obj->getActiveSheet()->setCellValueByColumnAndRow($col,1,$k);
+			$col++;
+		}
+
+		$emp_data=$this->db->select("entity_name,count(member_name) as name,sum(gross_wages) as gross,sum(EPF_wages) as epfwages,sum(EPS_wages) as epswages,sum(EDLI_wages) as edliwages,sum(EPF_contri_remitted) as epfcontri,sum(EPS_contri_remitted) as epscontri,sum(EPS_EPF_diff) as diff,CAST(((sum(EPF_wages)*0.5)/100) as UNSIGNED)as admin,CAST(((sum(EDLI_wages)*0.5)/100) as UNSIGNED) as other,CAST(((sum(EPF_contri_remitted))+(sum(EPS_contri_remitted))+(sum(EPS_EPF_diff))+(((sum(EPF_wages)*0.5)/100))+(((sum(EDLI_wages)*0.5)/100))) as UNSIGNED) as total")
+							  ->from('pf_template')							  
+							  ->where(array('spgid'=>$spgid,'custid' => $custid,'UANno!='=>'0'))
+							  ->get()
+							  ->result();	
+							 
+		$start_row = 2;
+		foreach ($emp_data as $key) {
+
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(0,$start_row,$key->name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(1,$start_row,$key->gross);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(2,$start_row,$key->epfwages);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(3,$start_row,$key->epswages);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(4,$start_row,$key->edliwages);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(5,$start_row,$key->epfcontri);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(6,$start_row,$key->epscontri);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(7,$start_row,$key->diff);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(8,$start_row,$key->admin);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(9,$start_row,$key->other);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(10,$start_row,$key->total);
+			
+			$start_row++;
+			$comp_name=$key->entity_name;
+			//echo $comp_name;
+		}
+
+		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
+	 	header("Content-Type: application/vnd.ms-excel");
+	  header('Content-Disposition: attachment;filename="'.$comp_name.'PFSummary.xlsx"');
+		$obj_writer->save('php://output');
+	}
+
 	/* export ESIC newjoinee report */
 	public function ESICnewjoinee($spgid,$custid)
 	{
@@ -117,7 +218,7 @@ class Export extends Base_model
 
 		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
 	 	header("Content-Type: application/vnd.ms-excel");
-	  header('Content-Disposition: attachment;filename="'.$comp_name.'ESICnewJoineeReport.xlsx"');
+	  header('Content-Disposition: attachment;filename="'.$comp_name.'ESICnewJoinee.xlsx"');
 		$obj_writer->save('php://output');
 	}
 
@@ -169,7 +270,7 @@ class Export extends Base_model
 
 		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
 	 	header("Content-Type: application/vnd.ms-excel");
-	  header('Content-Disposition: attachment;filename="ESICTempateReport.xlsx"');
+	  header('Content-Disposition: attachment;filename="ESICTempate.xlsx"');
 		$obj_writer->save('php://output');
 	}
 
@@ -240,10 +341,55 @@ class Export extends Base_model
 
 		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
 	 	header("Content-Type: application/vnd.ms-excel");
-	  header('Content-Disposition: attachment;filename="ESICTemplateEmpIDReport.xlsx"');
+	  header('Content-Disposition: attachment;filename="ESICTemplateEmpID.xlsx"');
 		$obj_writer->save('php://output');
 	}
 
+	/* export ESIC Summary report */
+	public function ESICSummary($spgid,$custid)
+	{
+		$obj = new PHPExcel();
+		$obj->setActiveSheetIndex(0);		 	 				
+
+		$table_cols = array("Total IP Contribution","Total Employer Contribution","Grand Total Employee & Employer Contribution","Total Central Government Contribution","Total Wages");
+		$col= 0;
+		foreach ($table_cols as $k) {
+			$obj->getActiveSheet()->setCellValueByColumnAndRow($col,1,$k);
+			$col++;
+		}
+
+		$emp_data=$this->db->select("a.entity_name,CAST(sum((a.monthly_wages*(1.75/100))) as UNSIGNED) as eps_contri,CAST(sum((a.monthly_wages)*4.75/100) as UNSIGNED) as total_contri,CAST(((sum((a.monthly_wages*(1.75/100))))+(sum((a.monthly_wages)*4.75/100))) as UNSIGNED) as grand,if(monthly_wages!=NULL,`monthly_wages`,'-') as tcgc,sum(a.monthly_wages) as gross_wages")
+						->from('esic_template a')
+						->join('employee_master_new b', 'a.empid=b.emp_id AND a.custid=b.custid')
+						
+						->where(array(	'a.spgid' => $spgid,
+										'a.custid' => $custid,
+										//'a.month'	 => $month,
+										//'a.year'	 => $year,
+										'b.esic_deduct'=>'Yes'   ))					  
+							  //->where(array('spgid'=>$spgid,'custid' => $custid,'UANno!='=>'0'))
+							  ->get()
+							  ->result();	
+							 
+		$start_row = 2;
+		foreach ($emp_data as $key) {
+
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(0,$start_row,$key->eps_contri);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(1,$start_row,$key->total_contri);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(2,$start_row,$key->grand);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(3,$start_row,$key->tcgc);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(4,$start_row,$key->gross_wages);
+			
+			$start_row++;
+			$comp_name=$key->entity_name;
+			//echo $comp_name;
+		}
+
+		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
+	 	header("Content-Type: application/vnd.ms-excel");
+	  header('Content-Disposition: attachment;filename="'.$comp_name.'PFSummary.xlsx"');
+		$obj_writer->save('php://output');
+	}
 
 	/* export Compliance report */
 	public function compliance($spgid,$custid)
