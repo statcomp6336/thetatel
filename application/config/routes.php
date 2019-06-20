@@ -66,9 +66,13 @@ $route['spg/download/esicnewjoin/(:num)/(:num)']= 'spg/Spg/download_esicnewjoine
 $route['spg/export/esictemplate'] = 'spg/Spg/show_esic_template';
 $route['spg/download/esictemplate/(:num)/(:num)']= 'spg/Spg/download_esic_template';
 
-/*export esic Template report start*/
+/*export esic Template empid report start*/
 $route['spg/export/esictemplateempid'] = 'spg/Spg/show_esic_template_empid';
 $route['spg/download/esictemplateempid/(:num)/(:num)']= 'spg/Spg/download_esic_template_empid';
+
+/*export esic Summary report start*/
+$route['spg/export/esicsummary'] = 'spg/Spg/show_esic_summary';
+$route['spg/download/esicsummary/(:num)/(:num)']= 'spg/Spg/download_esic_summary';
 
 /*export compliance report start*/
 $route['spg/export/compliance'] = 'spg/Spg/show_compliance';

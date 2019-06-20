@@ -588,6 +588,7 @@
 
 [18-Jun-2019 10:04:44 Europe/Berlin] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in C:\xampp\htdocs\git\thetatel\application\models\DB_install.php on line 1536
 
+<<<<<<< HEAD
 [18-Jun-2019 12:45:39 Europe/Berlin] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting function (T_FUNCTION) in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 467
 [18-Jun-2019 12:45:45 Europe/Berlin] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting function (T_FUNCTION) in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 467
 [18-Jun-2019 12:46:15 Europe/Berlin] PHP Parse error:  syntax error, unexpected '>>' (T_SR), expecting function (T_FUNCTION) in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 579
@@ -617,3 +618,21 @@
 [20-Jun-2019 09:51:02 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'elseif' (T_ELSEIF) in C:\xampp\htdocs\git\thetatel\application\controllers\Users.php on line 203
 [20-Jun-2019 09:54:01 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in C:\xampp\htdocs\git\thetatel\application\controllers\Users.php on line 212
 [20-Jun-2019 09:55:12 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in C:\xampp\htdocs\git\thetatel\application\controllers\Users.php on line 213
+=======
+[18-Jun-2019 15:06:24 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting function (T_FUNCTION) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\spg\Spg.php on line 467
+[18-Jun-2019 15:07:05 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\spg\Spg.php on line 556
+[18-Jun-2019 15:31:15 Asia/Kolkata] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\newstatcomp\thetatel\system\database\drivers\mysqli\mysqli_driver.php on line 307
+[18-Jun-2019 17:10:51 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 195
+[18-Jun-2019 17:49:13 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Reports::DownloadESICTemplate() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 864
+[18-Jun-2019 17:49:57 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Report_model::get_newEsicSummary() in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 973
+[18-Jun-2019 17:49:59 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Report_model::get_newEsicSummary() in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 973
+[18-Jun-2019 17:50:04 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Report_model::get_newEsicSummary() in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 973
+[18-Jun-2019 17:50:05 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Report_model::get_newEsicSummary() in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 973
+[18-Jun-2019 17:50:31 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Report_model::get_newEsicSummary() in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 973
+[18-Jun-2019 17:51:37 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Report_model::get_newEsicSummary() in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 973
+[18-Jun-2019 17:52:14 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Report_model::get_newEsicSummary() in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 973
+[18-Jun-2019 17:52:15 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Report_model::get_newEsicSummary() in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 973
+[18-Jun-2019 17:53:10 Asia/Kolkata] PHP Fatal error:  Call to undefined method Report_model::get_oldEsicSummary() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 832
+[18-Jun-2019 18:09:46 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 978
+[18-Jun-2019 18:13:38 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'as' (T_AS) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 978
+>>>>>>> 700dde1b16dd019d435893b3c08709eeecf193d9

@@ -66,54 +66,6 @@ class Export extends Base_model
 		$obj_writer->save('php://output');
 	}
 
-	/* export esic template report companywise */
-	public function ESICTemplate($spgid,$custid)
-	{
-		$obj = new PHPExcel();
-		$obj->setActiveSheetIndex(0);		 	 				
-
-		$table_cols = array("custid","entity_name","empid","esicno","name","no_of_days","monthly_wages","reason_code","last_working_day","month","year","flag","created_at");
-		$col= 0;
-		foreach ($table_cols as $k) {
-			$obj->getActiveSheet()->setCellValueByColumnAndRow($col,1,$k);
-			$col++;
-		}
-		$emp_data=$this->newdb->select('*')
-							  ->from('esic_template')							  
-							  ->where(array('spgid'=>$spgid,'custid' => $custid))
-							  ->group_by('empid')
-							  ->get()
-							  ->result();	
-		$start_row = 2;
-
-		foreach ($emp_data as $key) {
-
-			
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(0,$start_row,$key->custid);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(1,$start_row,$key->entity_name);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(2,$start_row,$key->empid);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(3,$start_row,$key->esicno);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(4,$start_row,$key->name);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(5,$start_row,$key->no_of_days);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(6,$start_row,$key->monthly_wages);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(7,$start_row,$key->reason_code);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(8,$start_row,$key->last_working_day);
-		
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(9,$start_row,$key->month);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(10,$start_row,$key->year);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(11,$start_row,$key->flag);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(12,$start_row,$key->created_at);
-			
-			$start_row++;
-			$comp_name=$key->entity_name;
-		}
-
-		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
-	 	header("Content-Type: application/vnd.ms-excel");
-	  header('Content-Disposition: attachment;filename="'.$comp_name.'ESICReport.xlsx"');
-		$obj_writer->save('php://output');
-	}
-
 	/* export ESIC newjoinee report */
 	public function ESICnewjoinee($spgid,$custid)
 	{
@@ -168,6 +120,130 @@ class Export extends Base_model
 	  header('Content-Disposition: attachment;filename="'.$comp_name.'ESICnewJoineeReport.xlsx"');
 		$obj_writer->save('php://output');
 	}
+
+	/* export esic template report companywise */
+	public function ESICTemplate($spgid,$custid)
+	{
+		$obj = new PHPExcel();
+		$obj->setActiveSheetIndex(0);		 	 				
+
+		$table_cols = array("custid","entity_name","Emp ID","IP No","IP Name","No of days for which wages paid","Total Monthly Wages","Reasons code for zero working days","Last working days","Month","Year");
+		$col= 0;
+		foreach ($table_cols as $k) {
+			$obj->getActiveSheet()->setCellValueByColumnAndRow($col,1,$k);
+			$col++;
+		}
+		$emp_data=$this->db->select('*')
+							  ->from('esic_template_history')							  
+							  ->where(array('spgid'=>$spgid,'custid' => $custid))
+							  // ->where(array(	'spgid' => $spgid,
+									// 	'custid' => $custid,
+									// 	'month'	 => $month,
+									// 	'year'	 => $year   ))
+							  //->group_by('empid')
+							  ->get()
+							  ->result();	
+		$start_row = 2;
+
+		foreach ($emp_data as $key) {
+
+			//"esicno,name,no_of_days,monthly_wages,reason_code,last_working_day"
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(0,$start_row,$key->custid);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(1,$start_row,$key->entity_name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(2,$start_row,$key->empid);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(3,$start_row,$key->esicno);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(4,$start_row,$key->name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(5,$start_row,$key->no_of_days);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(6,$start_row,$key->monthly_wages);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(7,$start_row,$key->reason_code);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(8,$start_row,$key->last_working_day);
+		
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(9,$start_row,$key->month);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(10,$start_row,$key->year);
+			//$obj->getActiveSheet()->setCellValueByColumnAndRow(11,$start_row,$key->flag);
+			//$obj->getActiveSheet()->setCellValueByColumnAndRow(12,$start_row,$key->created_at);
+			
+			$start_row++;
+			//$comp_name=$key->entity_name;
+		}
+
+		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
+	 	header("Content-Type: application/vnd.ms-excel");
+	  header('Content-Disposition: attachment;filename="ESICTempateReport.xlsx"');
+		$obj_writer->save('php://output');
+	}
+
+	/* export ESIC Template EmPID Companywise report in Excel formate*/
+	public function ESICTemplateEmpid($spgid,$custid)
+	{
+		$obj = new PHPExcel();
+		$obj->setActiveSheetIndex(0);		 	 				
+
+		$table_cols = array("custid","entity_name","IP No","EMP ID","IP Name","No of days for which wages paid","Total Monthly Wages","Employee Contribution","Employer Contribution","Reasons code for zero working days","Last working days","Date of Join","Date of Birth","Vender ID","Contractor Name","Location","Month","Year");
+		$col= 0;
+		foreach ($table_cols as $k) {
+			$obj->getActiveSheet()->setCellValueByColumnAndRow($col,1,$k);
+			$col++;
+		}
+
+
+		$emp_data=$this->db->select('a.custid,a.entity_name,a.esicno,a.empid,a.name,a.no_of_days,a.monthly_wages,CAST(((a.monthly_wages*1.75)/100) as UNSIGNED) as emp_contri,CAST(((a.monthly_wages*4.75)/100) as UNSIGNED) as empr_contri,a.reason_code,a.last_working_day,b.join_date,b.birth_date,b.vendor_id,b.contractor_name,b.location,a.month,a.year')
+							  ->from('esic_template_history a')	
+							  ->join('employee_master_new b', 'a.empid=b.emp_id AND a.custid=b.custid')
+				//if($location=="ALL")
+				//{
+				->where(array(	'a.spgid'    => $spgid,
+											'a.custid'   => $custid ))
+										//	'a.month'	 => $month,
+										//	'a.year'	 => $year   ));
+				//}
+				//else
+				//{
+				//$this->db->where(array(	'a.spgid'    => $spgid,
+				//							'a.custid'   => $custid,
+				//							'a.month'	 => $month,
+				//							'a.year'	 => $year,
+				//							'b.location' => $location  ));
+				//}						  
+							  //->where(array('spgid'=>$spgid,'custid' => $custid))
+							  //->group_by('empid')
+							  ->get()
+							  ->result();	
+		$start_row = 2;
+
+		foreach ($emp_data as $key) {
+
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(0,$start_row,$key->custid);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(1,$start_row,$key->entity_name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(2,$start_row,$key->esicno);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(3,$start_row,$key->empid);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(4,$start_row,$key->name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(5,$start_row,$key->no_of_days);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(6,$start_row,$key->monthly_wages);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(7,$start_row,$key->emp_contri);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(8,$start_row,$key->empr_contri);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(9,$start_row,$key->reason_code);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(10,$start_row,$key->last_working_day);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(11,$start_row,$key->join_date);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(12,$start_row,$key->birth_date);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(13,$start_row,$key->vendor_id);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(14,$start_row,$key->contractor_name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(15,$start_row,$key->location);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(16,$start_row,$key->month);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(17,$start_row,$key->year);
+			//$obj->getActiveSheet()->setCellValueByColumnAndRow(16,$start_row,$key->flag);
+			//$obj->getActiveSheet()->setCellValueByColumnAndRow(17,$start_row,$key->created_at);
+			
+			$start_row++;
+			//$comp_name=$key->entity_name;
+		}
+
+		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
+	 	header("Content-Type: application/vnd.ms-excel");
+	  header('Content-Disposition: attachment;filename="ESICTemplateEmpIDReport.xlsx"');
+		$obj_writer->save('php://output');
+	}
+
 
 	/* export Compliance report */
 	public function compliance($spgid,$custid)

@@ -498,6 +498,14 @@ class Spg extends Base_controller {
 	{
 		$this->DownloadESICTemplateEmpID();
 	}
+	public function show_esic_summary()
+	{
+		$this->ShowEsicSummary($this->page);
+	}
+	public function download_esic_summary($value='')
+	{
+		$this->DownloadESICSummary();
+	}
 
 
 	/*working with compliance report*/
@@ -556,6 +564,7 @@ class Spg extends Base_controller {
 	// }
 
 	
+
 
 	public function flow_of_work($value='')
 	{
@@ -621,6 +630,7 @@ class Spg extends Base_controller {
                 var_dump($hasher->CheckPassword('hitler', $hasher->HashPassword('hitler')));
 
 	}
+
 
 
 
