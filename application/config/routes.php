@@ -58,6 +58,14 @@ $route['spg/download/pf/(:num)/(:num)'] = 'spg/Spg/download_pf';
 /* export missing uan no*/
 $route['spg/export/missing-uan'] = 'spg/Spg/show_missing_uan';
 
+/*export PF new joinee report start*/
+$route['spg/export/pfnewjoinee'] = 'spg/Spg/show_pf_newjoinee';
+$route['spg/download/pfnewjoin/(:num)/(:num)']= 'spg/Spg/download_pfnewjoinee';
+
+/*export PF Summary report start*/
+$route['spg/export/pfsummary'] = 'spg/Spg/show_pf_summary';
+$route['spg/download/pfsummary/(:num)/(:num)']= 'spg/Spg/download_pfsummary';
+
 /*export esic new joinee report start*/
 $route['spg/export/esicnewjoinee'] = 'spg/Spg/show_esic_newjoinee';
 $route['spg/download/esicnewjoin/(:num)/(:num)']= 'spg/Spg/download_esicnewjoinee';

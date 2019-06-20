@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$config['base_url'] = 'http://localhost/git/thetatel';//'http://localhost/statcomnew/thetatel/';
+$config['base_url'] = 'http://localhost/newstatcomp/thetatel';//'http://localhost/statcomnew/thetatel/';
 
 
 /*

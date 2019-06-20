@@ -319,6 +319,245 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 				goto_back();
 	 		}	 	
 	 }
+
+	 /* show PF newjoinee report companiwise */
+	 Public function ShowPFNewJoinee($page_data = '')
+	 {
+	 	if (!empty($this->input->post('submit'))) 
+	 	{
+			$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+			$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+
+		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		{
+		 		    $this->data['page_title'] = $page_data['page_title'];
+			        $this->data['where'] = 'Reports';
+			        $this->data['sub_menu'] = 'PF New Joinee';
+			        $this->data['user_type'] = $page_data['user_type'];
+			        $this->data['menu'] = $page_data['menu'];
+			        /* table data */
+			 		$this->data['tableHeading'] = "PF New Joinee Report";	// colomns name
+			 		$this->data['tableTools'] = array(
+			 										0 =>array(
+			 											'link'=> base_url(''.$page_data['user_type'].'/download/pfnewjoin/'.$spgid.'/'.$custid.''),
+														'button' =>'Download',
+														'class'	 =>'btn-success'
+			 												)
+			 									);	
+			 		// colomns name
+			 		$this->data['tableCol'] = array("Custid","Company name","Name","UAN No.(if any)","DOB as per Aadhar","Gender","Fathers name","Spouse Name","Marital Status","Mobile NO","Email ID","Date of Joining","Bank Account no","IFSC code no","Name as per Bank A/c","PAN No","Name as per PAN card","AADHAAR","Name as per Aadhar card");
+			 		//data	
+			 		$this->data['tableData']=$this->GenratePfnewjoinee();//
+			 		// $this->data['tableButtons']	= array();
+			 	
+		 		 	$this->render('export_table');
+			     }
+			     else
+			     {
+			      echo "404 no access";
+			     }
+	 		 	
+	 	}
+	 	else
+	 	{
+		 	if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 	{
+			    $this->load->model('Report_model','report');
+			    $this->load->library("pagination");
+
+		       $this->data['page_title'] = $page_data['page_title'];
+		       $this->data['where'] = 'Reports';
+		       $this->data['sub_menu'] = 'PF New Joinee';
+		       $this->data['user_type'] = $page_data['user_type'];
+		       $this->data['menu'] = $page_data['menu'];
+		    
+		      
+		       $this->render('export_pfnewjoinee');
+		     }
+		     else
+		     {
+		      echo "404 no access";
+		     }
+		 }
+	 }
+
+	 /* genrate pf new joinee report with validation */
+	 public function GenratePfnewjoinee($value='')
+	 {
+	 	$this->load->model('Report_model','report');
+	 	
+	 		$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+	 		$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+
+	 		if ($custid !== NULL && $spgid !== NULL) 
+	 		{
+				$result=$this->report->get_pfnewjoinee($spgid,$custid);
+				return $result;
+				//print_r($result);
+				// var_dump($result); 
+				// exit();					
+	 		}
+ 			else
+ 			{
+	 			put_msg('Sorry custid and user are invalid');
+	 				goto_back();
+	 		}	
+	 }
+
+	 /* download pf new joinee report in excel formate*/
+	 public function DownloadPFnewjoinee()
+	 {
+	 	$this->load->model('Export');
+	 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+	 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
+	 	// echo $spg;
+	 	// exit();
+	 	$this->Export->PFnewjoinee($spg,$cust);
+	 }
+
+	 /* show PF summary report companiwise */
+	 public function ShowPFSummary($page_data = '')
+	 {
+	 	if (!empty($this->input->post('submit'))) 
+	 	{
+			$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+			$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+			$month 		=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
+			$year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
+			//$location 	=!empty($this->input->post('location'))?$this->input->post('location'):NULL;
+
+		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		{
+		 		    $this->data['page_title'] = $page_data['page_title'];
+			        $this->data['where'] = 'Reports';
+			        $this->data['sub_menu'] = 'PF Summmary';
+			        $this->data['user_type'] = $page_data['user_type'];
+			        $this->data['menu'] = $page_data['menu'];
+			        /* table data */
+			 		$this->data['tableHeading'] = "PF Summary Report";	// colomns name
+			 		$this->data['tableTools'] = array(
+			 										0 =>array(
+			 											//'link'=> base_url(''.$page_data['user_type'].'/download/esictemplate/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.''),
+			 											'link'=> base_url(''.$page_data['user_type'].'/download/pfsummary/'.$spgid.'/'.$custid.''),
+														'button' =>'Download',
+														'class'	 =>'btn-success'
+			 												)
+			 									);	
+			 		// colomns name
+			 		$this->data['tableCol'] = array("NOE","Gross Salary","PF Sal","EPS Sal","EDLI Sal","PF","EPS","Co PF","Admin charges","Other Charges","Total");
+			 		//data	
+			 		$this->data['tableData']=$this->GenratePfSummary();//
+			 		// $this->data['tableButtons']	= array();
+			 	
+		 		 	$this->render('export_table');
+			     }
+			     else
+			     {
+			      echo "404 no access";
+			     }
+	 		 	
+	 	}
+	 	else
+	 	{
+			if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 	{
+			    $this->load->model('Report_model','report');
+			    $this->load->library("pagination");
+
+		       $this->data['page_title'] = $page_data['page_title'];
+		       $this->data['where'] = 'Reports';
+		       $this->data['sub_menu'] = 'PF Summary';
+		       $this->data['user_type'] = $page_data['user_type'];
+		       $this->data['menu'] = $page_data['menu'];
+		    	      
+		       $this->render('export_pfsummary');
+		     }
+		     else
+		     {
+		      echo "404 no access";
+		     }
+		}
+	 }
+
+	 /* genrate PF Summary report with validation */
+	 public function GenratePfSummary($value='')
+	 {
+	 	$this->load->model('Report_model','report');
+	 	
+	 		$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+	 		$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+	 		$month 		=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
+	 		$year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
+
+	 		if ($custid !== NULL && $spgid !== NULL) 
+	 		{
+	 			if ($month !==NULL && $year !==NULL) 
+	 			{
+	 				if ($year == "ALL" && $month == "ALL") 
+	 				{	 					
+	 					put_msg('Please Select Year and Month');
+	 					goto_back();
+	 				}
+	 				elseif ($year !== "ALL" && $month !== "ALL") 
+	 				{
+	 					// echo "2year is".$year."and month is ".$month;
+	 					
+	 					if (is_last_month($month,$year) == TRUE) 
+	 					{
+	 						 //echo "is last month";
+	 						$result=$this->report->get_newPfSummary($spgid,$custid,$month,$year);
+	 						return $result;
+	 					}
+	 					elseif (this_month($month,$year) == TRUE) 
+	 					{
+	 						put_msg('till not genrate pf and esic report');
+	 						goto_back();
+	 					}
+	 					else
+	 					{
+	 						//echo "is old month";
+	 						$result=$this->report->get_oldPfSummary($spgid,$custid,$month,$year);
+	 						return $result;
+	 					}
+
+	 				}
+	 				elseif ($year !== "ALL" && $month == "ALL") {
+	 					// echo "3year is".$year."and month is ".$month;
+	 					put_msg('Please Select Month');
+	 					goto_back();
+	 				}
+	 				elseif ($year == "ALL" && $month !== "ALL") {
+	 					// echo "4year is".$year."and month is ".$month;
+	 					put_msg('Please Select Year');
+	 					goto_back();
+
+	 				}
+
+	 			}
+	 			else
+	 			{
+	 				put_msg('Sorry month and year is invalid');
+	 				goto_back();
+	 			}					
+	 		}
+ 			else
+ 			{
+	 			put_msg('Sorry custid and user are invalid');
+	 				goto_back();
+	 		}	
+	 }
+
+	 /* download PF Summary report in excel formate*/
+	 public function DownloadPFSummary()
+	 {
+	 	$this->load->model('Export');
+	 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+	 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
+	 	// echo $spg;
+	 	// exit();
+	 	$this->Export->PFSummary($spg,$cust);
+	 }
+
 	 /* show Esic newjoinee report companiwise */
 	 Public function ShowEsicnNewoinee($page_data = '')
 	 {
@@ -410,6 +649,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 				goto_back();
 	 		}	
 	 }
+
 	 /* download esic new joinee report in excel formate*/
 	 public function DownloadESICnewjoinee()
 	 {
@@ -860,16 +1100,16 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 		}	
 	 }
 
-	 /* download esic Template report in excel formate*/
-	 // public function DownloadESICSummary()
-	 // {
-	 // 	$this->load->model('Export');
-	 // 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
-	 // 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
-	 // 	// echo $spg;
-	 // 	// exit();
-	 // 	$this->Export->ESICSummary($spg,$cust);
-	 // }
+	 /* download esic Summary report in excel formate*/
+	 public function DownloadESICSummary()
+	 {
+	 	$this->load->model('Export');
+	 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+	 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
+	 	// echo $spg;
+	 	// exit();
+	 	$this->Export->ESICSummary($spg,$cust);
+	 }
 
 	 /* show compliance report companiwise */
 	 public function ShowCompliance($page_data = '')

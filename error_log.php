@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [kaypan14-May-2019 07:08:18 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\thetatel\application\controllers\Welcome.php on line 24
 
 [14-May-2019 07:09:04 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\thetatel\application\controllers\Welcome.php on line 24
@@ -640,3 +641,5 @@
 [20-Jun-2019 14:04:09 Europe/Berlin] PHP Fatal error:  Call to a member function row() on integer in C:\xampp\htdocs\git\thetatel\application\core\Base_model.php on line 48
 [20-Jun-2019 14:04:51 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\git\thetatel\application\models\User_model.php on line 95
 [20-Jun-2019 15:47:29 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')' in C:\xampp\htdocs\git\thetatel\application\models\User_model.php on line 144
+=======
+>>>>>>> d5925e09acc718567b7bc4a254ac220bc3587204

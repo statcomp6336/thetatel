@@ -469,15 +469,29 @@ class Spg extends Base_controller {
 	}
 
 
-
-
+	/*working with pf reports*/
+	public function show_pf_newjoinee()
+	{
+		$this->ShowPFNewJoinee($this->page);
+	}
+	public function download_pfnewjoinee($value='')
+	{
+		$this->DownloadPFnewjoinee();
+	}
+	public function show_pf_summary()
+	{
+		$this->ShowPFSummary($this->page);
+	}
+	public function download_pfsummary($value='')
+	{
+		$this->DownloadPFSummary();
+	}
 
 	/*working with esic reports*/
 	public function show_esic_newjoinee()
 	{
 		$this->ShowEsicnNewoinee($this->page);
 	}
-
 	public function download_esicnewjoinee($value='')
 	{
 		$this->DownloadESICnewjoinee();
