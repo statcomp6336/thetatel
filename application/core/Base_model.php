@@ -41,9 +41,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	{
 		return $this->db->get($table);
 	}
-	protected function get_id()
+	protected function get_id($table,$get_id,$where)
 	{
-
+		$u = $this->newdb->select($get_id)->from($table)->where($where)->get();
+		if ($u->num_rows() >0) {
+			return $u->row();
+		}
+		else
+		{
+			return FALSE;
+		}
 	}
 	protected function getby_id($table,$select,$where)
 	{

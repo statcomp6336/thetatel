@@ -115,6 +115,7 @@ $route['spg/user/remove/(:any)']	= 'spg/Spg/remove_user';//Save the user detaile
 $route['spg/user/remove-companys/(:any)']	= 'spg/Spg/user_remove_companys';//Save the user detailes in db
 $route['spg/user/get-companys/(:any)']	= 'spg/Spg/user_get_companys';//Save the user detailes in db
 $route['spg/user/add-remove-comany']	= 'spg/Spg/user_AddRemove_companys';//Save the user detailes in db
+$route['spg/user/reset-password']	= 'spg/Spg/reset_password';//Reset the password
 
 
 /* work with users */

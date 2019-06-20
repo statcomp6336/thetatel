@@ -618,17 +618,44 @@ class Spg extends Base_controller {
 	{
 		$this->attach_companies('spg');//this funtion store in user controller
 	}
+	//reste password
+	public function reset_password($value='')
+	{
+		$this->RestePassword($this->page);//this funtion store in user controller
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public function kaypn($value='')
 	{
-		 $this->load->helper('Password');
-                $hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
-                // if (!$hasher->CheckPassword($password, $user->password)) {
-                //     // Password failed, return
-                //     return false;
-                // }
-                echo  $hasher->HashPassword('hitler');
-                var_dump($hasher->CheckPassword('hitler', $hasher->HashPassword('hitler')));
-
+		 // $this->load->helper('Password');
+   //              $hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
+   //              // if (!$hasher->CheckPassword($password, $user->password)) {
+   //              //     // Password failed, return
+   //              //     return false;
+   //              // }
+   //              echo  $hasher->HashPassword('hitler');
+   //              var_dump($hasher->CheckPassword('hitler', $hasher->HashPassword('hitler')));
+//$this->load->view('forgot_password');
 	}
 
 

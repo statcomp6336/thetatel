@@ -636,3 +636,6 @@
 [18-Jun-2019 18:09:46 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 978
 [18-Jun-2019 18:13:38 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'as' (T_AS) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 978
 >>>>>>> 700dde1b16dd019d435893b3c08709eeecf193d9
+[20-Jun-2019 13:39:13 Europe/Berlin] PHP Fatal error:  Call to undefined method Spg::ResetPassword() in C:\xampp\htdocs\git\thetatel\application\controllers\spg\Spg.php on line 624
+[20-Jun-2019 14:04:09 Europe/Berlin] PHP Fatal error:  Call to a member function row() on integer in C:\xampp\htdocs\git\thetatel\application\core\Base_model.php on line 48
+[20-Jun-2019 14:04:51 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\git\thetatel\application\models\User_model.php on line 95
