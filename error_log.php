@@ -604,3 +604,11 @@
 [18-Jun-2019 17:53:10 Asia/Kolkata] PHP Fatal error:  Call to undefined method Report_model::get_oldEsicSummary() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 832
 [18-Jun-2019 18:09:46 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 978
 [18-Jun-2019 18:13:38 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'as' (T_AS) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 978
+[20-Jun-2019 12:17:32 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 869
+[20-Jun-2019 12:18:10 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 869
+[20-Jun-2019 12:18:41 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 869
+[20-Jun-2019 12:18:58 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 869
+[20-Jun-2019 14:29:03 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '>' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 893
+[20-Jun-2019 14:29:30 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '>' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 893
+[20-Jun-2019 14:30:33 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '>' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 889
+[20-Jun-2019 14:32:12 Asia/Kolkata] PHP Fatal error:  Call to undefined method CI_DB_mysqli_driver::selectselect() in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 898

@@ -858,6 +858,52 @@ class Report_model extends Base_model
 		$obj_writer->save('php://output');
 	}
 
+	/* get PF new joinee data from employee master new table */
+	public function get_pfnewjoinee($spgid,$custid)
+	{
+		//displaying data from table		
+		return $this->db->select("custid,entity_name,emp_name,uan_no,dobadhr,gender,fath_hus_name,if(fath_hus_name!=NULL,`fath_hus_name`,'NIL'),marital_status,mob,email,join_date,bank_ac,ifsc,nameinbank,pan,namepan,adhaar,nameadhr")
+							->from('employee_master_new')
+							->where(array(	'spgid' =>$spgid,
+											'custid'=>$custid,
+											'uan_no'=>'0',
+											'uan_no'=>' '
+										))
+							
+							->get()
+							->result();
+	}
+
+	/* get PF Summary data from pf_template table */
+	public function get_newPfSummary($spgid,$custid,$month,$year)
+	{
+		$this->db->select("count(member_name) as name,sum(gross_wages) as gross,sum(EPF_wages) as epfwages,sum(EPS_wages) as epswages,sum(EDLI_wages) as edliwages,sum(EPF_contri_remitted) as epfcontri,sum(EPS_contri_remitted) as epscontri,sum(EPS_EPF_diff) as diff,CAST(((sum(EPF_wages)*0.5)/100) as UNSIGNED)as admin,CAST(((sum(EDLI_wages)*0.5)/100) as UNSIGNED) as other,CAST(((sum(EPF_contri_remitted))+(sum(EPS_contri_remitted))+(sum(EPS_EPF_diff))+(((sum(EPF_wages)*0.5)/100))+(((sum(EDLI_wages)*0.5)/100))) as UNSIGNED) as total");
+
+						$this->db->from('pf_template');					
+						$this->db->where(array(	'spgid' => $spgid,
+										'custid' => $custid,
+										'month'	 => $month,
+										'year'	 => $year,
+										'UANno!=' => 0   ));
+						$result=$this->db->get()->result();
+						return $result;
+	}
+
+	/* get PF Summary data from pf_template_history table */
+	public function get_oldPfSummary($spgid,$custid,$month,$year)
+	{		 
+		$this->db->select("count(member_name) as name,sum(gross_wages) as gross,sum(EPF_wages) as epfwages,sum(EPS_wages) as epswages,sum(EDLI_wages) as edliwages,sum(EPF_contri_remitted) as epfcontri,sum(EPS_contri_remitted) as epscontri,sum(EPS_EPF_diff) as diff,CAST(((sum(EPF_wages)*0.5)/100) as UNSIGNED)as admin,CAST(((sum(EDLI_wages)*0.5)/100) as UNSIGNED) as other,CAST(((sum(EPF_contri_remitted))+(sum(EPS_contri_remitted))+(sum(EPS_EPF_diff))+(((sum(EPF_wages)*0.5)/100))+(((sum(EDLI_wages)*0.5)/100))) as UNSIGNED) as total");
+
+						$this->db->from('pf_template_history');		
+						$this->db->where(array(	'spgid' => $spgid,
+										'custid' => $custid,
+										'month'	 => $month,
+										'year'	 => $year,
+										'UANno!=' => 0   ));
+						$result=$this->db->get()->result();
+						return $result;
+	}
+
 	/* get esic new joinee data from employee master new table */
 	public function get_esicnewjoinee($spgid,$custid)
 	{

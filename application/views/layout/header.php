@@ -820,7 +820,7 @@
 
 								<ul class="submenu">
 									<li class="hover">
-										<a href="<?php echo base_url(''.$user_type.'/export/pf'); ?>" class="dropdown-toggle">
+										<a href="<?php echo base_url(''.$user_type.'/export/pfnewjoinee'); ?>">
 											<i class="menu-icon fa fa-leaf green"></i>
 										   PF New joinee Report
 										</a>
@@ -839,7 +839,7 @@
 										
 									</li>
 									<li class="hover">
-										<a href="<?php echo base_url(''.$user_type.'/export/pf'); ?>" >
+										<a href="<?php echo base_url(''.$user_type.'/export/pfsummary'); ?>" >
 											<i class="menu-icon fa fa-leaf green"></i>
 											PF Summary
 										</a>
