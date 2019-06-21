@@ -643,3 +643,7 @@
 [20-Jun-2019 15:47:29 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')' in C:\xampp\htdocs\git\thetatel\application\models\User_model.php on line 144
 =======
 >>>>>>> d5925e09acc718567b7bc4a254ac220bc3587204
+[21-Jun-2019 07:16:00 Europe/Berlin] PHP Fatal error:  Call to undefined method Act_model::get_acts() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 364
+[21-Jun-2019 07:16:07 Europe/Berlin] PHP Fatal error:  Call to undefined method Act_model::get_acts() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 364
+[21-Jun-2019 07:16:29 Europe/Berlin] PHP Fatal error:  Call to undefined method Act_model::get_acts() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 364
+[21-Jun-2019 07:19:49 Europe/Berlin] PHP Fatal error:  Call to undefined method Act_model::get_acts() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 364

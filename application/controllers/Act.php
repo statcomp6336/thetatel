@@ -235,7 +235,7 @@ trait Act {
 
 			 // act detatails data
 			  $this->data['act_data']=array('act_code'=> $this->Act_model->get_act_code(),
-			  								'data'    => $this->Act_model->get_acts()
+			  								'data'    => $this->Act_model->get_actss()
 											);
 			 $this->render('bulk_update');
 		 }
@@ -361,7 +361,7 @@ trait Act {
 				 $this->data['menu'] = $page_data['menu'];
 
 				 // act detatails data
-				  $this->data['bulk_data']=array('acts'=> $this->act->get_act(),
+				  $this->data['bulk_data']=array('acts'=> $this->act->get_actss(),
 				  								'data'    => $extract
 												);
 				 $this->render('my_approval');
@@ -384,7 +384,7 @@ trait Act {
 
 			 // act detatails data
 			  $this->data['act_data']=array('act_code'=> $this->Act_model->get_act_code(),
-			  								'data'    => $this->Act_model->get_acts()
+			  								'data'    => $this->Act_model->get_actss()
 											);
 			 $this->render('bulk_update');
 		 }
