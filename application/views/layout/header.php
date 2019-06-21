@@ -1064,7 +1064,7 @@
 							</li>
 
 							<li class="hover">
-								<a href="inbox.html">
+								<a href="<?php echo base_url(''.$user_type.'/share-files');?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									File Shareing
 								</a>

@@ -647,3 +647,14 @@
 [21-Jun-2019 07:16:07 Europe/Berlin] PHP Fatal error:  Call to undefined method Act_model::get_acts() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 364
 [21-Jun-2019 07:16:29 Europe/Berlin] PHP Fatal error:  Call to undefined method Act_model::get_acts() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 364
 [21-Jun-2019 07:19:49 Europe/Berlin] PHP Fatal error:  Call to undefined method Act_model::get_acts() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 364
+[21-Jun-2019 11:31:29 Europe/Berlin] PHP Fatal error:  Call to undefined function scan() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Home.php on line 156
+[21-Jun-2019 11:32:31 Europe/Berlin] PHP Fatal error:  Call to undefined function scan() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Home.php on line 156
+[21-Jun-2019 11:33:16 Europe/Berlin] PHP Fatal error:  Call to undefined function scan() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Home.php on line 156
+[21-Jun-2019 11:34:19 Europe/Berlin] PHP Fatal error:  Call to undefined function scan() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Home.php on line 156
+[21-Jun-2019 11:36:07 Europe/Berlin] PHP Fatal error:  Call to undefined function scan() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Home.php on line 156
+[21-Jun-2019 11:36:20 Europe/Berlin] PHP Fatal error:  Call to undefined function scan() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Home.php on line 156
+[21-Jun-2019 11:38:14 Europe/Berlin] PHP Fatal error:  Cannot redeclare Home::scan() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Home.php on line 161
+[21-Jun-2019 11:38:33 Europe/Berlin] PHP Fatal error:  Cannot redeclare Home::scan() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Home.php on line 161
+[21-Jun-2019 11:39:46 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'header' (T_STRING), expecting function (T_FUNCTION) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Home.php on line 209
+[21-Jun-2019 13:46:09 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\newstatcomp\thetatel\application\views\explore_data.php on line 77
+[21-Jun-2019 14:30:34 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Files.php on line 46

@@ -334,6 +334,21 @@ class Spg extends Base_controller {
 	{
 		$this->ShowExplore($this->page);
 	}
+	//get companies for explore
+	public function show_companiesExplore($value='')
+	{
+		$this->ShowCompaniesWithYear($this->page);
+	}
+	//get companies act files with year in explore
+	public function show_companiesActExplore($value='')
+	{
+		$this->ShowCompaniesActWithYear($this->page);
+	}
+
+
+
+
+
 	public function show_missing_uan($value='')
 	{
 		$this->ShowMissingUan($this->page);

@@ -35,6 +35,8 @@
    transform: scale(1.1); 
 }
 
+
+
 </style>
 
 
@@ -62,18 +64,27 @@
         <!-- end there is not selected designs -->
         <!-- start the files explore -->
         <?php 
-        $start_year= 2015;
+       
         $current_year= date("Y");
-
-        for ($i=$start_year; $i < $current_year ; $i++) {  ?>      
+        $count=0;
+        for ($i=$start_year; $i <= $current_year ; $i++) { $count++; ?>      
 
 
         <div class="col-xs-3 col-sm-3">
+            <a href="<?php echo base_url(''.$user_type.'/'.$page.'/companies/'.$i.'');?>">
             <div class="folder">
                 <span class="folder-text center"><i> <?php echo $i;?></i></span>
             </div>
+        </a>
         </div>
-        <?php } ?>
+
+        <?php 
+if($count == 4)
+{
+    echo "</div><div class='row' style='margin-top: 10%;'>";
+    $count=0;
+}
+    } ?>
 
 
 
@@ -82,7 +93,7 @@
 
 
 
-        </div>
+      </div> 
     </div>
     
 

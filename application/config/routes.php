@@ -129,7 +129,9 @@ $route['spg/user/company-access']	= 'spg/Spg/company_access';//Reset the passwor
 
 /* work with users */
 $route['spg/explore']	= 'spg/Spg/show_explore';//display salary file upload form
-
-
+$route['spg/share-files']	= 'spg/Spg/show_explore';//display salary file upload form
+$route['spg/explore/companies/(:num)']	= 'spg/Spg/show_companiesExplore';//display companies for explore view  
+$route['spg/share-files/companies/(:num)']	= 'spg/Spg/show_companiesExplore';//display companies for explore view  
+$route['spg/explore/companies/(:num)/(:any)']	= 'spg/Spg/show_companiesActExplore';//display companies for explore view 
 
 

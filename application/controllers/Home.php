@@ -145,7 +145,82 @@ class Home extends Base_controller {
 	public function forgot_password($value='')
 		{
 			$this->load->view('forgot_password');
-		}	
+		}
+
+	public function scan($value='')
+	{
+		$dir = './assets';
+echo $dir;
+		// Run the recursive function 
+
+		$response = $this->search($dir);
+		$myfiles = scandir($dir, 1); 
+		  
+		//displaying the files in the directory 
+		print_r($myfiles); 
+		// Output the directory listing as JSON
+
+		header('Content-type: application/json');
+
+		echo json_encode(array(
+			"name" => "files",
+			"type" => "folder",
+			"path" => $dir,
+			"items" => $response
+		));
+}
+
+		// This function scans the files folder recursively, and builds a large array
+
+		public function search($dir){
+
+			$files = array();
+
+			// Is there actually such a folder/file?
+
+			if(file_exists($dir)){
+			
+				foreach(scandir($dir) as $f) {
+				
+					if(!$f || $f[0] == '.') {
+						continue; // Ignore hidden files
+					}
+
+					if(is_dir($dir . '/' . $f)) {
+
+						// The path is a folder
+
+						$files[] = array(
+							"name" => $f,
+							"type" => "folder",
+							"path" => $dir . '/' . $f,
+							"items" => $this->search($dir . '/' . $f) // Recursively get the contents of the folder
+						);
+					}
+					
+					else {
+
+						// It is a file
+
+						$files[] = array(
+							"name" => $f,
+							"type" => "file",
+							"path" => $dir . '/' . $f,
+							"size" => filesize($dir . '/' . $f) // Gets the size of this file
+						);
+					}
+				}
+			
+			}
+
+			return $files;
+		}
+
+
+
+		
+
+	
 
 
 }
