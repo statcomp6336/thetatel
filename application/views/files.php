@@ -46,16 +46,7 @@
             </div>
             <span class="folder-text text-center" style="text-align: center; padding: 30px">2015</span>
         </div>
-        <div class="col-xs-3 col-sm-3">
-            <div class="folder">
-                <span class="folder-text center"><b>2016</b></span>
-            </div>
-        </div>
-        <div class="col-xs-3 col-sm-3">
-            <div class="folder">
-                <span class="folder-text center"><i>2017</i></span>
-            </div>
-        </div>
+        
         <div class="col-xs-3 col-sm-3">
             <div class="folder">
                 <span class="folder-text center">2018</span>
