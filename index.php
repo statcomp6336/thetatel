@@ -138,7 +138,7 @@ switch (ENVIRONMENT)
 
 /*
  * --------------------------------------------------------------------
- * DEFAULT CONTROLLER ttt
+ * DEFAULT CONTROLLER
  * --------------------------------------------------------------------
  *
  * Normally you will set your default controller in the routes.php file.
