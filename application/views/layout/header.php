@@ -1394,7 +1394,7 @@
 									<li class="hover">
 										<a href="#">
 											<i class="menu-icon fa fa-pencil orange"></i>
-										Labour Law Form XXI annual return
+										Form XXI 
 											<b class="arrow fa fa-angle-down"></b>
 										</a>
 										<b class="arrow"></b>	
@@ -1402,7 +1402,7 @@
 									<li class="hover">
 										<a href="#">
 											<i class="menu-icon fa fa-leaf green"></i>
-											Equal Remuneration Act FORM D
+											 FORM D
 										</a>
 
 										<b class="arrow"></b>
