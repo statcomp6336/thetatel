@@ -169,7 +169,7 @@ SELECT A.custid ,'$spgid', A.act_code, B.act, B.particular
 	{
 	 	return $this->db->select("entity_name,custid,allianceid")
 					->from('customer_master')
-					->where(array(	'spgid' =>user_id()))
+					->where(array(	'spgid' =>user_id(),'custtype' => 1))
 					->get()->result();
 	}
 
