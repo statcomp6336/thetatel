@@ -359,6 +359,21 @@ class Spg extends Base_controller {
 	{
 		$this->ShowExplore($this->page);
 	}
+	//get companies for explore
+	public function show_companiesExplore($value='')
+	{
+		$this->ShowCompaniesWithYear($this->page);
+	}
+	//get companies act files with year in explore
+	public function show_companiesActExplore($value='')
+	{
+		$this->ShowCompaniesActWithYear($this->page);
+	}
+
+
+
+
+
 	public function show_missing_uan($value='')
 	{
 		$this->ShowMissingUan($this->page);
@@ -662,6 +677,12 @@ class Spg extends Base_controller {
 	{
 		$this->RestePassword($this->page);//this funtion store in user controller
 	}
+	//Set Access for Commany
+	public function company_access($value='')
+	{
+		$this->SetAccess($this->page);//this funtion store in user controller
+	}
+
 
 
 

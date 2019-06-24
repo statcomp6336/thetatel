@@ -383,7 +383,8 @@ trait Company_ext {
        //$this->data['result'] = $getmessage;
 
 		$this->data['result']=$this->Company_model->get_allCompanydetails();
-		$this->load->view('show_company',$this->data);	
+		$this->render('show_company',$this->data);
+		//$this->load->view('show_company',$this->data);	
 	 }
 
 //Here create branch registration view

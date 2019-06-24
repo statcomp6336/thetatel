@@ -268,5 +268,45 @@ trait Users {
      }
     
   }
+  /* set Access for company */
+  public function SetAccess($page_data='')
+  {
+    $this->load->model('User_model','users');
+     $getmessage="";
+    if (!empty($this->input->post('submit'))) {        
+       
+      
+        $custid=is($this->input->post('custid'),'N/A');
+        $code=is($this->input->post('code'),'N/A');
+        
+        $getmessage=$this->users->set_access($custid,$code); 
+        echo $getmessage;
+        exit();     
+
+    }
+    else
+    {
+      $getmessage=NULL;
+    }
+      if ($page_data['access'][$this->session->TYPE] == TRUE) {
+     
+
+       $this->data['page_title'] = $page_data['page_title'];
+       $this->data['where'] = 'Users';
+       $this->data['sub_menu'] = 'Rest-Password';
+       $this->data['user_type'] = $page_data['user_type'];
+       $this->data['menu'] = $page_data['menu'];
+       $this->data['result'] = $getmessage;
+        
+
+        
+       $this->render('access');
+       
+     }
+     else
+     {
+      echo "404 no access";
+     }
+  }
 
 }

@@ -137,11 +137,14 @@ $route['spg/user/remove-companys/(:any)']	= 'spg/Spg/user_remove_companys';//Sav
 $route['spg/user/get-companys/(:any)']	= 'spg/Spg/user_get_companys';//Save the user detailes in db
 $route['spg/user/add-remove-comany']	= 'spg/Spg/user_AddRemove_companys';//Save the user detailes in db
 $route['spg/user/reset-password']	= 'spg/Spg/reset_password';//Reset the password
+$route['spg/user/company-access']	= 'spg/Spg/company_access';//Reset the password
 
 
 /* work with users */
 $route['spg/explore']	= 'spg/Spg/show_explore';//display salary file upload form
-
-
+$route['spg/share-files']	= 'spg/Spg/show_explore';//display salary file upload form
+$route['spg/explore/companies/(:num)']	= 'spg/Spg/show_companiesExplore';//display companies for explore view  
+$route['spg/share-files/companies/(:num)']	= 'spg/Spg/show_companiesExplore';//display companies for explore view  
+$route['spg/explore/companies/(:num)/(:any)']	= 'spg/Spg/show_companiesActExplore';//display companies for explore view 
 
 
