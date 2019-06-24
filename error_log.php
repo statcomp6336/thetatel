@@ -667,3 +667,5 @@
 [21-Jun-2019 13:46:09 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\newstatcomp\thetatel\application\views\explore_data.php on line 77
 [21-Jun-2019 14:30:34 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Files.php on line 46
 >>>>>>> d80184b69518b73b85842d1a4e04cbde58a8b349
+[24-Jun-2019 13:25:04 Asia/Kolkata] PHP Fatal error:  Call to undefined method Spg::contractor_registration() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\spg\Spg.php on line 177
+[24-Jun-2019 13:47:22 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'elseif' (T_ELSEIF) in C:\xampp\htdocs\newstatcomp\thetatel\application\views\show_company.php on line 47

@@ -170,16 +170,17 @@ class Spg extends Base_controller {
 	}
 	public function branch_registration_view($value='')
 	{
-		// $set_data = array('cust_id' => $this->input->get('custid') ,
-		// 				  'company_name' => $this->input->get('entity_name'),
-		//  				  'spgid' => $this->input->get('spgid')
-		//  				  );
-		//  echo "<pre>";
-		//  var_dump($set_data);
-
-		//echo $custid=$this->input->get();
 		$this->branch_registration($this->page);
 	}
+	public function contractor_registration_view($value='')
+	{
+		$this->contractor_registration($this->page);
+	}
+	public function subcontractor_registration_view($value='')
+	{
+		$this->subcontractor_registration($this->page);
+	}
+
 	// public function contractor_registration_view()
 	// {
 	// 	$this->contractor_registration($this->page);

@@ -35,7 +35,19 @@ foreach ($result as $key) {
 				<label class="pos-rel"><span class="lbl"><?php echo $count; ?></span></label>
 			</td>
 			<td>
-	<a href="<?php echo base_url(''.$user_type.'/branch/registration/'.$spgid.'/'.$custid.'/'.$entity_name.'');?>">
+<?php 
+if($reg_type=="branch")
+{
+?>
+	<a href="<?php echo base_url(''.$user_type.'/branch/registration/'.hash_id($custid).'/'.hash_id($entity_name).'');?>">
+<?php } 
+elseif($reg_type=="contractor"){ ?>
+	<a href="<?php echo base_url(''.$user_type.'/contractor/registration/'.hash_id($custid).'/'.hash_id($entity_name).'');?>">
+<?php }
+elseif($reg_type=="subcontractor"){ ?>
+	<a href="<?php echo base_url(''.$user_type.'/subcontractor/registration/'.hash_id($custid).'/'.hash_id($entity_name).'');?>">
+<?php }?>
+	
 
 	<?php echo $entity_name;?></a> 
 			</td>

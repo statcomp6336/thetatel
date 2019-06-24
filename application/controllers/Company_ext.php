@@ -13,6 +13,10 @@ trait Company_ext {
 	public function company_registration($page_data="")
 	{
 		//g $this->load->model('Dashboard_model','dash');
+		$reg_type=$this->uri->segment(2);
+		$this->data['reg_type']=$reg_type;
+		//echo $reg_type;
+		//exit();
 		
 		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
 		 	 $this->data['page_title'] = $page_data['page_title'];
@@ -21,7 +25,7 @@ trait Company_ext {
 			 $this->data['user_type'] = $page_data['user_type'];
 			 $this->data['menu'] = $page_data['menu'];
 
-			 $this->render('company_registration');
+			 $this->render('company_registration',$this->data);
 		 }
 		 else
 		 {
@@ -372,17 +376,34 @@ trait Company_ext {
 	 /* Show Company Details */
 	 public function ShowCompanyDetails($page_data = '')
 	 {
-		$this->load->model('Company_model');	
+		$this->load->model('Company_model');
+		$reg_type=$this->uri->segment(2);
+		$this->data['reg_type']=$reg_type;	
 	 	//$this->data['user_type'] = $page_data['user_type'];
 
 	 	$this->data['page_title'] = $page_data['page_title'];
-       $this->data['where'] = 'Users';
-       $this->data['sub_menu'] = 'Rest-Password';
+	 	if($reg_type=="branch")
+	 	{
+	 		$this->data['where'] = 'Branch';
+	 	}
+	 	elseif($reg_type=="contractor")
+	 	{
+	 		$this->data['where'] = 'Contractor';
+	 	}
+	 	elseif($reg_type=="subcontractor")
+	 	{
+	 		$this->data['where'] = 'Sub Contractor';
+	 	}
+       
+       $this->data['sub_menu'] = 'Registration Details';
        $this->data['user_type'] = $page_data['user_type'];
        $this->data['menu'] = $page_data['menu'];
        //$this->data['result'] = $getmessage;
 
 		$this->data['result']=$this->Company_model->get_allCompanydetails();
+		
+		//echo $reg_type;
+		//exit();
 		$this->render('show_company',$this->data);
 		//$this->load->view('show_company',$this->data);	
 	 }
@@ -390,13 +411,8 @@ trait Company_ext {
 //Here create branch registration view
 	public function branch_registration($page_data = '')
 	{
-		//$custid		=$this->input->get('custid');
-	 	//$spgid 		=!empty($this->input->get('spgid'))?$this->input->get('spgid'):NULL;
-
-	 	//echo "gff";
-	//echo $custid;
-		//$this->data['result']=$this->input->get_post();
-		//echo $result->$custid;
+		$reg_type=$this->uri->segment(2);
+		$this->data['reg_type']=$reg_type;
 
 		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
 		 	 $this->data['page_title'] = $page_data['page_title'];
@@ -404,54 +420,65 @@ trait Company_ext {
 			 $this->data['sub_menu'] = 'Registration';
 			 $this->data['user_type'] = $page_data['user_type'];
 			 $this->data['menu'] = $page_data['menu'];
-			 $this->render('company_registration');
+			 $custid=is(verify_id($this->uri->segment(4)),'N/A');
+			 $name=is(verify_id($this->uri->segment(5)),'N/A');
+			  $this->data['custid']=$custid;
+			   $this->data['name']= $name;
+			 $this->render('company_registration',$this->data);
 		 }
 		 else
 		 {
 		 	echo "404 no access";
-		 }				
-		// $this->render('example');		
+		 }						
 	}
 
-	// //Here create Contractor registration view
-	// public function contractor_registration($page_data="")
-	// {
-	// 	//g $this->load->model('Dashboard_model','dash');
-		
-	// 	 if ($page_data['access'][$this->session->TYPE] == TRUE) {
-	// 	 	 $this->data['page_title'] = $page_data['page_title'];
-	// 		 $this->data['where'] = 'Contractor';
-	// 		 $this->data['sub_menu'] = 'Registration';
-	// 		 $this->data['user_type'] = $page_data['user_type'];
-	// 		 $this->data['menu'] = $page_data['menu'];
-	// 		 $this->render('company_registration');
-	// 	 }
-	// 	 else
-	// 	 {
-	// 	 	echo "404 no access";
-	// 	 }				
-	// 	// $this->render('example');		
-	// }
+	//Here create Contractor registration view
+	public function contractor_registration($page_data="")
+	{
+		$reg_type=$this->uri->segment(2);
+		$this->data['reg_type']=$reg_type;
 
-	// //Here create Sub-Contractor registration view
-	// public function subcontractor_registration($page_data="")
-	// {
-	// 	//g $this->load->model('Dashboard_model','dash');
+		if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		 	 $this->data['page_title'] = $page_data['page_title'];
+			 $this->data['where'] = 'Contractor';
+			 $this->data['sub_menu'] = 'Registration';
+			 $this->data['user_type'] = $page_data['user_type'];
+			 $this->data['menu'] = $page_data['menu'];
+			 $custid=is(verify_id($this->uri->segment(4)),'N/A');
+			 $name=is(verify_id($this->uri->segment(5)),'N/A');
+			  $this->data['custid']=$custid;
+			   $this->data['name']= $name;
+			 $this->render('company_registration',$this->data);
+		 }
+		 else
+		 {
+		 	echo "404 no access";
+		 }		
+	}
+
+	//Here create Sub-Contractor registration view
+	public function subcontractor_registration($page_data="")
+	{
+		$reg_type=$this->uri->segment(2);
+		$this->data['reg_type']=$reg_type;
 		
-	// 	 if ($page_data['access'][$this->session->TYPE] == TRUE) {
-	// 	 	 $this->data['page_title'] = $page_data['page_title'];
-	// 		 $this->data['where'] = 'Sub-Contractor';
-	// 		 $this->data['sub_menu'] = 'Registration';
-	// 		 $this->data['user_type'] = $page_data['user_type'];
-	// 		 $this->data['menu'] = $page_data['menu'];
-	// 		 $this->render('company_registration');
-	// 	 }
-	// 	 else
-	// 	 {
-	// 	 	echo "404 no access";
-	// 	 }				
-	// 	// $this->render('example');		
-	// }
+		if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		 	 $this->data['page_title'] = $page_data['page_title'];
+			 $this->data['where'] = 'Sub Contractor';
+			 $this->data['sub_menu'] = 'Registration';
+			 $this->data['user_type'] = $page_data['user_type'];
+			 $this->data['menu'] = $page_data['menu'];
+			 $custid=is(verify_id($this->uri->segment(4)),'N/A');
+			 $name=is(verify_id($this->uri->segment(5)),'N/A');
+			  $this->data['custid']=$custid;
+			   $this->data['name']= $name;
+			 $this->render('company_registration',$this->data);
+		 }
+		 else
+		 {
+		 	echo "404 no access";
+		 }		
+	}
 
 	public function company_act($page_data='')
 	{

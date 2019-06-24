@@ -361,17 +361,30 @@
         echo form_open(base_url('spg/company/save'), $attributes);
         ?>
         <div id="personal-field">
-            <label>Entity Name</label><span id="ent_name-error" class="signup-error"></span>
-            <div><input type="text" name="ent_name" id="ent_name" ng-model="ent_name" class="demoInputBox"/></div>
+<?php
+if($reg_type=="company") {
+?>
+                <label>Entity Name</label><span id="ent_name-error" class="signup-error"></span>
+            <div><input type="text" name="ent_name" id="ent_name" ng-model="ent_name" class="demoInputBox" /></div>
 
             <label>Entity Code  </label><span id="ent_code-error"  class="signup-error"></span>
-            <div><input type="text" name="ent_code" id="ent_code" ng-model="ent_code" class="demoInputBox"/></div>
+            <div><input type="text" name="ent_code" id="ent_code" ng-model="ent_code" class="demoInputBox" /></div>
+
+<?php } else{ ?>
+
+               <label>Entity Name</label><span id="ent_name-error" class="signup-error"></span>
+            <div><input type="text" name="ent_name" id="ent_name" ng-model="ent_name" class="demoInputBox" ng-init="ent_name='<?php echo is($name);?>'" value="<?php echo $name;?>" /></div>
+
+            <label>Entity Code  </label><span id="ent_code-error"  class="signup-error"></span>
+            <div><input type="text" name="ent_code" id="ent_code" ng-model="ent_code" class="demoInputBox" ng-init="ent_code='<?php echo is($custid);?>'" value="<?php echo $custid;?>"/></div> 
+<?php } ?>
+            
 
             <label>Company PAN No</label><span id="comp_pan-error" class="signup-error"></span>
             <div><input type="text" name="comp_pan" id="comp_pan" ng-model="comp_pan" class="demoInputBox"/></div>
 
             <label>Company Name    </label><span id="comp_name-error" class="signup-error"></span>
-            <div><input type="text" name="comp_name" id="comp_name" ng-model="comp_name" class="demoInputBox"/></div>
+            <div><input type="text" name="comp_name" id="comp_name" ng-model="comp_name" class="demoInputBox"  /></div>
 
             <label>Company Address</label><span id="comp_addr-error" class="signup-error"></span>
             <div><input type="text" name="comp_addr" id="comp_addr" ng-model="comp_addr" class="demoInputBox"/></div>

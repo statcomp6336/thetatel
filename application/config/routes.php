@@ -16,15 +16,18 @@ $route['spg/company/registration']	= 'spg/Spg/company_registration_view';// disp
 //===================================================
 //$route['spg/branch/registration']	= 'spg/Spg/branch_registration_view';
 $route['spg/branch/registration']	= 'spg/Spg/show_company_details';// display branch registration  view
+$route['spg/branch/registration/(:any)/(:any)']	= 'spg/Spg/branch_registration_view';
 
+$route['spg/contractor/registration']	= 'spg/Spg/show_company_details';// display contractor registration  view
+$route['spg/contractor/registration/(:any)/(:any)']	= 'spg/Spg/contractor_registration_view';
 
-//$route['spg/branch/registration/(:num)/(:num)/(:num)']	= 'spg/Spg/branch_registration_view';
+$route['spg/subcontractor/registration']	= 'spg/Spg/show_company_details';// display subcontractor registration  view
 
-$route['spg/branch/registration/94007010001/14000860001/Imagination%20Edutainment%20India%20Pvt.%20Ltd']	= 'spg/Spg/branch_registration_view';
+$route['spg/subcontractor/registration/(:any)/(:any)']	= 'spg/Spg/subcontractor_registration_view';// display subcontractor registration  view
 //====================================================
 
-$route['spg/contractor/registration']	= 'spg/Spg/contractor_registration_view';// display contractor registration  view
-$route['spg/subcontractor/registration']	= 'spg/Spg/subcontractor_registration_view';// display subcontractor registration  view
+//$route['spg/contractor/registration']	= 'spg/Spg/contractor_registration_view';// display contractor registration  view
+//$route['spg/subcontractor/registration']	= 'spg/Spg/subcontractor_registration_view';// display subcontractor registration  view
 
 $route['spg/company/save']			= 'spg/Spg/add_company';// display company registration view
 
