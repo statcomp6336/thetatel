@@ -781,7 +781,7 @@
 										<b class="arrow"></b>
 									</li>
 
-									<li class="hover">
+									<!-- <li class="hover">
 										<a href="two-menu-1.html">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Maternity Form
@@ -804,7 +804,7 @@
 										</a>
 
 										<b class="arrow"></b>
-									</li>
+									</li> -->
 
 									
 								</ul>
@@ -1375,13 +1375,39 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
-								<a href="error-404.html">
+							<li class="hover" >
+								<a href="error-404.html" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Register Menu
 								</a>
 
 								<b class="arrow"></b>
+								<ul class="submenu">
+									<li class="hover">
+										<a href="#">
+											<i class="menu-icon fa fa-leaf green"></i>
+											Maternity Form
+										</a>
+
+										<b class="arrow"></b>
+									</li>
+									<li class="hover">
+										<a href="#">
+											<i class="menu-icon fa fa-pencil orange"></i>
+										Labour Law Form XXI annual return
+											<b class="arrow fa fa-angle-down"></b>
+										</a>
+										<b class="arrow"></b>	
+									</li>
+									<li class="hover">
+										<a href="#">
+											<i class="menu-icon fa fa-leaf green"></i>
+											Equal Remuneration Act FORM D
+										</a>
+
+										<b class="arrow"></b>
+									</li>									
+								</ul>							
 							</li>
 
 							

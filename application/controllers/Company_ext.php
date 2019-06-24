@@ -400,7 +400,7 @@ trait Company_ext {
        $this->data['menu'] = $page_data['menu'];
        //$this->data['result'] = $getmessage;
 
-		$this->data['result']=$this->Company_model->get_allCompanydetails();
+		$this->data['result']=$this->Company_model->get_allCompanydetails($reg_type);
 		
 		//echo $reg_type;
 		//exit();
@@ -461,7 +461,7 @@ trait Company_ext {
 	{
 		$reg_type=$this->uri->segment(2);
 		$this->data['reg_type']=$reg_type;
-		
+
 		if ($page_data['access'][$this->session->TYPE] == TRUE) {
 		 	 $this->data['page_title'] = $page_data['page_title'];
 			 $this->data['where'] = 'Sub Contractor';
