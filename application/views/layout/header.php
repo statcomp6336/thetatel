@@ -475,7 +475,7 @@
 									</li>
 
 									<li class="hover">
-										<a href="two-menu-1.html">
+										<a href="<?php echo base_url('spg/branch/registration'); ?>">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Branch Registration
 										</a>
@@ -499,7 +499,7 @@
 
 								<ul class="submenu">
 									<li class="active hover">
-										<a href="top-menu.html">
+										<a href="<?php echo base_url('spg/contractor/registration'); ?>">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Contractor Registration
 										</a>
@@ -508,7 +508,7 @@
 									</li>
 
 									<li class="hover">
-										<a href="two-menu-1.html">
+										<a href="<?php echo base_url('spg/subcontractor/registration'); ?>">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Sub-Contractor Registration
 										</a>

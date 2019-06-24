@@ -13,6 +13,19 @@ $route['spg'] 						= 'spg/Spg';
 $route['spg/logout'] 				= 'spg/Spg/logout';// logout and redirect to login page
 $route['spg/notification']			= 'spg/Spg/notification_view';// display notification
 $route['spg/company/registration']	= 'spg/Spg/company_registration_view';// display company registration view
+//===================================================
+//$route['spg/branch/registration']	= 'spg/Spg/branch_registration_view';
+$route['spg/branch/registration']	= 'spg/Spg/show_company_details';// display branch registration  view
+
+
+//$route['spg/branch/registration/(:num)/(:num)/(:num)']	= 'spg/Spg/branch_registration_view';
+
+$route['spg/branch/registration/94007010001/14000860001/Imagination%20Edutainment%20India%20Pvt.%20Ltd']	= 'spg/Spg/branch_registration_view';
+//====================================================
+
+$route['spg/contractor/registration']	= 'spg/Spg/contractor_registration_view';// display contractor registration  view
+$route['spg/subcontractor/registration']	= 'spg/Spg/subcontractor_registration_view';// display subcontractor registration  view
+
 $route['spg/company/save']			= 'spg/Spg/add_company';// display company registration view
 
 /* work with act */

@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  
 class Spg extends Base_controller {
 
-	/*
+	/*hjjkjhkx
 		*  use anthother controller using USE  keyword then call to declare function.
 		*  @$this->page[''] = THIS PAGE ARRAY STORE THE PAGE INFORMATION IN INDEX.
 		*  @$this->render(); THIS FUNCTION DISPLAY THE VIEW
@@ -164,6 +164,31 @@ class Spg extends Base_controller {
 		
 		$this->company_registration($this->page);
 	}
+	public function show_company_details()
+	{	
+		$this->ShowCompanyDetails($this->page);
+	}
+	public function branch_registration_view($value='')
+	{
+		// $set_data = array('cust_id' => $this->input->get('custid') ,
+		// 				  'company_name' => $this->input->get('entity_name'),
+		//  				  'spgid' => $this->input->get('spgid')
+		//  				  );
+		//  echo "<pre>";
+		//  var_dump($set_data);
+
+		//echo $custid=$this->input->get();
+		$this->branch_registration($this->page);
+	}
+	// public function contractor_registration_view()
+	// {
+	// 	$this->contractor_registration($this->page);
+	// }
+	// public function subcontractor_registration_view()
+	// {
+	// 	$this->subcontractor_registration($this->page);
+	// }
+
 	/*
 		*  THIS FUNCTION CREATE THE COMPANY
 		*  @this->CreateCompany($para); $para IS THE REDEIRECT VERIABLE LIKE 
