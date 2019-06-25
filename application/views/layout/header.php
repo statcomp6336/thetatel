@@ -1143,7 +1143,7 @@
 
 						<ul class="submenu">
 							<li class="hover">
-								<a href="faq.html">
+								<a href="<?php echo base_url(''.$user_type.'/export/faqdetails'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									FAQ
 								</a>

@@ -1783,6 +1783,29 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 		}
 	 }
 
+	 /* Show FAQ Details Report companiwise */
+	 public function ShowFAQDetails($page_data = '')
+	 {	 	
+		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+			 	{
+				    $this->load->model('Report_model','report');
+				    $this->load->library("pagination");
+
+			       $this->data['page_title'] = $page_data['page_title'];
+			       $this->data['where'] = 'Reports';
+			       $this->data['sub_menu'] = 'FAQ Details';
+			       $this->data['user_type'] = $page_data['user_type'];
+			       $this->data['menu'] = $page_data['menu'];		    
+			      
+			       $this->render('export_faq');
+			     }
+			     else
+			     {
+			      echo "404 no access";
+			     }
+		
+	 }
+
 	 /* download non complance  report in excel formate*/
 	 // public function DownloadNonCompliance()
 	 // {

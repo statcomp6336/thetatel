@@ -379,7 +379,11 @@ class Spg extends Base_controller {
 	{
 		$this->ShowMissingUan($this->page);
 	}
+	public function download_missinguan($value='')
+	{
 
+		$this->DownloadMissingUan();
+	}
 
 
 	/*
@@ -611,6 +615,11 @@ class Spg extends Base_controller {
 	public function show_salary_details()
 	{
 		$this->ShowSalaryDetails($this->page);
+	}
+
+	public function show_faq_details()
+	{
+		$this->ShowFAQDetails($this->page);
 	}
 
 	// public function download_noncompliance($value='')

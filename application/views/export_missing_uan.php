@@ -22,7 +22,7 @@
 									<label>Company Name</label>
 								</div>
 								<div class="col-sm-5">
-
+									<input type="hidden" name="spgid" value="<?php echo user_id();?>">
 									<input type="text"  name="comp_name" placeholder="Type something&hellip;" class="form-control required" />
 									
 									<span class="help-block hide">Example block-level help text here.</span>
@@ -53,7 +53,15 @@
 								</div>
 								<div class="col-sm-5">
 
-									<select class="form-control required" ></select>
+									<select class="form-control required" name="location">
+										<option value='ALL' selected>ALL</option>
+										<?php
+										foreach ($result as $key) {
+											
+										?>
+										<option value='<?php echo $key->location; ?>'><?php echo $key->location; ?></option>
+										<?php } ?>
+									</select>
 									<span class="help-block hide" name="location">Example block-level help text here.</span>
 								</div>
 							</div>

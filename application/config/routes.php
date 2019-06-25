@@ -22,12 +22,8 @@ $route['spg/contractor/registration']	= 'spg/Spg/show_company_details';// displa
 $route['spg/contractor/registration/(:any)/(:any)']	= 'spg/Spg/contractor_registration_view';
 
 $route['spg/subcontractor/registration']	= 'spg/Spg/show_company_details';// display subcontractor registration  view
-
 $route['spg/subcontractor/registration/(:any)/(:any)']	= 'spg/Spg/subcontractor_registration_view';// display subcontractor registration  view
 //====================================================
-
-//$route['spg/contractor/registration']	= 'spg/Spg/contractor_registration_view';// display contractor registration  view
-//$route['spg/subcontractor/registration']	= 'spg/Spg/subcontractor_registration_view';// display subcontractor registration  view
 
 $route['spg/company/save']			= 'spg/Spg/add_company';// display company registration view
 
@@ -73,6 +69,7 @@ $route['spg/export/pf'] = 'spg/Spg/show_company_pf';
 $route['spg/download/pf/(:num)/(:num)'] = 'spg/Spg/download_pf';
 /* export missing uan no*/
 $route['spg/export/missing-uan'] = 'spg/Spg/show_missing_uan';
+$route['spg/download/missinguan/(:num)/(:num)'] = 'spg/Spg/download_missinguan';
 
 /*export PF new joinee report start*/
 $route['spg/export/pfnewjoinee'] = 'spg/Spg/show_pf_newjoinee';
@@ -127,6 +124,8 @@ $route['spg/export/compliancerequest'] = 'spg/Spg/Show_compliance_request_detail
 /*export Salary Details report start*/
 $route['spg/export/salarydetails'] = 'spg/Spg/show_salary_details';
 
+/*export FAQ Details report start*/
+$route['spg/export/faqdetails'] = 'spg/Spg/show_faq_details';
 
 
 
