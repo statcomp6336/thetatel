@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  
 class Spg extends Base_controller {
 
-	/*
+	/*hjjkjhkx
 		*  use anthother controller using USE  keyword then call to declare function.
 		*  @$this->page[''] = THIS PAGE ARRAY STORE THE PAGE INFORMATION IN INDEX.
 		*  @$this->render(); THIS FUNCTION DISPLAY THE VIEW
@@ -172,6 +172,32 @@ class Spg extends Base_controller {
 		
 		$this->company_registration($this->page);
 	}
+	public function show_company_details()
+	{	
+		$this->ShowCompanyDetails($this->page);
+	}
+	public function branch_registration_view($value='')
+	{
+		$this->branch_registration($this->page);
+	}
+	public function contractor_registration_view($value='')
+	{
+		$this->contractor_registration($this->page);
+	}
+	public function subcontractor_registration_view($value='')
+	{
+		$this->subcontractor_registration($this->page);
+	}
+
+	// public function contractor_registration_view()
+	// {
+	// 	$this->contractor_registration($this->page);
+	// }
+	// public function subcontractor_registration_view()
+	// {
+	// 	$this->subcontractor_registration($this->page);
+	// }
+
 	/*
 		*  THIS FUNCTION CREATE THE COMPANY
 		*  @this->CreateCompany($para); $para IS THE REDEIRECT VERIABLE LIKE 
@@ -361,7 +387,11 @@ class Spg extends Base_controller {
 	{
 		$this->ShowMissingUan($this->page);
 	}
+	public function download_missinguan($value='')
+	{
 
+		$this->DownloadMissingUan();
+	}
 
 
 	/*
@@ -596,6 +626,11 @@ class Spg extends Base_controller {
 	public function show_salary_details()
 	{
 		$this->ShowSalaryDetails($this->page);
+	}
+
+	public function show_faq_details()
+	{
+		$this->ShowFAQDetails($this->page);
 	}
 
 	// public function download_noncompliance($value='')

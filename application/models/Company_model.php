@@ -165,4 +165,22 @@ SELECT A.custid ,'$spgid', A.act_code, B.act, B.particular
 	 	
 	 }
 
+	public function get_allCompanydetails($reg_type)
+	{
+	 				$this->db->select("entity_name,custid,allianceid");
+					$this->db->from('customer_master');
+					if($reg_type=="subcontractor")
+					{
+						$this->db->where(array(	'spgid' =>user_id(),'custtype' => 3));
+					}
+					else
+					{
+						$this->db->where(array(	'spgid' =>user_id(),'custtype' => 1));
+					}
+					
+					$result=$this->db->get()->result();
+
+					return $result;
+	}
+
 }	

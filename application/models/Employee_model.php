@@ -71,10 +71,45 @@ public function emp_error()
     	}
 
     }
-    public function get_missinguan()
+    public function get_missinguan($spgid,$custid,$location)
     {
-    	$result=$this->fetch('employee_master_new','`srno`,`entity_name`, `custid`,  `emp_name`, `emp_id`, `gender`,`marital_status`, `pf_deduct`, `ul_pf`, `esic_deduct`, `esic_no`, `uan_no`, `branch`, `dept`, `designation`, `fath_hus_name`, `nom1`, `nom2`, `nom3`, `nom4`, `email`, `mob`, `per_address`, `temp_address`, `pan`, `adhaar`, `bank_ac`, `ifsc`, `bank_name`, `bank_branch`, `education`, `phy_handi`, `phy_handi_cat`,  `emp_status`, `birth_date`, `join_date`, `member_date`, `exit_date`, `int_worker`, `reldob`, `reladhr`, `relname`, `relage`, `namepan`, `nameadhr`, `dobadhr`, `vendor_id`, `contractor_name`, `location`',array('uan_no' => ''))->result();
-    	return $result;
+    	//$result=$this->fetch('employee_master_new','`srno`,`entity_name`, `custid`,  `emp_name`, `emp_id`, `gender`,`marital_status`, `pf_deduct`, `ul_pf`, `esic_deduct`, `esic_no`, `uan_no`, `branch`, `dept`, `designation`, `fath_hus_name`, `nom1`, `nom2`, `nom3`, `nom4`, `email`, `mob`, `per_address`, `temp_address`, `pan`, `adhaar`, `bank_ac`, `ifsc`, `bank_name`, `bank_branch`, `education`, `phy_handi`, `phy_handi_cat`,  `emp_status`, `birth_date`, `join_date`, `member_date`, `exit_date`, `int_worker`, `reldob`, `reladhr`, `relname`, `relage`, `namepan`, `nameadhr`, `dobadhr`, `vendor_id`, `contractor_name`, `location`',array('uan_no' => ''))->result();
+    	//return $result;
+
+    	//displaying data from table		
+			$this->db->select("entity_name,custid,emp_name,emp_id,gender,marital_status,pf_deduct,ul_pf,esic_deduct,esic_no,uan_no,branch,dept,designation,fath_hus_name,reldob,reladhr,relname,relage,nom1,nom2,nom3,nom4,email,mob,per_address,temp_address,pan,namepan,adhaar,nameadhr,bank_ac,ifsc,bank_name,bank_branch,dobadhr,education,emp_status,phy_handi,phy_handi_cat,birth_date,join_date,member_date,exit_date,int_worker,vendor_id,contractor_name,location");
+			$this->db->from('employee_master_new');
+			if($location=="ALL")
+			{
+				$this->db->where(array(	'custid'=>$custid,
+										'spgid' =>user_id(),
+										'uan_no'=>'0',
+										'uan_no'=>' '));
+			}
+			else
+			{
+				$this->db->where(array(	'custid'	=>	$custid,
+										'spgid' 	=>	user_id(),
+										'location'	=>	$location,
+										'uan_no'	=>	'0',
+										'uan_no'	=>	' '			));
+			}		
+			$result=$this->db->get()->result();
+			return $result;
     }
+
+
+    /* get location data from employee_master_new table */
+	public function get_location()
+	{
+		//displaying data from table
+		
+			return $this->db->select("location")
+							->from('employee_master_new')
+							//->where('location != ',NULL,FALSE);
+							->where(array(	'location!=' =>NULL))
+							->group_by(array("location"))
+							->get()->result();
+	}
 
 }	

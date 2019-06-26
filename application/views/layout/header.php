@@ -475,7 +475,7 @@
 									</li>
 
 									<li class="hover">
-										<a href="two-menu-1.html">
+										<a href="<?php echo base_url('spg/branch/registration'); ?>">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Branch Registration
 										</a>
@@ -499,7 +499,7 @@
 
 								<ul class="submenu">
 									<li class="active hover">
-										<a href="top-menu.html">
+										<a href="<?php echo base_url('spg/contractor/registration'); ?>">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Contractor Registration
 										</a>
@@ -508,7 +508,7 @@
 									</li>
 
 									<li class="hover">
-										<a href="two-menu-1.html">
+										<a href="<?php echo base_url('spg/subcontractor/registration'); ?>">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Sub-Contractor Registration
 										</a>
@@ -781,7 +781,7 @@
 										<b class="arrow"></b>
 									</li>
 
-									<li class="hover">
+									<!-- <li class="hover">
 										<a href="two-menu-1.html">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Maternity Form
@@ -804,7 +804,7 @@
 										</a>
 
 										<b class="arrow"></b>
-									</li>
+									</li> -->
 
 									
 								</ul>
@@ -1143,7 +1143,7 @@
 
 						<ul class="submenu">
 							<li class="hover">
-								<a href="faq.html">
+								<a href="<?php echo base_url(''.$user_type.'/export/faqdetails'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									FAQ
 								</a>
@@ -1375,13 +1375,55 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="hover">
-								<a href="error-404.html">
+							<li class="hover" >
+								<a href="error-404.html" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Register Menu
 								</a>
 
 								<b class="arrow"></b>
+								<ul class="submenu">
+									<li class="hover">
+										<a href="#">
+											<i class="menu-icon fa fa-leaf green"></i>
+											Maternity Form
+										</a>
+
+										<b class="arrow"></b>
+									</li>
+									<li class="hover">
+										<a href="#">
+											<i class="menu-icon fa fa-pencil orange"></i>
+										Form XXI 
+											<b class="arrow fa fa-angle-down"></b>
+										</a>
+										<b class="arrow"></b>	
+									</li>
+									<li class="hover">
+										<a href="#">
+											<i class="menu-icon fa fa-leaf green"></i>
+											 FORM D
+										</a>
+
+										<b class="arrow"></b>
+									</li>
+									<li class="hover">
+										<a href="#">
+											<i class="menu-icon fa fa-leaf green"></i>
+											FORM O
+										</a>
+
+										<b class="arrow"></b>
+									</li>
+									<li class="hover">
+										<a href="#">
+											<i class="menu-icon fa fa-leaf green"></i>
+											FORM Q
+										</a>
+
+										<b class="arrow"></b>
+									</li>									
+								</ul>							
 							</li>
 
 							

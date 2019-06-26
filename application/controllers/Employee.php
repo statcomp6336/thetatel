@@ -614,85 +614,118 @@ trait Employee {
 	 }
 
    /* start the missing uan number process */
-   public function ShowMissingUan($page_data='')
+   public function ShowMissingUan($page_data = '')
    {
+    if (!empty($this->input->post('submit'))) 
+    {
+      $custid =!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+      $spgid  =!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+      $location =!empty($this->input->post('location'))?$this->input->post('location'):NULL;
+      //echo $spgid;
 
-    if (!empty($this->input->post('submit'))) {
-$custid   =!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
-$spgid    =!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
-$month    =!empty($this->input->post('month'))?$this->input->post('month'):NULL;
-$year     =!empty($this->input->post('year'))?$this->input->post('year'):NULL;
-$location   =!empty($this->input->post('location'))?$this->input->post('location'):NULL;
-      
-     if ($page_data['access'][$this->session->TYPE] == TRUE) {
-            $this->data['page_title'] = $page_data['page_title'];
-              $this->data['where'] = 'Reports';
+        if ($page_data['access'][$this->session->TYPE] == TRUE) 
+        {
+              $this->data['page_title'] = $page_data['page_title'];
+              $this->data['where'] = 'Employee';
               $this->data['sub_menu'] = 'Missing-uan';
               $this->data['user_type'] = $page_data['user_type'];
               $this->data['menu'] = $page_data['menu'];
               /* table data */
-              // Table header name
-          $this->data['tableHeading'] = "Show Employee Details of Missing UAN Number"; 
-          // tools data
-          $this->data['tableTools'] = array(
+              $this->data['tableHeading'] = "Show Employee Details of Missing UAN Number";
+            
+              $this->data['tableTools'] = array(
                           0 =>array(
-                            'link'=> base_url(''.$page_data['user_type'].'/download/pf/'.$spgid.'/'.$custid.''),
+                            //'link'=> base_url(''.$page_data['user_type'].'/download/missinguan/'.$custid.''),
+                            'link'=> base_url(''.$page_data['user_type'].'/download/missinguan/'.$spgid.'/'.$custid.''),
                             'button' =>'Download in Excel',
                             'class'  =>'btn-success'
-                              ),
-                          1 =>array(
-                            'link'=> base_url(),
-                            'button' =>'Download pf Text',
-                            'class'  =>'btn-warning'
                               )
-                        );  
-          // colomns name
-          $this->data['tableCol'] = array("Sr no","Entity Name", "Entity Code", "Employee Name", "Employee Code", "Gender",  "Marital Status",  "PF Deduction",  "Upper Limit", "ESIC Deduction",  "Existing ESIC No."," Existing UAN No", "Branch",  "Department",  "Designation", "Father/Husband Name", "Relation DOB",  "Relation Adhar No", "Relation Name", "Relation Age",  "Nomination 1", "Nomination 2",  "Nomination 3",  "Nomination 4",  "Email", "Phone", "Permanent Address", "Temporary Address", "Pan No",  "Name as per Pan Card",  "Aadhar No", "Name as per Adhar Card" , "Bank A/c No", "IFSC Code", "Bank Name", "Bank Branch", "DOB as per Adhar Card", "Education Qualifications",  "Employee Status", "Physically Handicap", "Physically Handicap Category",  "Birth Date",  "Joining Date",  "Membership Date", "Existing Date", "International Worker",  "Vendor ID", "Contractor Name", "Location",  "Action");
-          //data  
-          $this->data['tableData']=$this->emp->get_missinguan();//
-          
-          $this->data['tableButtons']  = array(
-                                0 =>array(                                      
-                                          'function'  =>'',
-                                          'action' =>'edit',
-                                          'para'  =>'spg,custid,emp_id',
-                                        ),
-                                1 =>array(
-                                      'function'  =>'',
-                                      'action' =>'remove',
-                                      'para'  =>'spg,custid,emp_id',
+                        ); 
 
-                                        )
-                               );
+            // colomns name
+            $this->data['tableCol'] = array("Entity Name","Entity Code","Employee Name","Employee Code","Gender","Marital Status","PF Deduction","Upper Limit","ESIC Deduction","Existing ESIC No."," Existing UAN No","Branch","Department","Designation","Father/Husband Name","Relation DOB","Relation Adhar No","Relation Name","Relation Age","Nomination 1","Nomination 2","Nomination 3","Nomination 4","Email","Phone","Permanent Address","Temporary Address","Pan No","Name as per Pan Card","Aadhar No","Name as per Adhar Card","Bank A/c No","IFSC Code","Bank Name","Bank Branch","DOB as per Adhar Card","Education Qualifications","Employee Status","Physically Handicap","Physically Handicap Category","Birth Date","Joining Date","Membership Date","Existing Date","International Worker","Vendor ID","Contractor Name","Location");    
+
+            //data  
+            $this->data['tableData']=$this->checkmissinguan();//
+            // $this->data['tableButtons']  = array();
         
-          $this->render('export_table');
+            $this->render('export_table');
+           }
+           else
+           {
+            echo "404 no access";
+           }        
+    }
+    else
+    {
+        if ($page_data['access'][$this->session->TYPE] == TRUE) 
+        {
+           $this->load->model('Employee_model','emp');
+            $this->load->library("pagination");
+
+             $this->data['page_title'] = $page_data['page_title'];
+             $this->data['where'] = 'Employee';
+             $this->data['sub_menu'] = 'Missing-uan';
+             $this->data['user_type'] = $page_data['user_type'];
+             $this->data['menu'] = $page_data['menu'];  
+
+             // location data
+             $this->data['result']=$this->emp->get_location();      
+            
+             $this->render('export_missing_uan');
            }
            else
            {
             echo "404 no access";
            }
+    }
+   }
+
+   /* Check missing uan no with validation */
+   public function checkmissinguan($value='')
+   {
+    $this->load->model('Employee_model','emp');
+    
+      $custid =!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+      $spgid  =!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+      $location   =!empty($this->input->post('location'))?$this->input->post('location'):NULL;
+     
+     if ($custid !== NULL && $spgid !== NULL) 
+      {
+        if ($location =="ALL") 
+        {
+          $result=$this->emp->get_missinguan($spgid,$custid,'ALL');
+          return $result;
+        }
+        else
+        {
+          $result=$this->emp->get_missinguan($spgid,$custid,$location);
+          return $result;
+        } 
       }
       else
       {
-        if ($page_data['access'][$this->session->TYPE] == TRUE) {
-          $this->load->model('Report_model','report');
-          $this->load->library("pagination");
+        put_msg('Sorry custid and user are invalid');
+          goto_back();
+      }             
+    }
 
-           $this->data['page_title'] = $page_data['page_title'];
-           $this->data['where'] = 'Reports';
-           $this->data['sub_menu'] = 'PF Company';
-           $this->data['user_type'] = $page_data['user_type'];
-           $this->data['menu'] = $page_data['menu'];      
-           
-           $this->render('export_missing_uan');
-         }
-         else
-         {
-          echo "404 no access";
-         }
-      }
+    /* download esic Template report in excel formate*/
+   public function DownloadMissingUan()
+   {
+    //echo "hello";
+    $this->load->model('Export');
+    $spg = $this->uri->segment(4);
+    $cust = $this->uri->segment(5);
+     // echo $cust;
+     // exit();
+    $this->Export->MissingUAN($spg,$cust);
    }
 
+
+
+
+   
 
 
 }
