@@ -50,5 +50,54 @@ trait Notification {
 		}
 		$this->render('notification');		
 	}
-	
+	public function SaveComment($value='')
+	{
+		if (!empty($this->input->post('custid'))) {
+			$this->load->model('Act_model','act');		
+	      	$event= is($this->input->post('event'),'N/A');	
+      			
+  				if ($event == 1 ) {
+  					$sts="File Recive";      					
+  				}
+  				elseif ($event == 2) {
+  					$sts="File Upload";      					
+  				}
+  				elseif ($event == 3) {
+  					$sts="PF & ESIC Process";      					
+  				}
+  				elseif ($event == 4) {
+  					$sts="Bulk Compliance";      					
+  				}
+  				elseif ($event == 5) {
+  					$sts="Bulk Approval";  					
+  				}
+  				elseif ($event == 5) {
+  					$sts="Completed";  					
+  				}
+
+  				 	      				
+
+
+      			$saveData = array(
+						'custid'		=> is($this->input->post('custid'),'N/A'),
+						'entity_name'	=> is($this->input->post('comp_name'),'N/A'),
+						'event'			=> is($this->input->post('heading'),$sts),
+						'comment'		=> is($this->input->post('comment'),'N/A'),
+						'who_id'		=> user_id(),
+						'who' 			=> is($this->input->post('who'),USERNAME)
+      							);
+      			     		 	  	
+  		 	  var_dump($saveData);
+      			
+	 	  	if($this->act->save_TimelineComment($saveData));
+	 	  	{
+	 	  		$return=TRUE;
+	 	  		$url=$this->input->post('url');
+	 	  		redirect(base_url($url));
+	 	  	}
+
+      	}
+      		
+	}
+		
 }

@@ -12,6 +12,7 @@ $route['destroy']					='spg/Spg/DESTROY_SYSTEM';
 $route['spg'] 						= 'spg/Spg';
 $route['spg/logout'] 				= 'spg/Spg/logout';// logout and redirect to login page
 $route['spg/notification']			= 'spg/Spg/notification_view';// display notification
+$route['spg/inbox']			= 'spg/Spg/show_inbox';// display mail messages
 $route['spg/company/registration']	= 'spg/Spg/company_registration_view';// display company registration view
 $route['spg/company/save']			= 'spg/Spg/add_company';// display company registration view
 
@@ -21,10 +22,13 @@ $route['spg/company/attachAct']		= 'spg/Spg/attachAct'; //display act view for c
 /* work with complince */
 $route['spg/compliance/bulk-update']= 'spg/Spg/show_bulk_update'; //display bulk update view for company
 $route['spg/compliance/bulk-compliance']= 'spg/Spg/show_bulk_compliance'; //display bulk compliance view for company
+$route['spg/compliance/bulk-compliance/comment/(:any)/(:num)/(:any)']= 'spg/Spg/show_bulk_compliance'; //display bulk compliance view for company
 $route['spg/compliance/bulk-compliance/update']= 'spg/Spg/edit_bulk_compliance'; //display bulk compliance view for company
 $route['spg/compliance/bulk-approval']= 'spg/Spg/show_bulk_approval'; //display bulk approval view for company 
+$route['spg/compliance/bulk-approval/comment/(:any)/(:num)/(:any)']= 'spg/Spg/show_bulk_approval'; //display bulk approval view for company 
 $route['spg/compliance/bulk-approval/update']= 'spg/Spg/edit_bulk_approval'; //display bulk approval view for company 
 $route['spg/compliance/bulk-timeline']= 'spg/Spg/show_bulk_timeline'; //display bulk timeline view for company
+$route['spg/compliance/bulk-timeline/(:any)']= 'spg/Spg/show_timeline'; //display bulk timeline view for company
 
 /* create acts*/
 $route['spg/act/create']		= 'spg/Spg/create_Act'; // display register act form

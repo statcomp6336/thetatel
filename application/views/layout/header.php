@@ -297,10 +297,10 @@
 						<li class="light-blue dropdown-modal user-min">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 								<img class="nav-user-photo" src="<?php echo base_url();?>assets/dashboard/images/avatars/user.jpg" alt="Jason's Photo" />
-								<span class="user-info">
+								<span class="user-info"> 
 									<small>Welcome,</small>
-									<?php $user=!empty($this->session->SESS_USER_NAME)?$this->session->SESS_USER_NAME:"HACKER";
-									echo $user; ?>
+									<?php 
+									echo USERNAME; ?>
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
@@ -368,7 +368,7 @@
 						</li>
 
 						<li>
-							<a href="#">
+							<a href="<?php echo base_url(''.$user_type.'/inbox'); ?>">
 								<i class="ace-icon fa fa-envelope"></i>
 								Messages
 								<span class="badge badge-warning">5</span>

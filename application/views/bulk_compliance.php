@@ -31,7 +31,17 @@ table td .up:hover:before {
   content:"View Files"; 
 }
 </style>
-<?php echo show_msg();?>
+<?php echo show_msg();
+	if (!empty($this->uri->segment(4)) && $this->uri->segment(4)=="comment" ) {
+		$id=is(verify_id($this->uri->segment(5)));
+		$event=is($this->uri->segment(6));
+		$url=is(verify_id($this->uri->segment(7)));
+		$data['comment']=array('custid'=>$id,'event'=>$event,'url'=>$url);
+		$this->load->view('comment',$data);
+
+	}
+
+?>
 <link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/css/jquery-ui.custom.min.css" />
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/css/chosen.min.css" />
 		

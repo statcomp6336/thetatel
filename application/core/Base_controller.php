@@ -20,6 +20,7 @@ class Base_controller extends CI_Controller
     $this->data['before_head'] = '';
     $this->data['before_body'] ='';
     $this->data['msg'] ='';
+    define('USERNAME', username());
    // $this->data['error_count'] = $this->emp->emp_error();
 
   }  

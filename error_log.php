@@ -658,3 +658,17 @@
 [21-Jun-2019 11:39:46 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'header' (T_STRING), expecting function (T_FUNCTION) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Home.php on line 209
 [21-Jun-2019 13:46:09 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\newstatcomp\thetatel\application\views\explore_data.php on line 77
 [21-Jun-2019 14:30:34 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Files.php on line 46
+[24-Jun-2019 13:11:48 Europe/Berlin] PHP Fatal error:  Call to undefined method DB_install::CreateTable_timeline() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\spg\Spg.php on line 101
+[25-Jun-2019 10:21:53 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Notification.php on line 97
+[25-Jun-2019 11:48:57 Europe/Berlin] PHP Fatal error:  Using $this when not in object context in C:\xampp\htdocs\newstatcomp\thetatel\application\config\constants.php on line 90
+[25-Jun-2019 11:49:27 Europe/Berlin] PHP Fatal error:  Class 'CI_Controller' not found in C:\xampp\htdocs\newstatcomp\thetatel\system\core\CodeIgniter.php on line 369
+[25-Jun-2019 11:50:03 Europe/Berlin] PHP Fatal error:  Class 'CI_Controller' not found in C:\xampp\htdocs\newstatcomp\thetatel\system\core\CodeIgniter.php on line 369
+[25-Jun-2019 11:50:24 Europe/Berlin] PHP Fatal error:  Call to undefined function username() in C:\xampp\htdocs\newstatcomp\thetatel\application\config\constants.php on line 91
+[25-Jun-2019 12:05:21 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Notification.php on line 57
+[25-Jun-2019 13:18:34 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 495
+[25-Jun-2019 13:44:48 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 499
+[25-Jun-2019 14:11:40 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'redirect' (T_STRING) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 501
+[26-Jun-2019 10:00:07 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$count' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 526
+[26-Jun-2019 10:01:43 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$count' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 527
+[26-Jun-2019 10:02:15 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$count' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 527
+[26-Jun-2019 10:02:46 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$count' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 527

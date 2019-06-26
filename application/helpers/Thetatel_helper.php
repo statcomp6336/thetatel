@@ -143,6 +143,16 @@ if (! function_exists('verify_id')) {
 }
 
 // ------------------------------------------------------------------------
+if (! function_exists('username')) {
+	# code...
+	function username()
+	  {
+	  	$CI =& get_instance();
+	  	$user=!empty($CI->session->SESS_USER_NAME)?$CI->session->SESS_USER_NAME:"HACKER";								
+	      return $user;
+	  } 
+}
+// ------------------------------------------------------------------------
 
 
 ?>

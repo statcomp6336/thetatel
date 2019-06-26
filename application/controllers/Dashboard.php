@@ -50,11 +50,21 @@ trait Dashboard {
 		}
 		$this->render('dashboard');		
 	}
-	// protected function render($template = '')
-	//   {
-	//     $this->load->view('layout/header', $this->data);
-	//        $this->load->view($template, $this->data);
-	//         $this->load->view('layout/footer');
-	          
-	//   }
+	//message of users in inbox
+	public function showInbox($page_data='')
+	{
+		if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		 	 $this->data['page_title'] = $page_data['page_title'];
+			 $this->data['where'] = 'Message';
+			 $this->data['sub_menu'] = 'Inbox';
+			 $this->data['user_type'] = $page_data['user_type'];
+			 $this->data['menu'] = $page_data['menu'];
+			 $this->render('inbox');
+		 }
+		 else
+		 {
+		 	echo "404 no access";
+		 }
+	}
+	
 }

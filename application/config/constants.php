@@ -87,10 +87,12 @@ defined('USER')      OR define('USER', "GOUTAM"); // highest automatically-assig
 
 
 /*project constent*/
+// $CI = & get_instance();
 
 
 // Used for phpass_helper
 define('PHPASS_HASH_STRENGTH', 8);
+
 define('PHPASS_HASH_PORTABLE', FALSE);
 // Admin url
 define('ADMIN_URL', 'admin');
