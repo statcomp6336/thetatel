@@ -98,6 +98,9 @@ class Spg extends Base_controller {
 		$this->DB_install->CreateTable_flow_of_timeline();
 		$this->DB_install->CreateTable_users();
 		$this->DB_install->CreateTable_add_companies_for_users();
+		$this->DB_install->CreateTable_timeline();
+		$this->DB_install->CreateTable_customer_dump();
+		$this->DB_install->CreateTable_timeline_data();
 
 	}
 	public function DESTROY_SYSTEM()
@@ -120,6 +123,9 @@ class Spg extends Base_controller {
 		$this->DB_install->DropTable_flow_of_timeline();
 		$this->DB_install->DropTable_users();
 		$this->DB_install->DropTable_add_companies_for_users();
+		$this->DB_install->DropTable_timeline();
+		$this->DB_install->DropTable_customer_dump();
+		$this->DB_install->DropTable_timeline_data();
 
 
 	}
@@ -146,13 +152,15 @@ class Spg extends Base_controller {
 	}
 
 	/* ------- Display the post box view of spg*/
-	public function inbox_view()
+	public function show_inbox()
 	{
-		// $this->data['page_title']="Source ITT (Labor Law Consultancy Services)";
-		// // $this->render('flashscreen');		
-		// $this->dashboard();
-		$this->render('inbox');
+		$this->showInbox($this->page);//this function store in dashboard controller		
 	}
+	public function save_comment()
+	{
+		$this->SaveComment($this->page);//this function store in dashboard controller		
+	}
+	
 	
 	/*
 		*  THIS FUNCTION DISPLAY THE REGISTRATION VIEW		
@@ -427,7 +435,11 @@ class Spg extends Base_controller {
 	{
 		$this->ShowBulkTimeline($this->page);
 	}
-
+	//display view timeline
+	public function show_timeline($value='')
+	{
+		$this->ShowTimeline($this->page);
+	}
 
 	
 
@@ -512,8 +524,7 @@ class Spg extends Base_controller {
 
 		
 	}
-
-
+	
 	/*working with pf reports*/
 	public function show_pf_newjoinee()
 	{

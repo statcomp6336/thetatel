@@ -1625,6 +1625,103 @@ class DB_install extends Base_model
 		$this->dbforge->drop_table('add_companies_for_users');
 	}
 
+	public function CreateTable_timeline($value='')
+	{
+		$fields = array(
+			"srno"			=> array('type' =>'INT',
+		 							 'auto_increment' => TRUE), 			 
+			"spgid"			=>array('type' =>'BIGINT',
+									'constraint' => '11'),			
+			"custid"		=>array('type' =>'BIGINT',
+									'constraint' => '11'),
+			"entity_name"	=>array('type' =>'VARCHAR',
+									'constraint' => '300'),
+
+			"IS_FileRecive"		=>array('type' =>'INT'),
+			"IS_FileUpload"		=>array('type' =>'INT'),
+			"IS_PfProcess"		=>array('type' =>'INT'),
+			"IS_Compliation"	=>array('type' =>'INT'),
+			"IS_Approve"		=>array('type' =>'INT'),
+			"IS_Complete"		=>array('type' =>'INT'),			
+			
+			'date TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		        );
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('timeline',TRUE);
+	}
+	public function DropTable_timeline()
+	{
+		$this->dbforge->drop_table('timeline');
+	}
+
+	public function CreateTable_customer_dump($value='')
+	{
+		$fields = array(
+			"srno"			=> array('type' =>'INT',
+		 							 'auto_increment' => TRUE), 			 
+			
+			"custid"		=>array('type' =>'BIGINT',
+									'constraint' => '11'),
+			"entity_name"	=>array('type' =>'VARCHAR',
+									'constraint' => '300'),
+			"send_doc"	=>array('type' =>'VARCHAR',
+									'constraint' => '300'),			
+			"month"	=>array('type' =>'VARCHAR',
+									'constraint' => '30'),
+			"year"	=>array('type' =>'INT',
+									'constraint' => '30'),
+			"flag"	=>array('type' =>'INT',
+									'constraint' => '30'),
+					
+			
+			'docsend_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		        );
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('customer_dump',TRUE);
+	}
+	public function DropTable_customer_dump()
+	{
+		$this->dbforge->drop_table('customer_dump');
+	}
+
+	public function CreateTable_timeline_data($value='')
+	{
+		$fields = array(
+			"srno"			=> array('type' =>'INT',
+		 							 'auto_increment' => TRUE), 			 
+			
+			"custid"		=>array('type' =>'BIGINT',
+									'constraint' => '11'),
+			"entity_name"	=>array('type' =>'VARCHAR',
+									'constraint' => '300'),
+			"event"	=>array('type' =>'VARCHAR',
+									'constraint' => '300'),			
+			"comment"	=>array('type' =>'LONGTEXT',
+									'constraint' => '300'),
+			"who_id"	=>array('type' =>'INT',
+									'constraint' => '30'),
+			"who"	=>array('type' =>'INT',
+									'constraint' => '30'),
+					
+			
+			'created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		        );
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('timeline_data',TRUE);
+	}
+	public function DropTable_timeline_data()
+	{
+		$this->dbforge->drop_table('timeline_data');
+	}
+
+
+
+
+
+	
 
 
 

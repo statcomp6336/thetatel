@@ -378,15 +378,34 @@ trait Act {
 		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
 		 	 $this->data['page_title'] = $page_data['page_title'];
 			 $this->data['where'] = 'Compilance';
-			 $this->data['sub_menu'] = 'Bulk-Update';
+			 $this->data['sub_menu'] = 'Bulk-Timeline';
 			 $this->data['user_type'] = $page_data['user_type'];
 			 $this->data['menu'] = $page_data['menu'];
 
 			 // act detatails data
-			  $this->data['act_data']=array('act_code'=> $this->Act_model->get_act_code(),
-			  								'data'    => $this->Act_model->get_actss()
-											);
-			 $this->render('bulk_update');
+			  $this->data['companies']=$this->Act_model->get_companies();
+			 $this->render('bulk_timeline');
+		 }
+		 else
+		 {
+		 	echo "404 no access";
+		 }
+	}
+	//display view bulk timeline
+	public function ShowTimeline($page_data='')
+	{
+		$this->load->model('Act_model');
+		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		 	 $this->data['page_title'] = $page_data['page_title'];
+			 $this->data['where'] = 'Compilance';
+			 $this->data['sub_menu'] = 'Bulk-Timeline';
+			 $this->data['user_type'] = $page_data['user_type'];
+			 $this->data['menu'] = $page_data['menu'];
+
+			$custid=is(verify_id($this->uri->segment(4)),'N/A');	
+			// echo $custid;		 
+			  $this->data['result']=$this->Act_model->get_timelineData($custid);
+			 $this->render('timeline');
 		 }
 		 else
 		 {
@@ -473,7 +492,13 @@ trait Act {
 			}
 			if ($return == TRUE) {
 				put_msg('Data Save successfully..!');
-				redirect(base_url(''.$user.'/compliance/bulk-compliance'));
+
+				$this->load->model('Act_model','timeline');
+
+				$custid= $this->input->post('custid');			
+				$url   = $user.'/compliance/bulk-compliance';
+				$this->timeline->update_timeline($custid,array('IS_Compliation'=>1));
+				redirect(base_url(''.$user.'/compliance/bulk-compliance/comment/'.hash_id($custid).'/4/'.hash_id($url)));
 			}
 		}
 	}
@@ -484,8 +509,10 @@ trait Act {
 	{
 		if (!empty($this->input->post('srno'))) {
 			$this->load->model('Act_model','act');
-			$count=sizeof($this->input->post('srno'));
-			for ($i=0; $i < $count; $i++) {				
+			$countsr=sizeof($this->input->post('srno'));
+			$rejected_count=0;
+			$count=0;
+			for ($i=0; $i < $countsr; $i++) {				
 	      		
 	      		if (!empty($this->input->post('comment')[$i]) && !empty($this->input->post('compliancestatus')[$i]))
 	      		{
@@ -495,7 +522,9 @@ trait Act {
       					$sts=5;      					
       				}
       				elseif ($status == 'rejection') {
-      					$sts=4;      					
+      					$sts=4;
+      					
+      					$count++;
       				}
       				$editComplience = array('status'=> $sts); 	      				
 
@@ -521,10 +550,29 @@ trait Act {
 			}
 			if ($return == TRUE) {
 				put_msg('Data Save successfully..!');
-				$this->act->complete_compliance();
+				$this->load->model('Act_model','timeline');
 
+					$custid= $this->input->post('custid');			
+					$url   = $user.'/compliance/bulk-approval';
+					if ($count>1) {
+						$IS_Approve=2;
+						$IS_Compliation=3;
+						$IS_Complete=0;
+					}
+					else
+					{
+						$IS_Approve=1;
+						$IS_Compliation=1;
+						$IS_Complete=1;
+					}
 
-				// redirect(base_url(''.$user.'/compliance/bulk-compliance'));
+				if($this->act->complete_compliance())
+				{					
+					$this->timeline->update_timeline($custid,array('IS_Approve'=>$IS_Approve,'IS_Compliation'=>$IS_Compliation,'IS_Complete'=>$IS_Complete));
+					redirect(base_url(''.$user.'/compliance/bulk-approval/comment/'.hash_id($custid).'/5/'.hash_id($url)));
+				}
+				
+
 			}
 		}
 	}

@@ -35,6 +35,20 @@ class Act_model extends Base_model
 	{
 		return $this->db->group_by('act')->get('act_particular')->result();
 	}
+	public function get_companies($value='')
+	{
+		return $this->db->select('custid,entity_name')->from('customer_master')->get()->result();
+	}
+	public function get_timelineData($id='')
+	{
+		return $this->fetch('timeline_data','*',array('custid'=>$id))->result();
+	}
+	public function save_TimelineComment($data='')
+	{
+		return $this->add('timeline_data',$data);
+	}
+
+
 	public function get_compActs($id)
 	{
 		return $this->newdb->where('spgid',$id)->get('act_applicable_to_customer')->result();
@@ -166,4 +180,17 @@ class Act_model extends Base_model
 		$result=$this->newdb->select('*')->from('flow_of_timeline')->where('row_id',$id)->order_by('date', "desc")->get()->result();
 		return $result;
 	}
+	/*
+		*@IS_FileRecive [0=not-completed,1=completed,]
+		*@IS_FileUpload [0=not-completed,1=completed,2=emp_excel up,3=sal_excel up]
+		*@IS_PfProcess	[0=not-completed,1=completed,]
+		*@IS_Compliation[0=not-completed,1=completed,2=upload-data,3=rejectd]
+		*@IS_Approve	[0=not-completed,1=completed,2=rejected]
+		*@IS_Complete   [0=not-completed,1=completed]
+	*/
+	public function update_timeline($id='',$data='')
+	{
+		return $this->edit('timeline',array('custid'=>$id),$data);
+	}
+
 }

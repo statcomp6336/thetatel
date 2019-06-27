@@ -42,7 +42,15 @@ trait Reports {
 		$this->load->model('Report_model','report');
 		$show=$this->report->CreateSanitizeReport();
 		if ($show == TRUE) {
+			$this->load->model('Act_model','timeline');
+			$this->timeline->update_timeline($custid,array('IS_PfProcess'=>1));
+					// redirect(base_url(''.$user.'/compliance/bulk-approval/comment/'.hash_id($custid).'/5/'.hash_id($url)));
+	
 			$send['redirect']='spg';
+			// $send['custid']=hash_id($custid);
+			// $send['url']='spg';
+			// $send['event']=3;
+
 			$this->load->view('success',$send);
 		}
 		else

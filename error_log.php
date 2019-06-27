@@ -666,15 +666,35 @@
 [21-Jun-2019 11:39:46 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'header' (T_STRING), expecting function (T_FUNCTION) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Home.php on line 209
 [21-Jun-2019 13:46:09 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\newstatcomp\thetatel\application\views\explore_data.php on line 77
 [21-Jun-2019 14:30:34 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Files.php on line 46
+<<<<<<< HEAD
+[24-Jun-2019 13:11:48 Europe/Berlin] PHP Fatal error:  Call to undefined method DB_install::CreateTable_timeline() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\spg\Spg.php on line 101
+[25-Jun-2019 10:21:53 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Notification.php on line 97
+[25-Jun-2019 11:48:57 Europe/Berlin] PHP Fatal error:  Using $this when not in object context in C:\xampp\htdocs\newstatcomp\thetatel\application\config\constants.php on line 90
+[25-Jun-2019 11:49:27 Europe/Berlin] PHP Fatal error:  Class 'CI_Controller' not found in C:\xampp\htdocs\newstatcomp\thetatel\system\core\CodeIgniter.php on line 369
+[25-Jun-2019 11:50:03 Europe/Berlin] PHP Fatal error:  Class 'CI_Controller' not found in C:\xampp\htdocs\newstatcomp\thetatel\system\core\CodeIgniter.php on line 369
+[25-Jun-2019 11:50:24 Europe/Berlin] PHP Fatal error:  Call to undefined function username() in C:\xampp\htdocs\newstatcomp\thetatel\application\config\constants.php on line 91
+[25-Jun-2019 12:05:21 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Notification.php on line 57
+[25-Jun-2019 13:18:34 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 495
+[25-Jun-2019 13:44:48 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 499
+[25-Jun-2019 14:11:40 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'redirect' (T_STRING) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 501
+[26-Jun-2019 10:00:07 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$count' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 526
+[26-Jun-2019 10:01:43 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$count' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 527
+[26-Jun-2019 10:02:15 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$count' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 527
+[26-Jun-2019 10:02:46 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$count' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 527
+=======
 >>>>>>> d80184b69518b73b85842d1a4e04cbde58a8b349
 [24-Jun-2019 13:25:04 Asia/Kolkata] PHP Fatal error:  Call to undefined method Spg::contractor_registration() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\spg\Spg.php on line 177
 [24-Jun-2019 13:47:22 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'elseif' (T_ELSEIF) in C:\xampp\htdocs\newstatcomp\thetatel\application\views\show_company.php on line 47
 [25-Jun-2019 09:55:02 Asia/Kolkata] PHP Fatal error:  Call to a member function get_missinguan() on a non-object in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Employee.php on line 652
 [25-Jun-2019 09:58:12 Asia/Kolkata] PHP Fatal error:  Call to a member function get_missinguan() on a non-object in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Employee.php on line 652
 [25-Jun-2019 10:37:56 Asia/Kolkata] PHP Fatal error:  Call to a member function get_missinguan() on a non-object in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Employee.php on line 652
+<<<<<<< HEAD
 [25-Jun-2019 18:12:49 Asia/Kolkata] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\newstatcomp\thetatel\application\views\show_compliance_documentation.php on line 56
 [25-Jun-2019 18:35:44 Asia/Kolkata] PHP Fatal error:  Cannot use [] for reading in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 1494
 [26-Jun-2019 10:56:59 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1228
 [26-Jun-2019 13:11:57 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '?' in C:\xampp\htdocs\newstatcomp\thetatel\application\views\show_compliance_documentation.php on line 56
 [26-Jun-2019 13:14:55 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '/' in C:\xampp\htdocs\newstatcomp\thetatel\application\views\show_compliance_documentation.php on line 37
 [26-Jun-2019 16:52:03 Asia/Kolkata] PHP Fatal error:  Call to undefined method Report_model::get_formd() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 1875
+=======
+>>>>>>> a9ec22f14548f3ab09a70510beb2436978f0cd50
+>>>>>>> 50531ed0cc6315902e8db16be8afd4d2c70a9052
