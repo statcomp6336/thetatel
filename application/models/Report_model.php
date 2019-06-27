@@ -1091,33 +1091,34 @@ class Report_model extends Base_model
 //echo $cname;
 
 			$this->db->select("*");
-			$this->db->from('comp_doc_temp');
-			$this->db->like('doc_path', $custid);
+			$this->db->from('DOC_UP');
+			$this->db->like('custid', $custid);
 			$result=$this->db->get()->result();
+			return $result;
 
-			foreach ($result as $key) {
-				# code...
-				$doc_path=$key->doc_path;
-				//echo $doc_path;
+			// foreach ($result as $key) {
+			// 	# code...
+			// 	$doc_path=$key->doc_path;
+			// 	//echo $doc_path;
 
-				//$splittedstring=explode("_",$doc_path);
-				//foreach ($splittedstring as $key => $value) {
-				//echo "splittedstring[".$key."] = ".$value."<br>";
+			// 	//$splittedstring=explode("_",$doc_path);
+			// 	//foreach ($splittedstring as $key => $value) {
+			// 	//echo "splittedstring[".$key."] = ".$value."<br>";
 
-					$str_arr = explode ("_", $doc_path);
-					//preg_match_all('!d+!', $str_arr[0], $cust);
-					//$custid=$cust[0];
-					//$cstid=$str_arr[0];
-					$date=$str_arr[1];
-					$act=$str_arr[2];
-					$path=$str_arr[3];
-					// echo $custid;echo "</br>";
-					// echo $date;echo "</br>";
-					// echo $act; echo "</br>";
-					// echo $path; echo "</br>";
-				///}
+			// 		$str_arr = explode ("_", $doc_path);
+			// 		//preg_match_all('!d+!', $str_arr[0], $cust);
+			// 		//$custid=$cust[0];
+			// 		//$cstid=$str_arr[0];
+			// 		$date=$str_arr[1];
+			// 		$act=$str_arr[2];
+			// 		$path=$str_arr[3];
+			// 		// echo $custid;echo "</br>";
+			// 		// echo $date;echo "</br>";
+			// 		// echo $act; echo "</br>";
+			// 		// echo $path; echo "</br>";
+			// 	///}
 
-			}
+			// }
 			//$doc_path=$result->row()->doc_path;
 			//$keywords = explode('_', $doc_path);
 			//echo $keywords;
@@ -1129,8 +1130,8 @@ class Report_model extends Base_model
 			//}
 
 		
-	$arrayName = array("$custid","$cname","$path","$act","$date");
-	return $arrayName;
+	//$arrayName = array("custid =>$custid,cname=>$cname,path=>$path,act=>$act,date=>$date");
+	//return $arrayName;
 	}
 
 	/* get entity Details data from customer_master table */
@@ -1170,8 +1171,7 @@ class Report_model extends Base_model
 	/* get location data from employee_master_new table */
 	public function get_location()
 	{
-		//displaying data from tabl
-		// which cocmpany loccation. there is all locaton you are fetch?
+		//displaying data from table
 			return $this->db->select("location")
 							->from('employee_master_new')
 							//->where('location != ',NULL,FALSE);
@@ -1215,37 +1215,29 @@ class Report_model extends Base_model
 				return $result;
 	}
 
+	/* get Compliance Request Details data from act_particular table */
+	public function get_spgusers()
+	{
+		//displaying data from table
+		//$sql="SELECT count(*) as total,a.username,date(b.date) as date FROM uu_companyselection a inner join compliance_working_prior b on (a.custid=b.custid) where b.status=3 group by date(b.date),a.username order by a.username asc";      
+			return $this->db->select("a.username,count(*) as total,date(b.date) as date")
+							->from('uu_companyselection a')
+							->join('compliance_working_prior b', 'a.custid=b.custid')
+							->where(array(	'b.status' =>'3'))
+							->group_by(array(	'date(b.date)' ,'a.username'))
+							->order_by('a.username','asc')
+							->get()->result();
+	}
 
-	// public function get_complince_data($spgid,$custid,$action)
-	// {
-		
-	// 	if ($action == 'compliance') {
-	// 		$this->db->select("a.custid,a.entity_name,b.Particular,b.Statutory_due_date,b.Task_complitn_date,b.`Retrn/Challan_genrtn_date`,b.`Submisn/Pay_date`,b.Docu_submit_to_GOVT_in_nos,b.Pend_docu_in_nos,b.Copy_of_docu,b.Resp_prsn_frm_client,b.Resp_prsn,b.Remarks")
-	// 		$this->db->from('customer_master b');
-	// 	$this->db->join('completed_compliance a', 'a.custid=b.custid');
-	// 		$this->db->where(array(	'a.spg_id' =>$spgid,
-	// 										'a.custid'=>$custid)
-	// 						);
-	// 	}
-	// 	elseif ($action == 'approval') {
-	// 		$this->db->select("a.custid ,b.entity_name,a.year,a.act,a.Particular,a.Reg_freq,a.Statutory_due_date,a.act_type,a.Certi_rece_date");
-	// 		$this->db->from('customer_master b');
-	// 	$this->db->join('completed_compliance a', 'a.custid=b.custid');
-	// 		$where="`a`.`spg_id` =".$spgid." AND a.custid =".$custid." AND MONTH(a.due_date) = MONTH(CURRENT_DATE())";
-	// 		$this->db->where($where);
-			
-	// 	}
-		
-	// 	$result = $this->db->get()->result();
-	// 	return $result;
-
-	// }
-	
-
-
-	
-
-	
+	/* get Compliance Request Details data from act_particular table */
+	public function get_formd($spgid,$custid)
+	{
+		//displaying data from table      
+			return $this->db->select("*")
+							->from('employee_master_new')
+							->where(array('uan_no'=>0,'custid'=>$custid,'spgid'=>$spgid))
+							->get()->result();
+	}
 
 
 }	

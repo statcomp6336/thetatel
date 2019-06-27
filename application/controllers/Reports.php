@@ -1463,9 +1463,11 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 /* Show Compliance Document Report companiwise */
 	 public function ShowComplianceDocument($page_data = '')
 	 {
+	 	 $this->load->model('Report_model','report');
+
 	 	if (!empty($this->input->post('submit'))) 
 	 	{
-	 		$cname	=!empty($this->input->post('comp_name'))?$this->input->post('comp_name'):NULL;
+	 		$cname	=!empty($this->input->post('entity_name'))?$this->input->post('entity_name'):NULL;
 			$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
 			$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 
@@ -1480,12 +1482,20 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			 		$this->data['tableHeading'] = "Compliance Document Report";	// colomns name
 			 		
 			 		// colomns name
-			 		$this->data['tableCol'] = array("Customer ID","Company name","Document","ACT","Date");
+			 		//$this->data['tableCol'] = array("Customer ID","Company name","Document","ACT","Date");
 			 		//data	
-			 		$this->data['tableData']=$this->GenrateComplianceDocument();//
-			 		// $this->data['tableButtons']	= array();
+			 		//$this->data['tableData']=$this->GenrateComplianceDocument();//
+			 		// $this->data['tableButtons']	= array();		
+				//$this->data['entity_name']=is($this->input->post('entity_name'),"N/A");
+				
+			 	$this->data['result']=$this->report->get_compliancedocument($spgid,$custid,$cname);
+		//echo $custid;echo $cname;echo $spgid;
+
+					// print_r($result);
+					// exit();
+					$this->render('show_compliance_documentation');
 			 	
-		 		 	$this->render('export_table');
+		 		 	//$this->render('export_table');
 			     }
 			     else
 			     {
@@ -1806,17 +1816,95 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 		
 	 }
 
-	 /* download non complance  report in excel formate*/
-	 // public function DownloadNonCompliance()
-	 // {
-	 // 	$this->load->model('Export');
-	 // 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
-	 // 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
-	 // 	// echo $spg;
-	 // 	// exit();
-	 // 	$this->Export->noncompliance($spg,$cust);
-	 // }
-	 
+	 /* Show Entity Details Report*/
+	 public function ShowSpgUsersDetails($page_data = '')
+	 {
+		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		{
+		 		    $this->data['page_title'] = $page_data['page_title'];
+			        $this->data['where'] = 'Reports';
+			        $this->data['sub_menu'] = 'SPG Users Details';
+			        $this->data['user_type'] = $page_data['user_type'];
+			        $this->data['menu'] = $page_data['menu'];
+			        /* table data */
+			 		$this->data['tableHeading'] = "SPG Users Report";	// colomns name
+			 		
+			 		// colomns name
+			 		$this->data['tableCol'] = array("UserName","Pending For Approval","Date of bulk Compliance");
+			 		//data
+			 		$this->data['tableData']=$this->GenrateSpgUsersDetails();//
+			 		
+		 		 	$this->render('export_table');
+			     }
+			     else
+			     {
+			      echo "404 no access";
+			     }
+	 }
+
+	 /* genrate Entity Details report with validation */
+	 public function GenrateSpgUsersDetails($value='')
+	 {
+	 	$this->load->model('Report_model','report');
+	 		
+				$result=$this->report->get_spgusers();
+				 return $result;
+				
+	 }
+
+	 /* Show formd Report companiwise */
+	 public function ShowFormD($page_data = '')
+	 {
+	 	if (!empty($this->input->post('submit'))) 
+	 	{
+	 		$this->load->model('Report_model','report');
+
+			$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+			$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+
+		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		{
+		 		    $this->data['page_title'] = $page_data['page_title'];
+			        $this->data['where'] = 'Reports';
+			        $this->data['sub_menu'] = 'Form-D';
+			        $this->data['user_type'] = $page_data['user_type'];
+			        $this->data['menu'] = $page_data['menu'];
+			        /* table data */
+			 		$this->data['tableHeading'] = "Form-D Report";	// colomns name
+			 			
+			 		$this->data['result']=$this->report->get_formd($spgid,$custid);
+		
+					$this->render('show_formd',$this->data);
+
+			 		//$this->data['tableButtons']	= array("edit","delete");		 	
+		 		 	//$this->render('export_table');
+			     }
+			     else
+			     {
+			      echo "404 no access";
+			     } 		 	
+	 	}
+	 	else
+	 	{
+		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+			 	{
+				    $this->load->model('Report_model','report');
+				    $this->load->library("pagination");
+
+			       $this->data['page_title'] = $page_data['page_title'];
+			       $this->data['where'] = 'Reports';
+			       $this->data['sub_menu'] = 'Form-D';
+			       $this->data['user_type'] = $page_data['user_type'];
+			       $this->data['menu'] = $page_data['menu'];		    
+			      
+			       $this->render('export_formd');
+			     }
+			     else
+			     {
+			      echo "404 no access";
+			     }
+		}
+	 }
 
 	 
 

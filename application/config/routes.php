@@ -127,6 +127,12 @@ $route['spg/export/salarydetails'] = 'spg/Spg/show_salary_details';
 /*export FAQ Details report start*/
 $route['spg/export/faqdetails'] = 'spg/Spg/show_faq_details';
 
+/*export Spg user Details report start*/
+$route['spg/export/spguserdetails'] = 'spg/Spg/show_spgusers_details';
+
+/*export Form D report start*/
+$route['spg/export/formd'] = 'spg/Spg/show_formd';
+
 
 
 /* work with users */

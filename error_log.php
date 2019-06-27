@@ -672,3 +672,9 @@
 [25-Jun-2019 09:55:02 Asia/Kolkata] PHP Fatal error:  Call to a member function get_missinguan() on a non-object in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Employee.php on line 652
 [25-Jun-2019 09:58:12 Asia/Kolkata] PHP Fatal error:  Call to a member function get_missinguan() on a non-object in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Employee.php on line 652
 [25-Jun-2019 10:37:56 Asia/Kolkata] PHP Fatal error:  Call to a member function get_missinguan() on a non-object in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Employee.php on line 652
+[25-Jun-2019 18:12:49 Asia/Kolkata] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\newstatcomp\thetatel\application\views\show_compliance_documentation.php on line 56
+[25-Jun-2019 18:35:44 Asia/Kolkata] PHP Fatal error:  Cannot use [] for reading in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 1494
+[26-Jun-2019 10:56:59 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1228
+[26-Jun-2019 13:11:57 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '?' in C:\xampp\htdocs\newstatcomp\thetatel\application\views\show_compliance_documentation.php on line 56
+[26-Jun-2019 13:14:55 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '/' in C:\xampp\htdocs\newstatcomp\thetatel\application\views\show_compliance_documentation.php on line 37
+[26-Jun-2019 16:52:03 Asia/Kolkata] PHP Fatal error:  Call to undefined method Report_model::get_formd() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 1875

@@ -1367,7 +1367,7 @@
 							</li>
 
 							<li class="hover">
-								<a href="blank.html">
+								<a href="<?php echo base_url(''.$user_type.'/export/spguserdetails'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									User Details
 								</a>
@@ -1383,24 +1383,24 @@
 
 								<b class="arrow"></b>
 								<ul class="submenu">
-									<li class="hover">
+									<!-- <li class="hover">
 										<a href="#">
 											<i class="menu-icon fa fa-leaf green"></i>
 											Maternity Form
 										</a>
 
 										<b class="arrow"></b>
-									</li>
-									<li class="hover">
+									</li> -->
+									<!-- <li class="hover">
 										<a href="#">
 											<i class="menu-icon fa fa-pencil orange"></i>
 										Form XXI 
 											<b class="arrow fa fa-angle-down"></b>
 										</a>
 										<b class="arrow"></b>	
-									</li>
+									</li> -->
 									<li class="hover">
-										<a href="#">
+										<a href="<?php echo base_url(''.$user_type.'/export/formd'); ?>">
 											<i class="menu-icon fa fa-leaf green"></i>
 											 FORM D
 										</a>

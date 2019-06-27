@@ -1,4 +1,5 @@
 <!-- <div class="col-sm-5"> -->
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 	<div class="container">
 	<div class="widget-box ">
 		<div class="widget-header">
@@ -21,6 +22,20 @@
 												General
 											</a>
 										</li>
+										<li>
+											<a data-toggle="tab" href="#faq-tab-2">
+												<i class="green ace-icon fa fa-user bigger-120"></i>
+												Account
+											</a>
+										</li>
+
+										<li>
+											<a data-toggle="tab" href="#faq-tab-3">
+												<i class="orange ace-icon fa fa-credit-card bigger-120"></i>
+												Payments
+											</a>
+										</li>
+
 									</ul>
 
 									<div class="tab-content no-border padding-24">
@@ -164,14 +179,155 @@
 												</div>
 											</div>
 										</div>
+
+
+										<div id="faq-tab-2" class="tab-pane fade">
+											<h4 class="blue">
+												<i class="green ace-icon fa fa-user bigger-110"></i>
+												Account Questions
+											</h4>
+
+											<div class="space-8"></div>
+
+											<div id="faq-list-2" class="panel-group accordion-style1 accordion-style2">
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<a href="#faq-2-1" data-parent="#faq-list-2" data-toggle="collapse" class="accordion-toggle collapsed">
+															<i class="ace-icon fa fa-chevron-right smaller-80" data-icon-hide="ace-icon fa fa-chevron-down align-top" data-icon-show="ace-icon fa fa-chevron-right"></i>&nbsp;
+						Enim eiusmod high life accusamus terry richardson?
+														</a>
+													</div>
+
+													<div class="panel-collapse collapse" id="faq-2-1">
+														<div class="panel-body">
+															Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+														</div>
+													</div>
+												</div>
+
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<a href="#faq-2-2" data-parent="#faq-list-2" data-toggle="collapse" class="accordion-toggle collapsed">
+															<i class="ace-icon fa fa-chevron-right smaller-80" data-icon-hide="ace-icon fa fa-chevron-down align-top" data-icon-show="ace-icon fa fa-chevron-right"></i>&nbsp;
+					  Single-origin coffee nulla assumenda shoreditch et?
+														</a>
+													</div>
+
+													<div class="panel-collapse collapse" id="faq-2-2">
+														<div class="panel-body">
+															Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+														</div>
+													</div>
+												</div>
+
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<a href="#faq-2-3" data-parent="#faq-list-2" data-toggle="collapse" class="accordion-toggle collapsed">
+															<i class="ace-icon fa fa-chevron-right middle smaller-80" data-icon-hide="ace-icon fa fa-chevron-down align-top" data-icon-show="ace-icon fa fa-chevron-right"></i>&nbsp;
+					  Sunt aliqua put a bird on it squid?
+														</a>
+													</div>
+
+													<div class="panel-collapse collapse" id="faq-2-3">
+														<div class="panel-body">
+															Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+														</div>
+													</div>
+												</div>
+
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<a href="#faq-2-4" data-parent="#faq-list-2" data-toggle="collapse" class="accordion-toggle collapsed">
+															<i class="ace-icon fa fa-chevron-right smaller-80" data-icon-hide="ace-icon fa fa-chevron-down align-top" data-icon-show="ace-icon fa fa-chevron-right"></i>&nbsp;
+					  Brunch 3 wolf moon tempor sunt aliqua put?
+														</a>
+													</div>
+
+													<div class="panel-collapse collapse" id="faq-2-4">
+														<div class="panel-body">
+															Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div id="faq-tab-3" class="tab-pane fade">
+											<h4 class="blue">
+												<i class="orange ace-icon fa fa-credit-card bigger-110"></i>
+												Payment Questions
+											</h4>
+
+											<div class="space-8"></div>
+
+											<div id="faq-list-3" class="panel-group accordion-style1 accordion-style2">
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<a href="#faq-3-1" data-parent="#faq-list-3" data-toggle="collapse" class="accordion-toggle collapsed">
+															<i class="ace-icon fa fa-plus smaller-80" data-icon-hide="ace-icon fa fa-minus" data-icon-show="ace-icon fa fa-plus"></i>&nbsp;
+						Enim eiusmod high life accusamus terry richardson?
+														</a>
+													</div>
+
+													<div class="panel-collapse collapse" id="faq-3-1">
+														<div class="panel-body">
+															Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+														</div>
+													</div>
+												</div>
+
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<a href="#faq-3-2" data-parent="#faq-list-3" data-toggle="collapse" class="accordion-toggle collapsed">
+															<i class="ace-icon fa fa-plus smaller-80" data-icon-hide="ace-icon fa fa-minus" data-icon-show="ace-icon fa fa-plus"></i>&nbsp;
+					  Single-origin coffee nulla assumenda shoreditch et?
+														</a>
+													</div>
+
+													<div class="panel-collapse collapse" id="faq-3-2">
+														<div class="panel-body">
+															Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+														</div>
+													</div>
+												</div>
+
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<a href="#faq-3-3" data-parent="#faq-list-3" data-toggle="collapse" class="accordion-toggle collapsed">
+															<i class="ace-icon fa fa-plus smaller-80" data-icon-hide="ace-icon fa fa-minus" data-icon-show="ace-icon fa fa-plus"></i>&nbsp;
+					  Sunt aliqua put a bird on it squid?
+														</a>
+													</div>
+
+													<div class="panel-collapse collapse" id="faq-3-3">
+														<div class="panel-body">
+															Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+														</div>
+													</div>
+												</div>
+
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<a href="#faq-3-4" data-parent="#faq-list-3" data-toggle="collapse" class="accordion-toggle collapsed">
+															<i class="ace-icon fa fa-plus smaller-80" data-icon-hide="ace-icon fa fa-minus" data-icon-show="ace-icon fa fa-plus"></i>&nbsp;
+					  Brunch 3 wolf moon tempor sunt aliqua put?
+														</a>
+													</div>
+
+													<div class="panel-collapse collapse" id="faq-3-4">
+														<div class="panel-body">
+															Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
 									</div>
 								</div>
 							</div>
 						</div>
-
-
-
-
 
 
 			</div>

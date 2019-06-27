@@ -23,7 +23,7 @@
 								</div>
 								<div class="col-sm-5">
 
-									<input type="text"  name="comp_name" placeholder="Type something&hellip;" class="form-control required" />
+									<input type="text"  name="entity_name" placeholder="Type something&hellip;" class="form-control required" />
 									<input type="hidden" name="spgid" value="<?php echo user_id();?>">
 									<span class="help-block hide">Example block-level help text here.</span>
 								</div>
