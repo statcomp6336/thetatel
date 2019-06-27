@@ -688,8 +688,25 @@
 [25-Jun-2019 09:55:02 Asia/Kolkata] PHP Fatal error:  Call to a member function get_missinguan() on a non-object in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Employee.php on line 652
 [25-Jun-2019 09:58:12 Asia/Kolkata] PHP Fatal error:  Call to a member function get_missinguan() on a non-object in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Employee.php on line 652
 [25-Jun-2019 10:37:56 Asia/Kolkata] PHP Fatal error:  Call to a member function get_missinguan() on a non-object in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Employee.php on line 652
+<<<<<<< HEAD
+[25-Jun-2019 18:12:49 Asia/Kolkata] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\newstatcomp\thetatel\application\views\show_compliance_documentation.php on line 56
+[25-Jun-2019 18:35:44 Asia/Kolkata] PHP Fatal error:  Cannot use [] for reading in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 1494
+[26-Jun-2019 10:56:59 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1228
+[26-Jun-2019 13:11:57 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '?' in C:\xampp\htdocs\newstatcomp\thetatel\application\views\show_compliance_documentation.php on line 56
+[26-Jun-2019 13:14:55 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '/' in C:\xampp\htdocs\newstatcomp\thetatel\application\views\show_compliance_documentation.php on line 37
+[26-Jun-2019 16:52:03 Asia/Kolkata] PHP Fatal error:  Call to undefined method Report_model::get_formd() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 1875
+=======
 >>>>>>> a9ec22f14548f3ab09a70510beb2436978f0cd50
+<<<<<<< HEAD
 [27-Jun-2019 08:46:48 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Dashboard.php on line 122
 [27-Jun-2019 08:46:51 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Dashboard.php on line 122
 [27-Jun-2019 12:24:34 Europe/Berlin] PHP Fatal error:  Call to a member function countOfNewMail() on null in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\spg\Spg.php on line 66
 [27-Jun-2019 15:09:57 Europe/Berlin] PHP Fatal error:  Call to a member function get_DashSompanyes() on null in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Dashboard.php on line 164
+=======
+>>>>>>> 50531ed0cc6315902e8db16be8afd4d2c70a9052
+[27-Jun-2019 14:19:26 Asia/Kolkata] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\newstatcomp\thetatel\application\views\show_formq.php on line 238
+[27-Jun-2019 15:38:40 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$year' (T_VARIABLE), expecting ',' or ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\views\show_formq.php on line 20
+[27-Jun-2019 16:14:07 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '\' (T_NS_SEPARATOR), expecting ')' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 587
+[27-Jun-2019 16:52:17 Asia/Kolkata] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 637
+[27-Jun-2019 16:52:46 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 637
+>>>>>>> 2a208fa954785931855249130b6f7c9c6dab6318

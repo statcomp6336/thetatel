@@ -2,7 +2,7 @@
 	<div class="container">
 	<div class="widget-box ">
 		<div class="widget-header">
-			<h4 class="widget-title">Compliance Document Report</h4>
+			<h4 class="widget-title">Form-Q Reports</h4>
 		</div>
 
 		<div class="widget-body container">
@@ -10,7 +10,7 @@
 			<?php      
 		        echo "<span style='color:red'>".show_msg()."</span>";
 		        $attributes = array('name' => 'frmRegistration', 'id' => 'signup-form');
-		        echo form_open(base_url(''.$user_type.'/export/compliancedocument'), $attributes);
+		        echo form_open(base_url(''.$user_type.'/export/formq'), $attributes);
         	?>            
 				<!-- 	<legend>Form</legend> -->
 				<br>
@@ -47,7 +47,7 @@
 					</div>
 				</div>
 
-				<!-- <div class="row">
+				<div class="row">
 					 <div class="col-sm-5">
 						<div class="form-group">
 							<div class="row">
@@ -100,9 +100,9 @@
 							</div>
 						</div>	
 					</div>
-				</div> -->
+				</div>
 
-				<!-- <div class="row">
+				<div class="row">
 					 <div class="col-sm-5">
 						<div class="form-group">
 							<div class="row">
@@ -111,7 +111,15 @@
 								</div>
 								<div class="col-sm-5">
 
-									<select class="form-control required" ></select>
+									<select class="form-control required" name="location">
+										<option value='ALL' selected>ALL</option>
+										<?php
+										foreach ($result as $key) {
+											
+										?>
+										<option value='<?php echo $key->location; ?>'><?php echo $key->location; ?></option>
+										<?php } ?>
+									</select>
 									<span class="help-block hide" name="location">Example block-level help text here.</span>
 								</div>
 							</div>
@@ -120,7 +128,7 @@
 					</div>
 					<div class="col-sm-5">
 						<div class="form-group">
-							<div class="row">
+							<!-- <div class="row">
 					 			<div class="col-sm-5">
 									<label>Label name</label>
 								</div>
@@ -129,10 +137,10 @@
 									<input type="text" placeholder="Type something&hellip;" class="form-control required" />
 									<span class="help-block hide">Example block-level help text here.</span>
 								</div>
-							</div>
+							</div> -->
 						</div>	
 					</div>
-				</div> -->
+				</div>
 
 
 

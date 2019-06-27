@@ -578,4 +578,113 @@ class Export extends Base_model
 	  header('Content-Disposition: attachment;filename="'.$comp_name.'PFnewJoinee.xlsx"');
 		$obj_writer->save('php://output');
 	}
+
+	/* export FormQ report */
+	public function FormQ($spgid,$custid)
+	{
+		$obj = new PHPExcel();
+		$obj->setActiveSheetIndex(0);		 	 				
+		$table_cols = array("SrNo","Emp_Id","Full Name of the worker","Designation of the worker and nature of work","Age","Sex","Date of entry into service","Working hours","","Interval for Rest","","Date of the Month","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","Total Days worked","Minimum rate of wages payable Rs.","Total production in case of piece rate Rs.","Actual Wages Paid Rs.","House Rent Allowance Paid Rs.","All others","Dearness Allowance Paid Rs.","Total hours of overtime worked during the month","Overtime earnings Rs.","Gross Amount Payable Rs.","Provident Fund Contribution Rs.","Family Pension / VPF Rs.","ESI Contribution Rs.","Professional Tax Rs.","Income Tax Rs. (if any)","Loan and Interest Rs.","Advances Rs.","Other Deductions Rs. (if any)","Total Deduction Rs.","Net Payable Rs.","Date of Payment","Bank Account Number of Worker","Cheque Number and date/ RTGS/NEFT transfer date","Amount Deposited Rs.","Signature / Thumb Impression of the worker(if required)");
+		echo "\r\n";
+		
+		$table_cols = array("","","","","","","","","","","","","","","","","","","","","","","","From","To","From","TO","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","");
+		$col= 0;
+		foreach ($table_cols as $k) {
+			$obj->getActiveSheet()->setCellValueByColumnAndRow($col,1,$k);
+			$col++;
+		}
+
+			
+			$this->db->select("*");
+			$this->db->from('employee_master_new a');
+			$this->db->join('salary_master b', 'a.emp_id=b.empid AND a.custid=b.custid');						  
+			$this->db->where(array(	'a.spgid'    => $spgid,
+							'a.custid'   => $custid,
+							'b.month'	 => $month,
+							'b.year'	 => $year   ));
+			$emp_data=$this->db->get()->result();	
+							  
+							 
+		$start_row = 2;
+
+		foreach ($emp_data as $key) {
+
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(0,$start_row,$key->empid);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(1,$start_row,$key->emp_name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(2,$start_row,$key->designation);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(3,$start_row,'');			
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(4,$start_row,$key->gender);	
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(5,$start_row,$key->join_date);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(6,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(7,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(8,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(9,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(10,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(11,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(12,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(13,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(14,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(15,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(16,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(17,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(18,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(19,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(20,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(21,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(22,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(23,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(24,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(25,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(26,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(27,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(28,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(29,$start_row,$key->designation);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(30,$start_row,$key->fath_hus_name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(31,$start_row,$key->reldob);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(32,$start_row,$key->paid_days);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(33,$start_row,$key->basic);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(34,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(35,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(36,$start_row,$key->HRA);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(37,$start_row,$key->DA);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(38,$start_row,$key->OT);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(39,$start_row,$key->monthly_gross);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(40,$start_row,$key->PF);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(41,$start_row,$key->VPF);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(42,$start_row,$key->PT);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(43,$start_row,$key->OD);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(44,$start_row,$key->total_deduction);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(45,$start_row,$key->net_pay);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(46,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(47,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(48,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(49,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(50,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(51,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(52,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(53,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(54,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(55,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(56,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(57,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(58,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(59,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(60,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(61,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(62,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(63,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(64,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(65,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(66,$start_row,'');
+						
+			$start_row++;
+			$comp_name=$key->entity_name;
+			//echo $comp_name;
+		}
+
+		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
+	 	header("Content-Type: application/vnd.ms-excel");
+	  header('Content-Disposition: attachment;filename="'.$comp_name.'formq.xlsx"');
+		$obj_writer->save('php://output');
+	}
 }

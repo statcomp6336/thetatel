@@ -651,6 +651,22 @@ class Spg extends Base_controller {
 	{
 		$this->ShowFAQDetails($this->page);
 	}
+	public function show_spgusers_details()
+	{
+		$this->ShowSpgUsersDetails($this->page);
+	}
+	public function show_formd()
+	{
+		$this->ShowFormD($this->page);
+	}
+	public function show_formq()
+	{
+		$this->ShowFormQ($this->page);
+	}
+	public function download_formq($value='')
+	{
+		$this->DownloadFormQ();
+	}
 
 	// public function download_noncompliance($value='')
 	// {
