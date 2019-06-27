@@ -689,3 +689,7 @@
 [25-Jun-2019 09:58:12 Asia/Kolkata] PHP Fatal error:  Call to a member function get_missinguan() on a non-object in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Employee.php on line 652
 [25-Jun-2019 10:37:56 Asia/Kolkata] PHP Fatal error:  Call to a member function get_missinguan() on a non-object in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Employee.php on line 652
 >>>>>>> a9ec22f14548f3ab09a70510beb2436978f0cd50
+[27-Jun-2019 08:46:48 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Dashboard.php on line 122
+[27-Jun-2019 08:46:51 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Dashboard.php on line 122
+[27-Jun-2019 12:24:34 Europe/Berlin] PHP Fatal error:  Call to a member function countOfNewMail() on null in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\spg\Spg.php on line 66
+[27-Jun-2019 15:09:57 Europe/Berlin] PHP Fatal error:  Call to a member function get_DashSompanyes() on null in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Dashboard.php on line 164

@@ -13,6 +13,8 @@ $route['spg'] 						= 'spg/Spg';
 $route['spg/logout'] 				= 'spg/Spg/logout';// logout and redirect to login page
 $route['spg/notification']			= 'spg/Spg/notification_view';// display notification
 $route['spg/inbox']			= 'spg/Spg/show_inbox';// display mail messages
+$route['spg/send-mail']			= 'spg/Spg/send_mail';// display mail messages
+$route['spg/mail_checked']			= 'spg/Spg/check_mail';// display mail messages
 $route['spg/company/registration']	= 'spg/Spg/company_registration_view';// display company registration view
 //===================================================
 //$route['spg/branch/registration']	= 'spg/Spg/branch_registration_view';
@@ -152,5 +154,9 @@ $route['spg/share-files']	= 'spg/Spg/show_explore';//display salary file upload 
 $route['spg/explore/companies/(:num)']	= 'spg/Spg/show_companiesExplore';//display companies for explore view  
 $route['spg/share-files/companies/(:num)']	= 'spg/Spg/show_companiesExplore';//display companies for explore view  
 $route['spg/explore/companies/(:num)/(:any)']	= 'spg/Spg/show_companiesActExplore';//display companies for explore view 
+
+
+// work on Dashboard
+$route['spg/total-scope'] = 'spg/Spg/show_totalScope';// display Total companyies acts and particuler
 
 

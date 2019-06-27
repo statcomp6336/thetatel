@@ -5,7 +5,7 @@
 
 <div class="col-sm-7 infobox-container">
   <!-- Total scope -->
-  <a href="https://stackoverflow.com/questions/23027385/codeigniter-where-and-like-sql-query-statement">
+  <a href="<?php echo base_url(''.$user_type.'/total-scope');?>">
   <div class="infobox infobox-green">
     <div class="infobox-icon">
       <i class="ace-icon fa fa-comments "></i>

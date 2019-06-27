@@ -368,10 +368,18 @@
 						</li>
 
 						<li>
-							<a href="<?php echo base_url(''.$user_type.'/inbox'); ?>">
+					<a href="<?php echo base_url(''.$user_type.'/inbox'); ?>" id="new_msg" >
 								<i class="ace-icon fa fa-envelope"></i>
 								Messages
-								<span class="badge badge-warning">5</span>
+								<?php 
+
+									if (!empty($new_mail)) { ?>
+										
+									
+								<span class="badge badge-warning blink"><?php echo $new_mail;
+								?></span>
+								<?php }
+								?>
 							</a>
 						</li>
 					</ul>
@@ -1142,15 +1150,7 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="hover">
-								<a href="<?php echo base_url(''.$user_type.'/export/faqdetails'); ?>">
-									<i class="menu-icon fa fa-caret-right"></i>
-									FAQ
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
+							
 							<!-- +++++++++++++ -->
 									<li class="hover">
 
@@ -1525,6 +1525,53 @@
 							<!-- +++++++++++++ -->
 						</ul>
 					</li>
+					<li class="hover">
+								<a href="#" class="dropdown-toggle">
+									<i class="menu-icon fa fa-book"></i>
+										Help
+									<b class="arrow fa fa-angle-down"></b>
+								</a>
+
+								<b class="arrow"></b>
+
+								<ul class="submenu">
+									<li class="hover">
+								<a href="<?php echo base_url(''.$user_type.'/export/faqdetails'); ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									FAQ
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+									<li class="hover">
+										<a href="<?php echo base_url(''.$user_type.'/report/backlog');?>">
+											<i class="menu-icon fa fa-leaf green"></i>
+										About us
+										</a>
+
+										<b class="arrow"></b>
+									</li>
+
+									
+									<li class="hover">
+										<a href="<?php echo base_url(''.$user_type.'/');?>">
+											<i class="menu-icon fa fa-leaf green"></i>
+											Feedback
+										</a>
+
+										<b class="arrow"></b>
+									</li>
+									<li class="hover">
+										<a href="<?php echo base_url(''.$user_type.'/');?>">
+											<i class="menu-icon fa fa-leaf green"></i>
+											Users Guide
+										</a>
+
+										<b class="arrow"></b>
+									</li>
+								</ul>
+							</li>
+
 				</ul><!-- /.nav-list -->
 			</div>
 

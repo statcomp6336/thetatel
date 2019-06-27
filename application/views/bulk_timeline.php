@@ -63,7 +63,7 @@
       <td>
         <a href="<?php echo base_url(''.$user_type.'/compliance/bulk-timeline/'.hash_id($key->custid).'');?>"><?php echo $key->entity_name;?></a>
       </td>
-      <td class="center"><i class="fa fa-check" style="font-size:25px;color:green"></td>
+      <td class="center"><i class="fa fa-check" style="font-size:25px;color:<?php echo 'red';?>"></td>
       <td class="center"><i class="fa fa-check" style="font-size:25px;color:green"></i></td>
       <td class="center"><i class="fa fa-check" style="font-size:25px;color:skyblue"></i></td>
 

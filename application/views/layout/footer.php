@@ -159,6 +159,16 @@
 				$(document).triggerHandler('settings.ace.top_menu', ['sidebar_fixed' , $sidebar.hasClass('sidebar-fixed')]);
 			 });
 			 
+			 /* new msg watch then blink as hide */
+			 $('#new_msg').click(function(){
+			 	$.ajax('<?php echo base_url(''.$user_type.'/mail_checked');?>',   // request url
+				{
+				        success: function (data, status, xhr) {// success callback function
+				          
+				}
+				});
+
+			 });
 			
 			function blink(selector){
 				$(selector).fadeOut('slow', function(){

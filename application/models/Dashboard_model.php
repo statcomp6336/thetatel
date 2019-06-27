@@ -107,19 +107,85 @@ class Dashboard_model extends Base_model
 
 		return $result->row()->view_compliance;
 	}
-	public function countOfNotis()
+	// public function countOfNotis()
+	// {
+
+	// 	$id=$this->session->SESS_CUST_ID;
+		
+
+
+	// 	$result = $this->db->select('COUNT(*) AS notis')
+ //             ->from('compose_email')
+ //             ->where('flag',1)
+ //             ->like('recevier_id',$id)
+ //             ->get();
+
+	// 	return $result->row()->notis;	
+
+	// }
+
+	//save and send the message to users
+	public function save_mail($data='')
 	{
+		 /*
+			@mail_status=1=>new mail
+			@mail_status=2=>old mail			
 
-		$id=$this->session->SESS_CUST_ID;
-		$result = $this->db->select('COUNT(*) AS notis')
-             ->from('compose_email')
-             ->where('flag',1)
-             ->like('recevier_id',$id)
-             ->get();
+		 */
+		return $this->add('compose_email',$data);
+	}
+	//show all msg to user
+	public function get_allMail()
+	{	$data = array('custid' => user_id());
+		return $this->fetch('compose_email','*',$data)->result();
+	}
+	//show all msg to user
+	public function get_allSendMail()
+	{	$data = array('sender_id' => user_id());
+		return $this->fetch('compose_email','*',$data)->result();
+	}
+	//get newest msg
+	public function countOfNewMail()
+	{
+		$data = array('custid' => user_id(),'mail_status' => 1);
+		return $this->fetch('compose_email','COUNT(*) AS notis',$data)->row()->notis;
+	}
+	//update mail status
+	public function update_mail_status()
+	{
+		$data = array('mail_status' => 2);
+		return $this->edit('compose_email',array('custid'=> user_id()),$data);
+	}
+	/* READ MORE VIEWS MODELS ARE STARTS */
+	//GET COMAPNYS FOR DASHBOARD
+	public function get_DashSompanyes($value='')
+	{
+		return $this->db->where('spg_id',user_id())->group_by(array('act_code'))->get('compliance_scope_master_view')->result();
+	}
+	public function get_totalScope($custid='',$act_code='')
+	{
+		$this->db->select('*');
+		$this->db->from('compliance_scope a');
+		$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id=b.spgid');
 
-		return $result->row()->notis;	
+		if ($custid !== "ALL" && $act_code !=="ALL") {
+			$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+		}
+		elseif ($custid !== "ALL" && $act_code =="ALL") {
+			$this->db->where('a.custid',$custid);
+		}
+		elseif ($custid == "ALL" && $act_code !=="ALL") {
+			$this->db->where('a.act_code',$act_code);
+		}
+		$this->db->where('a.spg_id',user_id());
+	$result=$this->db->get()->result();
+	
+	return $result;
+
 
 	}
+
+
 
 
 }
