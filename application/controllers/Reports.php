@@ -1534,30 +1534,30 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 		}
 	 }
 	 /* genrate Compliance Document report with validation */
-	 public function GenrateComplianceDocument($value='')
-	 {
-	 	$this->load->model('Report_model','report');
+	 // public function GenrateComplianceDocument($value='')
+	 // {
+	 // 	$this->load->model('Report_model','report');
 	 	
-	 		$cname	=!empty($this->input->post('comp_name'))?$this->input->post('comp_name'):NULL;
-	 		$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
-	 		$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+	 // 		$cname	=!empty($this->input->post('comp_name'))?$this->input->post('comp_name'):NULL;
+	 // 		$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+	 // 		$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 
-	 		if ($custid !== NULL && $spgid !== NULL) 
-	 		{
-	 			//echo "hello";
-				//$result=$this->report->get_complince_data($spgid,$custid,'approval');
-				$result=$this->report->get_compliancedocument($spgid,$custid,$cname);
-				 return $result;
-				//print_r($result);
-				// var_dump($result); 
-				// exit();					
-	 		}
- 			else
- 			{
-	 			put_msg('Sorry custid and user are invalid');
-	 				goto_back();
-	 		}
-	 }
+	 // 		if ($custid !== NULL && $spgid !== NULL) 
+	 // 		{
+	 // 			//echo "hello";
+		// 		//$result=$this->report->get_complince_data($spgid,$custid,'approval');
+		// 		$result=$this->report->get_compliancedocument($spgid,$custid,$cname);
+		// 		 return $result;
+		// 		//print_r($result);
+		// 		// var_dump($result); 
+		// 		// exit();					
+	 // 		}
+ 	// 		else
+ 	// 		{
+	 // 			put_msg('Sorry custid and user are invalid');
+	 // 				goto_back();
+	 // 		}
+	 // }
 
 	 /* Show Entity Details Report*/
 	 public function ShowEntityDetails($page_data = '')
@@ -1913,6 +1913,166 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 		}
 	 }
+
+	 /* Show form-Q Report companiwise */
+	 public function ShowFormQ($page_data = '')
+	 {
+	 	if (!empty($this->input->post('submit'))) 
+	 	{
+	 		$this->load->model('Report_model','report');
+	 		$entity_name=!empty($this->input->post('entity_name'))?$this->input->post('entity_name'):NULL;
+			$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+			$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+			$month 	=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
+	 		$year 	=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
+	 	$location =!empty($this->input->post('location'))?$this->input->post('location'):NULL;
+
+		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		{
+		 		    $this->data['page_title'] = $page_data['page_title'];
+			        $this->data['where'] = 'Reports';
+			        $this->data['sub_menu'] = 'Form-Q';
+			        $this->data['user_type'] = $page_data['user_type'];
+			        $this->data['menu'] = $page_data['menu'];
+			        /* table data */
+			 		$this->data['tableHeading'] = "Form-Q Report";	// colomns name
+
+			 		//data
+			 		$this->data['custid']=is($this->input->post('custid'),"N/A");
+			 		$this->data['entity_name']=is($this->input->post('entity_name'),"N/A");
+			 		$this->data['month']=is($this->input->post('month'),"N/A");
+			 		$this->data['year']=is($this->input->post('year'),"N/A");
+			 		$this->data['location']=is($this->input->post('location'),"N/A");
+
+			 		$this->data['result']=$this->GenrateFormQ();//		
+					$this->render('show_formq',$this->data);
+			     }
+			     else
+			     {
+			      echo "404 no access";
+			     } 		 	
+	 	}
+	 	else
+	 	{
+		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+			 	{
+				    $this->load->model('Report_model','report');
+				    $this->load->library("pagination");
+
+			       $this->data['page_title'] = $page_data['page_title'];
+			       $this->data['where'] = 'Reports';
+			       $this->data['sub_menu'] = 'Form-Q';
+			       $this->data['user_type'] = $page_data['user_type'];
+			       $this->data['menu'] = $page_data['menu'];		    
+			      
+			       $this->data['result']=$this->report->get_location();
+
+			       $this->render('export_formq');
+			     }
+			     else
+			     {
+			      echo "404 no access";
+			     }
+		}
+	 }
+
+	 /* genrate Form-Q report with validation */
+	 private function GenrateFormQ($value='')
+	 {
+	 	$this->load->model('Report_model','report');
+	 		$entity_name=!empty($this->input->post('entity_name'))?$this->input->post('entity_name'):NULL;
+	 		$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+	 		$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+	 		$month 	=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
+	 		$year 	=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
+	 	$location =!empty($this->input->post('location'))?$this->input->post('location'):NULL;
+
+	 		if ($custid !== NULL && $spgid !== NULL) {
+	 			if ($month !==NULL && $year !==NULL) 
+	 			{
+	 				if ($year == "ALL" && $month == "ALL") {
+	 					// echo "1year and month are ALL";	 					
+	 					put_msg('Please Select Year and Month');
+	 					goto_back();
+	 				}
+	 				elseif ($year !== "ALL" && $month !== "ALL") {
+	 					// echo "2year is".$year."and month is ".$month;
+	 					
+	 					if (is_last_month($month,$year) == TRUE) {
+
+	 						 //echo "is last month";
+	 						if ($location == "ALL") 
+				 			{
+				 				$result=$this->report->get_newformq($spgid,$custid,$month,$year,"ALL");
+	 							return $result;
+				 			}
+				 			else
+				 			{
+				 				$result=$this->report->get_newformq($spgid,$custid,$month,$year,$location);
+	 							return $result;
+				 			}
+	 						
+	 					}
+	 					elseif (this_month($month,$year) == TRUE) {
+	 						put_msg('till not genrate pf and esic report');
+	 						goto_back();
+	 					}
+	 					// elseif (before_months($month,$year) == TRUE) {
+	 					// 	put_msg('till not genrate pf and esic report');
+	 					// 	goto_back();
+	 					// }
+	 					else
+	 					{
+	 						//echo "is old month";
+	 						if ($location == "ALL") 
+				 			{
+				 				$result=$this->report->get_oldformq($spgid,$custid,$month,$year,"ALL");
+	 							return $result;
+				 			}
+				 			else
+				 			{
+				 				$result=$this->report->get_oldformq($spgid,$custid,$month,$year,$location);
+	 							return $result;
+				 			}
+	 					}
+
+	 				}
+	 				elseif ($year !== "ALL" && $month == "ALL") {
+	 					// echo "3year is".$year."and month is ".$month;
+	 					put_msg('Please Select Month');
+	 					goto_back();
+	 				}
+	 				elseif ($year == "ALL" && $month !== "ALL") {
+	 					// echo "4year is".$year."and month is ".$month;
+	 					put_msg('Please Select Year');
+	 					goto_back();
+
+	 				}
+
+	 			}
+	 			else
+	 			{
+	 				put_msg('Sorry month and year is invalid');
+	 				goto_back();
+	 			}
+	 		}
+	 		else{
+	 			put_msg('Sorry custid and user are invalid');
+	 				goto_back();
+	 		}	 	
+	 }
+
+	 /* download Form-Q report in excel formate*/
+	 public function DownloadFormQ()
+	 {
+	 	$this->load->model('Export');
+	 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+	 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
+	 	// echo $spg;
+	 	// exit();
+	 	$this->Export->FormQ($spg,$cust);
+	 }
+
 
 	 
 

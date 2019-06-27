@@ -698,3 +698,8 @@
 =======
 >>>>>>> a9ec22f14548f3ab09a70510beb2436978f0cd50
 >>>>>>> 50531ed0cc6315902e8db16be8afd4d2c70a9052
+[27-Jun-2019 14:19:26 Asia/Kolkata] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\newstatcomp\thetatel\application\views\show_formq.php on line 238
+[27-Jun-2019 15:38:40 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$year' (T_VARIABLE), expecting ',' or ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\views\show_formq.php on line 20
+[27-Jun-2019 16:14:07 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '\' (T_NS_SEPARATOR), expecting ')' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 587
+[27-Jun-2019 16:52:17 Asia/Kolkata] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 637
+[27-Jun-2019 16:52:46 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 637

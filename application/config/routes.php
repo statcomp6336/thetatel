@@ -137,6 +137,10 @@ $route['spg/export/spguserdetails'] = 'spg/Spg/show_spgusers_details';
 /*export Form D report start*/
 $route['spg/export/formd'] = 'spg/Spg/show_formd';
 
+/*export Form D report start*/
+$route['spg/export/formq'] = 'spg/Spg/show_formq';
+$route['spg/download/formq/(:num)/(:num)']= 'spg/Spg/download_formq';
+
 
 
 /* work with users */

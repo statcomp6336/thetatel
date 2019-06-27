@@ -640,7 +640,14 @@ class Spg extends Base_controller {
 	{
 		$this->ShowFormD($this->page);
 	}
-
+	public function show_formq()
+	{
+		$this->ShowFormQ($this->page);
+	}
+	public function download_formq($value='')
+	{
+		$this->DownloadFormQ();
+	}
 
 	// public function download_noncompliance($value='')
 	// {
