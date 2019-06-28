@@ -50,7 +50,8 @@
   <tbody>
     <?php $count =0;
     foreach ($companies as $key) {
-      $count++;     
+      $count++; 
+      if($key->)    
     ?>
     <tr>
       <td class="center">

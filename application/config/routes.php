@@ -168,5 +168,10 @@ $route['spg/explore/companies/(:num)/(:any)']	= 'spg/Spg/show_companiesActExplor
 
 // work on Dashboard
 $route['spg/total-scope'] = 'spg/Spg/show_totalScope';// display Total companyies acts and particuler
+$route['spg/current-scope'] = 'spg/Spg/show_currentScope';// display current companyies acts and particuler
+$route['spg/Complilnce-Done'] = 'spg/Spg/show_complianceDone';// display Complinece Done view 
+$route['spg/Non-Compliance'] = 'spg/Spg/show_dashNonCompliance';// display  view Non-Compliance
+$route['spg/Pending-Compliance'] = 'spg/Spg/show_dashPendingCompliance';// display  view of Pending Compliance
+$route['spg/Alert-Compliance'] = 'spg/Spg/show_dashAlertCompliance';// display  view of Pending Compliance
 
 

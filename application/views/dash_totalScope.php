@@ -286,11 +286,14 @@
 								<select name="custid" required class="width-100">
 									<option value="ALL">ALL</option>
 									<?php 
-									foreach ($company as $key) { 			
-									
-		                          echo "<option value=".$key->custid.">".$key->entity_name."</option>";
-
-		                          }
+									$ar1=array();
+									foreach ($company as $key) { 
+									if (!in_array($key->custid, $ar1))
+										  {
+										  	 echo "<option value=".$key->custid.">".$key->entity_name."</option>";
+										  }										
+											array_push($ar1, $key->custid);
+										}
 									?>
 		                          
 		                        </select>
@@ -308,12 +311,13 @@
 								<select name="act_code" required class="width-100">
 									<option value="ALL">ALL</option>
 									<?php 
-									
+											$ar=array();							
 									foreach ($company as $key) {
-									
-
-									
-											echo "<option value=".$key->act_code.">".$key->act."</option>";					
+										if (!in_array($key->act_code, $ar))
+										  {
+										  echo "<option value=".$key->act_code.">".$key->act."</option>";
+										  }										
+											array_push($ar, $key->act_code);					
 
 		                          }
 									?>
@@ -323,7 +327,7 @@
 								<i class="ace-icon fa fa-leaf green"></i>
 							</span>
 						</div>
-						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+						<div class="help-block col-xs-12 col-sm-reset inline"> </div>
 					</div>
 			</div>
 

@@ -152,6 +152,32 @@ class Spg extends Base_controller {
 	{
 		$this->ShowTotalScope($this->page);
 	}
+	//Current Scope
+	public function show_currentScope($value='')
+	{
+		$this->ShowDashCurrentScope($this->page);
+	}
+	//Compilence Done
+	public function show_complianceDone($value='')
+	{
+		$this->ShowDashComplianceDone($this->page);
+	}
+	//Non Compliance
+	public function show_dashNonCompliance($value='')
+	{
+		$this->ShowDashNonCompliance($this->page);
+	}
+	//Pending Compliance
+	public function show_dashPendingCompliance($value='')
+	{
+		$this->ShowDashPendingCompliance($this->page);
+	}
+	//Pending Compliance
+	public function show_dashAlertCompliance($value='')
+	{
+		$this->ShowDashAlertCompliance($this->page);
+	}
+
 
 	/*------ dispalay the notification of spg -----*/
 	public function notification_view()

@@ -155,8 +155,8 @@ trait Dashboard {
 
 		if ($page_data['access'][$this->session->TYPE] == TRUE) {
 		 	 $this->data['page_title'] = $page_data['page_title'];
-			 $this->data['where'] = 'Message';
-			 $this->data['sub_menu'] = 'Inbox';
+			 $this->data['where'] = 'Dashboard';
+			 $this->data['sub_menu'] = 'Total-Scope';
 			 $this->data['user_type'] = $page_data['user_type'];
 			 $this->data['menu'] = $page_data['menu'];
 			 $this->data['result'] = $result;
@@ -171,5 +171,153 @@ trait Dashboard {
 		 }
 		
 	}
+
+	//Current Scope
+	public function ShowDashCurrentScope($page_data='')
+	{
+		$this->load->model('Dashboard_model','dash');
+		$result="";
+		if (!empty($this->input->post('submit'))) {
+
+			$result=$this->dash->get_CurrentScope(is($this->input->post('custid'),'N/A'),is($this->input->post('act_code'),'N/A'));
+		}
+
+		if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		 	 $this->data['page_title'] = $page_data['page_title'];
+			 $this->data['where'] = 'Dashboard';
+			 $this->data['sub_menu'] = 'Current-scope';
+			 $this->data['user_type'] = $page_data['user_type'];
+			 $this->data['menu'] = $page_data['menu'];
+			 $this->data['result'] = $result;
+			
+			 $this->data['company'] = $this->dash->get_DashSompanyes();
+			
+			 $this->render('dash_currentScope');
+		 }
+		 else
+		 {
+		 	echo "404 no access";
+		 }
+		
+	}
+
+	//Compliance Done
+	public function ShowDashComplianceDone($page_data='')
+	{
+		$this->load->model('Dashboard_model','dash');
+		$result="";
+		if (!empty($this->input->post('submit'))) {
+
+			$result=$this->dash->get_complianceDone(is($this->input->post('custid'),'N/A'),is($this->input->post('act_code'),'N/A'));
+		}
+
+		if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		 	 $this->data['page_title'] = $page_data['page_title'];
+			 $this->data['where'] = 'Dashboard';
+			 $this->data['sub_menu'] = 'Compliance-Done';
+			 $this->data['user_type'] = $page_data['user_type'];
+			 $this->data['menu'] = $page_data['menu'];
+			 $this->data['result'] = $result;
+			
+			 $this->data['company'] = $this->dash->get_DashSompanyes();
+			
+			 $this->render('dash_compliance_done');
+		 }
+		 else
+		 {
+		 	echo "404 no access";
+		 }
+		
+	}
+	//Non Compliance dashbooard
+	public function ShowDashNonCompliance($page_data='')
+	{
+		$this->load->model('Dashboard_model','dash');
+		$result="";
+		if (!empty($this->input->post('submit'))) {
+
+			$result=$this->dash->get_NonCompliance(is($this->input->post('custid'),'N/A'),is($this->input->post('act_code'),'N/A'));
+		}
+
+		if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		 	 $this->data['page_title'] = $page_data['page_title'];
+			 $this->data['where'] = 'Dashboard';
+			 $this->data['sub_menu'] = 'Non-Compliance';
+			 $this->data['user_type'] = $page_data['user_type'];
+			 $this->data['menu'] = $page_data['menu'];
+			 $this->data['result'] = $result;
+			
+			 $this->data['company'] = $this->dash->get_DashSompanyes();
+			
+			 $this->render('dash_nonCompliance');
+		 }
+		 else
+		 {
+		 	echo "404 no access";
+		 }
+		
+	}
+
+	//Pending Compliance
+	public function ShowDashPendingCompliance($page_data='')
+	{
+		$this->load->model('Dashboard_model','dash');
+		$result="";
+		if (!empty($this->input->post('submit'))) {
+
+			$result=$this->dash->get_pendingCompliance(is($this->input->post('custid'),'N/A'),is($this->input->post('act_code'),'N/A'));
+		}
+
+		if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		 	 $this->data['page_title'] = $page_data['page_title'];
+			 $this->data['where'] = 'Dashboard';
+			 $this->data['sub_menu'] = 'Pending-Compliance';
+			 $this->data['user_type'] = $page_data['user_type'];
+			 $this->data['menu'] = $page_data['menu'];
+			 $this->data['result'] = $result;
+			
+			 $this->data['company'] = $this->dash->get_DashSompanyes();
+			
+			 $this->render('dash_pendingCompliance');
+		 }
+		 else
+		 {
+		 	echo "404 no access";
+		 }
+		
+	}
+
+	//Alert Compliance
+	public function ShowDashAlertCompliance($page_data='')
+	{
+		$this->load->model('Dashboard_model','dash');
+		$result="";
+		if (!empty($this->input->post('submit'))) {
+
+			$result=$this->dash->get_AlertCompliance(is($this->input->post('custid'),'N/A'),is($this->input->post('act_code'),'N/A'));
+		}
+
+		if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		 	 $this->data['page_title'] = $page_data['page_title'];
+			 $this->data['where'] = 'Dashboard';
+			 $this->data['sub_menu'] = 'Alert-Compliance';
+			 $this->data['user_type'] = $page_data['user_type'];
+			 $this->data['menu'] = $page_data['menu'];
+			 $this->data['result'] = $result;
+			
+			 $this->data['company'] = $this->dash->get_DashSompanyes();
+			
+			 $this->render('dash_alertCompliance');
+		 }
+		 else
+		 {
+		 	echo "404 no access";
+		 }
+		
+	}
+
+
+
+
 
 }

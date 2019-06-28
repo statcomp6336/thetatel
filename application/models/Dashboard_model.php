@@ -166,7 +166,7 @@ class Dashboard_model extends Base_model
 	{
 		$this->db->select('*');
 		$this->db->from('compliance_scope a');
-		$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id=b.spgid');
+		$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
 
 		if ($custid !== "ALL" && $act_code !=="ALL") {
 			$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
@@ -184,6 +184,145 @@ class Dashboard_model extends Base_model
 
 
 	}
+	//current Scope 
+	public function get_CurrentScope($custid='',$act_code='')
+	{
+		$this->db->select('*');
+		$this->db->from('compliance_working_prior a');
+		$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+
+		if ($custid !== "ALL" && $act_code !=="ALL") {
+			$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+
+		}
+		elseif ($custid !== "ALL" && $act_code =="ALL") {
+			$this->db->where('a.custid',$custid);
+		}
+		elseif ($custid == "ALL" && $act_code !=="ALL") {
+			$this->db->where('a.act_code',$act_code);
+		}
+		$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())");
+		$this->db->where('a.spg_id',user_id());
+	$result=$this->db->get()->result();
+	
+	return $result;
+
+
+	}
+	//Complince Done
+	public function get_complianceDone($custid='',$act_code='')
+	{
+		$this->db->select('a.custid ,b.entity_name,a.year,a.act,a.Particular,a.Reg_freq,a.due_date,a.Statutory_due_date,a.act_type,a.Certi_rece_date');
+		$this->db->from('completed_compliance a');
+		$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+
+		if ($custid !== "ALL" && $act_code !=="ALL") {
+			$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+
+		}
+		elseif ($custid !== "ALL" && $act_code =="ALL") {
+			$this->db->where('a.custid',$custid);
+		}
+		elseif ($custid == "ALL" && $act_code !=="ALL") {
+			$this->db->where('a.act_code',$act_code);
+		}
+		$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())");
+		$this->db->where('a.spg_id',user_id());
+	$result=$this->db->get()->result();
+	
+	return $result;
+
+
+	}
+	//Non Complince
+	public function get_NonCompliance($custid='',$act_code='')
+	{
+		$this->db->select('*');
+		$this->db->from('compliance_working_prior a');
+		$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+
+		if ($custid !== "ALL" && $act_code !=="ALL") {
+			$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+
+		}
+		elseif ($custid !== "ALL" && $act_code =="ALL") {
+			$this->db->where('a.custid',$custid);
+		}
+		elseif ($custid == "ALL" && $act_code !=="ALL") {
+			$this->db->where('a.act_code',$act_code);
+		}
+		$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE()) AND a.status!='5'");		
+	$result=$this->db->get()->result();
+	
+	return $result;
+
+
+	}
+
+	//Pending compliance
+	public function get_pendingCompliance($custid='',$act_code='')
+	{
+		$this->db->select('*');
+		$this->db->from('compliance_working_prior a');
+		$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+
+		if ($custid !== "ALL" && $act_code !=="ALL") {
+			$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+
+		}
+		elseif ($custid !== "ALL" && $act_code =="ALL") {
+			$this->db->where('a.custid',$custid);
+		}
+		elseif ($custid == "ALL" && $act_code !=="ALL") {
+			$this->db->where('a.act_code',$act_code);
+		}
+		$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE()) AND a.status!='3'");		
+	$result=$this->db->get()->result();
+	
+	return $result;
+
+
+	}
+
+	//Alert compliance
+	public function get_AlertCompliance($custid='',$act_code='')
+	{
+		$this->db->select('*');
+		$this->db->from('compliance_working_prior a');
+		$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+
+		if ($custid !== "ALL" && $act_code !=="ALL") {
+			$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+
+		}
+		elseif ($custid !== "ALL" && $act_code =="ALL") {
+			$this->db->where('a.custid',$custid);
+		}
+		elseif ($custid == "ALL" && $act_code !=="ALL") {
+			$this->db->where('a.act_code',$act_code);
+		}
+		$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE()) AND (`Statutory_due_date`<=timestampadd(day, 10, now())) AND (`Statutory_due_date` >= now())");		
+	$result=$this->db->get()->result();
+	
+	return $result;
+
+
+	}
+
+	// //graph count for employee salary pf and esic
+	// public function get_graphElements($value='')
+	// {
+	// 	$q=array(
+	// 		'total_emp'=> $this->select()->from()->where()
+	// 	);
+	// 	$select="COUNT(a.srno) as employees,COUNT(b.srno) as salries,COUNT(c.srno) as pf, COUNT(d.srno) as esic";
+	// 	$this->db->select($select)->from('employee_master_new a')
+	// 	->join('salary_master b'," a.spgid=b.spgid AND b.year=YEAR(CURDATE())")
+	// 	->join('pf_template c',"a.spgid=c.spgid AND c.year=YEAR(CURDATE())")
+	// 	->join('esic_template d',"a.spgid=d.spgid AND d.year=YEAR(CURDATE())")
+	// 	->get()
+	// 	->result();
+	// }
 
 
 
