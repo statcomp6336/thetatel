@@ -1128,6 +1128,7 @@
 						</ul>
 					</li>
 
+
 					<li class="hover">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-file-o"></i>
@@ -1142,14 +1143,7 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="hover">
-								<a href="<?php echo base_url(''.$user_type.'/export/faqdetails'); ?>">
-									<i class="menu-icon fa fa-caret-right"></i>
-									FAQ
-								</a>
-
-								<b class="arrow"></b>
-							</li>
+							
 
 							<!-- +++++++++++++ -->
 									<li class="hover">
@@ -1390,8 +1384,8 @@
 										</a>
 
 										<b class="arrow"></b>
-									</li> -->
-									<!-- <li class="hover">
+									</li>
+									<li class="hover">
 										<a href="#">
 											<i class="menu-icon fa fa-pencil orange"></i>
 										Form XXI 
@@ -1426,6 +1420,7 @@
 								</ul>							
 							</li>
 
+
 							
 
 							
@@ -1441,44 +1436,7 @@
 							</li> -->
 							
 								<!-- +++++++++++++ -->
-							<!-- <li class="hover">
-								<a href="#" class="dropdown-toggle">
-									<i class="menu-icon fa fa-caret-right"></i>
-										Group Reconcile
-									<b class="arrow fa fa-angle-down"></b>
-								</a>
-
-								<b class="arrow"></b>
-
-								<ul class="submenu">
-									<li class="hover">
-										<a href="<?php echo base_url(''.$user_type.'/report/sanitize');?>">
-											<i class="menu-icon fa fa-leaf green"></i>
-										  Sanitize Reconcile
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-									<li class="hover">
-										<a href="<?php echo base_url(''.$user_type.'/report/backlog');?>">
-											<i class="menu-icon fa fa-leaf green"></i>
-										 Backlog Reconcile
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									
-									<li class="hover">
-										<a href="<?php echo base_url(''.$user_type.'/report/process');?>">
-											<i class="menu-icon fa fa-leaf green"></i>
-											Process Reconcile
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-								</ul>
-							</li> -->
+							
 
 							<!-- +++++++++++++ -->
 								<!-- +++++++++++++ -->
@@ -1525,6 +1483,53 @@
 							<!-- +++++++++++++ -->
 						</ul>
 					</li>
+					<li class="hover">
+								<a href="#" class="dropdown-toggle">
+									<i class="menu-icon fa fa-book"></i>
+										Help
+									<b class="arrow fa fa-angle-down"></b>
+								</a>
+
+								<b class="arrow"></b>
+
+								<ul class="submenu">
+									<li class="hover">
+								<a href="<?php echo base_url(''.$user_type.'/export/faqdetails'); ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									FAQ
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+									<li class="hover">
+										<a href="<?php echo base_url(''.$user_type.'/report/backlog');?>">
+											<i class="menu-icon fa fa-leaf green"></i>
+										About us
+										</a>
+
+										<b class="arrow"></b>
+									</li>
+
+									
+									<li class="hover">
+										<a href="<?php echo base_url(''.$user_type.'/');?>">
+											<i class="menu-icon fa fa-leaf green"></i>
+											Feedback
+										</a>
+
+										<b class="arrow"></b>
+									</li>
+									<li class="hover">
+										<a href="<?php echo base_url(''.$user_type.'/');?>">
+											<i class="menu-icon fa fa-leaf green"></i>
+											Users Guide
+										</a>
+
+										<b class="arrow"></b>
+									</li>
+								</ul>
+							</li>
+
 				</ul><!-- /.nav-list -->
 			</div>
 

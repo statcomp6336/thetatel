@@ -703,3 +703,6 @@
 [27-Jun-2019 16:14:07 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '\' (T_NS_SEPARATOR), expecting ')' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 587
 [27-Jun-2019 16:52:17 Asia/Kolkata] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 637
 [27-Jun-2019 16:52:46 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 637
+[28-Jun-2019 10:56:09 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$emp_data' (T_VARIABLE), expecting ')' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 606
+[28-Jun-2019 11:04:40 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO), expecting ')' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 587
+[28-Jun-2019 16:25:40 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$emp_data' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 250

@@ -223,7 +223,7 @@ class Export extends Base_model
 	}
 
 	/* export esic template report companywise */
-	public function ESICTemplate($spgid,$custid)
+	public function ESICTemplate($spgid,$custid,$month,$year,$check)
 	{
 		$obj = new PHPExcel();
 		$obj->setActiveSheetIndex(0);		 	 				
@@ -234,16 +234,21 @@ class Export extends Base_model
 			$obj->getActiveSheet()->setCellValueByColumnAndRow($col,1,$k);
 			$col++;
 		}
-		$emp_data=$this->db->select('*')
-							  ->from('esic_template_history')							  
-							  ->where(array('spgid'=>$spgid,'custid' => $custid))
-							  // ->where(array(	'spgid' => $spgid,
-									// 	'custid' => $custid,
-									// 	'month'	 => $month,
-									// 	'year'	 => $year   ))
-							  //->group_by('empid')
-							  ->get()
-							  ->result();	
+			$this->db->select('*');
+			if($check=='old')
+			{
+				$this->db->from('esic_template_history');	
+			}
+			else
+			{
+				$this->db->from('esic_template');	
+			}			  						  
+			$this->db->where(array(	'spgid'	 => $spgid,
+									'custid' => $custid,
+									'month'	 => $month,
+									'year'	 => $year    ));
+		$emp_data=$this->db->get()->result();	
+							  
 		$start_row = 2;
 
 		foreach ($emp_data as $key) {
@@ -275,7 +280,7 @@ class Export extends Base_model
 	}
 
 	/* export ESIC Template EmPID Companywise report in Excel formate*/
-	public function ESICTemplateEmpid($spgid,$custid)
+	public function ESICTemplateEmpid($spgid,$custid,$month,$year,$location,$check)
 	{
 		$obj = new PHPExcel();
 		$obj->setActiveSheetIndex(0);		 	 				
@@ -287,29 +292,34 @@ class Export extends Base_model
 			$col++;
 		}
 
-
-		$emp_data=$this->db->select('a.custid,a.entity_name,a.esicno,a.empid,a.name,a.no_of_days,a.monthly_wages,CAST(((a.monthly_wages*1.75)/100) as UNSIGNED) as emp_contri,CAST(((a.monthly_wages*4.75)/100) as UNSIGNED) as empr_contri,a.reason_code,a.last_working_day,b.join_date,b.birth_date,b.vendor_id,b.contractor_name,b.location,a.month,a.year')
-							  ->from('esic_template_history a')	
-							  ->join('employee_master_new b', 'a.empid=b.emp_id AND a.custid=b.custid')
-				//if($location=="ALL")
-				//{
-				->where(array(	'a.spgid'    => $spgid,
-											'a.custid'   => $custid ))
-										//	'a.month'	 => $month,
-										//	'a.year'	 => $year   ));
-				//}
-				//else
-				//{
-				//$this->db->where(array(	'a.spgid'    => $spgid,
-				//							'a.custid'   => $custid,
-				//							'a.month'	 => $month,
-				//							'a.year'	 => $year,
-				//							'b.location' => $location  ));
-				//}						  
-							  //->where(array('spgid'=>$spgid,'custid' => $custid))
-							  //->group_by('empid')
-							  ->get()
-							  ->result();	
+			$this->db->select('a.custid,a.entity_name,a.esicno,a.empid,a.name,a.no_of_days,a.monthly_wages,CAST(((a.monthly_wages*1.75)/100) as UNSIGNED) as emp_contri,CAST(((a.monthly_wages*4.75)/100) as UNSIGNED) as empr_contri,a.reason_code,a.last_working_day,b.join_date,b.birth_date,b.vendor_id,b.contractor_name,b.location,a.month,a.year');
+			if($check=='old')
+			{
+				$this->db->from('esic_template_history a');
+			}
+			else
+			{
+				$this->db->from('esic_template a');	
+			}	    
+			$this->db->join('employee_master_new b', 'a.empid=b.emp_id AND a.custid=b.custid');
+			if($location=="ALL")
+			{
+			$this->db->where(array(		'a.spgid'    => $spgid,
+										'a.custid'   => $custid,
+										'a.month'	 => $month,
+										'a.year'	 => $year   ));
+			}
+			else
+			{
+			$this->db->where(array(		'a.spgid'    => $spgid,
+										'a.custid'   => $custid,
+										'a.month'	 => $month,
+										'a.year'	 => $year,
+										'b.location' => $location  ));
+			}						  
+							  
+			$emp_data=$this->db->get()->result();
+							  	
 		$start_row = 2;
 
 		foreach ($emp_data as $key) {
@@ -346,7 +356,7 @@ class Export extends Base_model
 	}
 
 	/* export ESIC Summary report */
-	public function ESICSummary($spgid,$custid)
+	public function ESICSummary($spgid,$custid,$month,$year,$check)
 	{
 		$obj = new PHPExcel();
 		$obj->setActiveSheetIndex(0);		 	 				
@@ -358,18 +368,24 @@ class Export extends Base_model
 			$col++;
 		}
 
-		$emp_data=$this->db->select("a.entity_name,CAST(sum((a.monthly_wages*(1.75/100))) as UNSIGNED) as eps_contri,CAST(sum((a.monthly_wages)*4.75/100) as UNSIGNED) as total_contri,CAST(((sum((a.monthly_wages*(1.75/100))))+(sum((a.monthly_wages)*4.75/100))) as UNSIGNED) as grand,if(monthly_wages!=NULL,`monthly_wages`,'-') as tcgc,sum(a.monthly_wages) as gross_wages")
-						->from('esic_template a')
-						->join('employee_master_new b', 'a.empid=b.emp_id AND a.custid=b.custid')
+			$this->db->select("a.entity_name,CAST(sum((a.monthly_wages*(1.75/100))) as UNSIGNED) as eps_contri,CAST(sum((a.monthly_wages)*4.75/100) as UNSIGNED) as total_contri,CAST(((sum((a.monthly_wages*(1.75/100))))+(sum((a.monthly_wages)*4.75/100))) as UNSIGNED) as grand,if(monthly_wages!=NULL,`monthly_wages`,'-') as tcgc,sum(a.monthly_wages) as gross_wages");
+			if($check=='old')
+			{
+				$this->db->from('esic_template_history a');
+			}
+			else
+			{
+				$this->db->from('esic_template a');
+			}
+				$this->db->join('employee_master_new b', 'a.empid=b.emp_id AND a.custid=b.custid');
 						
-						->where(array(	'a.spgid' => $spgid,
+				$this->db->where(array(	'a.spgid' => $spgid,
 										'a.custid' => $custid,
-										//'a.month'	 => $month,
-										//'a.year'	 => $year,
-										'b.esic_deduct'=>'Yes'   ))					  
-							  //->where(array('spgid'=>$spgid,'custid' => $custid,'UANno!='=>'0'))
-							  ->get()
-							  ->result();	
+										'a.month'	 => $month,
+										'a.year'	 => $year,
+										'b.esic_deduct'=>'Yes'   ))	;				  
+							
+		$emp_data=$this->db->get()->result();							  	
 							 
 		$start_row = 2;
 		foreach ($emp_data as $key) {
@@ -387,7 +403,7 @@ class Export extends Base_model
 
 		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
 	 	header("Content-Type: application/vnd.ms-excel");
-	  header('Content-Disposition: attachment;filename="'.$comp_name.'PFSummary.xlsx"');
+	  header('Content-Disposition: attachment;filename="'.$comp_name.'ESICSummary.xlsx"');
 		$obj_writer->save('php://output');
 	}
 
@@ -580,29 +596,49 @@ class Export extends Base_model
 	}
 
 	/* export FormQ report */
-	public function FormQ($spgid,$custid)
+	public function FormQ($spgid,$custid,$month,$year,$location,$check)
 	{
+		//echo $check;
 		$obj = new PHPExcel();
-		$obj->setActiveSheetIndex(0);		 	 				
-		$table_cols = array("SrNo","Emp_Id","Full Name of the worker","Designation of the worker and nature of work","Age","Sex","Date of entry into service","Working hours","","Interval for Rest","","Date of the Month","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","Total Days worked","Minimum rate of wages payable Rs.","Total production in case of piece rate Rs.","Actual Wages Paid Rs.","House Rent Allowance Paid Rs.","All others","Dearness Allowance Paid Rs.","Total hours of overtime worked during the month","Overtime earnings Rs.","Gross Amount Payable Rs.","Provident Fund Contribution Rs.","Family Pension / VPF Rs.","ESI Contribution Rs.","Professional Tax Rs.","Income Tax Rs. (if any)","Loan and Interest Rs.","Advances Rs.","Other Deductions Rs. (if any)","Total Deduction Rs.","Net Payable Rs.","Date of Payment","Bank Account Number of Worker","Cheque Number and date/ RTGS/NEFT transfer date","Amount Deposited Rs.","Signature / Thumb Impression of the worker(if required)");
-		echo "\r\n";
+		$obj->setActiveSheetIndex(0);
+		$table_cols = array("Emp_Id","Full Name of the worker","Designation of the worker and nature of work","Age","Sex","Date of entry into service","Working hours","","Interval for Rest","","Date of the Month","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","Total Days worked","Minimum rate of wages payable Rs.","Total production in case of piece rate Rs.","Actual Wages Paid Rs.","House Rent Allowance Paid Rs.","All others","Dearness Allowance Paid Rs.","Total hours of overtime worked during the month","Overtime earnings Rs.","Gross Amount Payable Rs.","Provident Fund Contribution Rs.","Family Pension / VPF Rs.","ESI Contribution Rs.","Professional Tax Rs.","Income Tax Rs. (if any)","Loan and Interest Rs.","Advances Rs.","Other Deductions Rs. (if any)","Total Deduction Rs.","Net Payable Rs.","Date of Payment","Bank Account Number of Worker","Cheque Number and date/ RTGS/NEFT transfer date","Amount Deposited Rs.","Signature / Thumb Impression of the worker(if required)");	
+	
+		// echo "\r\n";
 		
-		$table_cols = array("","","","","","","","","","","","","","","","","","","","","","","","From","To","From","TO","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","");
+		// $table_cols = array("","","","","","","","","","","","","","","","","","","","","","","","From","To","From","TO","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","");
 		$col= 0;
 		foreach ($table_cols as $k) {
 			$obj->getActiveSheet()->setCellValueByColumnAndRow($col,1,$k);
 			$col++;
 		}
 
-			
-			$this->db->select("*");
-			$this->db->from('employee_master_new a');
-			$this->db->join('salary_master b', 'a.emp_id=b.empid AND a.custid=b.custid');						  
-			$this->db->where(array(	'a.spgid'    => $spgid,
-							'a.custid'   => $custid,
-							'b.month'	 => $month,
-							'b.year'	 => $year   ));
-			$emp_data=$this->db->get()->result();	
+		
+				$this->db->select("*");
+				$this->db->from('employee_master_new a');
+
+			if($check=='old'){
+				//echo $check;
+				$this->db->join('salary_master_history b', 'a.emp_id=b.empid AND a.custid=b.custid');
+			}
+			else{
+				$this->db->join('salary_master b', 'a.emp_id=b.empid AND a.custid=b.custid');
+			}						  
+			if($location=="ALL"){
+				$this->db->where(array(	'a.spgid'    => $spgid,
+									'a.custid'   => $custid,
+									'b.month'	 => $month,
+									'b.year'	 => $year   ));
+			}
+			else{
+				$this->db->where(array(	'a.spgid'    => $spgid,
+									'a.custid'   => $custid,
+									'b.month'	 => $month,
+									'b.year'	 => $year,
+									'a.location' => $location  ));
+			} 
+				$emp_data=$this->db->get()->result();
+		
+				
 							  
 							 
 		$start_row = 2;
@@ -638,44 +674,44 @@ class Export extends Base_model
 			$obj->getActiveSheet()->setCellValueByColumnAndRow(26,$start_row,'');
 			$obj->getActiveSheet()->setCellValueByColumnAndRow(27,$start_row,'');
 			$obj->getActiveSheet()->setCellValueByColumnAndRow(28,$start_row,'');
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(29,$start_row,$key->designation);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(30,$start_row,$key->fath_hus_name);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(31,$start_row,$key->reldob);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(32,$start_row,$key->paid_days);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(33,$start_row,$key->basic);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(29,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(30,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(31,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(32,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(33,$start_row,'');
 			$obj->getActiveSheet()->setCellValueByColumnAndRow(34,$start_row,'');
 			$obj->getActiveSheet()->setCellValueByColumnAndRow(35,$start_row,'');
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(36,$start_row,$key->HRA);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(37,$start_row,$key->DA);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(38,$start_row,$key->OT);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(39,$start_row,$key->monthly_gross);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(40,$start_row,$key->PF);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(41,$start_row,$key->VPF);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(42,$start_row,$key->PT);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(43,$start_row,$key->OD);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(44,$start_row,$key->total_deduction);
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(45,$start_row,$key->net_pay);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(36,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(37,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(38,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(39,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(40,$start_row,'');
+		    $obj->getActiveSheet()->setCellValueByColumnAndRow(41,$start_row,$key->paid_days);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(42,$start_row,$key->basic);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(43,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(44,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(45,$start_row,$key->HRA);
 			$obj->getActiveSheet()->setCellValueByColumnAndRow(46,$start_row,'');
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(47,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(47,$start_row,$key->DA);
 			$obj->getActiveSheet()->setCellValueByColumnAndRow(48,$start_row,'');
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(49,$start_row,'');
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(50,$start_row,'');
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(51,$start_row,'');
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(52,$start_row,'');
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(53,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(49,$start_row,$key->OT);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(50,$start_row,$key->monthly_gross);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(51,$start_row,$key->PF);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(52,$start_row,$key->VPF);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(53,$start_row,$key->PT);
 			$obj->getActiveSheet()->setCellValueByColumnAndRow(54,$start_row,'');
 			$obj->getActiveSheet()->setCellValueByColumnAndRow(55,$start_row,'');
 			$obj->getActiveSheet()->setCellValueByColumnAndRow(56,$start_row,'');
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(57,$start_row,'');
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(58,$start_row,'');
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(59,$start_row,'');
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(57,$start_row,$key->OD);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(58,$start_row,$key->total_deduction);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(59,$start_row,$key->net_pay);			
 			$obj->getActiveSheet()->setCellValueByColumnAndRow(60,$start_row,'');
 			$obj->getActiveSheet()->setCellValueByColumnAndRow(61,$start_row,'');
 			$obj->getActiveSheet()->setCellValueByColumnAndRow(62,$start_row,'');
 			$obj->getActiveSheet()->setCellValueByColumnAndRow(63,$start_row,'');
 			$obj->getActiveSheet()->setCellValueByColumnAndRow(64,$start_row,'');
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(65,$start_row,'');
-			$obj->getActiveSheet()->setCellValueByColumnAndRow(66,$start_row,'');
+			// $obj->getActiveSheet()->setCellValueByColumnAndRow(65,$start_row,'');
+			// $obj->getActiveSheet()->setCellValueByColumnAndRow(66,$start_row,'');
 						
 			$start_row++;
 			$comp_name=$key->entity_name;
