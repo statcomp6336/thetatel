@@ -13,6 +13,8 @@ $route['spg'] 						= 'spg/Spg';
 $route['spg/logout'] 				= 'spg/Spg/logout';// logout and redirect to login page
 $route['spg/notification']			= 'spg/Spg/notification_view';// display notification
 $route['spg/inbox']			= 'spg/Spg/show_inbox';// display mail messages
+$route['spg/send-mail']			= 'spg/Spg/send_mail';// display mail messages
+$route['spg/mail_checked']			= 'spg/Spg/check_mail';// display mail messages
 $route['spg/company/registration']	= 'spg/Spg/company_registration_view';// display company registration view
 //===================================================
 //$route['spg/branch/registration']	= 'spg/Spg/branch_registration_view';
@@ -81,7 +83,7 @@ $route['spg/download/pfnewjoin/(:num)/(:num)']= 'spg/Spg/download_pfnewjoinee';
 
 /*export PF Summary report start*/
 $route['spg/export/pfsummary'] = 'spg/Spg/show_pf_summary';
-$route['spg/download/pfsummary/(:num)/(:num)']= 'spg/Spg/download_pfsummary';
+$route['spg/download/pfsummary/(:num)/(:num)/(:any)/(:num)']= 'spg/Spg/download_pfsummary';
 
 /*export esic new joinee report start*/
 $route['spg/export/esicnewjoinee'] = 'spg/Spg/show_esic_newjoinee';
@@ -162,5 +164,15 @@ $route['spg/share-files']	= 'spg/Spg/show_explore';//display salary file upload 
 $route['spg/explore/companies/(:num)']	= 'spg/Spg/show_companiesExplore';//display companies for explore view  
 $route['spg/share-files/companies/(:num)']	= 'spg/Spg/show_companiesExplore';//display companies for explore view  
 $route['spg/explore/companies/(:num)/(:any)']	= 'spg/Spg/show_companiesActExplore';//display companies for explore view 
+
+
+// work on Dashboard
+$route['spg/total-scope'] = 'spg/Spg/show_totalScope';// display Total companyies acts and particuler
+$route['spg/download/totalscope/(:num)'] = 'spg/Spg/download_totalScope';//download totalscope
+$route['spg/current-scope'] = 'spg/Spg/show_currentScope';// display current companyies acts and particuler
+$route['spg/Complilnce-Done'] = 'spg/Spg/show_complianceDone';// display Complinece Done view 
+$route['spg/Non-Compliance'] = 'spg/Spg/show_dashNonCompliance';// display  view Non-Compliance
+$route['spg/Pending-Compliance'] = 'spg/Spg/show_dashPendingCompliance';// display  view of Pending Compliance
+$route['spg/Alert-Compliance'] = 'spg/Spg/show_dashAlertCompliance';// display  view of Pending Compliancee
 
 

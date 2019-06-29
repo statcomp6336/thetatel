@@ -122,11 +122,10 @@ class Export extends Base_model
 	}
 
 	/* export PF Summary report */
-	public function PFSummary($spgid,$custid)
+	public function PFSummary($spgid,$custid,$month,$year,$check)
 	{
 		$obj = new PHPExcel();
 		$obj->setActiveSheetIndex(0);		 	 				
-
 
 		$table_cols = array("NOE","Gross Salary","PF Sal","EPS Sal","EDLI Sal","PF","EPS","Co PF","Admin charges","Other Charges","Total");
 		$col= 0;
@@ -135,11 +134,24 @@ class Export extends Base_model
 			$col++;
 		}
 
-		$emp_data=$this->db->select("entity_name,count(member_name) as name,sum(gross_wages) as gross,sum(EPF_wages) as epfwages,sum(EPS_wages) as epswages,sum(EDLI_wages) as edliwages,sum(EPF_contri_remitted) as epfcontri,sum(EPS_contri_remitted) as epscontri,sum(EPS_EPF_diff) as diff,CAST(((sum(EPF_wages)*0.5)/100) as UNSIGNED)as admin,CAST(((sum(EDLI_wages)*0.5)/100) as UNSIGNED) as other,CAST(((sum(EPF_contri_remitted))+(sum(EPS_contri_remitted))+(sum(EPS_EPF_diff))+(((sum(EPF_wages)*0.5)/100))+(((sum(EDLI_wages)*0.5)/100))) as UNSIGNED) as total")
-							  ->from('pf_template')							  
-							  ->where(array('spgid'=>$spgid,'custid' => $custid,'UANno!='=>'0'))
-							  ->get()
-							  ->result();	
+		  $this->db->select("entity_name,count(member_name) as name,sum(gross_wages) as gross,sum(EPF_wages) as epfwages,sum(EPS_wages) as epswages,sum(EDLI_wages) as edliwages,sum(EPF_contri_remitted) as epfcontri,sum(EPS_contri_remitted) as epscontri,sum(EPS_EPF_diff) as diff,CAST(((sum(EPF_wages)*0.5)/100) as UNSIGNED)as admin,CAST(((sum(EDLI_wages)*0.5)/100) as UNSIGNED) as other,CAST(((sum(EPF_contri_remitted))+(sum(EPS_contri_remitted))+(sum(EPS_EPF_diff))+(((sum(EPF_wages)*0.5)/100))+(((sum(EDLI_wages)*0.5)/100))) as UNSIGNED) as total");
+
+		  if($check=='old')
+		  {
+		  	$this->db->from('pf_template_history');
+		  }
+		  else
+		  {
+		  	$this->db->from('pf_template');
+		  }
+		  							  
+		  $this->db->where(array(	'spgid'	 => $spgid,
+		  							'custid' => $custid,
+		  							'month'	 => $month,
+									'year'	 => $year,    
+		  							'UANno!='=> '0'			));
+			$emp_data=$this->db->get()->result();
+							  	
 							 
 		$start_row = 2;
 		foreach ($emp_data as $key) {
@@ -721,6 +733,45 @@ class Export extends Base_model
 		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
 	 	header("Content-Type: application/vnd.ms-excel");
 	  header('Content-Disposition: attachment;filename="'.$comp_name.'formq.xlsx"');
+		$obj_writer->save('php://output');
+	}
+
+	/* export TotalScope report  */
+	public function TotalScope($spgid,$custid)
+	{
+		$obj = new PHPExcel();
+		$obj->setActiveSheetIndex(0);		 	 				
+
+		$table_cols = array("Company Id","Company Name","Act Name","Particular");
+		$col= 0;
+		foreach ($table_cols as $k) {
+			$obj->getActiveSheet()->setCellValueByColumnAndRow($col,1,$k);
+			$col++;
+		}
+			
+			$emp_data=$this->newdb->select("a.custid,b.entity_name,a.act,a.Particular")
+							->from('compliance_scope AS a')
+							->join('customer_master AS b ','a.custid=b.custid')
+							->get()
+							->result();	
+							  
+		$start_row = 2;
+
+		foreach ($emp_data as $key) {
+
+			//"esicno,name,no_of_days,monthly_wages,reason_code,last_working_day"
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(0,$start_row,$key->custid);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(1,$start_row,$key->entity_name);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(2,$start_row,$key->act);
+			$obj->getActiveSheet()->setCellValueByColumnAndRow(3,$start_row,$key->Particular);
+			
+			$start_row++;
+			//$comp_name=$key->entity_name;
+		}
+
+		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
+	 	header("Content-Type: application/vnd.ms-excel");
+	  header('Content-Disposition: attachment;filename="TotalScope.xlsx"');
 		$obj_writer->save('php://output');
 	}
 }

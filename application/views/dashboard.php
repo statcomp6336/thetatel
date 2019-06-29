@@ -5,7 +5,7 @@
 
 <div class="col-sm-7 infobox-container">
   <!-- Total scope -->
-  <a href="https://stackoverflow.com/questions/23027385/codeigniter-where-and-like-sql-query-statement">
+  <a href="<?php echo base_url(''.$user_type.'/total-scope');?>">
   <div class="infobox infobox-green">
     <div class="infobox-icon">
       <i class="ace-icon fa fa-comments "></i>
@@ -20,15 +20,18 @@
   </div>
 </a>
 
-  <!-- Total bulk update -->
+  <!-- Total Current Particuler -->
+  <a href="<?php echo base_url(''.$user_type.'/current-scope');?>">
   <div class="infobox infobox-blue">
     <div class="infobox-icon">
       <i class="ace-icon fa fa-upload"></i>
     </div>
 
     <div class="infobox-data">
-      <span class="infobox-data-number"><?php echo $total_bulk_update; ?></span>
-      <div class="infobox-content">Bulk Update</div>
+     <!--  <span class="infobox-data-number"><?php echo $total_bulk_update; ?></span>
+      <div class="infobox-content">Bulk Update</div> -->
+       <span class="infobox-data-number"><?php echo $total_bulk_update; ?></span>
+      <div class="infobox-content">Current Particuler</div>
     </div>
 
     <div class="badge badge-success">
@@ -36,8 +39,10 @@
       <i class="ace-icon fa fa-arrow-up"></i>
     </div>
   </div>
+</a>
 
-  <!-- Total complience -->
+  <!-- Total complience --> 
+  <a href="<?php echo base_url(''.$user_type.'/Complilnce-Done');?>">
   <div class="infobox infobox-pink">
     <div class="infobox-icon">
       <i class="ace-icon fa fa-shopping-cart"></i>
@@ -49,8 +54,10 @@
     </div>
     <div class="stat stat-important">4%</div>
   </div>
+</a>
 
   <!-- Total Non Complience -->
+   <a href="<?php echo base_url(''.$user_type.'/Non-Compliance');?>">
   <div class="infobox infobox-red">
     <div class="infobox-icon">
       <i class="ace-icon fa fa-flask"></i>
@@ -58,11 +65,13 @@
 
     <div class="infobox-data">
       <span class="infobox-data-number"><?php echo $total_non_complience; ?></span>
-      <div class="infobox-content">Non-Complience</div>
+      <div class="infobox-content">Non-Compliance</div>
     </div>
   </div>
+</a>
 
   <!--  Total pending -->
+  <a href="<?php echo base_url(''.$user_type.'/Pending-Compliance');?>">
   <div class="infobox infobox-orange2">
     <div class="infobox-icon">
       <i class="ace-icon fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
@@ -78,6 +87,8 @@
       <i class="ace-icon fa fa-arrow-up"></i>
     </div>
   </div>
+</a>
+
   <!-- Total Complaints of Thise Month -->
   <div class="infobox infobox-pink">
     <div class="infobox-icon">
@@ -91,6 +102,8 @@
     <div class="stat stat-important">4%</div>
   </div>
   <!-- Total Alerts -->
+
+  <a href="<?php echo base_url(''.$user_type.'/Alert-Compliance');?>">
   <div class="infobox infobox-pink">
     <div class="infobox-icon">
       <i class="ace-icon fa fa-shopping-cart animated"></i>
@@ -102,6 +115,7 @@
     </div>
     <div class="stat stat-important">4%</div>
   </div>
+</a>
 
 <!-- Total Approval -->
   <div class="infobox infobox-blue2">

@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * 
  */
-require_once APPPATH."core\Base_model.php";
+require_once APPPATH."core/Base_model.php";
 class DB_install extends Base_model
 {
 	
@@ -1714,38 +1714,6 @@ class DB_install extends Base_model
 	public function DropTable_timeline_data()
 	{
 		$this->dbforge->drop_table('timeline_data');
-	}
-
-	public function CreateTable_compose_email($value='')
-	{
-		$fields = array(
-			"srno"			=> array('type' =>'INT',
-		 							 'auto_increment' => TRUE),
-		 	'sender_id'		=>array('type' =>'BIGINT',
-									'constraint' => '10'),		
-			"custid"		=>array('type' =>'BIGINT',
-									'constraint' => '11'),
-			"entity_name"	=>array('type' =>'VARCHAR',
-									'constraint' => '300'),
-			"email"	=>array('type' =>'VARCHAR',
-									'constraint' => '300'),			
-			"subject"	=>array('type' =>'TEXT'),
-			"message"	=>array('type' =>'LONGTEXT'),
-			"attachment"	=>array('type' =>'VARCHAR',
-									'constraint' => '300'),
-			"mail_status"	=>array('type' =>'VARCHAR',
-									'constraint' => '3'),
-					
-			
-			'created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
-		        );
-		$this->dbforge->add_key('srno', TRUE);
-	    $this->dbforge->add_field($fields);
-	    return $this->dbforge->create_table('compose_email',TRUE);
-	}
-	public function DropTable_compose_email()
-	{
-		$this->dbforge->drop_table('compose_email');
 	}
 
 

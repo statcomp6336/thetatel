@@ -446,7 +446,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			 		$this->data['tableTools'] = array(
 			 										0 =>array(
 			 											//'link'=> base_url(''.$page_data['user_type'].'/download/esictemplate/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.''),
-			 											'link'=> base_url(''.$page_data['user_type'].'/download/pfsummary/'.$spgid.'/'.$custid.''),
+			 											'link'=> base_url(''.$page_data['user_type'].'/download/pfsummary/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.''),
 														'button' =>'Download',
 														'class'	 =>'btn-success'
 			 												)
@@ -561,9 +561,19 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	$this->load->model('Export');
 	 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
 	 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
-	 	// echo $spg;
-	 	// exit();
-	 	$this->Export->PFSummary($spg,$cust);
+	 	$month = ($this->uri->segment(6)) ? $this->uri->segment(6) : 0;
+	 	$year = ($this->uri->segment(7)) ? $this->uri->segment(7) : 0;
+	 	
+	 	if (is_last_month($month,$year) == TRUE) 
+		{
+			$check='new';
+			$$this->Export->PFSummary($spg,$cust,$month,$year,$check);			
+		}
+		else
+		{
+			$check='old';
+			$this->Export->PFSummary($spg,$cust,$month,$year,$check);
+		}
 	 }
 
 	 /* show Esic newjoinee report companiwise */

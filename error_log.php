@@ -697,12 +697,38 @@
 [26-Jun-2019 16:52:03 Asia/Kolkata] PHP Fatal error:  Call to undefined method Report_model::get_formd() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 1875
 =======
 >>>>>>> a9ec22f14548f3ab09a70510beb2436978f0cd50
+<<<<<<< HEAD
+[27-Jun-2019 08:46:48 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Dashboard.php on line 122
+[27-Jun-2019 08:46:51 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Dashboard.php on line 122
+[27-Jun-2019 12:24:34 Europe/Berlin] PHP Fatal error:  Call to a member function countOfNewMail() on null in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\spg\Spg.php on line 66
+[27-Jun-2019 15:09:57 Europe/Berlin] PHP Fatal error:  Call to a member function get_DashSompanyes() on null in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Dashboard.php on line 164
+=======
 >>>>>>> 50531ed0cc6315902e8db16be8afd4d2c70a9052
 [27-Jun-2019 14:19:26 Asia/Kolkata] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\newstatcomp\thetatel\application\views\show_formq.php on line 238
 [27-Jun-2019 15:38:40 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$year' (T_VARIABLE), expecting ',' or ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\views\show_formq.php on line 20
 [27-Jun-2019 16:14:07 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '\' (T_NS_SEPARATOR), expecting ')' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 587
 [27-Jun-2019 16:52:17 Asia/Kolkata] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 637
 [27-Jun-2019 16:52:46 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 637
+<<<<<<< HEAD
 [28-Jun-2019 10:56:09 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$emp_data' (T_VARIABLE), expecting ')' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 606
 [28-Jun-2019 11:04:40 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO), expecting ')' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 587
 [28-Jun-2019 16:25:40 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$emp_data' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 250
+=======
+>>>>>>> 2a208fa954785931855249130b6f7c9c6dab6318
+[28-Jun-2019 07:59:05 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Dashboard_model.php on line 192
+[28-Jun-2019 08:38:11 Europe/Berlin] PHP Fatal error:  Call to undefined method CI_Loader::unique_multi_array() in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 311
+[28-Jun-2019 09:14:54 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 327
+[28-Jun-2019 09:15:19 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 327
+[28-Jun-2019 09:15:30 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 327
+[28-Jun-2019 09:17:54 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 327
+[28-Jun-2019 09:18:05 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 327
+[28-Jun-2019 09:18:13 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 327
+[28-Jun-2019 09:18:22 Europe/Berlin] PHP Fatal error:  Call to undefined function unique_multi_array() in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 313
+[28-Jun-2019 09:21:46 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 316
+[28-Jun-2019 09:22:18 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 316
+[28-Jun-2019 09:23:01 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'foreach' (T_FOREACH) in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 326
+[28-Jun-2019 09:23:09 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 316
+[28-Jun-2019 09:23:16 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'as' (T_AS) in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 315
+[28-Jun-2019 09:24:37 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'foreach' (T_FOREACH) in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 313
+[28-Jun-2019 11:15:10 Europe/Berlin] PHP Fatal error:  Call to undefined method Dashboard_model::get_complianceDone() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Dashboard.php on line 211
+>>>>>>> f587ecc7cd36eb784d9e8a434fbcbeec9818d4e5

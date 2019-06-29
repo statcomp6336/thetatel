@@ -63,6 +63,9 @@ class Spg extends Base_controller {
 			// notification access if true to dispaly and flase it hide
 			"notification_access" => TRUE//
 			);
+		$this->load->model('Dashboard_model','dash');
+
+		$this->data['new_mail']=$this->dash->countOfNewMail();
 		
 
 	}
@@ -101,6 +104,7 @@ class Spg extends Base_controller {
 		$this->DB_install->CreateTable_timeline();
 		$this->DB_install->CreateTable_customer_dump();
 		$this->DB_install->CreateTable_timeline_data();
+		$this->DB_install->CreateTable_compose_email();
 
 	}
 	public function DESTROY_SYSTEM()
@@ -126,6 +130,7 @@ class Spg extends Base_controller {
 		$this->DB_install->DropTable_timeline();
 		$this->DB_install->DropTable_customer_dump();
 		$this->DB_install->DropTable_timeline_data();
+		$this->DB_install->DropTable_compose_email();
 
 
 	}
@@ -142,6 +147,43 @@ class Spg extends Base_controller {
 		}
 		
 	}
+	//work with dashboard d
+	public function show_totalScope($value='')
+	{
+		$this->ShowTotalScope($this->page);
+	}
+	//work with dashboard download totalscope
+	public function download_totalScope($value='')
+	{
+		$this->DownloadTotalScope($this->page);
+	}
+
+	//Current Scope
+	public function show_currentScope($value='')
+	{
+		$this->ShowDashCurrentScope($this->page);
+	}
+	//Compilence Done
+	public function show_complianceDone($value='')
+	{
+		$this->ShowDashComplianceDone($this->page);
+	}
+	//Non Compliance
+	public function show_dashNonCompliance($value='')
+	{
+		$this->ShowDashNonCompliance($this->page);
+	}
+	//Pending Compliance
+	public function show_dashPendingCompliance($value='')
+	{
+		$this->ShowDashPendingCompliance($this->page);
+	}
+	//Pending Compliance
+	public function show_dashAlertCompliance($value='')
+	{
+		$this->ShowDashAlertCompliance($this->page);
+	}
+
 
 	/*------ dispalay the notification of spg -----*/
 	public function notification_view()
@@ -155,6 +197,15 @@ class Spg extends Base_controller {
 	public function show_inbox()
 	{
 		$this->showInbox($this->page);//this function store in dashboard controller		
+	}
+	public function send_mail($value='')
+	{
+		$this->SendMail('spg');//this function store in dashboard controller	
+	}
+	public function check_mail($value='')
+	{
+		$this->dash->update_mail_status();
+
 	}
 	public function save_comment()
 	{
