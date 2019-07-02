@@ -70,11 +70,17 @@ class Spg extends Base_controller {
 		}
 		
 	}
-	//work with dashboard 
+	//work with dashboard d
 	public function show_totalScope($value='')
 	{
 		$this->ShowTotalScope($this->page);
 	}
+	//work with dashboard download totalscope
+	public function download_totalScope($value='')
+	{
+		$this->DownloadTotalScope($this->page);
+	}
+
 	//Current Scope
 	public function show_currentScope($value='')
 	{

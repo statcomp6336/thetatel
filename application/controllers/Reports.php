@@ -446,7 +446,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			 		$this->data['tableTools'] = array(
 			 										0 =>array(
 			 											//'link'=> base_url(''.$page_data['user_type'].'/download/esictemplate/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.''),
-			 											'link'=> base_url(''.$page_data['user_type'].'/download/pfsummary/'.$spgid.'/'.$custid.''),
+			 											'link'=> base_url(''.$page_data['user_type'].'/download/pfsummary/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.''),
 														'button' =>'Download',
 														'class'	 =>'btn-success'
 			 												)
@@ -561,9 +561,19 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	$this->load->model('Export');
 	 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
 	 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
-	 	// echo $spg;
-	 	// exit();
-	 	$this->Export->PFSummary($spg,$cust);
+	 	$month = ($this->uri->segment(6)) ? $this->uri->segment(6) : 0;
+	 	$year = ($this->uri->segment(7)) ? $this->uri->segment(7) : 0;
+	 	
+	 	if (is_last_month($month,$year) == TRUE) 
+		{
+			$check='new';
+			$$this->Export->PFSummary($spg,$cust,$month,$year,$check);			
+		}
+		else
+		{
+			$check='old';
+			$this->Export->PFSummary($spg,$cust,$month,$year,$check);
+		}
 	 }
 
 	 /* show Esic newjoinee report companiwise */
@@ -691,8 +701,8 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			 		$this->data['tableHeading'] = "ESIC Template Report";	// colomns name
 			 		$this->data['tableTools'] = array(
 			 										0 =>array(
-			 											//'link'=> base_url(''.$page_data['user_type'].'/download/esictemplate/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.''),
-			 											'link'=> base_url(''.$page_data['user_type'].'/download/esictemplate/'.$spgid.'/'.$custid.''),
+			 					
+			 											'link'=> base_url(''.$page_data['user_type'].'/download/esictemplate/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.''),
 														'button' =>'Download',
 														'class'	 =>'btn-success'
 			 												)
@@ -807,9 +817,22 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	$this->load->model('Export');
 	 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
 	 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
+	 	$month = ($this->uri->segment(6)) ? $this->uri->segment(6) : 0;
+	 	$year = ($this->uri->segment(7)) ? $this->uri->segment(7) : 0;
 	 	// echo $spg;
 	 	// exit();
-	 	$this->Export->ESICTemplate($spg,$cust);
+	 	
+
+	 	if (is_last_month($month,$year) == TRUE) 
+		{
+			$check='new';
+			$$this->Export->ESICTemplate($spg,$cust,$month,$year,$check);			
+		}
+		else
+		{
+			$check='old';
+			$this->Export->ESICTemplate($spg,$cust,$month,$year,$check);
+		}
 	 }
 
 	 /* show Esic Template (Empid) report for export companiwise */
@@ -817,11 +840,11 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 {
 	 	if (!empty($this->input->post('submit'))) 
 	 	{
-			$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
-			$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
-			$month 		=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
-			$year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
-			$location =!empty($this->input->post('location'))?$this->input->post('location'):NULL;
+			$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+			$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+			$month 	=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
+			$year 	=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
+		$location =!empty($this->input->post('location'))?$this->input->post('location'):NULL;
 
 		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
 		 		{
@@ -834,7 +857,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			 		$this->data['tableHeading'] = "ESIC Template(Emp ID) Reports";	// colomns name
 			 		$this->data['tableTools'] = array(
 			 										0 =>array(
-			 											'link'=> base_url(''.$page_data['user_type'].'/download/esictemplateempid/'.$spgid.'/'.$custid.''),
+			 											'link'=> base_url(''.$page_data['user_type'].'/download/esictemplateempid/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.'/'.$location.''),
 														'button' =>'Download ESIC',
 														'class'	 =>'btn-success'
 			 												)
@@ -880,15 +903,13 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 /* genrate ESIC Template (EmpID) report with validation */
 	 private function GenrateEsicTemplateEmpID($value='')
 	 {
-
-	 	//echo "hello";
 	 	$this->load->model('Report_model','report');
 	 	
-	 		$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
-	 		$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
-	 		$month 		=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
-	 		$year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
-	 		$location =!empty($this->input->post('location'))?$this->input->post('location'):NULL;
+	 		$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+	 		$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+	 		$month 	=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
+	 		$year 	=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
+	 	$location =!empty($this->input->post('location'))?$this->input->post('location'):NULL;
 
 	 		if ($custid !== NULL && $spgid !== NULL) {
 	 			if ($month !==NULL && $year !==NULL) 
@@ -971,9 +992,20 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	$this->load->model('Export');
 	 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
 	 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
-	 	// echo $spg;
-	 	// exit();
-	 	$this->Export->ESICTemplateEmpid($spg,$cust);
+	 	$month = ($this->uri->segment(6)) ? $this->uri->segment(6) : 0;
+	 	$year = ($this->uri->segment(7)) ? $this->uri->segment(7) : 0;
+	 	$location = ($this->uri->segment(8)) ? $this->uri->segment(8) : 0;
+
+	 	if (is_last_month($month,$year) == TRUE) 
+		{
+			$check='new';
+			$this->Export->ESICTemplateEmpid($spg,$cust,$month,$year,$location,$check);
+		}
+		else
+		{
+			$check='old';
+			$this->Export->ESICTemplateEmpid($spg,$cust,$month,$year,$location,$check);
+		}
 	 }
 
 	 /* show Esic summary report companiwise */
@@ -997,9 +1029,8 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			        /* table data */
 			 		$this->data['tableHeading'] = "ESIC Summary Report";	// colomns name
 			 		$this->data['tableTools'] = array(
-			 										0 =>array(
-			 											//'link'=> base_url(''.$page_data['user_type'].'/download/esictemplate/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.''),
-			 											'link'=> base_url(''.$page_data['user_type'].'/download/esicsummary/'.$spgid.'/'.$custid.''),
+			 										0 =>array(							
+			 											'link'=> base_url(''.$page_data['user_type'].'/download/esicsummary/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.''),
 														'button' =>'Download',
 														'class'	 =>'btn-success'
 			 												)
@@ -1114,9 +1145,21 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	$this->load->model('Export');
 	 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
 	 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
-	 	// echo $spg;
-	 	// exit();
-	 	$this->Export->ESICSummary($spg,$cust);
+	 	$month = ($this->uri->segment(6)) ? $this->uri->segment(6) : 0;
+	 	$year = ($this->uri->segment(7)) ? $this->uri->segment(7) : 0;
+	 	
+	 	//$this->Export->ESICSummary($spg,$cust);
+
+	 	if (is_last_month($month,$year) == TRUE) 
+		{
+			$check='new';
+			$this->Export->ESICSummary($spg,$cust,$month,$year,$check);
+		}
+		else
+		{
+			$check='old';
+			$this->Export->ESICSummary($spg,$cust,$month,$year,$check);
+		}
 	 }
 
 	 /* show compliance report companiwise */
@@ -1124,8 +1167,8 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 {
 	 	if (!empty($this->input->post('submit'))) 
 	 	{
-			$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
-			$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+			$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+			$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 
 		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
 		 		{
@@ -1185,8 +1228,8 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 {
 	 	$this->load->model('Report_model','report');
 	 	
-	 		$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
-	 		$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+	 		$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+	 		$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 
 	 		if ($custid !== NULL && $spgid !== NULL) 
 	 		{
@@ -1287,10 +1330,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 		if ($custid !== NULL && $spgid !== NULL) 
 	 		{
 				$result=$this->report->get_noncompliance($spgid,$custid);
-				return $result;
-				//print_r($result);
-				// var_dump($result); 
-				// exit();					
+				return $result;					
 	 		}
  			else
  			{
@@ -1305,8 +1345,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	$this->load->model('Export');
 	 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
 	 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
-	 	// echo $spg;
-	 	// exit();
+	
 	 	$this->Export->noncompliance($spg,$cust);
 	 }
 
@@ -1376,12 +1415,8 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 	 		if ($custid !== NULL && $spgid !== NULL) 
 	 		{
-				//$result=$this->report->get_complince_data($spgid,$custid,'approval');
 				$result=$this->report->get_approval($spgid,$custid);
-				 return $result;
-				//print_r($result);
-				// var_dump($result); 
-				// exit();					
+				 return $result;					
 	 		}
  			else
  			{
@@ -1454,12 +1489,8 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 	 		if ($custid !== NULL && $spgid !== NULL) 
 	 		{
-				//$result=$this->report->get_complince_data($spgid,$custid,'approval');
 				$result=$this->report->get_rejected($spgid,$custid);
-				 return $result;
-				//print_r($result);
-				// var_dump($result); 
-				// exit();					
+				 return $result;					
 	 		}
  			else
  			{
@@ -1487,29 +1518,16 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			        $this->data['user_type'] = $page_data['user_type'];
 			        $this->data['menu'] = $page_data['menu'];
 			        /* table data */
-			 		$this->data['tableHeading'] = "Compliance Document Report";	// colomns name
-			 		
-			 		// colomns name
-			 		//$this->data['tableCol'] = array("Customer ID","Company name","Document","ACT","Date");
-			 		//data	
-			 		//$this->data['tableData']=$this->GenrateComplianceDocument();//
-			 		// $this->data['tableButtons']	= array();		
-				//$this->data['entity_name']=is($this->input->post('entity_name'),"N/A");
-				
-			 	$this->data['result']=$this->report->get_compliancedocument($spgid,$custid,$cname);
-		//echo $custid;echo $cname;echo $spgid;
-
-					// print_r($result);
-					// exit();
+			 		$this->data['tableHeading'] = "Compliance Document Report";	// colomns name			 		
+			 		// colomns name				
+			 		$this->data['result']=$this->report->get_compliancedocument($spgid,$custid,$cname);
+		
 					$this->render('show_compliance_documentation');
-			 	
-		 		 	//$this->render('export_table');
 			     }
 			     else
 			     {
 			      echo "404 no access";
-			     }
-	 		 	
+			     }	 		 	
 	 	}
 	 	else
 	 	{
@@ -1523,7 +1541,6 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			       $this->data['sub_menu'] = 'Compliance Documents';
 			       $this->data['user_type'] = $page_data['user_type'];
 			       $this->data['menu'] = $page_data['menu'];
-			    
 			      
 			       $this->render('export_compliance_document');
 			     }
@@ -1533,31 +1550,6 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 		}
 	 }
-	 /* genrate Compliance Document report with validation */
-	 // public function GenrateComplianceDocument($value='')
-	 // {
-	 // 	$this->load->model('Report_model','report');
-	 	
-	 // 		$cname	=!empty($this->input->post('comp_name'))?$this->input->post('comp_name'):NULL;
-	 // 		$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
-	 // 		$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
-
-	 // 		if ($custid !== NULL && $spgid !== NULL) 
-	 // 		{
-	 // 			//echo "hello";
-		// 		//$result=$this->report->get_complince_data($spgid,$custid,'approval');
-		// 		$result=$this->report->get_compliancedocument($spgid,$custid,$cname);
-		// 		 return $result;
-		// 		//print_r($result);
-		// 		// var_dump($result); 
-		// 		// exit();					
-	 // 		}
- 	// 		else
- 	// 		{
-	 // 			put_msg('Sorry custid and user are invalid');
-	 // 				goto_back();
-	 // 		}
-	 // }
 
 	 /* Show Entity Details Report*/
 	 public function ShowEntityDetails($page_data = '')
@@ -1642,11 +1634,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			       $this->data['menu'] = $page_data['menu'];	
 
 			       // location data
-				 //$this->data['location_data']=array('location'=> $this->report->get_location());
-
-			       $this->data['result']=$this->report->get_location();
-			       // print_r($result);
-							//return $result;		    
+			       $this->data['result']=$this->report->get_location();		    
 			      
 			       $this->render('export_employeedetails');
 			     }
@@ -1677,11 +1665,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 			{
 	 				$result=$this->report->get_employeedetails($spgid,$custid,$location);
 				 	return $result;
-	 			}
-				
-				//print_r($result);
-				// var_dump($result); 
-				// exit();					
+	 			}				
 	 		}
  			else
  			{
@@ -2068,9 +2052,23 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	$this->load->model('Export');
 	 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
 	 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
-	 	// echo $spg;
-	 	// exit();
-	 	$this->Export->FormQ($spg,$cust);
+	 	$month = ($this->uri->segment(6)) ? $this->uri->segment(6) : 0;
+	 	$year = ($this->uri->segment(7)) ? $this->uri->segment(7) : 0;
+	 	$location = ($this->uri->segment(8)) ? $this->uri->segment(8) : 0;
+
+	 	//$check='new';			
+		//	$this->Export->FormQ($spg,$cust,$month,$year,$location);
+//echo $month;echo $year;
+	 	if (is_last_month($month,$year) == TRUE) 
+	 	{	
+	 		$check='new';//echo $check;			
+			$this->Export->FormQ($spg,$cust,$month,$year,$location,$check);			
+		}
+		else
+		{ 
+			$check='old';//echo $check;
+			$this->Export->FormQ($spg,$cust,$month,$year,$location,$check);
+		}	 	
 	 }
 
 

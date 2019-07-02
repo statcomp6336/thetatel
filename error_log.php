@@ -709,6 +709,11 @@
 [27-Jun-2019 16:14:07 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '\' (T_NS_SEPARATOR), expecting ')' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 587
 [27-Jun-2019 16:52:17 Asia/Kolkata] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 637
 [27-Jun-2019 16:52:46 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 637
+<<<<<<< HEAD
+[28-Jun-2019 10:56:09 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$emp_data' (T_VARIABLE), expecting ')' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 606
+[28-Jun-2019 11:04:40 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO), expecting ')' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 587
+[28-Jun-2019 16:25:40 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$emp_data' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Export.php on line 250
+=======
 >>>>>>> 2a208fa954785931855249130b6f7c9c6dab6318
 [28-Jun-2019 07:59:05 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Dashboard_model.php on line 192
 [28-Jun-2019 08:38:11 Europe/Berlin] PHP Fatal error:  Call to undefined method CI_Loader::unique_multi_array() in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 311
@@ -726,6 +731,7 @@
 [28-Jun-2019 09:23:16 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'as' (T_AS) in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 315
 [28-Jun-2019 09:24:37 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'foreach' (T_FOREACH) in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 313
 [28-Jun-2019 11:15:10 Europe/Berlin] PHP Fatal error:  Call to undefined method Dashboard_model::get_complianceDone() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Dashboard.php on line 211
+<<<<<<< HEAD
 [29-Jun-2019 08:15:52 Europe/Berlin] PHP Fatal error:  Call to a member function where() on null in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Login_model.php on line 25
 [29-Jun-2019 09:45:43 Europe/Berlin] PHP Fatal error:  Call to undefined method CI_Loader::is_spg() in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dashboard.php on line 5
 [30-Jun-2019 21:29:23 Europe/Berlin] PHP Parse error:  syntax error, unexpected '/' in C:\xampp\htdocs\newstatcomp\thetatel\application\helpers\Thetatel_helper.php on line 31
@@ -733,3 +739,6 @@
 [01-Jul-2019 14:33:02 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 38
 [01-Jul-2019 14:33:57 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 38
 [01-Jul-2019 14:38:38 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 40
+=======
+>>>>>>> f587ecc7cd36eb784d9e8a434fbcbeec9818d4e5
+>>>>>>> 7a81db64ff00aa767515132ee5641f29c8a0ac0e

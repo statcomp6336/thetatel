@@ -135,7 +135,7 @@ trait Dashboard {
 
 
 
-	/* Dashboar read more content views */
+	/* Dashboar read more content viewss */
 	//Total Scope
 	public function ShowTotalScope($page_data='')
 	{
@@ -164,6 +164,17 @@ trait Dashboard {
 		 }
 		
 	}
+
+	/* download Totalscope report in excel formate*/
+	 public function DownloadTotalScope()
+	 {
+	 	$this->load->model('Export');
+	 	$spg = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+	 	$cust = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
+	 	
+	 	$this->Export->TotalScope($spg,$cust);			
+		
+	 }
 
 	//Current Scope
 	public function ShowDashCurrentScope($page_data='')

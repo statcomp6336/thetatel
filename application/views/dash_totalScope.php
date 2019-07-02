@@ -68,8 +68,9 @@
 				<button class="btn btn-success" id="import" >Get Total Scope</button> 
 			</a>
 
-			<a href="#modal-wizard-user" data-toggle="modal" class="pink" >
-			<button class="btn btn-info" > Download</button> 
+			<a href="<?php echo base_url(''.$user_type.'/download/totalscope/'.user_id().'');?>" data-toggle="modal" class="pink" >
+
+			<button class="btn btn-info" > Downloadd</button> 
 			</a>
 		</div>
 

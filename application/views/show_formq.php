@@ -8,7 +8,7 @@
 	<div class="widget-header">
 		<h4 class="widget-title"> Form-Q Details  </h4>
 		
-			<a href="<?php echo base_url(''.$user_type.'/download/formq/'.user_id().'/'.$custid.'');?>">
+			<a href="<?php echo base_url(''.$user_type.'/download/formq/'.user_id().'/'.$custid.'/'.$month.'/'.$year.'/'.$location.'');?>">
 				<button name="submit" value="SEND" class="btn-success"><?php echo "DOWNLOAD Form-Q";?></button>
 			</a>
 		
