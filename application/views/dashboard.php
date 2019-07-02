@@ -1,8 +1,9 @@
 
 
 
-<div class="space-6"></div>
 
+<?php if (IS_SPG == TRUE) { ?>
+ 
 <div class="col-sm-7 infobox-container">
   <!-- Total scope -->
   <a href="<?php echo base_url(''.$user_type.'/total-scope');?>">
@@ -184,6 +185,25 @@
     </div>
   </div>
 </div>
+<?php 
+}
+elseif (IS_COMPANY == TRUE) {
+  echo "this in company";
+}
+elseif (IS_BRANCH == TRUE) {
+   echo "this in IS_BRANCH";
+}
+elseif (IS_SPGUSER == TRUE) {
+   echo "this in IS_SPGUSER";
+}
+elseif (IS_CONTRACTOR == TRUE) {
+   echo "this in IS_CONTRACTOR";
+}
+elseif (IS_SUBCONTRACTOR == TRUE) {
+   echo "this in IS_SUBCONTRACTOR";
+}
+
+?>
 
 <div class="vspace-12-sm"></div>
 

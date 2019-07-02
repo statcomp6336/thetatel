@@ -14,7 +14,57 @@ class DB_install extends Base_model
 		$this->newdb=$this->load->database('db1',TRUE);
 		 $this->load->dbforge($this->newdb);
 
-	}	
+	}
+	public function create_tables($value='')
+		{
+			$this->CreateTable_customer_master();
+			$this->CreateTable_custid_backup();
+			$this->CreateTable_act_particular();
+			$this->CreateTable_act_applicable_to_customer();
+			$this->CreateTable_compliance_scope();
+			$this->CreateTable_employee_master_new();
+			$this->CreateTable_employee_error();
+			$this->CreateTable_salary_master();
+			$this->CreateTable_temp_salary_master();
+			$this->CreateTable_master_process();
+			$this->CreateTable_backlog_process();
+			$this->CreateTable_pf_template();
+			$this->CreateTable_esic_template();
+			$this->CreateTable_compliance_working_priore();
+			$this->CreateTable_completed_compliance();
+			$this->CreateTable_flow_of_timeline();
+			$this->CreateTable_users();
+			$this->CreateTable_add_companies_for_users();
+			$this->CreateTable_timeline();
+			$this->CreateTable_customer_dump();
+			$this->CreateTable_timeline_data();
+			$this->CreateTable_compose_email();
+		}
+	public function drop_tables($value='')
+		{
+			$this->DropTable_customer_master();
+			$this->DropTable_custid_backup();
+			$this->DropTable_act_particular();
+			$this->DropTable_act_applicable_to_customer();
+			$this->DropTable_compliance_scope();
+			$this->DropTable_employee_master_new();
+			$this->DropTable_employee_error();
+			$this->DropTable_temp_salary_master();
+			$this->DropTable_salary_master();
+			$this->DropTable_master_process();
+			$this->DropTable_backlog_process();
+			$this->DropTable_pf_template();
+			$this->DropTable_esic_template();		
+			$this->DropTable_compliance_working_prior();
+			$this->DropTable_completed_compliance();
+			$this->DropTable_flow_of_timeline();
+			$this->DropTable_users();
+			$this->DropTable_add_companies_for_users();
+			$this->DropTable_timeline();
+			$this->DropTable_customer_dump();
+			$this->DropTable_timeline_data();
+			$this->DropTable_compose_email();
+		}	
 
 	public function CreateTable_customer_master()
 	{

@@ -11,40 +11,30 @@ trait Company_ext {
     }
 
 	public function company_registration($page_data="")
-	{
-		//g $this->load->model('Dashboard_model','dash');
+	{		
 		$reg_type=$this->uri->segment(2);
-		$this->data['reg_type']=$reg_type;
-		//echo $reg_type;
-		//exit();
+		$this->data['reg_type']=$reg_type;	
 		
-		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
-		 	 $this->data['page_title'] = $page_data['page_title'];
+		 if ($this->data['access'][$this->session->TYPE] == TRUE && (IS_SPG== TRUE || IS_SPGUSER == TRUE)) {		 	 
 			 $this->data['where'] = 'Company';
 			 $this->data['sub_menu'] = 'Registration';
-			 $this->data['user_type'] = $page_data['user_type'];
-			 $this->data['menu'] = $page_data['menu'];
-
-			 $this->render('company_registration',$this->data);
+			 // $this->render('company_registration');
+			 $this->render('comp_reg');
 		 }
 		 else
 		 {
-		 	echo "404 no access";
-		 }				
-		// $this->render('example');		
+		 	$this->load->view('404');
+		 }		
 	}
 
 	/*++++++ create a  COMPANY ++++++*/
 	protected function CreateCompany($user)
 	{
 		$this->load->model('Company_model');
-		$cust_type=1;	
+		$cust_type=is($this->input->post('cust_type'),1);	
 		$this->form_validation->set_rules($this->rules());
 		$custid=$this->Company_model->get_custid($this->input->post('comp_pin'),$cust_type);
-		// echo $custid;
-		
-		
-		
+		// echo $custid;		
 		$save_data = $this->security->xss_clean($this->fillup_data($cust_type,$custid));
 		 if ($this->form_validation->run() == FALSE) { 
 	         	// echo validation_errors();
@@ -73,7 +63,7 @@ trait Company_ext {
 	protected function CreateBranch($user)
 	{
 		$this->load->model('Company_model');
-		$cust_type=1;	
+		$cust_type=2;	
 		$this->form_validation->set_rules($this->rules());
 		$custid=$this->Company_model->get_custid($this->input->post('comp_pin'),$cust_type);
 		// echo $custid;
@@ -183,139 +173,139 @@ trait Company_ext {
                array(
                      'field'   => 'ent_name', 
                      'label'   => 'Entity Name', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean'
                   ),
                array(
                      'field'   => 'ent_code', 
                      'label'   => 'Entity Code', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean|trim|numeric'
                   ),
                array(
                      'field'   => 'comp_pan', 
                      'label'   => 'Company PAN Number', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean'
                   ),   
                array(
                      'field'   => 'comp_name', 
                      'label'   => 'Company Name', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean'
                   ),
                 array(
                      'field'   => 'comp_addr', 
                      'label'   => 'Company Address', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean'
                   ),
                  array(
                      'field'   => 'comp_landmark', 
                      'label'   => 'Company Landmark', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean'
                   ),
                   array(
                      'field'   => 'comp_state', 
                      'label'   => 'State', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean'
                   ),
                   array(
                      'field'   => 'comp_pin', 
                      'label'   => 'Company Pincode', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean|trim|numeric'
                   ),   
                array(
                      'field'   => 'comp_phone', 
                      'label'   => 'Corporate Phone Number', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean|trim|numeric'
                   ),
                 array(
                      'field'   => 'hr_ex_name', 
                      'label'   => 'HR Executive Name', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean'
                   ),
                  array(
                      'field'   => 'hr_ex_mail', 
                      'label'   => 'HR Executive Email ', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean|valid_email'
                   ),
                   array(
                      'field'   => 'hr_ex_phone', 
                      'label'   => 'HR Executive Phone Number', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean|trim|numeric'
                   ),
                   array(
                      'field'   => 'hr_mg_name', 
                      'label'   => 'HR Manager Name', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean'
                   ),
                  array(
                      'field'   => 'hr_mg_mail', 
                      'label'   => 'HR Manager Email ', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean|valid_email'
                   ),
                   array(
                      'field'   => 'hr_mg_phone', 
                      'label'   => 'HR Manager Phone Number', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean|trim|numeric'
                   ),
                   array(
                      'field'   => 'hr_vp_name', 
                      'label'   => 'HR Vice Precident Name', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean'
                   ),
                  array(
                      'field'   => 'hr_vp_mail', 
                      'label'   => 'HR Vice Precident Email ', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean|valid_email'
                   ),
                   array(
                      'field'   => 'hr_vp_phone', 
                      'label'   => 'HR Vice Precident Phone Number', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean|trim|numeric'
                   ),
 
 
                   array(
                      'field'   => 'sp_ex_name', 
                      'label'   => 'Service Provider Executive Name', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean'
                   ),
                  array(
                      'field'   => 'sp_ex_mail', 
                      'label'   => 'Service Provider Executive Email ', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean|valid_email'
                   ),
                   array(
                      'field'   => 'sp_ex_phone', 
                      'label'   => 'Service Provider Executive Phone Number', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean|trim|numeric'
                   ),
                   array(
                      'field'   => 'sp_mg_name', 
                      'label'   => 'Service Provider Manager Name', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean'
                   ),
                  array(
                      'field'   => 'sp_mg_mail', 
                      'label'   => 'Service Provider Manager Email ', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean|valid_email'
                   ),
                   array(
                      'field'   => 'sp_mg_phone', 
                      'label'   => 'Service Provider Manager Phone Number', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean|trim|numeric'
                   ),
                   array(
                      'field'   => 'sp_vp_name', 
                      'label'   => 'Service Provider Vice Precident Name', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean'
                   ),
                  array(
                      'field'   => 'sp_vp_mail', 
                      'label'   => 'Service Provider Vice Precident Email ', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean|valid_email'
                   ),
                   array(
                      'field'   => 'sp_vp_phone', 
                      'label'   => 'Service Provider Vice Precident Phone Number', 
-                     'rules'   => 'required'
+                     'rules'   => 'required|xss_clean|trim|numeric'
                   )
               );
 			return $company_rules;
@@ -327,7 +317,7 @@ trait Company_ext {
 		$branch_code= $this->Company_model->get_branchCode($this->input->post('comp_pan'));
 		$save_data = array('custtype' 		=> 1 ,
 							'custid'		=>$custid,
-							'allianceid'	=> user_id(),//$this->input->post('ent_code') ,
+							'allianceid'	=> $this->input->post('ent_code') ,
 							'entity_pan' 	=> $this->input->post('comp_pan') ,
 							'entity_name' 	=> $this->input->post('comp_name') ,
 							'address' 		=> $this->input->post('comp_addr') ,
@@ -379,9 +369,7 @@ trait Company_ext {
 		$this->load->model('Company_model');
 		$reg_type=$this->uri->segment(2);
 		$this->data['reg_type']=$reg_type;	
-	 	//$this->data['user_type'] = $page_data['user_type'];
-
-	 	$this->data['page_title'] = $page_data['page_title'];
+	 
 	 	if($reg_type=="branch")
 	 	{
 	 		$this->data['where'] = 'Branch';
@@ -396,16 +384,9 @@ trait Company_ext {
 	 	}
        
        $this->data['sub_menu'] = 'Registration Details';
-       $this->data['user_type'] = $page_data['user_type'];
-       $this->data['menu'] = $page_data['menu'];
-       //$this->data['result'] = $getmessage;
-
-		$this->data['result']=$this->Company_model->get_allCompanydetails($reg_type);
+       $this->data['result']=$this->Company_model->get_allCompanydetails($reg_type);
 		
-		//echo $reg_type;
-		//exit();
-		$this->render('show_company',$this->data);
-		//$this->load->view('show_company',$this->data);	
+		$this->render('show_company');
 	 }
 
 //Here create branch registration view
@@ -414,21 +395,19 @@ trait Company_ext {
 		$reg_type=$this->uri->segment(2);
 		$this->data['reg_type']=$reg_type;
 
-		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
-		 	 $this->data['page_title'] = $page_data['page_title'];
+		 if ($this->data['access'][$this->session->TYPE] == TRUE) {
+		 
 			 $this->data['where'] = 'Branch';
-			 $this->data['sub_menu'] = 'Registration';
-			 $this->data['user_type'] = $page_data['user_type'];
-			 $this->data['menu'] = $page_data['menu'];
+			 $this->data['sub_menu'] = 'Registration';			
 			 $custid=is(verify_id($this->uri->segment(4)),'N/A');
 			 $name=is(verify_id($this->uri->segment(5)),'N/A');
 			  $this->data['custid']=$custid;
 			   $this->data['name']= $name;
-			 $this->render('company_registration',$this->data);
+			 $this->render('comp_reg');
 		 }
 		 else
 		 {
-		 	echo "404 no access";
+		 	$this->load->view('404');
 		 }						
 	}
 
@@ -438,21 +417,20 @@ trait Company_ext {
 		$reg_type=$this->uri->segment(2);
 		$this->data['reg_type']=$reg_type;
 
-		if ($page_data['access'][$this->session->TYPE] == TRUE) {
-		 	 $this->data['page_title'] = $page_data['page_title'];
+		if ($this->data['access'][$this->session->TYPE] == TRUE) {
+		 	
 			 $this->data['where'] = 'Contractor';
 			 $this->data['sub_menu'] = 'Registration';
-			 $this->data['user_type'] = $page_data['user_type'];
-			 $this->data['menu'] = $page_data['menu'];
+			
 			 $custid=is(verify_id($this->uri->segment(4)),'N/A');
 			 $name=is(verify_id($this->uri->segment(5)),'N/A');
 			  $this->data['custid']=$custid;
 			   $this->data['name']= $name;
-			 $this->render('company_registration',$this->data);
+			 $this->render('comp_reg');
 		 }
 		 else
 		 {
-		 	echo "404 no access";
+		 	$this->load->view('404');
 		 }		
 	}
 
@@ -462,40 +440,38 @@ trait Company_ext {
 		$reg_type=$this->uri->segment(2);
 		$this->data['reg_type']=$reg_type;
 
-		if ($page_data['access'][$this->session->TYPE] == TRUE) {
-		 	 $this->data['page_title'] = $page_data['page_title'];
+		if ($this->data['access'][$this->session->TYPE] == TRUE) {
+		 
 			 $this->data['where'] = 'Sub Contractor';
 			 $this->data['sub_menu'] = 'Registration';
-			 $this->data['user_type'] = $page_data['user_type'];
-			 $this->data['menu'] = $page_data['menu'];
+			
 			 $custid=is(verify_id($this->uri->segment(4)),'N/A');
 			 $name=is(verify_id($this->uri->segment(5)),'N/A');
 			  $this->data['custid']=$custid;
 			   $this->data['name']= $name;
-			 $this->render('company_registration',$this->data);
+			 $this->render('comp_reg');
 		 }
 		 else
 		 {
-		 	echo "404 no access";
+		 	$this->load->view('404');
 		 }		
 	}
 
 	public function company_act($page_data='')
 	{
 		$this->load->model('Company_model');
-		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
-		 	 $this->data['page_title'] = $page_data['page_title'];
+		 if ($this->data['access'][$this->session->TYPE] == TRUE) {
+		 	
 			 $this->data['where'] = 'Company';
 			 $this->data['sub_menu'] = 'Select Act for Compailation';
-			 $this->data['user_type'] = $page_data['user_type'];
-			 $this->data['menu'] = $page_data['menu'];
+			
 			 /*main act data*/
 			 $this->data['source']=$this->Company_model->all_companys();
 			 $this->render('act_view');
 		 }
 		 else
 		 {
-		 	echo "404 no access";
+		 	$this->load->view('404');
 		 }		
 	}
 

@@ -726,3 +726,10 @@
 [28-Jun-2019 09:23:16 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'as' (T_AS) in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 315
 [28-Jun-2019 09:24:37 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'foreach' (T_FOREACH) in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dash_totalScope.php on line 313
 [28-Jun-2019 11:15:10 Europe/Berlin] PHP Fatal error:  Call to undefined method Dashboard_model::get_complianceDone() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Dashboard.php on line 211
+[29-Jun-2019 08:15:52 Europe/Berlin] PHP Fatal error:  Call to a member function where() on null in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Login_model.php on line 25
+[29-Jun-2019 09:45:43 Europe/Berlin] PHP Fatal error:  Call to undefined method CI_Loader::is_spg() in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dashboard.php on line 5
+[30-Jun-2019 21:29:23 Europe/Berlin] PHP Parse error:  syntax error, unexpected '/' in C:\xampp\htdocs\newstatcomp\thetatel\application\helpers\Thetatel_helper.php on line 31
+[01-Jul-2019 14:05:57 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Act_model.php on line 63
+[01-Jul-2019 14:33:02 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 38
+[01-Jul-2019 14:33:57 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 38
+[01-Jul-2019 14:38:38 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 40

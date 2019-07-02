@@ -2,15 +2,16 @@
 
 .form-wizard {
 	padding: 20px; 
-	background: #fff;
+	
 	-moz-border-radius: 4px; 
 	-webkit-border-radius: 4px; 
-	border-radius: 4px; 
-	box-shadow: 0px 0px 6px 3px #777;
-	font-family: 'Roboto', sans-serif;
+	border-radius: 20px;
+    box-shadow: 0px 0px 26px 3px #565555;;
+    font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-weight: 200;
-    color: #888;
+    color: #e31b1b;
+    background-color: #a096964a;
     line-height: 20px;
     text-align: center;
     width: 100%;
@@ -35,13 +36,14 @@
 }
 
 .form-wizard h3 {
-	font-size: 25px;
-    font-weight: 300;
-    color: #338907;
+	    font-size: 25px;
+    text-align: -webkit-center;
+    font-weight: normal;
+    color: #7f857c;
     line-height: 30px;
-	margin-top: 0; 
-	margin-bottom: 5px; 
-	text-transform: uppercase; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
 }
 
 .form-wizard h4 {
@@ -88,9 +90,14 @@
 
 
 
-.form-wizard label { font-weight: 300; }
+.form-wizard label { font-weight: 300;
+font-size: 18px;
+color: maroon;
+ }
 .form-wizard label span { color:#338907; }
 
+.form-wizard  span { color: #ff0404;
+    font-weight: bolder; }
 
 .form-wizard .btn {
 	min-width: 105px;
@@ -178,7 +185,7 @@ background: #bbb;
 .form-wizard-step{
 	padding-top:2px !important;
 	border:2px solid #fff;
-	background:#ccc;
+	background:#797171;
 	-ms-transform: skewX(-30deg); /* IE 9 */
     -webkit-transform: skewX(-30deg); /* Safari */
     transform: skewX(-30deg); /* Standard syntax */

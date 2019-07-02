@@ -169,6 +169,7 @@
 				});
 
 			 });
+
 			
 			function blink(selector){
 				$(selector).fadeOut('slow', function(){
@@ -180,6 +181,18 @@
     
 			blink('.blink');
 			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+    $('.nav li a').click(function(e) {
+
+        $('.nav li.active').removeClass('active');
+
+        var $parent = $(this).parent();
+        $parent.addClass('active');
+        
+    });
+});
 		</script>
 	</body>
 </html>

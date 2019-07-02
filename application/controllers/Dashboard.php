@@ -7,54 +7,47 @@ trait Dashboard {
 	public function dashboard($page_data="")
 	{
 		$this->load->model('Dashboard_model','dash');
-		 $type=$this->session->TYPE;
-		switch ($type) {
+		if ($this->data['access'][$this->session->TYPE] == TRUE) {			 
+			$this->data['where'] = 'Home';
+			$this->data['sub_menu'] = 'Dashboard';
+			if ($this->is_spg()== TRUE) {
+				$this->data['total_scope'] = $this->dash->countOfScope();
+				$this->data['total_bulk_update'] = $this->dash->countOfBultUpdate();
+				$this->data['total_complience'] = $this->dash->countOfComplience();
+				$this->data['total_non_complience'] = $this->dash->countOfNonComplience();
+				$this->data['total_pending'] = $this->dash->countOfPending();
+				$this->data['total_compl'] = $this->dash->countOfcomplatence();
+				$this->data['total_alerts'] = $this->dash->countOfAlert();
+				$this->data['total_approves'] = $this->dash->countOfMyApprovals();
+				$this->data['total_notis'] = $this->dash->countOfNewMail();		
+			}
+			elseif ($this->is_company()== TRUE) {
+				$this->data['total_scope'] = $this->dash->countOfScope();
+				$this->data['total_bulk_update'] = $this->dash->countOfBultUpdate();
+				$this->data['total_complience'] = $this->dash->countOfComplience();
+				$this->data['total_non_complience'] = $this->dash->countOfNonComplience();
+			}
+			elseif ($this->is_spg_user()== TRUE) {
+				$this->data['total_scope'] = $this->dash->countOfScope();
+				$this->data['total_bulk_update'] = $this->dash->countOfBultUpdate();
+				$this->data['total_complience'] = $this->dash->countOfComplience();
+				$this->data['total_non_complience'] = $this->dash->countOfNonComplience();
+			}			 
 			
-			case '1':
-				echo "1";
-				break;
-			case '2':
-				echo "2";
-				break;
-			case '3':
-				echo "3";
-				break;
-			case '4':
-				echo "4";
-				break;
-			case '5':
-				echo "5";
-				break;
-			case '55':
-				echo "55";
-				break;
-			case '9':
-			 $this->data['page_title'] = $page_data['page_title'];
-			 $this->data['where'] = 'Home';
-			 $this->data['sub_menu'] = 'Dashboard';
-			 $this->data['user_type'] = $page_data['user_type'];
-			 $this->data['menu'] = $page_data['menu'];
-
-			$this->data['total_scope'] = $this->dash->countOfScope();
-			$this->data['total_bulk_update'] = $this->dash->countOfBultUpdate();
-			$this->data['total_complience'] = $this->dash->countOfComplience();
-			$this->data['total_non_complience'] = $this->dash->countOfNonComplience();
-			$this->data['total_pending'] = $this->dash->countOfPending();
-			$this->data['total_compl'] = $this->dash->countOfcomplatence();
-			$this->data['total_alerts'] = $this->dash->countOfAlert();
-			$this->data['total_approves'] = $this->dash->countOfMyApprovals();
-			$this->data['total_notis'] = $this->dash->countOfNewMail();
-
-				
-			
-		}
-		$this->render('dashboard');		
+		
+		$this->render('dashboard');	
+		}	
+		else
+		 {
+		 	$this->load->view('404');
+		 }
 	}
 	//message of users in inbox
 	public function showInbox($page_data='')
 	{
 		$this->load->model('Dashboard_model','dash');
 		if ($page_data['access'][$this->session->TYPE] == TRUE) {
+
 		 	 $this->data['page_title'] = $page_data['page_title'];
 			 $this->data['where'] = 'Message';
 			 $this->data['sub_menu'] = 'Inbox';
@@ -66,7 +59,7 @@ trait Dashboard {
 		 }
 		 else
 		 {
-		 	echo "404 no access";
+		 	$this->load->view('404');
 		 }
 	}
 
@@ -100,7 +93,7 @@ trait Dashboard {
 		                $error = array('error' => $this->upload->display_errors());
 		        }
 		        else {
-		        	put("uploaded");
+		        	put_msg("uploaded");
 		                $data = array('upload_data' => $this->upload->data());
 		        }
 		        if(empty($error)){
@@ -167,7 +160,7 @@ trait Dashboard {
 		 }
 		 else
 		 {
-		 	echo "404 no access";
+		 	$this->load->view('404');
 		 }
 		
 	}
@@ -196,7 +189,7 @@ trait Dashboard {
 		 }
 		 else
 		 {
-		 	echo "404 no access";
+		 	$this->load->view('404');
 		 }
 		
 	}
@@ -225,7 +218,7 @@ trait Dashboard {
 		 }
 		 else
 		 {
-		 	echo "404 no access";
+		 	$this->load->view('404');
 		 }
 		
 	}
@@ -253,7 +246,7 @@ trait Dashboard {
 		 }
 		 else
 		 {
-		 	echo "404 no access";
+		 	$this->load->view('404');
 		 }
 		
 	}
@@ -282,11 +275,11 @@ trait Dashboard {
 		 }
 		 else
 		 {
-		 	echo "404 no access";
+		 	$this->load->view('404');
 		 }
 		
 	}
-
+ 
 	//Alert Compliance
 	public function ShowDashAlertCompliance($page_data='')
 	{
@@ -311,7 +304,7 @@ trait Dashboard {
 		 }
 		 else
 		 {
-		 	echo "404 no access";
+		 	$this->load->view('404');
 		 }
 		
 	}

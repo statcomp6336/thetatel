@@ -54,7 +54,7 @@
 	<div class="pull-center">
 		<?php   echo form_open('', array( 'id' => 'login', 'class' => 'box', 'method'=> 'POST' ));?>
 		
-		<!-- 	<form name="form1" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" > -->
+		
 			<input id="entity_name" type="text" name="name">
 			<input type="text" name="custid" id="custid">
 			<input type="submit" name="sub"  value="act">

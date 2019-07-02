@@ -438,7 +438,7 @@
 				</div><!-- /.sidebar-shortcuts -->
 
 				<ul class="nav nav-list">
-					<li class="hover">
+					<li class="active hover">
 						<?php if ( $menu['dashboard_access'] == TRUE) {
 						
 						?>
@@ -450,7 +450,7 @@
 						<b class="arrow"></b>
 					</li>
 
-					<li class="active open hover">
+					<li class="hover">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-desktop"></i>
 							<span class="menu-text">						
@@ -463,7 +463,7 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="active open hover">
+							<li class="open hover">
 								<a href="#" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Company
@@ -473,7 +473,7 @@
 								<b class="arrow"></b>
 
 								<ul class="submenu">
-									<li class="active hover">
+									<li class="hover">
 										<a href="<?php echo base_url('spg/company/registration'); ?>">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Company Registration
@@ -496,7 +496,7 @@
 							</li>
 <!--  end company area -->
 <!--  start contractor area -->
-<li class="active open hover">
+<li class="open hover">
 								<a href="#" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Contractor
@@ -529,7 +529,7 @@
 							</li>
 <!-- end contractor area -->
 <!-- start act compiletion area -->	
-<li class="active open hover">
+<li class="open hover">
 								<a href="#" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
 									 Acts

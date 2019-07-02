@@ -12,6 +12,7 @@
 class Base_controller extends CI_Controller
 {
   protected $data = array();
+  // protected $page = array();
   function __construct()
   {
     parent::__construct();
@@ -21,7 +22,39 @@ class Base_controller extends CI_Controller
     $this->data['before_body'] ='';
     $this->data['msg'] ='';
     define('USERNAME', username());
+    define('IS_SPG', $this->is_spg());
+    define('IS_COMPANY', $this->is_company());
+    define('IS_SPGUSER', $this->is_spg_user());
+    define('IS_BRANCH', $this->is_branch());
+    define('IS_CONTRACTOR', $this->is_contractor());
+    define('IS_SUBCONTRACTOR', $this->is_sub_contractor());
    // $this->data['error_count'] = $this->emp->emp_error();
+    $this->data['menu']=array(
+      // dashbord access if true to dispaly and flase it hide
+      "dashboard_access"    => TRUE,
+      // notification access if true to dispaly and flase it hide
+      "notification_access" => TRUE,//
+      "setup"               =>TRUE,
+      "company"             =>TRUE,
+      "company_registration" =>TRUE,
+      "branch_registration" =>TRUE,
+      "contractor"          =>TRUE,
+      "contractor_registration" =>TRUE,
+      "sub_contractor_registration" =>TRUE,
+      "acts"                =>TRUE,
+      "create_act"          =>TRUE,
+      "act_selection"       =>TRUE,
+      "act_due_date"        =>TRUE,
+      "my_activity"         =>TRUE,
+      "employee"            =>TRUE,
+      "employee_registration" =>TRUE,
+      "salary"              =>TRUE,
+      "pf"                  =>TRUE,
+      "pf_new_joinee_report"=>TRUE,
+      "pf_template"         =>TRUE,
+      "pf_summary"          =>TRUE,
+
+      );
 
   }  
 

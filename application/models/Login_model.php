@@ -9,18 +9,21 @@ class Login_model extends CI_Model
 	
 	function __construct()
 	{
-		# code...
+		parent::__construct();
+			$this->newdb=$this->load->database('db1',TRUE);
 
 	}
 
 	public function check_login($value)
 	{
+		$this->load->helper('Password');
+    	$hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
 		$username=$value['username'];
 		$cid=$value['cid'];
 		$password= $value['password'];
 
 		$where = array('username ' => $username , 'custid ' => $cid);
-		$result=$this->db->where($where)->get('users');
+		$result=$this->newdb->where($where)->get('users');
 
 		if ($result->num_rows() > 0) {
 
@@ -30,11 +33,11 @@ class Login_model extends CI_Model
 			$accesscode=$result->access_code;
 
 
-			$spg_result=$this->db->where('spg_id',$cid)->get('spg_master')->row();
-			$cust_result=$this->db->where('custid',$cid)->get('customer_master')->row();
+			$spg_result=$this->newdb->where('spg_id',$cid)->get('spg_master')->row();
+			$cust_result=$this->newdb->where('custid',$cid)->get('customer_master')->row();
 
 
-			if(crypt($password, $hashpass) == $hashpass) 
+			if($hasher->CheckPassword($password, $hashpass)) 
 			{
 				if($accesscode == "1") 
 				 {
@@ -65,7 +68,7 @@ class Login_model extends CI_Model
 				    	exit();
 		              } 
 		    //end if
-		              elseif($type =="1") 
+		              elseif($type == 1) 
 		              {
 		              	$sess_data['SESS_CUST_NAME']= $cust_result->entity_name;
 		              	$sess_data['SESS_PROD_CODE']= $cust_result->custtype;

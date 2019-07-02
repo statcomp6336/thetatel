@@ -107,6 +107,14 @@
                     {
                         data["comp_pan"] = $("#comp_pan").val();
                     }
+                    if (!($("#comp_pan").val().match('[A-Z]{5}[0-9]{4}[A-Z]{1}$'))) {
+                        output = false;
+                        $("#comp_pan-error").html("PAN Not Valid !");
+                    }
+                    else
+                    {
+                        data["comp_pan"] = $("#comp_pan").val();
+                    }
 
                     if (!($("#comp_name").val())) {
                         output = false;
@@ -152,6 +160,14 @@
                     {
                         data["comp_pin"] = $("#comp_pin").val();
                     }
+                    if (!($("#comp_pin").val().match('[0-9]{6}'))) {
+                        output = false;
+                        $("#comp_pin-error").html("Pincode Not Valid !");
+                    }
+                    else
+                    {
+                        data["comp_pin"] = $("#comp_pin").val();
+                    }
 
                     if (!($("#comp_mail").val().match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/))) {
                         output = false;
@@ -170,6 +186,11 @@
                         data["comp_phone"] = $("#comp_phone").val();
                     }
 
+                    if (!($("#comp_phone").val().match('[0-9]{10}'))) {
+                        output = false;
+                        $("#comp_phone-error").html("Please put 10 digit mobile number");
+                    }
+                    
 
 
                   
@@ -189,6 +210,10 @@
                         output = false;
                         $("#hr_ex_phone-error").html("Executive Phone required!");
                     }
+                     if (!($("#hr_ex_phone").val().match('[0-9]{10}'))) {
+                        output = false;
+                        $("#hr_ex_phone-error").html("Please put 10 digit mobile number");
+                    }
                     
 
                      /* +++ Admin hr Manager validation +++ */
@@ -204,6 +229,10 @@
                         output = false;
                         $("#hr_mg_phone-error").html("Manager Phone required!");
                     }
+                     if (!($("#hr_mg_phone").val().match('[0-9]{10}'))) {
+                        output = false;
+                        $("#hr_mg_phone-error").html("Please put 10 digit mobile number");
+                    }
                    
 
                      /* +++ Vice Precident Admin OR hr  validation +++ */
@@ -218,6 +247,10 @@
                     if (!($("#hr_vp_phone").val())) {
                         output = false;
                         $("#hr_vp_phone-error").html("Vice Precident phone required!");
+                    }
+                    if (!($("#hr_vp_phone").val().match('[0-9]{10}'))) {
+                        output = false;
+                        $("#hr_vp_phone-error").html("Please put 10 digit mobile number");
                     }
                   
 
@@ -239,7 +272,12 @@
                         output = false;
                         $("#sp_ex_phone-error").html("Executive Phone required!");
                     }
+                     if (!($("#sp_ex_phone").val().match('[0-9]{10}'))) {
+                        output = false;
+                        $("#sp_ex_phone-error").html("Please put 10 digit mobile number");
+                    }
                     
+
 
                      /* +++ Admin hr Manager validation +++ */
                     if (!($("#sp_mg_name").val())) {
@@ -253,6 +291,10 @@
                     if (!($("#sp_mg_phone").val())) {
                         output = false;
                         $("#sp_mg_phone-error").html("Manager Phone required!");
+                    }
+                    if (!($("#sp_mg_phone").val().match('[0-9]{10}'))) {
+                        output = false;
+                        $("#sp_mg_phone-error").html("Please put 10 digit mobile number");
                     }
                    
 
@@ -268,6 +310,10 @@
                     if (!($("#sp_vp_phone").val())) {
                         output = false;
                         $("#sp_vp_phone-error").html("Vice Precident phone required!");
+                    }
+                     if (!($("#sp_vp_phone").val().match('[0-9]{10}'))) {
+                        output = false;
+                        $("#sp_vp_phone-error").html("Please put 10 digit mobile number");
                     }
                   
                 }
@@ -358,30 +404,34 @@
         <?php      
         echo show_msg();
         $attributes = array('name' => 'frmRegistration', 'id' => 'signup-form');
-        echo form_open(base_url('spg/company/save'), $attributes);
+        echo form_open(base_url(''.$user_type.'/company/save'), $attributes);
         ?>
         <div id="personal-field">
 <?php
 if($reg_type=="company") {
+
 ?>
+<input type="hidden" name="cust_type" value="1">
                 <label>Entity Name</label><span id="ent_name-error" class="signup-error"></span>
-            <div><input type="text" name="ent_name" id="ent_name" ng-model="ent_name" class="demoInputBox" /></div>
+            <div><input type="text" name="ent_name" id="ent_name" ng-model="ent_name" class="demoInputBox" ng-init="ent_name='<?php echo $this->session->SESS_CUST_NAME;?>'" value="<?php echo is($this->session->SESS_CUST_NAME);?>" /></div>
 
             <label>Entity Code  </label><span id="ent_code-error"  class="signup-error"></span>
-            <div><input type="text" name="ent_code" id="ent_code" ng-model="ent_code" class="demoInputBox" /></div>
+            <div><input type="text" name="ent_code" id="ent_code" ng-model="ent_code" class="demoInputBox" ng-init="ent_code='<?php echo user_id();?>'" value="<?php echo user_id();?>"/></div> 
 
-<?php } else{ ?>
+<?php } elseif ($reg_type=="branch") 
+{ ?>
+    <input type="hidden" name="cust_type" value="2">
 
                <label>Entity Name</label><span id="ent_name-error" class="signup-error"></span>
-            <div><input type="text" name="ent_name" id="ent_name" ng-model="ent_name" class="demoInputBox" ng-init="ent_name='<?php echo is($name);?>'" value="<?php echo $name;?>" /></div>
+            <div><input type="text" name="ent_name" id="ent_name" ng-model="ent_name" class="demoInputBox" ng-init="ent_name='<?php echo is($name);?>'" value="<?php echo is($name);?>" /></div>
 
             <label>Entity Code  </label><span id="ent_code-error"  class="signup-error"></span>
-            <div><input type="text" name="ent_code" id="ent_code" ng-model="ent_code" class="demoInputBox" ng-init="ent_code='<?php echo is($custid);?>'" value="<?php echo $custid;?>"/></div> 
+            <div><input type="text" name="ent_code" id="ent_code" ng-model="ent_code" class="demoInputBox" ng-init="ent_code='<?php echo is($custid);?>'" value="<?php echo is($custid);?>"/></div> 
 <?php } ?>
             
 
             <label>Company PAN No</label><span id="comp_pan-error" class="signup-error"></span>
-            <div><input type="text" name="comp_pan" id="comp_pan" ng-model="comp_pan" class="demoInputBox"/></div>
+            <div><input type="text" name="comp_pan" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}$" title="Please Fill valid Match like (AAAAA0000A) " id="comp_pan" ng-model="comp_pan" class="demoInputBox"/></div>
 
             <label>Company Name    </label><span id="comp_name-error" class="signup-error"></span>
             <div><input type="text" name="comp_name" id="comp_name" ng-model="comp_name" class="demoInputBox"  /></div>
@@ -395,8 +445,41 @@ if($reg_type=="company") {
             <label>State</label>
                 <div>
                 <select name="comp_state" id="comp_state" class="demoInputBox" ng-model="comp_state">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>                                                                         
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                        <option value="Assam">Assam</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+                        <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+                        <option value="Daman and Diu">Daman and Diu</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Lakshadweep">Lakshadweep</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Manupur">Manupur</option>
+                        <option value="Meghalaya">Meghalaya</option>
+                        <option value="Mizoram">Mizoram</option>
+                        <option value="Nagaland">Nagaland</option>
+                        <option value="Odisha">Odisha</option>
+                        <option value="Puducherry">Puducherry</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Sikkim">Sikkim</option>
+                        <option value="TamilNadu">TamilNadu</option>
+                        <option value="Telangana">Telangana</option>
+                        <option value="Tripura">Tripura</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Uttarakhand">Uttarakhand</option>
+                        <option value="West Bangal">West Bangal</option>
+                                                                                             
                 </select>
                 </div>
             <label>Pincode</label><span id="comp_pin-error" class="signup-error"></span>
@@ -411,10 +494,7 @@ if($reg_type=="company") {
         </div>
 
         <div id="password-field" style="display:none;">
-           <!--  <label>Enter Password</label><span id="password-error" class="signup-error"></span>
-            <div><input type="password" name="password" id="user-password" class="demoInputBox" /></div>
-            <label>Re-enter Password</label><span id="confirm-password-error" class="signup-error"></span>
-            <div><input type="password" name="confirm-password" id="confirm-password" class="demoInputBox" /></div> -->
+           
             <div><h2>Admin OR HR Executive :</h2></div>
             <label>Person Name</label><span id="hr_ex_name-error" class="signup-error"></span>
             <div><input type="text" name="hr_ex_name" ng-model="hr_ex_name" id="hr_ex_name" class="demoInputBox"/></div>
@@ -503,7 +583,7 @@ if($reg_type=="company") {
             <label>Company mail address:</label><div>{{comp_mail}}</div>
             <label>Company Phone Number:</label><div>{{comp_phone}}</div>
 
-            <label>Admin OR HR Executive Person Name:</label><div>{{hr_ex_name}}></div>
+            <label>Admin OR HR Executive Person Name:</label><div>{{hr_ex_name}}</div>
             <label>Admin OR HR Executive Email:</label><div>{{hr_ex_mail}}</div>
             <label>Admin OR HR Executive Phone Number:</label><div>{{hr_ex_phone}}</div>
 

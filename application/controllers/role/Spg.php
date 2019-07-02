@@ -1,13 +1,19 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
  require_once APPPATH."core\Base_controller.php";
+ 
+ 
+ 
 class Spg extends Base_controller {
 
-	/*
+	/*hjjkjhkx
 		*  use anthother controller using USE  keyword then call to declare function.
 		*  @$this->page[''] = THIS PAGE ARRAY STORE THE PAGE INFORMATION IN INDEX.
 		*  @$this->render(); THIS FUNCTION DISPLAY THE VIEW
 	*/
+
+
+
 	// use Thetatel_login;
 	use Dashboard;
 	use Notification;
@@ -26,8 +32,9 @@ class Spg extends Base_controller {
 		parent::__construct();
 		if ($this->is_spg()== FALSE) {
 			redirect(base_url('Home/user_login'));
-		}		
-		
+		}
+		$this->load->model('login_model');
+		$this->load->model('DB_install');
 
 		/*
 			+++++ configure the page setting +++++
@@ -40,9 +47,9 @@ class Spg extends Base_controller {
 				@spg 			= 9
 			*	
 		*/
-		$this->data['page_title']="Complaincetrack";
-		$this->data['user_type']="spg";
-		$this->data['access']  = array( 1=>FALSE, 
+		$this->page['page_title']="Dashboard";
+		$this->page['user_type']="spg";
+		$this->page['access']  = array( 1=>FALSE, 
 										2=>FALSE,
 										3=>FALSE,
 										4=>FALSE,
@@ -50,23 +57,93 @@ class Spg extends Base_controller {
 										9=>TRUE
 									);
 		// menubare access setting
-		
+		$this->page['menu']=array(
+			// dashbord access if true to dispaly and flase it hide
+			"dashboard_access" 		=> TRUE,
+			// notification access if true to dispaly and flase it hide
+			"notification_access" => TRUE//
+			);
 		$this->load->model('Dashboard_model','dash');
 
 		$this->data['new_mail']=$this->dash->countOfNewMail();
 		
 
 	}
-	
+	/*
+		* CREATE SYSTEM FUNCTION CREATE A TABLES IN YOUR SELCTION DATABASE.
+		* IT IS AUTOMATIC GENRATED TABLES USING THIS FUNCTION.
+		* YOU CANN DESTROY THE ALL TABLE WHEN USING "DESTROY_SYSTEM()";
+		* WHEN USING THE DESTROY FUNCTION THEN SYSTEM HAS DOWN AND MULTIPLY THE BUGS. 
+
+		
+
+
+
+	*/
+
+	public function CREATE_SYSTEM()
+	{
+		$this->DB_install->CreateTable_customer_master();
+		$this->DB_install->CreateTable_custid_backup();
+		$this->DB_install->CreateTable_act_particular();
+		$this->DB_install->CreateTable_act_applicable_to_customer();
+		$this->DB_install->CreateTable_compliance_scope();
+		$this->DB_install->CreateTable_employee_master_new();
+		$this->DB_install->CreateTable_employee_error();
+		$this->DB_install->CreateTable_salary_master();
+		$this->DB_install->CreateTable_temp_salary_master();
+		$this->DB_install->CreateTable_master_process();
+		$this->DB_install->CreateTable_backlog_process();
+		$this->DB_install->CreateTable_pf_template();
+		$this->DB_install->CreateTable_esic_template();
+		$this->DB_install->CreateTable_compliance_working_priore();
+		$this->DB_install->CreateTable_completed_compliance();
+		$this->DB_install->CreateTable_flow_of_timeline();
+		$this->DB_install->CreateTable_users();
+		$this->DB_install->CreateTable_add_companies_for_users();
+		$this->DB_install->CreateTable_timeline();
+		$this->DB_install->CreateTable_customer_dump();
+		$this->DB_install->CreateTable_timeline_data();
+		$this->DB_install->CreateTable_compose_email();
+
+	}
+	public function DESTROY_SYSTEM()
+	{
+		$this->DB_install->DropTable_customer_master();
+		$this->DB_install->DropTable_custid_backup();
+		$this->DB_install->DropTable_act_particular();
+		$this->DB_install->DropTable_act_applicable_to_customer();
+		$this->DB_install->DropTable_compliance_scope();
+		$this->DB_install->DropTable_employee_master_new();
+		$this->DB_install->DropTable_employee_error();
+		$this->DB_install->DropTable_temp_salary_master();
+		$this->DB_install->DropTable_salary_master();
+		$this->DB_install->DropTable_master_process();
+		$this->DB_install->DropTable_backlog_process();
+		$this->DB_install->DropTable_pf_template();
+		$this->DB_install->DropTable_esic_template();		
+		$this->DB_install->DropTable_compliance_working_prior();
+		$this->DB_install->DropTable_completed_compliance();
+		$this->DB_install->DropTable_flow_of_timeline();
+		$this->DB_install->DropTable_users();
+		$this->DB_install->DropTable_add_companies_for_users();
+		$this->DB_install->DropTable_timeline();
+		$this->DB_install->DropTable_customer_dump();
+		$this->DB_install->DropTable_timeline_data();
+		$this->DB_install->DropTable_compose_email();
+
+
+	}
+
 	/*----- display the dashboard of spg -----*/
 	public function index()
 	{	
-		if ($this->data['menu']['dashboard_access'] == TRUE) {
+		if ($this->page['menu']['dashboard_access'] == TRUE) {
 		$this->dashboard($this->page);
 		}
 		else
 		{
-			$this->load->view('404');
+			echo "access denied";
 		}
 		
 	}
@@ -128,20 +205,17 @@ class Spg extends Base_controller {
 	{
 		$this->SaveComment($this->page);//this function store in dashboard controller		
 	}
+	
+	
+	/*
+		*  THIS FUNCTION DISPLAY THE REGISTRATION VIEW		
+	*/
 
-//THIS FUNCTION DISPLAY THE COMPANY REGISTRATION VIEW
 	public function company_registration_view()
 	{
-		//this function store in COMPANY_EXT controller	
-		if ($this->data['menu']['company_registration'] == TRUE) {
+		// $this->data['page_title']="Source ITT (Labor Law Consultancy Services)";
+		
 		$this->company_registration($this->page);
-		}
-		else
-		{
-			$this->load->view('404');
-		}
-		
-		
 	}
 	public function show_company_details()
 	{	
@@ -149,15 +223,7 @@ class Spg extends Base_controller {
 	}
 	public function branch_registration_view($value='')
 	{
-		//this function store in COMPANY_EXT controller	
-		if ($this->data['menu']['branch_registration'] == TRUE) {
-			$this->branch_registration();
-		}
-		else
-		{
-			$this->load->view('404');
-		}
-		
+		$this->branch_registration($this->page);
 	}
 	public function contractor_registration_view($value='')
 	{
@@ -241,10 +307,6 @@ class Spg extends Base_controller {
 	public function save_Act($value='')
 	{
 		$this->SaveActs('spg'); // this function store in Act trait
-	}
-	public function save_SubAct($value='')
-	{
-		$this->SaveSubActs('spg'); // this function store in Act trait
 	}
 	public function sub_act_id()
 	{

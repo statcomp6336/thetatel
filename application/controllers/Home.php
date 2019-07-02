@@ -25,8 +25,28 @@ class Home extends Base_controller {
 	{
 		parent::__construct();
 		$this->load->model('login_model');
+		$this->load->model('DB_install');
 
 	}
+
+/*
+		* CREATE SYSTEM FUNCTION CREATE A TABLES IN YOUR SELCTION DATABASE.
+		* IT IS AUTOMATIC GENRATED TABLES USING THIS FUNCTION.
+		* YOU CANN DESTROY THE ALL TABLE WHEN USING "DESTROY_SYSTEM()";
+		* WHEN USING THE DESTROY FUNCTION THEN SYSTEM HAS DOWN AND MULTIPLY THE BUGS. 
+
+	*/
+
+	public function CREATE_SYSTEM()
+	{
+		$this->DB_install->create_tables();
+		
+	}
+	public function DESTROY_SYSTEM()
+	{
+		$this->DB_install->drop_tables();
+	}
+
 	public function index()
 	{
 		// Source ITT (Labor Law Consultancy Services)
@@ -49,6 +69,7 @@ class Home extends Base_controller {
 		$put= array('cid'=> $this->input->post('cid'),
 					'username' => $this->input->post('username'),
 					'password' => $this->input->post('password'));
+		$put = $this->security->xss_clean($put);
 		if ($this->is_valid($put) == TRUE) {
 			if ($this->login_model->check_login($put) == TRUE) {				
 				$this->goto_dashboard();
@@ -60,8 +81,7 @@ class Home extends Base_controller {
 		}
 		else
 		{
-			goto_back();
-		    // redirect(base_url('Home/user_login'));
+			goto_back();	   
 		}		
 	}
 
@@ -76,12 +96,11 @@ class Home extends Base_controller {
 
 			// $set = $this->li->security->xss_clean($set);
 
-			$this->form_validation->set_rules('cid', 'Customer id', 'required|trim|xss_clean|strip_tags');
+			$this->form_validation->set_rules('cid', 'Customer id', 'required|trim|numeric|xss_clean|strip_tags');
 			$this->form_validation->set_rules('username', 'User Name', 'required|trim|xss_clean|strip_tags');
-	        $this->form_validation->set_rules('password', 'Password', 'required|xss_clean|strip_tags|min_length[5]|max_length[52]');      
+	        $this->form_validation->set_rules('password', 'Password', 'required|xss_clean|strip_tags|callback_valid_password');      
 			
-	         if ($this->form_validation->run() == FALSE) { 
-	         	// echo validation_errors();
+	         if ($this->form_validation->run() == FALSE) {	         	
 	         	put_msg(validation_errors());
 	         	return FALSE;   
 	        } 
@@ -100,7 +119,7 @@ class Home extends Base_controller {
 					
 					case '1':
 						echo "1";
-						redirect(base_url('Company'));
+						redirect(base_url('company'));
 						break;
 					case '2':
 						echo "2";
@@ -215,6 +234,52 @@ echo $dir;
 
 			return $files;
 		}
+
+
+		public function valid_password($password = '')
+	{
+		$password = trim($password);
+		$regex_lowercase = '/[a-z]/';
+		// $regex_uppercase = '/[A-Z]/';
+		$regex_number = '/[0-9]/';
+		$regex_special = '/[!@#$%^&*()\-_=+;:,.§~]/';
+		if (empty($password))
+		{
+			$this->form_validation->set_message('valid_password', 'The {field} field is required.');
+			return FALSE;
+		}
+		if (preg_match_all($regex_lowercase, $password) < 1)
+		{
+			$this->form_validation->set_message('valid_password', 'The {field} field must be at least one lowercase letter.');
+			return FALSE;
+		}
+		// if (preg_match_all($regex_uppercase, $password) < 1)
+		// {
+		// 	$this->form_validation->set_message('valid_password', 'The {field} field must be at least one uppercase letter.');
+		// 	return FALSE;
+		// }
+		if (preg_match_all($regex_number, $password) < 1)
+		{
+			$this->form_validation->set_message('valid_password', 'The {field} field must have at least one number.');
+			return FALSE;
+		}
+		if (preg_match_all($regex_special, $password) < 1)
+		{
+			$this->form_validation->set_message('valid_password', 'The {field} field must have at least one special character.' . ' ' . htmlentities('!@#$%^&*()\-_=+;:,.§~'));
+			return FALSE;
+		}
+		if (strlen($password) < 5)
+		{
+			$this->form_validation->set_message('valid_password', 'The {field} field must be at least 5 characters in length.');
+			return FALSE;
+		}
+		if (strlen($password) > 32)
+		{
+			$this->form_validation->set_message('valid_password', 'The {field} field cannot exceed 32 characters in length.');
+			return FALSE;
+		}
+		return TRUE;
+	}
 
 
 

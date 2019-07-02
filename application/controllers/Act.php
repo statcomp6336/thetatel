@@ -8,12 +8,10 @@ trait Act {
 	public function CreateActs($page_data='')
 	{
 		$this->load->model('Act_model');
-		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
-		 	 $this->data['page_title'] = $page_data['page_title'];
+		 if ($this->data['access'][$this->session->TYPE] == TRUE) {
+		 
 			 $this->data['where'] = 'Acts';
-			 $this->data['sub_menu'] = 'Create';
-			 $this->data['user_type'] = $page_data['user_type'];
-			 $this->data['menu'] = $page_data['menu'];
+			 $this->data['sub_menu'] = 'Create'; 
 
 			 // act detatails data
 			  $this->data['act_data']=array('act_code'=> $this->Act_model->get_act_code(),
@@ -23,12 +21,13 @@ trait Act {
 		 }
 		 else
 		 {
-		 	echo "404 no access";
+		 	$this->load->view('404');
 		 }				
 		
 	}
 	public function fillup_acts()
 	{ 
+		$this->load->model('Act_model','acts');
 		if (!empty($this->input->post('acts'))) {
 			$save_acts = array('act_code' 	=> $this->input->post('act_code'),
 								'act' 		=> $this->input->post('act_name'),
@@ -36,10 +35,11 @@ trait Act {
 								'act_type' 	=> $this->input->post('act_type') );			
 		}
 		elseif (!empty($this->input->post('sub_acts'))) {
+			
 			$save_acts = array('act_code' 	=> $this->input->post('act_code'),
-								'act' 		=> $this->input->post('act_name'),
-								'shortname' => $this->input->post('shortname'),
-								'act_type' 	=> $this->input->post('act_type'),
+								'act' 		=> $this->acts->set_acts($this->input->post('act_code'))->act,
+								'shortname' => $this->acts->set_acts($this->input->post('act_code'))->shortname,
+								'act_type' 	=> $this->acts->set_acts($this->input->post('act_code'))->act_type,
 								'pcr_code' 	=> $this->input->post('pcr_code'),
 								'Particular'=> $this->input->post('particular'),
 								'freq' 		=> $this->input->post('freq'),
@@ -48,7 +48,9 @@ trait Act {
 								'due_date' 	=> $this->input->post('due_date'),
 								'stat_date' => $this->input->post('stat_date')
 								 );
+
 		}
+		
 		
 		return $this->security->xss_clean($save_acts);
 	}
@@ -132,23 +134,18 @@ trait Act {
 	         	redirect(base_url( $user.'/act/create'));   
 	        } 
 	        else
-	        {
-	         	// return TRUE;
-	         	
-	         	
-	       
-	         	var_dump($this->fillup_acts());
+	        {         
 	         
-	         	// if ($this->Act_model->create_act($this->fillup_acts())) {
+	         	if ($this->Act_model->Create_act($this->fillup_acts())) {
 	         		
-	         	// 	 put_msg("your Act is registerd successfully..!!");
-	         	// 	 // redirect(base_url( $user.'/act/create'));
-	         	// }
-	         	// else
-	         	// {
-	         	// 	put_msg("somthing went wronge...!");
-	         	// 	 // redirect(base_url( $user.'/act/create'));
-	         	// }
+	         		 put_msg("your Act is registerd successfully..!!");
+	         		 redirect(base_url( $user.'/act/create'));
+	         	}
+	         	else
+	         	{
+	         		put_msg("somthing went wronge...!");
+	         		 redirect(base_url( $user.'/act/create'));
+	         	}
 	        }
 		
 	}
@@ -178,7 +175,7 @@ trait Act {
 	{
 		$this->load->model('Act_model');
 		
-		$this->form_validation->set_rules($this->act_rules());
+		$this->form_validation->set_rules($this->sub_act_rules());
 		 if ($this->form_validation->run() == FALSE) { 
 	         	// echo validation_errors();
 	         	 put_msg(validation_errors());
@@ -186,20 +183,18 @@ trait Act {
 	        } 
 	        else
 	        {
-	         	// return TRUE;         	
-	       
 	         	var_dump($this->fillup_acts());
 	         
-	         	// if ($this->Act_model->create_act($this->fillup_acts())) {
+	         	if ($this->Act_model->Create_SubAct($this->fillup_acts())) {
 	         		
-	         	// 	 put_msg("your Act is registerd successfully..!!");
-	         	// 	 // redirect(base_url( $user.'/act/create'));
-	         	// }
-	         	// else
-	         	// {
-	         	// 	put_msg("somthing went wronge...!");
-	         	// 	 // redirect(base_url( $user.'/act/create'));
-	         	// }
+	         		 put_msg("your Act is registerd successfully..!!");
+	         		 redirect(base_url( $user.'/act/create'));
+	         	}
+	         	else
+	         	{
+	         		put_msg("somthing went wronge...!");
+	         		 redirect(base_url( $user.'/act/create'));
+	         	}
 	        }
 		
 	}

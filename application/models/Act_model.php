@@ -33,11 +33,16 @@ class Act_model extends Base_model
 	}
 	public function get_actss()
 	{
-		return $this->db->group_by('act')->get('act_particular')->result();
+		return $this->newdb->group_by('act')->order_by('act_code','asc')->get('act_particular')->result();
 	}
+
 	public function get_companies($value='')
 	{
 		return $this->db->select('custid,entity_name')->from('customer_master')->get()->result();
+	}
+	public function set_acts($id='')
+	{
+		return $this->newdb->select('act_type,shortname,act')->from('act_particular')->where('act_code',$id)->group_by('act_code')->get()->row();
 	}
 	public function get_timelineData($id='')
 	{
@@ -55,15 +60,15 @@ class Act_model extends Base_model
 	}
 	public function Create_act($value='')
 	{
-		if($this->newdb->insert('act_particuler',$value)){
-			return TRUE;
-		}
-		else
-		{
-			return FALSE;
-		}
-
+		return $this->add('act_particular',$value);
+		
 	}
+	public function Create_SubAct($value='')
+	{
+		return $this->add('act_particular',$value);
+		
+	}
+
 	public function get_bulk($custid)
 	{
 		$select="a.custid,a.name,b.act_code,b.act,b.Particular,b.`act type`,b.freq,b.due_date,b.stat_date";
