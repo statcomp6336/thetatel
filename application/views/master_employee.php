@@ -1,8 +1,13 @@
-
-
-<?php echo show_msg();?>
+ <?php 
+    if (!empty(show_msg())) {
+     
+        $data['msg'] =array('msg' => show_msg());
+        $this->load->view('alert',$data);
+    }
+ ?>
 <link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/css/jquery-ui.custom.min.css" />
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/css/chosen.min.css" />
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/pagination.css" />
 		
  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
  <div class="container">
@@ -39,8 +44,7 @@
 			</div>
 			 <?php echo form_close(); ?>		
 		</div>	
-	</div>
-</div>	
+	
 <table id="simple-table" class="table  table-bordered table-hover">
 	<thead>
 		<tr>
@@ -69,7 +73,8 @@
 	</thead>
 
 	<tbody>
-		<?php $count =0;
+		<?php $count =!empty($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+		
 		foreach ($result as $key) {
 			$count++;			
 		?>
@@ -279,7 +284,17 @@
 		
 	</tbody>
 </table>
-<?php echo $links; ?>
+</div>
+<div id="pagination">
+<ul class="tsc_pagination">
+
+<!-- Show pagination links -->
+<?php foreach ($links as $link) {
+echo "<li>". $link."</li>";
+} ?>
+</div>
+</div>
+</div>
 </div>
 
 

@@ -7,21 +7,15 @@ trait Salary {
 /* display upload or import salary sheet */
 	public function ShowSalaryExcel($page_data='')
 	{
-		if ($page_data['access'][$this->session->TYPE] == TRUE) {
-			    // $this->load->model('Employee_model','emp');
-			    // $this->load->library("pagination");
-
-		       $this->data['page_title'] = $page_data['page_title'];
+		if ($this->data['access'][$this->session->TYPE] == TRUE) {
+			    
 		       $this->data['where'] = 'Employee';
 		       $this->data['sub_menu'] = 'Salary';
-		       $this->data['user_type'] = $page_data['user_type'];
-		       $this->data['menu'] = $page_data['menu'];
-		       // $this->data['result'] = $this->emp->get_allemployee();
 		       $this->render('master_salary');
 		     }
 		     else
 		     {
-		      echo "404 no access";
+		       $this->load->view('404');
 		     }
 	}
 	/* insert temprory data in database*/
@@ -29,16 +23,19 @@ trait Salary {
 	public function SaveSalary($page_data, $user,$process='')
 	{
 		if (empty($process)) {
+			$this->newdb=$this->load->database('db1',TRUE);
 
 			$this->load->model('Employee_model','emp');
-    		$path = 'uploads/';   
+    		$path = 'uploads/salary/';   
             require_once APPPATH . "/third_party/excel/Classes/PHPExcel.php";
             $config['upload_path'] = $path;
             $config['allowed_types'] = 'xlsx|xls';
             $config['remove_spaces'] = TRUE;
+            $config['overwrite'] = TRUE;
             $this->load->library('upload', $config);
             $this->upload->initialize($config);            
             if (!$this->upload->do_upload('file')) {
+            	put_msg($this->upload->display_errors());
                 $error = array('error' => $this->upload->display_errors());
             } else {
                 $data = array('upload_data' => $this->upload->data());
@@ -63,13 +60,14 @@ trait Salary {
                     $flag =false;
                     continue;
                   }
+                //   if ($this->emp->company_exist($value['A'])== FALSE) {
+                //     unlink($inputFileName);
+                //     put_msg("company is not register your not file uploaded");  
+                //     goto_back();            
+                //     exit();
+                // }
             $e_code = $this->emp->is_uploaded_salary($value['A'],$value['C'],$value['AE'],$value['AF']);
-                  // if ($e_code == "N/A") {
-                  //   put_msg($value['C']."employee id is not uniq ");
-                  //  // goto_back();
-                  //  exit();
-                  //   # code...
-                  // }
+                  if ($e_code == TRUE) {
 
                   $d[$i]=array(
                     'cust_id' 	=> $value['A'],
@@ -146,25 +144,22 @@ trait Salary {
 									'month' 		=> $value['AF'],//
 									'epf_wages' 	=> $value['AG'],//
 									'total_deduction'=> $value['AH'],//
-									'is_uploaded'	=> $e_code
+									
 									
 								); 
 				 } 
-				 // $this->newdb=$this->load->database('db1',TRUE);
-				 // $this->newdb->insert_batch('temp_salary_master',$saveExcelData);				            
-                // $result = $this->import->importdata($inserdata);   
-                // if($result){
-                //   echo "Imported successfully";
-                // }else{
-                //   echo "ERROR !";
-
-                // } 
-                $this->data['page_title'] = $page_data['page_title'];
+				 if (!empty($saveExcelData)) {
+				 
+				 $this->newdb->insert_batch('temp_salary_master',$saveExcelData);
+				 }
+				  
+				}
+							
+                
 		       $this->data['where'] = 'Employee';
 		       $this->data['sub_menu'] = 'Salary';
-		       $this->data['user_type'] = $page_data['user_type'];
-		       $this->data['menu'] = $page_data['menu'];
-                 $this->data['result'] =$d;
+		      
+                 $this->data['result'] =$this->newdb->get('temp_salary_master')->result();
 
                $this->render('edit_salary');           
  
@@ -180,6 +175,7 @@ trait Salary {
 			# code...
 		}
 	}
+
 
 	public function SaveExcelSalary($user)
 	{

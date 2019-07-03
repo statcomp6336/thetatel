@@ -1,8 +1,15 @@
-<?php echo show_msg();
-
-
-
-?>
+< <?php 
+    if (!empty(show_msg())) {
+     
+        $data['msg'] =array('msg' => show_msg());
+        $this->load->view('alert',$data);
+    }
+ ?>
+ <style type="text/css">
+ 	.widget-main{
+ 		    height: fit-content;
+ 	}
+ </style>
 <link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/css/jquery-ui.custom.min.css" />
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/css/chosen.min.css" />
 		
@@ -23,7 +30,7 @@
 
 	</div>
 	<div class="widget-body ">
-		<div class="widget-main" style="display:block">
+		<div class="widget-main ">
 		<?php
 		$attributes = array('name' => 'frmRegistration', 'id' => 'signup-form');
 		 echo form_open_multipart('spg/Spg/save_import_salary',$attributes );?>		

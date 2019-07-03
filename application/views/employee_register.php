@@ -1,4 +1,11 @@
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500'>
+ <?php 
+    if (!empty(show_msg())) {
+     
+        $data['msg'] =array('msg' => show_msg());
+        $this->load->view('alert',$data);
+    }
+ ?>
+ <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500'>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <link rel="stylesheet" href="<?php echo base_url('assets/form_wizard/css/style1.css');?>">
@@ -10,7 +17,7 @@
 					
 						<!-- Form Wizard -->
                     	<?php      
-					        echo show_msg();
+					       
 					        $attributes = array('name' => 'frmRegistration', 'id' => 'signup-form');
 					        echo form_open(base_url('spg/employee/save'), $attributes);
         ?>                 			
@@ -62,16 +69,27 @@
                     			    <label>Employee Name: <span>*</span></label>
                                     <input type="text" ng-model="emp_name" name="emp_name" placeholder="Employee Name Name" class="form-control required">
                                 </div>
-                               
-								<div class="form-group" style="padding:2px">
-                    			    <label>Gender : </label><br><wbr>
+                           <div class="row">
+                            <div class="col-sm-6 col-md-6  col-lg-6 ">
+								 <div class="form-group">
+                                        <label>Father/Husband Name: <span>*</span></label>
+                                        <input type="text" ng-model="parent_name" name="parent_name" placeholder="Parent Name" class="form-control required">
+                                    </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6  col-lg-6 ">
+                                <div class="form-group" style="padding:2px">
+                                    <label>Gender : </label><br><wbr>
                                     <label class="radio-inline">
-									  <input type="radio" ng-model="gender" name="gender" value="male" checked="checked"> Male
-									</label>
-									<label class="radio-inline">
-									  <input type="radio" ng-model="gender" name="gender" value="female"> Female
-									</label>
+                                      <input type="radio" ng-model="gender" name="gender" value="male" checked="checked"> Male
+                                    </label>
+                                    <label class="radio-inline">
+                                      <input type="radio" ng-model="gender" name="gender" value="female"> Female
+                                    </label>
                                 </div>
+                               
+                                </div>
+                            </div>
+
 
 								<div class="form-group">
                     			    <label>Employee Date Of Birth : <span>*</span></label>
@@ -119,8 +137,8 @@
         		    	
         		    	<div class="col-sm-6 col-md-6  col-lg-6 ">
         		    		<div class="form-group">
-                			    <label>Employee Father/Husband Name: <span>*</span></label>
-                                    <input type="text" ng-model="parent_name" name="parent_name" placeholder="Parent Name" class="form-control required">
+                			    <label>Employee Register ID: <span>*</span></label>
+                                    <input type="text" ng-model="emp_id" name="emp_id" placeholder="Employee ID" class="form-control required">
                             </div>
 
                             <div class="form-group">

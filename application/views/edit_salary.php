@@ -1,4 +1,4 @@
-<style type="text/css">
+<!-- <style type="text/css">
 	#t{
 		display: block;
 		overflow: scroll;
@@ -11,14 +11,21 @@
    background-color : yellow; 
 }
 input[readonly] {
-    color: #f2f1f1;
-    background: #3dc91a!important;
+    color: black;
+    /*background: #3dc91a!important;*/
     
 }
 
 
-</style>
-<script type="text/javascript">
+</style> -->
+< <?php 
+    if (!empty(show_msg())) {
+     
+        $data['msg'] =array('msg' => show_msg());
+        $this->load->view('alert',$data);
+    }
+ ?>
+<!-- <script type="text/javascript">
 	
 $(document).ready(function(){
 
@@ -31,7 +38,7 @@ $(document).ready(function(){
 
 });
 
-</script>
+</script> -->
 
  <div class="conatiner"  >
  	<div class="widget-box">
@@ -41,7 +48,13 @@ $(document).ready(function(){
 		<div class="widget-toolbar">
 			<a href="#" data-action="collapse">
 				
-				<button class="btn btn-success" id="edit" > Edit Employees Salary</button> 
+				<button class="btn btn-success" id="edit" >Save Employees Salary</button> 
+			</a>			
+		</div>
+		<div class="widget-toolbar">
+			<a href="#" data-action="collapse">
+				
+				<button class="btn btn-warning" >CANCLE</button> 
 			</a>			
 		</div>
 	</div>	
@@ -53,43 +66,43 @@ $(document).ready(function(){
 
     <thead>
 						
-		<th align="center" bgcolor="#dcf442">Entity ID</th>
-		<th align="center" bgcolor="#dcf442">Entity Name</th>
-		<th align="center" bgcolor="#dcf442">Emp ID</th>
+		<th >Entity ID</th>
+		<th >Entity Name</th>
+		<th >Emp ID</th>
 
-		<th align="center" bgcolor="#dcf442">PF No</th>		
-		<th align="center" bgcolor="#dcf442">ESIC No</th>		
-		<th align="center" bgcolor="#dcf442">Name</th>		
-		<th align="center" bgcolor="#dcf442">Month Days</th>
-		<th align="center" bgcolor="#dcf442">Paid Days</th>
+		<th>PF No</th>		
+		<th>ESIC No</th>		
+		<th>Name</th>		
+		<th>Month Days</th>
+		<th>Paid Days</th>
 		
-		<th align="center" bgcolor="#dcf442">Fix Gross</th>
-		<th align="center" bgcolor="#dcf442">Basic</th>
-		<th align="center" bgcolor="#dcf442">Dearness Allowance (DA)</th>
-		<th align="center" bgcolor="#dcf442">House Rent Allowance (HRA)</th>
-		<th align="center" bgcolor="#dcf442">Convenience Allowance (CA)</th>
-		<th align="center" bgcolor="#dcf442">CCA</th>
-		<th align="center" bgcolor="#dcf442">Education Allowance (EA)</th>
-		<th align="center" bgcolor="#dcf442">Other Reimbrusement (OR)</th>
-		<th align="center" bgcolor="#dcf442">Other Allowance (OA)</th>
-		<th align="center" bgcolor="#dcf442">Overtime (OT)</th>
-		<th align="center" bgcolor="#dcf442">Washing Allounce (WA)</th>
-		<th align="center" bgcolor="#dcf442">LTA</th>
-		<th align="center" bgcolor="#dcf442">Monthly Gross</th>
-		<th align="center" bgcolor="#dcf442">PF</th>
-		<th align="center" bgcolor="#dcf442">VPF</th>
-		<th align="center" bgcolor="#dcf442">ESIC</th>
-		<th align="center" bgcolor="#dcf442">PT</th>
-		<th align="center" bgcolor="#dcf442">IT</th>
+		<th>Fix Gross</th>
+		<th>Basic</th>
+		<th>Dearness Allowance (DA)</th>
+		<th>House Rent Allowance (HRA)</th>
+		<th>Convenience Allowance (CA)</th>
+		<th>CCA</th>
+		<th>Education Allowance (EA)</th>
+		<th>Other Reimbrusement (OR)</th>
+		<th>Other Allowance (OA)</th>
+		<th>Overtime (OT)</th>
+		<th>Washing Allounce (WA)</th>
+		<th>LTA</th>
+		<th>Monthly Gross</th>
+		<th>PF</th>
+		<th>VPF</th>
+		<th>ESIC</th>
+		<th>PT</th>
+		<th>IT</th>
 		
-		<th align="center" bgcolor="#dcf442">LWF</th>
-		<th align="center" bgcolor="#dcf442">Other Deduction(OD)</th>
-		<th align="center" bgcolor="#dcf442">Net Pay </th>
-	    <th align="center" bgcolor="#dcf442">Payment Mode</th>
-	    <th align="center" bgcolor="#dcf442">Year</th>
-	    <th align="center" bgcolor="#dcf442">Month</th>
-	    <th align="center" bgcolor="#dcf442">EPF Wages</th>
-	    <th align="center" bgcolor="#dcf442">Total Deduction</th>
+		<th>LWF</th>
+		<th>Other Deduction(OD)</th>
+		<th>Net Pay </th>
+	    <th>Payment Mode</th>
+	    <th>Year</th>
+	    <th>Month</th>
+	    <th>EPF Wages</th>
+	    <th>Total Deduction</th>
     </thead>
     <?php
 		$attributes = array('name' => 'frmRegistration', 'id' => 'signup-form');
@@ -98,47 +111,47 @@ $(document).ready(function(){
     	<?php echo show_msg();
 
 foreach ($result as $key) { 
-	$bgcolor =$key['is_uploaded']==TRUE?'#3dc91a':'';
+	// $bgcolor =$key->is_uploaded']==TRUE?'#3dc91a':'';
 	
 	?>
-	<input type="hidden" name="is_uploaded[]" value="<?php echo $key['is_uploaded']; ?>" />
-<tr bgcolor="<?php echo $bgcolor;?>">
-<td><input type="text" name="cust_id[]" class="" value="<?php echo $key['cust_id']; ?>"  readonly /></td>
-<td><input type="text" name="cust_name[]" class="" value="<?php echo $key['cust_name']; ?>"  readonly/></td>
-<td><input type="text" name="emp_id[]" class="" value="<?php echo $key['emp_id']; ?>"  readonly/></td>
-<td><input type="text" name="pf_no[]" class="" value="<?php echo $key['pf_no']; ?>"  readonly/></td>
-<td><input type="text" name="esic_no[]" class="" value="<?php echo $key['esic_no']; ?>"  readonly/></td>
-<td><input type="text" name="emp_name[]" class="" value="<?php echo $key['emp_name']; ?>"  readonly/></td>
-<td><input type="text" name="month_days[]" class="" value="<?php echo $key['month_days']; ?>"  readonly/></td>
-<td><input type="text" name="paid_days[]" class="" value="<?php echo $key['paid_days']; ?>"  readonly/></td>
-<td><input type="text" name="fix_gross[]" class="" value="<?php echo $key['fix_gross']; ?>"  readonly/></td>
-<td><input type="text" name="basic[]" class="" value="<?php echo $key['basic']; ?>"  readonly/></td>
-<td><input type="text" name="dearness[]" class="" value="<?php echo $key['dearness']; ?>"  readonly/></td>
-<td><input type="text" name="hra[]" class="" value="<?php echo $key['hra']; ?>"  readonly/></td>
-<td><input type="text" name="ca[]" class="" value="<?php echo $key['ca']; ?>"  readonly/></td>
-<td><input type="text" name="cca[]" class="" value="<?php echo $key['cca']; ?>"  readonly/></td>
-<td><input type="text" name="ea[]" class="" value="<?php echo $key['ea']; ?>"  readonly/></td>
-<td><input type="text" name="or[]" class="" value="<?php echo $key['or']; ?>"  readonly/></td>
-<td><input type="text" name="oa[]" class="" value="<?php echo $key['oa']; ?>"  readonly/></td>
-<td><input type="text" name="ot[]" class="" value="<?php echo $key['ot']; ?>"  readonly/></td>
-<td><input type="text" name="wa[]" class="" value="<?php echo $key['wa']; ?>"  readonly/></td>
-<td><input type="text" name="lta[]" class="" value="<?php echo $key['lta']; ?>"  readonly/></td>
-<td><input type="text" name="monthly_gross[]" class="" value="<?php echo $key['monthly_gross']; ?>"  readonly/></td>
-<td><input type="text" name="pf[]" class="" value="<?php echo $key['pf']; ?>"  readonly/></td>
-<td><input type="text" name="vpf[]" class="" value="<?php echo $key['vpf']; ?>"  readonly/></td>
-<td><input type="text" name="esic[]" class="" value="<?php echo $key['esic']; ?>"  readonly/></td>
-<td><input type="text" name="pt[]" class="" value="<?php echo $key['pt']; ?>"  readonly/></td>
-<td><input type="text" name="it[]" class="" value="<?php echo $key['it']; ?>"  readonly/></td>
-<td><input type="text" name="lwf[]" class="" value="<?php echo $key['lwf']; ?>"  readonly/></td>
-<td><input type="text" name="od[]" class="" value="<?php echo $key['od']; ?>"  readonly/></td>
+	<!-- <input type="hidden" name="is_uploaded[]" value="<?php //echo $key->is_uploaded]; ?>" /> -->
+<tr>
+<td><input type="text" name="cust_id[]" class="" value="<?php echo $key->custid; ?>"  readonly /></td>
+<td><input type="text" name="cust_name[]" class="" value="<?php echo $key->entity_name; ?>"  readonly/></td>
+<td><input type="text" name="emp_id[]" class="" value="<?php echo $key->empid; ?>"  readonly/></td>
+<td><input type="text" name="pf_no[]" class="" value="<?php echo $key->pfno; ?>"  readonly/></td>
+<td><input type="text" name="esic_no[]" class="" value="<?php echo $key->esicno; ?>"  readonly/></td>
+<td><input type="text" name="emp_name[]" class="" value="<?php echo $key->name; ?>"  readonly/></td>
+<td><input type="text" name="month_days[]" class="" value="<?php echo $key->Month_days; ?>"  readonly/></td>
+<td><input type="text" name="paid_days[]" class="" value="<?php echo $key->paid_days; ?>"  readonly/></td>
+<td><input type="text" name="fix_gross[]" class="" value="<?php echo $key->fixgross; ?>"  readonly/></td>
+<td><input type="text" name="basic[]" class="" value="<?php echo $key->basic; ?>"  readonly/></td>
+<td><input type="text" name="dearness[]" class="" value="<?php echo $key->DA; ?>"  readonly/></td>
+<td><input type="text" name="hra[]" class="" value="<?php echo $key->HRA; ?>"  readonly/></td>
+<td><input type="text" name="ca[]" class="" value="<?php echo $key->CA; ?>"  readonly/></td>
+<td><input type="text" name="cca[]" class="" value="<?php echo $key->CCA; ?>"  readonly/></td>
+<td><input type="text" name="ea[]" class="" value="<?php echo $key->EA; ?>"  readonly/></td>
+<td><input type="text" name="or[]" class="" value="<?php echo $key->Other_reimb; ?>"  readonly/></td>
+<td><input type="text" name="oa[]" class="" value="<?php echo $key->OA; ?>"  readonly/></td>
+<td><input type="text" name="ot[]" class="" value="<?php echo $key->OT; ?>"  readonly/></td>
+<td><input type="text" name="wa[]" class="" value="<?php echo $key->WA; ?>"  readonly/></td>
+<td><input type="text" name="lta[]" class="" value="<?php echo $key->LTA; ?>"  readonly/></td>
+<td><input type="text" name="monthly_gross[]" class="" value="<?php echo $key->monthly_gross; ?>"  readonly/></td>
+<td><input type="text" name="pf[]" class="" value="<?php echo $key->PF; ?>"  readonly/></td>
+<td><input type="text" name="vpf[]" class="" value="<?php echo $key->VPF; ?>"  readonly/></td>
+<td><input type="text" name="esic[]" class="" value="<?php echo $key->ESIC; ?>"  readonly/></td>
+<td><input type="text" name="pt[]" class="" value="<?php echo $key->PT; ?>"  readonly/></td>
+<td><input type="text" name="it[]" class="" value="<?php echo $key->IT; ?>"  readonly/></td>
+<td><input type="text" name="lwf[]" class="" value="<?php echo $key->LWF; ?>"  readonly/></td>
+<td><input type="text" name="od[]" class="" value="<?php echo $key->OD; ?>"  readonly/></td>
 
-<td><input type="text" name="net_pay[]" class="" value="<?php echo $key['net_pay']; ?>"  readonly/></td>
+<td><input type="text" name="net_pay[]" class="" value="<?php echo $key->net_pay; ?>"  readonly/></td>
 
-<td><input type="text" name="payment_mode[]" class="" value="<?php echo $key['payment_mode']; ?>"  readonly/></td>
-<td><input type="text" name="year[]" class="" value="<?php echo $key['year']; ?>"  readonly/></td>
-<td><input type="text" name="month[]" class="" value="<?php echo $key['month']; ?>"  readonly/></td>
-<td><input type="text" name="epf_wages[]" class="" value="<?php echo $key['epf_wages']; ?>"  readonly/></td>
-<td><input type="text" name="total_dud[]" class="" value="<?php echo $key['total_dud']; ?>"  readonly/></td>
+<td><input type="text" name="payment_mode[]" class="" value="<?php echo $key->paymentmode; ?>"  readonly/></td>
+<td><input type="text" name="year[]" class="" value="<?php echo $key->year; ?>"  readonly/></td>
+<td><input type="text" name="month[]" class="" value="<?php echo $key->month; ?>"  readonly/></td>
+<td><input type="text" name="epf_wages[]" class="" value="<?php echo $key->epf_wages; ?>"  readonly/></td>
+<td><input type="text" name="total_dud[]" class="" value="<?php echo $key->total_deduction; ?>"  readonly/></td>
 
 
 		</tr>

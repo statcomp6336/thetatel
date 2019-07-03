@@ -46,9 +46,10 @@ class User_model extends Base_model
     	$select="a.entity_name, a.custid,IF(b.userid = '".$id."','check','uncheck') as is_check";;
     	
 
-    	$result=$this->db->select($select)
+    	$result=$this->newdb->select($select)
     					 ->from('customer_master as a')
-    					 ->join('uu_companyselection as b','a.allianceid=b.spgid AND a.custid=b.custid AND b.userid="'.$id.'"','left')
+    					 ->join('add_companies_for_users as b','a.allianceid=b.spgid AND a.custid=b.custid AND b.userid="'.$id.'"','left')
+                         ->where('a.allianceid',user_id())
     					 ->order_by('a.entity_name','desc')
     					 ->get()
     					 ->result();
@@ -62,9 +63,9 @@ class User_model extends Base_model
     	$select="a.entity_name, a.custid,IF(b.userid = '".$id."','check','uncheck') as is_check";;
     	
 
-    	$result=$this->db->select($select)
+    	$result=$this->newdb->select($select)
     					 ->from('customer_master as a')
-    					 ->join('uu_companyselection as b','a.allianceid=b.spgid AND a.custid=b.custid AND b.userid="'.$id.'"','left')
+    					 ->join('add_companies_for_users as b','a.allianceid=b.spgid AND a.custid=b.custid AND b.userid="'.$id.'"','left')
     					 ->where('b.userid IS NOT NULL', null, false)
     					 ->order_by('a.entity_name','desc')
     					 ->get()

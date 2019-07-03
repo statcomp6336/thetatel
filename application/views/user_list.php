@@ -123,7 +123,7 @@
 				<a href="#"><?php echo $key->custid;?></a>
 			</td>
 			<td><?php echo $key->entity_name;?></td>
-			<td><?php echo verify_id($key->username);?></td>
+			<td><?php echo $key->username;?></td>
 
 			<td class="hidden-480"><?php echo $key->email;?></td>
 			
@@ -207,7 +207,7 @@
 									<div class="profile-info-name"> Username </div>
 
 									<div class="profile-info-value">
-										<span><input type="text" name="username" value="<?php echo verify_id($key->username);?>"></span>
+										<span><input type="text" name="username" value="<?php echo $key->username;?>"></span>
 									</div>
 								</div>
 							</div>
@@ -328,7 +328,7 @@
 					var no=$(this).data("add");
 					var spg=$(this).data("spg");
 					var user=$(this).data("user");
-					alert(no);					
+					// alert(no);					
 					
 					$.ajax({    //create an ajax request to display.php
 					        type: "POST",
@@ -685,7 +685,7 @@
 				</div>
 				 <?php 
 		$attributes = array('name' => 'frmRegistration', 'id' => 'signup-form');
-		 echo form_open_multipart(base_url(''.$user_type.'/user/add-remove-comany'),$attributes );?>	
+		 echo form_open_multipart(base_url(''.$user_type.'/user/add-remove-comany'),$attributes );?>	 
 				<div class="modal-body">
 					<input type="hidden" name="spgid" id="spgid" value="">
 					<input type="hidden" name="username" id="username" value="">

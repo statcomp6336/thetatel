@@ -6,17 +6,13 @@ trait Users {
 
 	public function ShowUsers($page_data='')
 	{
-		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		 if ($this->data['access'][$this->session->TYPE] == TRUE) {
       $this->load->model('User_model','users');
-      $this->load->library("pagination");
-
-       $this->data['page_title'] = $page_data['page_title'];
+      $this->load->library("pagination");    
        $this->data['where'] = 'Users';
-       $this->data['sub_menu'] = 'Details';
-       $this->data['user_type'] = $page_data['user_type'];
-       $this->data['menu'] = $page_data['menu'];
+       $this->data['sub_menu'] = 'Details';      
        // $this->data['result'] = $this->emp->get_allemployee();
-       $config["base_url"] = base_url() .$page_data['user_type']."/users";
+       $config["base_url"] = base_url() .$this->data['user_type']."/users";
         $config["total_rows"] = $this->users->get_count();
         $config["per_page"] = 10;
         $config["uri_segment"] = 2;
@@ -35,7 +31,7 @@ trait Users {
      }
      else
      {
-      echo "404 no access";
+     $this->load->view('404');
      }
 	}
 
@@ -50,7 +46,7 @@ trait Users {
 
       $saveUser = array("custid"    => is($this->input->post('custid'),'NULL'), 
                         "email"     => is($this->input->post('mailid'),'NULL'), 
-                        "username"  => is($this->encrypt->encode($this->input->post('username')),'NULL'), 
+                        "username"  => is($this->input->post('username'),'NULL'), 
                         "password"  => is($hasher->HashPassword($this->input->post('password')),'NULL'), 
                         "access_code"=> is($this->input->post('code'),'NULL'), 
                         "user_type" => is($this->input->post('type'),'NULL'), 
@@ -70,6 +66,7 @@ trait Users {
     }
     if ($this->users->saveUser($saveUser)) {
           put_msg('User successfully save..!!');
+          
       }
       else
       {

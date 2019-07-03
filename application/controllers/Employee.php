@@ -7,27 +7,36 @@ trait Employee {
   public function ShowEmployees($page_data='')
   {
     if ($this->data['access'][$this->session->TYPE] == TRUE) {
-      $this->load->model('Employee_model','emp');
-      $this->load->library("pagination");
+          $this->load->model('Employee_model','emp');
+          $this->load->library("pagination");  
+          $this->data['where'] = 'Employee';
+          $this->data['sub_menu'] = 'Details';    
+          $config["base_url"] = base_url() .$this->data['user_type']."/employee/show";
+          $config["total_rows"] = $this->emp->get_count();
+          $config["per_page"] = 10;
+          $config["uri_segment"] = 2;
+          // $config['use_page_numbers'] = TRUE;
+          $config['num_links'] = $this->emp->get_count();
+                      // Open tag for CURRENT link.
+            $config['cur_tag_open'] = '&nbsp;<a class="current">';
 
-   
-       $this->data['where'] = 'Employee';
-       $this->data['sub_menu'] = 'Details';
-     
-       $config["base_url"] = base_url() .$this->data['user_type']."/employee/show";
-        $config["total_rows"] = $this->emp->get_count();
-        $config["per_page"] = 10;
-        $config["uri_segment"] = 2;
-            $this->pagination->initialize($config);
+            // Close tag for CURRENT link.
+            $config['cur_tag_close'] = '</a>';
 
-        $page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
-       
+            // By clicking on performing NEXT pagination.
+            $config['next_link'] = 'Next';
 
-        $this->data["links"] = $this->pagination->create_links();
+            // By clicking on performing PREVIOUS pagination.
+            $config['prev_link'] = 'Previous';
 
+
+          $this->pagination->initialize($config);
+           $this->data["links"] = explode('&nbsp;',$this->pagination->create_links() );
+
+        $page = !empty($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
         $this->data['result'] = $this->emp->get_allemployee($config["per_page"], $page);
+        $this->data['srno']=$page;
 
-        
        $this->render('master_employee');
      }
      else
@@ -40,7 +49,7 @@ trait Employee {
   public function SaveMasterEmployee($user="")
   {
     $this->load->model('Employee_model','emp');
-    $path = 'uploads/';   
+    $path = 'uploads/employee/';   
             require_once APPPATH . "/third_party/excel/Classes/PHPExcel.php";
             $config['upload_path'] = $path;
             $config['allowed_types'] = 'xlsx|xls';
@@ -73,15 +82,18 @@ trait Employee {
                     $flag =false;
                     continue;
                   }
-                  // echo "birth_date:".$value['AP'];
-                  // exit();
-                 
+                if ($this->emp->company_exist($value['A'])== FALSE) {
+                    unlink($inputFileName);
+                    put_msg("company is not register your file uploaded");  
+                    goto_back();            
+                    exit();
+                }
+                             
 
     $e_code = $this->emp->is_uniqemployee(is($value['A']),is($value['D']),is($value['AB']),is($value['K']),is($value['AD']))?$value['D']:"N/A";
                   if ($e_code !== "N/A") {
                     if (!empty($value['A'])) {
-                       if ($this->emp->in_employee_error($value['A'],$value['D']) == FALSE) {
-                        // echo " error inserted <br>";
+                       if ($this->emp->in_employee_error($value['A'],$value['D']) == FALSE) {                  
                          $inserErrorData[$i]=array(
                                         'spgid'           => user_id(),
                                         'emp_name'        => $value['C'], 
@@ -124,15 +136,19 @@ trait Employee {
                                         'custid'          => $value['A'],
                                         'dept'            => $value['M'],
                                         'designation'     => $value['N'],
-                                        'location'        => !empty($value['AW'])?$value['AW']:'',
+                                        // 'location'        => !empty($value['AW'])?$value['AW']:'',
+                                        'location'        => is($value['AW'],'N/A'),
                                         'join_date'       => $value['AQ'],
                                         'exit_date'       => $value['AS'],
                                         'member_date'     => $value['AR'],
                                         'int_worker'      => $value['AT'],
                                         'emp_status'      => $value['AM'],
-                                        'contractor_name' => !empty($value['AV'])?$value['AV']:'',
-                                        'current_emp_id'  => !empty($value['A'])?$value['A']:'',
-                                        'current_entity_name'=> !empty($value['D'])?$value['D']:'',
+                                        // 'contractor_name' => !empty($value['AV'])?$value['AV']:'',
+                                        'contractor_name' => is($value['AV'],'N/A'),
+                                        // 'current_emp_id'  => !empty($value['A'])?$value['A']:'',
+                                        'current_emp_id'  => is($value['A'],'N/A'),
+                                        // 'current_entity_name'=> !empty($value['D'])?$value['D']:'',
+                                        'current_entity_name'=> is($value['D'],'N/A'),
                                         'flag'       => 1,
 
                                         );
@@ -262,9 +278,11 @@ trait Employee {
                 // var_dump($inserdata);        
                  $this->newdb=$this->load->database('db1',TRUE);     
                if (!empty($inserdata)) {
+                put_msg('save employee data successfully...!');
                  $this->newdb->insert_batch('employee_master_new',$inserdata);
                }
                elseif (!empty($inserErrorData)) {
+                put_msg('some data has an error ..!');
                  $this->newdb->insert_batch('employee_error',$inserErrorData);
                }
              goto_back();
@@ -272,6 +290,7 @@ trait Employee {
                           
  
           } catch (Exception $e) {
+             unlink($inputFileName);
                die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME)
                         . '": ' .$e->getMessage());
             }
@@ -285,11 +304,10 @@ trait Employee {
 
 	public function CreateEmployee($page_data="")
 	{
-		if ($this->data['access'][$this->session->TYPE] == TRUE) {
-		 	
+		if ($this->data['access'][$this->session->TYPE] == TRUE) {		 	
 			 $this->data['where'] = 'Employee';
 			 $this->data['sub_menu'] = 'Registration';		
-       $this->render('employee_register');
+             $this->render('employee_register');
 			
 		 }
 		 else
@@ -310,18 +328,18 @@ trait Employee {
 	        } 
 	        else
 	        {
-	         	echo "<pre>";
-	         	var_dump($this->fillup_employee());
+	         	// echo "<pre>";
+	         	// var_dump($this->fillup_employee());
 	         
 	         	if ($this->emp->create_Employee($this->fillup_employee())) {
 	         		
 	         		 put_msg("your Employee is registerd successfully..!!");
-	         		 // redirect(base_url( $user.'/act/create'));
+	         		 redirect(base_url( $user.'/act/create'));
 	         	}
 	         	else
 	         	{
 	         		put_msg("somthing went wronge...!");
-	         		 // redirect(base_url( $user.'/act/create'));
+	         		 redirect(base_url( $user.'/act/create'));
 	         	}
 	        }
 	}
@@ -332,7 +350,7 @@ trait Employee {
 		$save_employee = 
 		array(
 		'emp_name' 			=> $this->input->post('emp_name'), 
-    'emp_id'        =>$this->input->post('emp_id'),
+        'emp_id'        =>$this->input->post('emp_id'),
 		'fath_hus_name' 	=> $this->input->post('parent_name'),
 		'gender' 			=> $this->input->post('gender'),
 		'marital_status'	=> $this->input->post('m_status'),
@@ -619,20 +637,19 @@ trait Employee {
       $location =!empty($this->input->post('location'))?$this->input->post('location'):NULL;
       //echo $spgid;
 
-        if ($page_data['access'][$this->session->TYPE] == TRUE) 
+        if ($$this->data['access'][$this->session->TYPE] == TRUE) 
         {
-              $this->data['page_title'] = $page_data['page_title'];
+           
               $this->data['where'] = 'Employee';
               $this->data['sub_menu'] = 'Missing-uan';
-              $this->data['user_type'] = $page_data['user_type'];
-              $this->data['menu'] = $page_data['menu'];
+             
               /* table data */
               $this->data['tableHeading'] = "Show Employee Details of Missing UAN Number";
             
               $this->data['tableTools'] = array(
                           0 =>array(
                             //'link'=> base_url(''.$page_data['user_type'].'/download/missinguan/'.$custid.''),
-                            'link'=> base_url(''.$page_data['user_type'].'/download/missinguan/'.$spgid.'/'.$custid.''),
+                            'link'=> base_url(''.$this->data['user_type'].'/download/missinguan/'.$spgid.'/'.$custid.''),
                             'button' =>'Download in Excel',
                             'class'  =>'btn-success'
                               )
@@ -649,21 +666,18 @@ trait Employee {
            }
            else
            {
-            echo "404 no access";
+             $this->load->view('404');
            }        
     }
     else
     {
-        if ($page_data['access'][$this->session->TYPE] == TRUE) 
+        if ($this->data['access'][$this->session->TYPE] == TRUE) 
         {
            $this->load->model('Employee_model','emp');
             $this->load->library("pagination");
-
-             $this->data['page_title'] = $page_data['page_title'];
+           
              $this->data['where'] = 'Employee';
-             $this->data['sub_menu'] = 'Missing-uan';
-             $this->data['user_type'] = $page_data['user_type'];
-             $this->data['menu'] = $page_data['menu'];  
+             $this->data['sub_menu'] = 'Missing-uan';             
 
              // location data
              $this->data['result']=$this->emp->get_location();      
@@ -672,7 +686,7 @@ trait Employee {
            }
            else
            {
-            echo "404 no access";
+            $this->load->view('404');
            }
     }
    }

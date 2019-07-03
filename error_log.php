@@ -742,3 +742,9 @@
 =======
 >>>>>>> f587ecc7cd36eb784d9e8a434fbcbeec9818d4e5
 >>>>>>> 7a81db64ff00aa767515132ee5641f29c8a0ac0e
+[02-Jul-2019 09:59:45 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Employee.php on line 274
+[02-Jul-2019 09:59:55 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Employee.php on line 274
+[02-Jul-2019 12:27:28 Europe/Berlin] PHP Fatal error:  Call to a member function importdata() on null in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Salary.php on line 156
+[02-Jul-2019 12:40:35 Europe/Berlin] PHP Fatal error:  Call to a member function get() on null in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Salary.php on line 160
+[02-Jul-2019 12:41:04 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\newstatcomp\thetatel\application\views\edit_salary.php on line 108
+[02-Jul-2019 12:45:37 Europe/Berlin] PHP Parse error:  syntax error, unexpected ']', expecting ',' or ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\views\edit_salary.php on line 111

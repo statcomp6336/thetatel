@@ -51,13 +51,13 @@ public function emp_error()
 	{
 		// $w=$this->db->select('*')->from('employee_master_new')->get()->result();
 		// return $w;
-		$this->newdb->limit($limit, $start);
-        $query = $this->newdb->get('employee_master_new');
+		$this->newdb->order_by('srno', 'desc');
+        $query = $this->newdb->get('employee_master_new',$limit, $start);
 
         return $query->result();
 	}
 	 public function get_count() {
-        return $this->db->count_all('employee_master_new');
+        return $this->newdb->count_all('employee_master_new');
     }
     public function is_uploaded_salary($custid,$empid,$year,$month)
     {
@@ -110,6 +110,11 @@ public function emp_error()
 							->where(array(	'location!=' =>NULL))
 							->group_by(array("location"))
 							->get()->result();
+	}
+	// check excel upload company is exist or not
+	public function company_exist($custid='')
+	{
+		return $this->is_exist('customer_master',array('custid'=>$custid));
 	}
 
 }	
