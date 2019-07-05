@@ -54,7 +54,21 @@ class Spg extends Base_controller {
 		$this->load->model('Dashboard_model','dash');
 
 		$this->data['new_mail']=$this->dash->countOfNewMail();
-		
+		$this->data['menu']=array(
+      // dashbord access if true to dispaly and flase it hide
+      "dashboard_access"    => TRUE,
+      "notification_access" =>TRUE,//
+      "setup_access"        =>TRUE,
+      "myactivity_access"   =>TRUE,
+      "mycompliance_access" =>TRUE,
+      "myapproval_access"   =>TRUE,
+      "userprofile_access"  =>TRUE,
+      "managefiles_access"  =>TRUE,
+      "report_access"       =>TRUE,
+
+      );
+
+		$this->data['menu']['dashboard_access'] = TRUE;
 
 	}
 	

@@ -26,15 +26,23 @@ trait Dashboard {
 				$this->data['total_bulk_update'] = $this->dash->countOfBultUpdate();
 				$this->data['total_complience'] = $this->dash->countOfComplience();
 				$this->data['total_non_complience'] = $this->dash->countOfNonComplience();
+				$this->data['total_pending'] = $this->dash->countOfPending();
+				$this->data['total_compl'] = $this->dash->countOfcomplatence();
+				$this->data['total_alerts'] = $this->dash->countOfAlert();
+				$this->data['total_approves'] = $this->dash->countOfMyApprovals();
+				$this->data['total_notis'] = $this->dash->countOfNewMail();
 			}
 			elseif ($this->is_spg_user()== TRUE) {
 				$this->data['total_scope'] = $this->dash->countOfScope();
 				$this->data['total_bulk_update'] = $this->dash->countOfBultUpdate();
 				$this->data['total_complience'] = $this->dash->countOfComplience();
 				$this->data['total_non_complience'] = $this->dash->countOfNonComplience();
-			}			 
-			
-		
+				$this->data['total_pending'] = $this->dash->countOfPending();
+				$this->data['total_compl'] = $this->dash->countOfcomplatence();
+				$this->data['total_alerts'] = $this->dash->countOfAlert();
+				$this->data['total_approves'] = $this->dash->countOfMyApprovals();
+				$this->data['total_notis'] = $this->dash->countOfNewMail();
+			}			 		
 		$this->render('dashboard');	
 		}	
 		else
@@ -134,26 +142,19 @@ trait Dashboard {
 
 
 
-
 	/* Dashboar read more content viewss */
 	//Total Scope
 	public function ShowTotalScope($page_data='')
-	{
+	{		
 		$this->load->model('Dashboard_model','dash');
 		$result="";
 		if (!empty($this->input->post('submit'))) {
-
-			$result=$this->dash->get_totalScope(is($this->input->post('custid'),'N/A'),is($this->input->post('act_code'),'N/A'));
+				$result=$this->dash->get_totalScope(is($this->input->post('custid'),'N/A'),is($this->input->post('act_code'),'N/A'));	
 		}
-
-		if ($page_data['access'][$this->session->TYPE] == TRUE) {
-		 	 $this->data['page_title'] = $page_data['page_title'];
+		if ($this->data['access'][$this->session->TYPE] == TRUE) {		 	 
 			 $this->data['where'] = 'Dashboard';
 			 $this->data['sub_menu'] = 'Total-Scope';
-			 $this->data['user_type'] = $page_data['user_type'];
-			 $this->data['menu'] = $page_data['menu'];
 			 $this->data['result'] = $result;
-			
 			 $this->data['company'] = $this->dash->get_DashSompanyes();
 			
 			 $this->render('dash_totalScope');
@@ -161,8 +162,7 @@ trait Dashboard {
 		 else
 		 {
 		 	$this->load->view('404');
-		 }
-		
+		 }		
 	}
 
 	/* download Totalscope report in excel formate*/
@@ -182,20 +182,16 @@ trait Dashboard {
 		$this->load->model('Dashboard_model','dash');
 		$result="";
 		if (!empty($this->input->post('submit'))) {
-
 			$result=$this->dash->get_CurrentScope(is($this->input->post('custid'),'N/A'),is($this->input->post('act_code'),'N/A'));
 		}
 
-		if ($page_data['access'][$this->session->TYPE] == TRUE) {
-		 	 $this->data['page_title'] = $page_data['page_title'];
+		if ($this->data['access'][$this->session->TYPE] == TRUE) {
+		 	 
 			 $this->data['where'] = 'Dashboard';
 			 $this->data['sub_menu'] = 'Current-scope';
-			 $this->data['user_type'] = $page_data['user_type'];
-			 $this->data['menu'] = $page_data['menu'];
 			 $this->data['result'] = $result;
 			
-			 $this->data['company'] = $this->dash->get_DashSompanyes();
-			
+			 $this->data['company'] = $this->dash->get_DashSompanyes();			
 			 $this->render('dash_currentScope');
 		 }
 		 else
@@ -215,12 +211,12 @@ trait Dashboard {
 			$result=$this->dash->get_complianceDone(is($this->input->post('custid'),'N/A'),is($this->input->post('act_code'),'N/A'));
 		}
 
-		if ($page_data['access'][$this->session->TYPE] == TRUE) {
-		 	 $this->data['page_title'] = $page_data['page_title'];
+		if ($this->data['access'][$this->session->TYPE] == TRUE) {
+		 	 //$this->data['page_title'] = $page_data['page_title'];
 			 $this->data['where'] = 'Dashboard';
 			 $this->data['sub_menu'] = 'Compliance-Done';
-			 $this->data['user_type'] = $page_data['user_type'];
-			 $this->data['menu'] = $page_data['menu'];
+			// $this->data['user_type'] = $page_data['user_type'];
+			// $this->data['menu'] = $page_data['menu'];
 			 $this->data['result'] = $result;
 			
 			 $this->data['company'] = $this->dash->get_DashSompanyes();
@@ -243,12 +239,12 @@ trait Dashboard {
 			$result=$this->dash->get_NonCompliance(is($this->input->post('custid'),'N/A'),is($this->input->post('act_code'),'N/A'));
 		}
 
-		if ($page_data['access'][$this->session->TYPE] == TRUE) {
-		 	 $this->data['page_title'] = $page_data['page_title'];
+		if ($this->data['access'][$this->session->TYPE] == TRUE) {
+		 	 //$this->data['page_title'] = $page_data['page_title'];
 			 $this->data['where'] = 'Dashboard';
 			 $this->data['sub_menu'] = 'Non-Compliance';
-			 $this->data['user_type'] = $page_data['user_type'];
-			 $this->data['menu'] = $page_data['menu'];
+			 //$this->data['user_type'] = $page_data['user_type'];
+			 //$this->data['menu'] = $page_data['menu'];
 			 $this->data['result'] = $result;
 			
 			 $this->data['company'] = $this->dash->get_DashSompanyes();
@@ -272,12 +268,12 @@ trait Dashboard {
 			$result=$this->dash->get_pendingCompliance(is($this->input->post('custid'),'N/A'),is($this->input->post('act_code'),'N/A'));
 		}
 
-		if ($page_data['access'][$this->session->TYPE] == TRUE) {
-		 	 $this->data['page_title'] = $page_data['page_title'];
+		if ($this->data['access'][$this->session->TYPE] == TRUE) {
+		 	// $this->data['page_title'] = $page_data['page_title'];
 			 $this->data['where'] = 'Dashboard';
 			 $this->data['sub_menu'] = 'Pending-Compliance';
-			 $this->data['user_type'] = $page_data['user_type'];
-			 $this->data['menu'] = $page_data['menu'];
+			 //$this->data['user_type'] = $page_data['user_type'];
+			 //$this->data['menu'] = $page_data['menu'];
 			 $this->data['result'] = $result;
 			
 			 $this->data['company'] = $this->dash->get_DashSompanyes();
@@ -301,12 +297,12 @@ trait Dashboard {
 			$result=$this->dash->get_AlertCompliance(is($this->input->post('custid'),'N/A'),is($this->input->post('act_code'),'N/A'));
 		}
 
-		if ($page_data['access'][$this->session->TYPE] == TRUE) {
-		 	 $this->data['page_title'] = $page_data['page_title'];
+		if ($this->data['access'][$this->session->TYPE] == TRUE) {
+		 	// $this->data['page_title'] = $page_data['page_title'];
 			 $this->data['where'] = 'Dashboard';
 			 $this->data['sub_menu'] = 'Alert-Compliance';
-			 $this->data['user_type'] = $page_data['user_type'];
-			 $this->data['menu'] = $page_data['menu'];
+			// $this->data['user_type'] = $page_data['user_type'];
+			// $this->data['menu'] = $page_data['menu'];
 			 $this->data['result'] = $result;
 			
 			 $this->data['company'] = $this->dash->get_DashSompanyes();

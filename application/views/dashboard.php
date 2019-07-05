@@ -193,8 +193,189 @@ elseif (IS_COMPANY == TRUE) {
 elseif (IS_BRANCH == TRUE) {
    echo "this in IS_BRANCH";
 }
-elseif (IS_SPGUSER == TRUE) {
-   echo "this in IS_SPGUSER";
+elseif (IS_SPGUSER == TRUE) { ?>
+   <div class="col-sm-7 infobox-container">
+  <!-- Total scope -->
+  <a href="<?php echo base_url(''.$user_type.'/total-scope');?>">
+  <div class="infobox infobox-green">
+    <div class="infobox-icon">
+      <i class="ace-icon fa fa-comments "></i>
+    </div>
+
+    <div class="infobox-data">
+      <span class="infobox-data-number"><?php echo $total_scope; ?></span>
+      <div class="infobox-content">Total Scope</div>
+    </div>
+
+    <div class="stat stat-success">8%</div>
+  </div>
+</a>
+
+  <!-- Total Current Particuler -->
+  <a href="<?php echo base_url(''.$user_type.'/current-scope');?>">
+  <div class="infobox infobox-blue">
+    <div class="infobox-icon">
+      <i class="ace-icon fa fa-upload"></i>
+    </div>
+
+    <div class="infobox-data">
+     <!--  <span class="infobox-data-number"><?php echo $total_bulk_update; ?></span>
+      <div class="infobox-content">Bulk Update</div> -->
+       <span class="infobox-data-number"><?php echo $total_bulk_update; ?></span>
+      <div class="infobox-content">Current Particuler</div>
+    </div>
+
+    <div class="badge badge-success">
+      +32%
+      <i class="ace-icon fa fa-arrow-up"></i>
+    </div>
+  </div>
+</a>
+
+  <!-- Total complience --> 
+  <a href="<?php echo base_url(''.$user_type.'/Complilnce-Done');?>">
+  <div class="infobox infobox-pink">
+    <div class="infobox-icon">
+      <i class="ace-icon fa fa-shopping-cart"></i>
+    </div>
+
+    <div class="infobox-data">
+      <span class="infobox-data-number"><?php echo $total_complience; ?></span>
+      <div class="infobox-content">Complience</div>
+    </div>
+    <div class="stat stat-important">4%</div>
+  </div>
+</a>
+
+  <!-- Total Non Complience -->
+   <a href="<?php echo base_url(''.$user_type.'/Non-Compliance');?>">
+  <div class="infobox infobox-red">
+    <div class="infobox-icon">
+      <i class="ace-icon fa fa-flask"></i>
+    </div>
+
+    <div class="infobox-data">
+      <span class="infobox-data-number"><?php echo $total_non_complience; ?></span>
+      <div class="infobox-content">Non-Compliance</div>
+    </div>
+  </div>
+</a>
+
+  <!--  Total pending -->
+  <a href="<?php echo base_url(''.$user_type.'/Pending-Compliance');?>">
+  <div class="infobox infobox-orange2">
+    <div class="infobox-icon">
+      <i class="ace-icon fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+    </div>
+
+    <div class="infobox-data">
+      <span class="infobox-data-number"><?php echo $total_pending; ?></span>
+      <div class="infobox-content">pending</div>
+    </div>
+
+    <div class="badge badge-success">
+      7.2%
+      <i class="ace-icon fa fa-arrow-up"></i>
+    </div>
+  </div>
+</a>
+
+  <!-- Total Complaints of Thise Month -->
+  <div class="infobox infobox-pink">
+    <div class="infobox-icon">
+      <i class="ace-icon fa fa-shopping-cart"></i>
+    </div>
+
+    <div class="infobox-data">
+      <span class="infobox-data-number"><?php echo $total_compl; ?></span>
+      <div class="infobox-content">Complaints of Month</div>
+    </div>
+    <div class="stat stat-important">4%</div>
+  </div>
+  <!-- Total Alerts -->
+
+  <a href="<?php echo base_url(''.$user_type.'/Alert-Compliance');?>">
+  <div class="infobox infobox-pink">
+    <div class="infobox-icon">
+      <i class="ace-icon fa fa-shopping-cart animated"></i>
+    </div>
+
+    <div class="infobox-data">
+      <span class="infobox-data-number"><?php echo $total_alerts; ?></span>
+      <div class="infobox-content">Alerts</div>
+    </div>
+    <div class="stat stat-important">4%</div>
+  </div>
+</a>
+
+<!-- Total Approval -->
+  <div class="infobox infobox-blue2">
+    <div class="infobox-progress">
+      <div class="easy-pie-chart percentage" data-percent="42" data-size="46">
+        <span class="percent"><?php echo $total_approves; ?>
+      </div>
+    </div>
+
+    <div class="infobox-data">
+      <span class="infobox-text">My Approval</span>
+
+      <div class="infobox-content">
+        <span class="bigger-110">~</span>
+        58GB remaining
+      </div>
+    </div>
+  </div>
+  <!-- Total Notis -->
+  <div class="infobox infobox-red">
+    <div class="infobox-icon">
+      <i class="ace-icon fa fa-bell icon-animated-bell"></i>
+    </div>
+
+    <div class="infobox-data">
+      <span class="infobox-data-number"><?php echo $total_notis; ?></span>
+      <div class="infobox-content">Notification</div>
+    </div>
+    <div class="stat stat-important">4%</div>
+  </div>
+
+  <div class="space-6"></div>
+
+  <div class="infobox infobox-green infobox-small infobox-dark">
+    <div class="infobox-progress">
+      <div class="easy-pie-chart percentage" data-percent="61" data-size="39">
+        <span class="percent">61</span>%
+      </div>
+    </div>
+
+    <div class="infobox-data">
+      <div class="infobox-content">Task</div>
+      <div class="infobox-content">Completion</div>
+    </div>
+  </div>
+
+  <div class="infobox infobox-blue infobox-small infobox-dark">
+    <div class="infobox-chart">
+      <span class="sparkline" data-values="3,4,2,3,4,4,2,2"></span>
+    </div>
+
+    <div class="infobox-data">
+      <div class="infobox-content">Earnings</div>
+      <div class="infobox-content">$32,000</div>
+    </div>
+  </div>
+
+  <div class="infobox infobox-grey infobox-small infobox-dark">
+    <div class="infobox-icon">
+      <i class="ace-icon fa fa-download"></i>
+    </div>
+
+    <div class="infobox-data">
+      <div class="infobox-content">Downloads</div>
+      <div class="infobox-content">1,205</div>
+    </div>
+  </div>
+</div>
+<?php 
 }
 elseif (IS_CONTRACTOR == TRUE) {
    echo "this in IS_CONTRACTOR";

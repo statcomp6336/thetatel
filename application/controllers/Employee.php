@@ -34,7 +34,18 @@ trait Employee {
            $this->data["links"] = explode('&nbsp;',$this->pagination->create_links() );
 
         $page = !empty($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
-        $this->data['result'] = $this->emp->get_allemployee($config["per_page"], $page);
+
+        if ($this->is_spg()== TRUE) {
+                $this->data['result'] = $this->emp->get_allemployee($config["per_page"], $page);
+            }
+            elseif ($this->is_company()== TRUE) {
+                $this->data['result'] = $this->emp->get_allemployee($config["per_page"], $page);
+            }
+            elseif ($this->is_spg_user()== TRUE) {
+                $this->data['result'] = $this->emp->get_allemployee($config["per_page"], $page);
+            }
+
+        //$this->data['result'] = $this->emp->get_allemployee($config["per_page"], $page);
         $this->data['srno']=$page;
 
        $this->render('master_employee');

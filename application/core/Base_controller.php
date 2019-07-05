@@ -31,28 +31,28 @@ class Base_controller extends CI_Controller
    // $this->data['error_count'] = $this->emp->emp_error();
     $this->data['menu']=array(
       // dashbord access if true to dispaly and flase it hide
-      "dashboard_access"    => TRUE,
+      "dashboard_access"    => FALSE,
       // notification access if true to dispaly and flase it hide
-      "notification_access" => TRUE,//
-      "setup"               =>TRUE,
-      "company"             =>TRUE,
-      "company_registration" =>TRUE,
-      "branch_registration" =>TRUE,
-      "contractor"          =>TRUE,
-      "contractor_registration" =>TRUE,
-      "sub_contractor_registration" =>TRUE,
-      "acts"                =>TRUE,
-      "create_act"          =>TRUE,
-      "act_selection"       =>TRUE,
-      "act_due_date"        =>TRUE,
-      "my_activity"         =>TRUE,
-      "employee"            =>TRUE,
-      "employee_registration" =>TRUE,
-      "salary"              =>TRUE,
-      "pf"                  =>TRUE,
-      "pf_new_joinee_report"=>TRUE,
-      "pf_template"         =>TRUE,
-      "pf_summary"          =>TRUE,
+      "notification_access" => FALSE,//
+      "setup"               =>FALSE,
+      "company"             =>FALSE,
+      "company_registration" =>FALSE,
+      "branch_registration" =>FALSE,
+      "contractor"          =>FALSE,
+      "contractor_registration" =>FALSE,
+      "sub_contractor_registration" =>FALSE,
+      "acts"                =>FALSE,
+      "create_act"          =>FALSE,
+      "act_selection"       =>FALSE,
+      "act_due_date"        =>FALSE,
+      "my_activity"         =>FALSE,
+      "employee"            =>FALSE,
+      "employee_registration" =>FALSE,
+      "salary"              =>FALSE,
+      "pf"                  =>FALSE,
+      "pf_new_joinee_report"=>FALSE,
+      "pf_template"         =>FALSE,
+      "pf_summary"          =>FALSE,
 
       );
 
