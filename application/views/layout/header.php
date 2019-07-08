@@ -449,7 +449,8 @@
 					<?php } ?>
 						<b class="arrow"></b>
 					</li>
-
+					<?php if ( $menu['setup_access'] == TRUE) {					
+						?>
 					<li class="hover">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-desktop"></i>
@@ -529,7 +530,7 @@
 							</li>
 <!-- end contractor area -->
 <!-- start act compiletion area -->	
-<li class="open hover">
+							<li class="open hover">
 								<a href="#" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
 									 Acts
@@ -568,151 +569,16 @@
 									
 								</ul>
 							</li>
-<!-- end act compilation area -->
-<!-- start employee area -->
-							<!-- <li class="active open hover">
-								<a href="#" class="dropdown-toggle">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Employee
-									<b class="arrow fa fa-angle-down"></b>
-								</a>
-
-								<b class="arrow"></b>
-
-								<ul class="submenu">
-									<li class="active hover">
-										<a href="<?php echo base_url(''.$user_type.'/employee/show'); ?>">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Employee Registration
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="hover">
-										<a href="two-menu-1.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Employee Attendence
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-									<li class="hover">
-										<a href="<?php echo base_url(''.$user_type.'/export/missing-uan');?>">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Missing UAN Number
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									
-								</ul>
-							</li> -->
-<!-- end employee area -->
-<!-- start salary area -->
-							<!-- <li class="active open hover">
-								<a href="#" class="dropdown-toggle">
-									<i class="menu-icon fa fa-caret-right"></i>
-								Salary
-									<b class="arrow fa fa-angle-down"></b>
-								</a>
-
-								<b class="arrow"></b>
-
-								<ul class="submenu">
-									<li class="active hover">
-										<a href="<?php echo base_url(''.$user_type.'/salary/import');?>">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Import salary
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="hover">
-										<a href="two-menu-1.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Maternity Form
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-									<li class="hover">
-										<a href="two-menu-1.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Labour Law Form XXI annual return	
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-									<li class="hover">
-										<a href="two-menu-1.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Equal Remuneration Act FORM D
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									
-								</ul>
-							</li> -->
-<!-- end salary area -->
-
-
-							
-
-					
 						</ul>
 					</li>
-
-					<!-- <li class="hover">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-list"></i>
-							<span class="menu-text "> Display error </span><?php 
-							if (!empty($error_count)) {
-								echo "<span class='badge badge-warning blink'> ".$error_count."</span>";
-							}
-
-							?>
-							
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="hover">
-								<a href="tables.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Employee error
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="hover">
-								<a href="jqgrid.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Salary error
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-							<li class="hover">
-								<a href="jqgrid.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Salary error new
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-						</ul>
-					</li> -->
+<?php } ?>
+<!-- end Setup area -->
 
 <!-- start my activity  -->
+<?php 
+if ( $menu['myactivity_access'] == TRUE) 
+{						
+?>
 					<li class="hover">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-list"></i>
@@ -788,33 +654,6 @@
 
 										<b class="arrow"></b>
 									</li>
-
-									<!-- <li class="hover">
-										<a href="two-menu-1.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Maternity Form
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-									<li class="hover">
-										<a href="two-menu-1.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Labour Law Form XXI annual return	
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-									<li class="hover">
-										<a href="two-menu-1.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Equal Remuneration Act FORM D
-										</a>
-
-										<b class="arrow"></b>
-									</li> -->
-
-									
 								</ul>
 							</li>
 							<li class="hover">
@@ -944,8 +783,12 @@
 
 						</ul>
 					</li>
+<?php } ?>
 <!--  end my activity -->
-					
+<?php 
+if ( $menu['mycompliance_access'] == TRUE) 
+{						
+?>					
 
 					<li class="hover">
 						<a href="#" class="dropdown-toggle">
@@ -977,7 +820,11 @@
 							</li>
 						</ul>
 					</li>
-
+<?php } ?>
+<?php 
+if ( $menu['myapproval_access'] == TRUE) 
+{						
+?>
 					<li class="hover">
 						<a href="<?php echo base_url(''.$user_type.'/compliance/bulk-approval'); ?>">
 							<i class="menu-icon fa fa-list-alt"></i>
@@ -986,6 +833,7 @@
 
 						<b class="arrow"></b>
 					</li>
+<?php } ?>
 
 					<!-- <li class="hover">
 						<a href="calendar.html">
@@ -1002,6 +850,11 @@
 
 						<b class="arrow"></b>
 					</li> -->
+
+<?php 
+if ( $menu['userprofile_access'] == TRUE) 
+{						
+?>					
 					<li class="hover">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-user"></i>
@@ -1040,7 +893,7 @@
 							</li>
 						</ul>
 					</li>
-
+<?php } ?>
 
 					<!-- <li class="hover">
 						<a href="<?php echo base_url(''.$user_type.'/explore');?>">
@@ -1050,7 +903,10 @@
 
 						<b class="arrow"></b>
 					</li> -->
-
+<?php 
+if ( $menu['managefiles_access'] == TRUE) 
+{						
+?>
 					<li class="hover">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-tag"></i>
@@ -1135,8 +991,11 @@
 							</li> -->
 						</ul>
 					</li>
-
-
+<?php } ?>
+<?php 
+if ( $menu['report_access'] == TRUE) 
+{						
+?>
 					<li class="hover">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-file-o"></i>
@@ -1177,32 +1036,10 @@
 									<li class="hover">
 										<a href="<?php echo base_url(''.$user_type.'/export/noncompliance'); ?>">
 											<i class="menu-icon fa fa-pencil orange"></i>
-
 										Non-Compliance
 											<b class="arrow fa fa-angle-down"></b>
 										</a>
-
 										<b class="arrow"></b>
-
-										<!-- <ul class="submenu">
-											<li class="hover">
-												<a href="#">
-													<i class="menu-icon fa fa-plus purple"></i>
-													Add Product
-												</a>
-
-												<b class="arrow"></b>
-											</li>
-
-											<li class="hover">
-												<a href="#">
-													<i class="menu-icon fa fa-eye pink"></i>
-													View Products
-												</a>
-
-												<b class="arrow"></b>
-											</li>
-										</ul> -->
 									</li>
 									<li class="hover">
 										<a href="<?php echo base_url(''.$user_type.'/export/compliancedocument'); ?>">
@@ -1228,109 +1065,8 @@
 
 										<b class="arrow"></b>
 									</li>
-									<!-- <li class="hover">
-										<a href="#">
-											<i class="menu-icon fa fa-leaf green"></i>
-											Compliance  NonCompliance
-										</a>
-
-										<b class="arrow"></b>
-									</li> -->
 								</ul>
 							</li>
-
-							<!-- +++++++++++++ -->
-							<!-- +++++++++++++ -->
-							<!-- <li class="hover">
-								<a href="#" class="dropdown-toggle">
-									<i class="menu-icon fa fa-caret-right"></i>
-										PF
-									<b class="arrow fa fa-angle-down"></b>
-								</a>
-
-								<b class="arrow"></b>
-
-								<ul class="submenu">
-									<li class="hover">
-										<a href="<?php echo base_url(''.$user_type.'/export/pf'); ?>" class="dropdown-toggle">
-											<i class="menu-icon fa fa-leaf green"></i>
-										   PF New joinee Report
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="hover">
-										<a href="<?php echo base_url(''.$user_type.'/export/pf'); ?>" >
-											<i class="menu-icon fa fa-pencil orange"></i>
-											PF Template				
-										</a>
-
-										<b class="arrow"></b>
-
-										
-									</li>
-									<li class="hover">
-										<a href="<?php echo base_url(''.$user_type.'/export/pf'); ?>" >
-											<i class="menu-icon fa fa-leaf green"></i>
-											PF Summary
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-								</ul>
-							</li> -->
-
-							<!-- +++++++++++++ -->
-							<!-- +++++++++++++ -->
-									<!-- <li class="hover">
-								<a href="#" class="dropdown-toggle">
-									<i class="menu-icon fa fa-caret-right"></i>
-										ESIC
-									<b class="arrow fa fa-angle-down"></b>
-								</a>
-
-								<b class="arrow"></b>
-
-								<ul class="submenu">
-									<li class="hover">
-										<a href="#">
-											<i class="menu-icon fa fa-leaf green"></i>
-										  ESIC New Joinee Report
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="hover">
-										<a href="#" class="dropdown-toggle">
-											<i class="menu-icon fa fa-pencil orange"></i>
-											ESIC Template Report		
-										</a>
-
-										<b class="arrow"></b>
-
-										
-									</li>
-									<li class="hover">
-										<a href="#">
-											<i class="menu-icon fa fa-leaf green"></i>
-											ESIC Template Report(EMP ID)
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-									<li class="hover">
-										<a href="#">
-											<i class="menu-icon fa fa-leaf green"></i>
-											ESIC Summary Report
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-								</ul>
-							</li> -->
-
 							<!-- +++++++++++++ -->
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/export/employeedetails'); ?>">
@@ -1427,25 +1163,8 @@
 									</li>									
 								</ul>							
 							</li>
-
-
+							<!-- +++++++++++++ -->
 							
-
-							
-
-							
-							<!-- <li class="hover">
-								<a href="blank.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Challan Generated Details
-								</a>
-
-								<b class="arrow"></b>
-							</li> -->
-							
-								<!-- +++++++++++++ -->
-							
-
 							<!-- +++++++++++++ -->
 								<!-- +++++++++++++ -->
 							<!-- <li class="hover">
@@ -1491,6 +1210,7 @@
 							<!-- +++++++++++++ -->
 						</ul>
 					</li>
+<?php } ?>
 					<li class="hover">
 								<a href="#" class="dropdown-toggle">
 									<i class="menu-icon fa fa-book"></i>
@@ -1537,58 +1257,9 @@
 									</li>
 								</ul>
 							</li>
-
-
 							<!-- +++++++++++++ -->
 						</ul>
 					</li>
-					<!-- <li class="hover">
-								<a href="#" class="dropdown-toggle">
-									<i class="menu-icon fa fa-book"></i>
-										Help
-									<b class="arrow fa fa-angle-down"></b>
-								</a>
-
-								<b class="arrow"></b>
-
-								<ul class="submenu">
-									<li class="hover">
-								<a href="<?php echo base_url(''.$user_type.'/export/faqdetails'); ?>">
-									<i class="menu-icon fa fa-caret-right"></i>
-									FAQ
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-									<li class="hover">
-										<a href="<?php echo base_url(''.$user_type.'/report/backlog');?>">
-											<i class="menu-icon fa fa-leaf green"></i>
-										About us
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									
-									<li class="hover">
-										<a href="<?php echo base_url(''.$user_type.'/');?>">
-											<i class="menu-icon fa fa-leaf green"></i>
-											Feedback
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-									<li class="hover">
-										<a href="<?php echo base_url(''.$user_type.'/');?>">
-											<i class="menu-icon fa fa-leaf green"></i>
-											Users Guide
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-								</ul>
-							</li> -->
-
 
 				</ul><!-- /.nav-list -->
 			</div>

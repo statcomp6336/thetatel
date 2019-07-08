@@ -69,6 +69,7 @@ class Home extends Base_controller {
 		$put= array('cid'=> $this->input->post('cid'),
 					'username' => $this->input->post('username'),
 					'password' => $this->input->post('password'));
+		
 		$put = $this->security->xss_clean($put);
 		if ($this->is_valid($put) == TRUE) {
 			if ($this->login_model->check_login($put) == TRUE) {				

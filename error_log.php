@@ -748,6 +748,7 @@
 [02-Jul-2019 12:40:35 Europe/Berlin] PHP Fatal error:  Call to a member function get() on null in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Salary.php on line 160
 [02-Jul-2019 12:41:04 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\newstatcomp\thetatel\application\views\edit_salary.php on line 108
 [02-Jul-2019 12:45:37 Europe/Berlin] PHP Parse error:  syntax error, unexpected ']', expecting ',' or ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\views\edit_salary.php on line 111
+<<<<<<< HEAD
 [03-Jul-2019 08:46:26 Europe/Berlin] PHP Parse error:  syntax error, unexpected ',' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Users.php on line 60
 [03-Jul-2019 10:19:28 Europe/Berlin] PHP Parse error:  syntax error, unexpected '?>' in C:\xampp\htdocs\newstatcomp\thetatel\application\views\edit_salary.php on line 126
 [03-Jul-2019 10:51:18 Europe/Berlin] PHP Parse error:  syntax error, unexpected '{' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Employee_model.php on line 123
@@ -768,3 +769,8 @@
 [08-Jul-2019 06:51:28 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$key' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\views\bulk_timeline.php on line 62
 [08-Jul-2019 06:52:08 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$key' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\views\bulk_timeline.php on line 62
 [08-Jul-2019 10:29:55 Europe/Berlin] PHP Fatal error:  Cannot redeclare DB_install::CreateTable_salary_master() in C:\xampp\htdocs\newstatcomp\thetatel\application\models\DB_install.php on line 1057
+=======
+[04-Jul-2019 10:54:31 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<' in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dashboard.php on line 197
+[05-Jul-2019 11:11:13 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '=', expecting ')' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Dashboard_model.php on line 217
+[05-Jul-2019 11:12:22 Asia/Kolkata] PHP Fatal error:  Call to undefined method Dashboard_model::is_spg() in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Dashboard_model.php on line 167
+>>>>>>> 20d6903230619ac99ca452fe9bb72afe4cced3d0

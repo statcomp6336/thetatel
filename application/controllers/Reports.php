@@ -8,10 +8,12 @@ trait Reports {
 	{
 		if ($this->data['access'][$this->session->TYPE] == TRUE) {
 		    $this->load->model('Report_model','report');
+
 		    $this->load->library("pagination");	      
 	       $this->data['where'] = 'Reports';
 	       $this->data['sub_menu'] = 'Sanitize';
 	     
+
 	    
 	       	// $config["base_url"] = base_url() .$page_data['user_type']."/employee/show";
 	        // $config["total_rows"] = $this->emp->get_count();
@@ -31,7 +33,9 @@ trait Reports {
 	     }
 	     else
 	     {
+
 	     $this->view->load('404');
+
 	     }
 	}
 	public function CreateSanitize($value='')
@@ -63,10 +67,12 @@ trait Reports {
 		    $this->load->model('Report_model','report');
 		    $this->load->library("pagination");
 
+
 	      
 	       $this->data['where'] = 'Reports';
 	       $this->data['sub_menu'] = 'Process';
 	       
+
 	    
 	       	// $config["base_url"] = base_url() .$page_data['user_type']."/employee/show";
 	        // $config["total_rows"] = $this->emp->get_count();
@@ -86,7 +92,9 @@ trait Reports {
 	     }
 	     else
 	     {
+
 	     $this->load->view('404');
+
 	     }
 	}
 
@@ -128,10 +136,12 @@ trait Reports {
 		    $this->load->model('Report_model','report');
 		    $this->load->library("pagination");
 
+
 	      
 	       $this->data['where'] = 'Reports';
 	       $this->data['sub_menu'] = 'Backlog';
 	      
+
 	    
 	       	// $config["base_url"] = base_url() .$page_data['user_type']."/employee/show";
 	        // $config["total_rows"] = $this->emp->get_count();
@@ -187,11 +197,13 @@ $spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 $month 		=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
 $year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
 $location 	=!empty($this->input->post('location'))?$this->input->post('location'):NULL;
+
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) {
 		 		   
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'PF Company';
 			      
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "PF Template Reports";	// colomns name
 			 		$this->data['tableTools'] = array(
@@ -216,7 +228,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 	 		 	
 	 	}
@@ -229,6 +241,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'PF Company';
 		       
+
 		    
 		       	// $config["base_url"] = base_url() .$page_data['user_type']."/employee/show";
 		        // $config["total_rows"] = $this->emp->get_count();
@@ -326,15 +339,17 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 {
 	 	if (!empty($this->input->post('submit'))) 
 	 	{
-			$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
-			$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+			$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+			$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
+
 		 		    
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'PF New Joinee';
 			      
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "PF New Joinee Report";	// colomns name
 			 		$this->data['tableTools'] = array(
@@ -354,7 +369,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 	 		 	
 	 	}
@@ -364,8 +379,10 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 		 	{
 			    $this->load->model('Report_model','report');
 			    $this->load->library("pagination");
+
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'PF New Joinee';    
+
 		      
 		       $this->render('export_pfnewjoinee');
 		     }
@@ -381,8 +398,8 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 {
 	 	$this->load->model('Report_model','report');
 	 	
-	 		$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
-	 		$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+	 		$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+	 		$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 
 	 		if ($custid !== NULL && $spgid !== NULL) 
 	 		{
@@ -415,18 +432,20 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 {
 	 	if (!empty($this->input->post('submit'))) 
 	 	{
-			$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
-			$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
-			$month 		=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
-			$year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
+			$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+			$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+			$month 	=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
+			$year 	=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
 			//$location 	=!empty($this->input->post('location'))?$this->input->post('location'):NULL;
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
+
 		 		 
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'PF Summmary';
 			        
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "PF Summary Report";	// colomns name
 			 		$this->data['tableTools'] = array(
@@ -447,7 +466,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 	 		 	
 	 	}
@@ -458,9 +477,11 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			    $this->load->model('Report_model','report');
 			    $this->load->library("pagination");
 
+
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'PF Summary';
 		      
+
 		       $this->render('export_pfsummary');
 		     }
 		     else
@@ -475,10 +496,10 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 {
 	 	$this->load->model('Report_model','report');
 	 	
-	 		$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
-	 		$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
-	 		$month 		=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
-	 		$year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
+	 		$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+	 		$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+	 		$month 	=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
+	 		$year 	=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
 
 	 		if ($custid !== NULL && $spgid !== NULL) 
 	 		{
@@ -564,20 +585,17 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 {
 	 	if (!empty($this->input->post('submit'))) 
 	 	{
-			$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
-			$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
-
-			//echo $custid;
-			//$month 		=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
-			//$year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
-			//$location 	=!empty($this->input->post('location'))?$this->input->post('location'):NULL;
+			$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+			$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
+
 		 		   
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'ESIC New Joinee';
 			       
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "ESIC New Joinee Report";	// colomns name
 			 		$this->data['tableTools'] = array(
@@ -597,7 +615,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 	 		 	
 	 	}
@@ -607,13 +625,15 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 		 	{
 			    $this->load->model('Report_model','report');
 			    $this->load->library("pagination");
+
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'ESIC New Joinee';
+
 		       $this->render('export_esicnewjoinee');
 		     }
 		     else
 		     {
-		      echo "404 no access";
+		      $this->load->view('404');
 		     }
 		 }
 	 }
@@ -623,11 +643,8 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 {
 	 	$this->load->model('Report_model','report');
 	 	
-	 		$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
-	 		$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
-	 		// $month 		=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
-	 		// $year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
-	 		// $location 	=!empty($this->input->post('location'))?$this->input->post('location'):NULL;
+	 		$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+	 		$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 
 	 		if ($custid !== NULL && $spgid !== NULL) 
 	 		{
@@ -660,18 +677,20 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 {
 	 	if (!empty($this->input->post('submit'))) 
 	 	{
-			$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
-			$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
-			$month 		=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
-			$year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
+			$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+			$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
+			$month 	=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
+			$year 	=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
 			//$location 	=!empty($this->input->post('location'))?$this->input->post('location'):NULL;
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
+
 		 		  
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'ESIC Template';
 			       
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "ESIC Template Report";	// colomns name
 			 		$this->data['tableTools'] = array(
@@ -692,7 +711,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 	 		 	
 	 	}
@@ -703,15 +722,17 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			    $this->load->model('Report_model','report');
 			    $this->load->library("pagination");
 
+
 		     
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'ESIC Template';
 		      
+
 		       $this->render('export_esictemplate');
 		     }
 		     else
 		     {
-		      echo "404 no access";
+		      $this->load->view('404');
 		     }
 		}
 	 }
@@ -721,7 +742,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 {
 	 	$this->load->model('Report_model','report');
 	 	
-	 		$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+	 		$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
 	 		$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 	 		$month 		=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
 	 		$year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
@@ -821,10 +842,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
+
 		 		   
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'ESIC Template(Emp ID)';
 			       
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "ESIC Template(Emp ID) Reports";	// colomns name
 			 		$this->data['tableTools'] = array(
@@ -845,7 +868,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 	 		 	
 	 	}
@@ -855,16 +878,18 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			    $this->load->model('Report_model','report');
 			    $this->load->library("pagination");
 
+
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'ESIC Template(Emp ID)';
 		       
+
 		       $this->data['result']=$this->report->get_location();
 
 		       $this->render('export_esictemplate_empid');
 		     }
 		     else
 		     {
-		      echo "404 no access";
+		      $this->load->view('404');
 		     }
 		}     
 	 }
@@ -982,7 +1007,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 {
 	 	if (!empty($this->input->post('submit'))) 
 	 	{
-			$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+			$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
 			$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 			$month 		=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
 			$year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
@@ -990,11 +1015,11 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-		 		    $this->data['page_title'] = $page_data['page_title'];
+		 		    //$this->data['page_title'] = $page_data['page_title'];
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'ESIC Summmary';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			        //$this->data['user_type'] = $page_data['user_type'];
+			        //$this->data['menu'] = $page_data['menu'];
 			        /* table data */
 			 		$this->data['tableHeading'] = "ESIC Summary Report";	// colomns name
 			 		$this->data['tableTools'] = array(
@@ -1014,7 +1039,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 	 		 	
 	 	}
@@ -1028,11 +1053,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'ESIC Summary';
 		        
+
 		       $this->render('export_esicsummary');
 		     }
 		     else
 		     {
-		      echo "404 no access";
+		      $this->load->view('404');
 		     }
 		}
 	 }
@@ -1042,7 +1068,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 {
 	 	$this->load->model('Report_model','report');
 	 	
-	 		$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
+	 		$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
 	 		$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 	 		$month 		=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
 	 		$year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
@@ -1138,10 +1164,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
+
 		 		    
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Compliance';
 			       
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "Compliance Report";	// colomns name
 			 		$this->data['tableTools'] = array(
@@ -1161,7 +1189,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 	 		 	
 	 	}
@@ -1172,14 +1200,16 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
 
+
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Compliance';
+
 			      
 			       $this->render('export_compliance');
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 		}
 	 }
@@ -1229,10 +1259,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
+
 		 		  
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Non Compliance';
 			        
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "Non Compliance Report";	// colomns name
 			 		$this->data['tableTools'] = array(
@@ -1252,7 +1284,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 	 		 	
 	 	}
@@ -1263,14 +1295,16 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
 
+
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Non Compliance';
 			  
+
 			       $this->render('export_noncompliance');
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 		}
 	 }
@@ -1316,10 +1350,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
+
 		 		  
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Approval';
 			       
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "Approval This Month Report";	// colomns name
 			 			
@@ -1333,7 +1369,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 	 		 	
 	 	}
@@ -1344,16 +1380,18 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
 
+
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Approval';
 			     
+
 			    
 			      
 			       $this->render('export_approval');
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 		}
 	 }
@@ -1388,10 +1426,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
+
 		 		  
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Rejected';
 			   
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "Rejected Report";	// colomns name
 			 			
@@ -1405,7 +1445,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 	 		 	
 	 	}
@@ -1416,14 +1456,16 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
 
+
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Rejected';
 			     
+
 			       $this->render('export_rejected');
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 		}
 	 }
@@ -1461,9 +1503,11 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
+
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Compliance Documents';
 			       
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "Compliance Document Report";	// colomns name			 		
 			 		// colomns name				
@@ -1473,7 +1517,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }	 		 	
 	 	}
 	 	else
@@ -1483,14 +1527,16 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
 
+
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Compliance Documents';
+
 			      
 			       $this->render('export_compliance_document');
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 		}
 	 }
@@ -1500,10 +1546,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 {
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
+
 		 		   
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Entity Details';
 			        
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "Entity Details Report";	// colomns name
 			 		
@@ -1516,7 +1564,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 	 }
 
@@ -1541,9 +1589,11 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
+
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Employee Details';
 			       
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "Employee Details Report";	// colomns name
 			 			
@@ -1557,7 +1607,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 	 		 	
 	 	}
@@ -1573,6 +1623,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			       $this->data['sub_menu'] = 'Employee Details';
 			      
 
+
 			       // location data
 			       $this->data['result']=$this->report->get_location();		    
 			      
@@ -1580,7 +1631,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 		}
 	 }
@@ -1619,10 +1670,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 {
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
+
 		 		   
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Compliance Request Details';
 			     
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "Compliance Request Details Report";	// colomns name
 			 		
@@ -1635,7 +1688,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 	 }
 
@@ -1660,10 +1713,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
+
 		 		  
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Salary Details';
 			        
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "Salary Details Report";	// colomns name
 			 			
@@ -1677,7 +1732,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     } 		 	
 	 	}
 	 	else
@@ -1687,15 +1742,17 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
 
+
 			     
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Salary Details';
 			    
+
 			       $this->render('export_salarydetails');
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 		}
 	 }
@@ -1729,14 +1786,16 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
 
+
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'FAQ Details';
 			       
+
 			       $this->render('export_faq');
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 		
 	 }
@@ -1746,9 +1805,11 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 {
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
+
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'SPG Users Details';
 			     
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "SPG Users Report";	// colomns name
 			 		
@@ -1761,7 +1822,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 	 }
 
@@ -1787,10 +1848,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
+
 		 		    
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Form-D';
 			       
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "Form-D Report";	// colomns name
 			 			
@@ -1803,7 +1866,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     } 		 	
 	 	}
 	 	else
@@ -1813,15 +1876,17 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
 
+
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Form-D';
 			      	    
+
 			      
 			       $this->render('export_formd');
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 		}
 	 }
@@ -1832,6 +1897,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	if (!empty($this->input->post('submit'))) 
 	 	{
 	 		$this->load->model('Report_model','report');
+
 	 	
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
@@ -1839,6 +1905,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Form-Q';
 			     
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "Form-Q Report";	// colomns name
 
@@ -1867,6 +1934,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Form-Q';
 			     
+
 			       $this->data['result']=$this->report->get_location();
 			       $this->data['companys']=$this->report->get_entitydetails();
 

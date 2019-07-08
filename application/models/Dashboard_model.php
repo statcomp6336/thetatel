@@ -162,157 +162,404 @@ class Dashboard_model extends Base_model
 		$data = array('mail_status' => 2);
 		return $this->edit('compose_email',array('custid'=> user_id()),$data);
 	}
-	/* READ MORE VIEWS MODELS ARE STARTS */
+	/* READ MORE VIEWsS MODELS ARE STARTS */
 	//GET COMAPNYS FOR DASHBOARD
 	public function get_DashSompanyes($value='')
 	{
-		return $this->db->where('spg_id',user_id())->group_by(array('act_code'))->get('compliance_scope_master_view')->result();
+		if (IS_SPG== TRUE)
+		{
+			return $this->db->where('spg_id',user_id())->group_by(array('act_code'))->get('compliance_scope_master_view')->result();
+		} 
+		elseif (IS_COMPANY== TRUE)
+		{
+			return $this->db->where('spg_id',user_id())->group_by(array('act_code'))->get('compliance_scope_master_view')->result();
+		} 
+		elseif (IS_SPGUSER== TRUE)
+		{
+			return $this->db->where(array('spg_id'=>user_id(),'username'=>USERNAME))->group_by(array('act_code'))->get('scope_uucompany_view')->result();
+		} 		
 	}
 	public function get_totalScope($custid='',$act_code='')
-	{
-		$this->db->select('*');
-		$this->db->from('compliance_scope a');
-		$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
-
-		if ($custid !== "ALL" && $act_code !=="ALL") {
-			$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+	{		
+		if (IS_SPG== TRUE) 
+		{
+			$this->db->select('*');
+			$this->db->from('compliance_scope a');
+			$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+			if ($custid !== "ALL" && $act_code !=="ALL") {
+				$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+			}
+			elseif ($custid !== "ALL" && $act_code =="ALL") {
+				$this->db->where('a.custid',$custid);
+			}
+			elseif ($custid == "ALL" && $act_code !=="ALL") {
+				$this->db->where('a.act_code',$act_code);
+			}
+			$this->db->where('a.spg_id',user_id());
+			$result=$this->db->get()->result();
+			return $result;
 		}
-		elseif ($custid !== "ALL" && $act_code =="ALL") {
-			$this->db->where('a.custid',$custid);
+		elseif (IS_COMPANY== TRUE) 
+		{
+			$this->db->select('*');
+			$this->db->from('compliance_scope a');
+			$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+			if ($custid !== "ALL" && $act_code !=="ALL") {
+				$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+			}
+			elseif ($custid !== "ALL" && $act_code =="ALL") {
+				$this->db->where('a.custid',$custid);
+			}
+			elseif ($custid == "ALL" && $act_code !=="ALL") {
+				$this->db->where('a.act_code',$act_code);
+			}
+			$this->db->where('a.spg_id',user_id());
+			$result=$this->db->get()->result();
+			return $result;
 		}
-		elseif ($custid == "ALL" && $act_code !=="ALL") {
-			$this->db->where('a.act_code',$act_code);
+		elseif (IS_SPGUSER== TRUE) 
+		{
+			$this->db->select('*');
+			$this->db->from('compliance_scope a');
+			$this->db->join('`uu_companyselection` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+			if ($custid !== "ALL" && $act_code !=="ALL") {
+				$this->db->where(array(	'a.custid'=>$custid,
+										'a.act_code'=>$act_code,
+										'b.username'=>USERNAME     ));
+			}
+			elseif ($custid !== "ALL" && $act_code =="ALL") {
+				$this->db->where(array(	'a.custid'=>$custid,
+										'b.username'=>USERNAME  	));
+			}
+			elseif ($custid == "ALL" && $act_code !=="ALL") {
+				$this->db->where(array(	'a.act_code'=>$act_code,
+										'b.username'=>USERNAME 		));
+			}
+			$this->db->where('a.spg_id',user_id());
+			$result=$this->db->get()->result();
+			return $result;
 		}
-		$this->db->where('a.spg_id',user_id());
-	$result=$this->db->get()->result();
-	
-	return $result;
-
-
 	}
 	//current Scope 
 	public function get_CurrentScope($custid='',$act_code='')
 	{
-		$this->db->select('*');
-		$this->db->from('compliance_working_prior a');
-		$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
-
-		if ($custid !== "ALL" && $act_code !=="ALL") {
-			$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
-
+		if (IS_SPG== TRUE) 
+		{
+			$this->db->select('*');
+			$this->db->from('compliance_working_prior a');
+			$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+			if ($custid !== "ALL" && $act_code !=="ALL") {
+				$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+			}
+			elseif ($custid !== "ALL" && $act_code =="ALL") {
+				$this->db->where('a.custid',$custid);
+			}
+			elseif ($custid == "ALL" && $act_code !=="ALL") {
+				$this->db->where('a.act_code',$act_code);
+			}
+			$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())");
+			$this->db->where('a.spg_id',user_id());
+			$result=$this->db->get()->result();		
+			return $result;
 		}
-		elseif ($custid !== "ALL" && $act_code =="ALL") {
-			$this->db->where('a.custid',$custid);
+		elseif (IS_COMPANY== TRUE) 
+		{
+			$this->db->select('*');
+			$this->db->from('compliance_working_prior a');
+			$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+			if ($custid !== "ALL" && $act_code !=="ALL") {
+				$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+			}
+			elseif ($custid !== "ALL" && $act_code =="ALL") {
+				$this->db->where('a.custid',$custid);
+			}
+			elseif ($custid == "ALL" && $act_code !=="ALL") {
+				$this->db->where('a.act_code',$act_code);
+			}
+			$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())");
+			$this->db->where('a.spg_id',user_id());
+			$result=$this->db->get()->result();		
+			return $result;
 		}
-		elseif ($custid == "ALL" && $act_code !=="ALL") {
-			$this->db->where('a.act_code',$act_code);
+		elseif (IS_SPGUSER== TRUE) 
+		{
+			//echo "hii";
+			$this->db->select('*');
+			$this->db->from('compliance_working_priore a');		
+			$this->db->join('`uu_companyselection` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+			if ($custid !== "ALL" && $act_code !=="ALL") {
+				$this->db->where(array(	'a.custid'=>$custid,
+										'a.act_code'=>$act_code,
+										'b.username'=>USERNAME     ));
+			}		
+			elseif ($custid !== "ALL" && $act_code =="ALL") {
+				$this->db->where(array(	'a.custid'=>$custid,
+										'b.username'=>USERNAME  	));
+			}
+			elseif ($custid == "ALL" && $act_code !=="ALL") {
+				$this->db->where(array(	'a.act_code'=>$act_code,
+										'b.username'=>USERNAME 		));
+			}		
+			$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())");
+			$this->db->where('a.spg_id',user_id());
+			$result=$this->db->get()->result();	
+			return $result;
 		}
-		$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())");
-		$this->db->where('a.spg_id',user_id());
-	$result=$this->db->get()->result();
-	
-	return $result;
-
-
 	}
+
 	//Complince Done
 	public function get_complianceDone($custid='',$act_code='')
 	{
-		$this->db->select('a.custid ,b.entity_name,a.year,a.act,a.Particular,a.Reg_freq,a.due_date,a.Statutory_due_date,a.act_type,a.Certi_rece_date');
-		$this->db->from('completed_compliance a');
-		$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
-
-		if ($custid !== "ALL" && $act_code !=="ALL") {
-			$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
-
+		if (IS_SPG== TRUE)
+		{
+			$this->db->select('a.custid ,b.entity_name,a.year,a.act,a.Particular,a.Reg_freq,a.due_date,a.Statutory_due_date,a.act_type,a.Certi_rece_date');
+			$this->db->from('completed_compliance a');
+			$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+			if ($custid !== "ALL" && $act_code !=="ALL") {
+				$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+			}
+			elseif ($custid !== "ALL" && $act_code =="ALL") {
+				$this->db->where('a.custid',$custid);
+			}
+			elseif ($custid == "ALL" && $act_code !=="ALL") {
+				$this->db->where('a.act_code',$act_code);
+			}
+			$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())");
+			$this->db->where('a.spg_id',user_id());
+			$result=$this->db->get()->result();	
+			return $result;
+		} 
+		elseif (IS_COMPANY== TRUE)
+		{
+			$this->db->select('a.custid ,b.entity_name,a.year,a.act,a.Particular,a.Reg_freq,a.due_date,a.Statutory_due_date,a.act_type,a.Certi_rece_date');
+			$this->db->from('completed_compliance a');
+			$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+			if ($custid !== "ALL" && $act_code !=="ALL") {
+				$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+			}
+			elseif ($custid !== "ALL" && $act_code =="ALL") {
+				$this->db->where('a.custid',$custid);
+			}
+			elseif ($custid == "ALL" && $act_code !=="ALL") {
+				$this->db->where('a.act_code',$act_code);
+			}
+			$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())");
+			$this->db->where('a.spg_id',user_id());
+			$result=$this->db->get()->result();	
+			return $result;
+		} 
+		elseif (IS_SPGUSER== TRUE)
+		{
+			$this->db->select('a.custid ,b.entity_name,a.year,a.act,a.Particular,a.Reg_freq,a.due_date,a.Statutory_due_date,a.act_type,a.Certi_rece_date');
+			$this->db->from('completed_compliance a');
+			$this->db->join('`uu_companyselection` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+			if ($custid !== "ALL" && $act_code !=="ALL") {
+				$this->db->where(array(	'a.custid'=>$custid,
+										'a.act_code'=>$act_code,
+										'b.username'=>USERNAME     ));
+			}		
+			elseif ($custid !== "ALL" && $act_code =="ALL") {
+				$this->db->where(array(	'a.custid'=>$custid,
+										'b.username'=>USERNAME  	));
+			}
+			elseif ($custid == "ALL" && $act_code !=="ALL") {
+				$this->db->where(array(	'a.act_code'=>$act_code,
+										'b.username'=>USERNAME 		));
+			}
+			$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())");
+			$this->db->where('a.spg_id',user_id());
+			$result=$this->db->get()->result();	
+			return $result;
 		}
-		elseif ($custid !== "ALL" && $act_code =="ALL") {
-			$this->db->where('a.custid',$custid);
-		}
-		elseif ($custid == "ALL" && $act_code !=="ALL") {
-			$this->db->where('a.act_code',$act_code);
-		}
-		$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())");
-		$this->db->where('a.spg_id',user_id());
-	$result=$this->db->get()->result();
-	
-	return $result;
-
-
 	}
 	//Non Complince
 	public function get_NonCompliance($custid='',$act_code='')
 	{
-		$this->db->select('*');
-		$this->db->from('compliance_working_prior a');
-		$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+		if (IS_SPG== TRUE)
+		{
+			$this->db->select('*');
+			$this->db->from('compliance_working_prior a');
+			$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+			if ($custid !== "ALL" && $act_code !=="ALL") {
+				$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+			}
+			elseif ($custid !== "ALL" && $act_code =="ALL") {
+				$this->db->where('a.custid',$custid);
+			}
+			elseif ($custid == "ALL" && $act_code !=="ALL") {
+				$this->db->where('a.act_code',$act_code);
+			}
+			$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE()) AND a.status!='5'");		
+			$result=$this->db->get()->result();
+			return $result;
+		} 
+		elseif (IS_COMPANY== TRUE)
+		{
+			$this->db->select('*');
+			$this->db->from('compliance_working_prior a');
+			$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+			if ($custid !== "ALL" && $act_code !=="ALL") {
+				$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+			}
+			elseif ($custid !== "ALL" && $act_code =="ALL") {
+				$this->db->where('a.custid',$custid);
+			}
+			elseif ($custid == "ALL" && $act_code !=="ALL") {
+				$this->db->where('a.act_code',$act_code);
+			}
+			$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE()) AND a.status!='5'");		
+			$result=$this->db->get()->result();	
+			return $result;
+		} 
+		elseif (IS_SPGUSER== TRUE)
+		{
+			$this->db->select('*');
+			$this->db->from('compliance_working_prior a');
+			$this->db->join('`uu_companyselection` b','a.custid=b.custid AND a.spg_id='.user_id().'');
 
-		if ($custid !== "ALL" && $act_code !=="ALL") {
-			$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
-
+			if ($custid !== "ALL" && $act_code !=="ALL") {
+				$this->db->where(array(	'a.custid'=>$custid,
+										'a.act_code'=>$act_code,
+										'b.username'=>USERNAME     ));
+			}		
+			elseif ($custid !== "ALL" && $act_code =="ALL") {
+				$this->db->where(array(	'a.custid'=>$custid,
+										'b.username'=>USERNAME  	));
+			}
+			elseif ($custid == "ALL" && $act_code !=="ALL") {
+				$this->db->where(array(	'a.act_code'=>$act_code,
+										'b.username'=>USERNAME 		));
+			}
+			$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE()) AND a.status!='5'");		
+			$result=$this->db->get()->result();
+			return $result;
 		}
-		elseif ($custid !== "ALL" && $act_code =="ALL") {
-			$this->db->where('a.custid',$custid);
-		}
-		elseif ($custid == "ALL" && $act_code !=="ALL") {
-			$this->db->where('a.act_code',$act_code);
-		}
-		$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE()) AND a.status!='5'");		
-	$result=$this->db->get()->result();
-	
-	return $result;
-
-
 	}
 
 	//Pending compliance
 	public function get_pendingCompliance($custid='',$act_code='')
 	{
-		$this->db->select('*');
-		$this->db->from('compliance_working_prior a');
-		$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
-
-		if ($custid !== "ALL" && $act_code !=="ALL") {
-			$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
-
+		if (IS_SPG== TRUE)
+		{
+			$this->db->select('*');
+			$this->db->from('compliance_working_prior a');
+			$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+			if ($custid !== "ALL" && $act_code !=="ALL") {
+				$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+			}
+			elseif ($custid !== "ALL" && $act_code =="ALL") {
+				$this->db->where('a.custid',$custid);
+			}
+			elseif ($custid == "ALL" && $act_code !=="ALL") {
+				$this->db->where('a.act_code',$act_code);
+			}
+			$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE()) AND a.status!='3'");		
+			$result=$this->db->get()->result();
+			return $result;
+		} 
+		elseif (IS_COMPANY== TRUE)
+		{
+			$this->db->select('*');
+			$this->db->from('compliance_working_prior a');
+			$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+			if ($custid !== "ALL" && $act_code !=="ALL") {
+				$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+			}
+			elseif ($custid !== "ALL" && $act_code =="ALL") {
+				$this->db->where('a.custid',$custid);
+			}
+			elseif ($custid == "ALL" && $act_code !=="ALL") {
+				$this->db->where('a.act_code',$act_code);
+			}
+			$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE()) AND a.status!='3'");		
+			$result=$this->db->get()->result();
+			return $result;
+		} 
+		elseif (IS_SPGUSER== TRUE)
+		{
+			$this->db->select('*');
+			$this->db->from('compliance_working_prior a');
+			$this->db->join('`uu_companyselection` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+			if ($custid !== "ALL" && $act_code !=="ALL") {
+				$this->db->where(array(	'a.custid'=>$custid,
+										'a.act_code'=>$act_code,
+										'b.username'=>USERNAME     ));
+			}		
+			elseif ($custid !== "ALL" && $act_code =="ALL") {
+				$this->db->where(array(	'a.custid'=>$custid,
+										'b.username'=>USERNAME  	));
+			}
+			elseif ($custid == "ALL" && $act_code !=="ALL") {
+				$this->db->where(array(	'a.act_code'=>$act_code,
+										'b.username'=>USERNAME 		));
+			}
+			$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE()) AND a.status!='3'");		
+			$result=$this->db->get()->result();
+			return $result;		
 		}
-		elseif ($custid !== "ALL" && $act_code =="ALL") {
-			$this->db->where('a.custid',$custid);
-		}
-		elseif ($custid == "ALL" && $act_code !=="ALL") {
-			$this->db->where('a.act_code',$act_code);
-		}
-		$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE()) AND a.status!='3'");		
-	$result=$this->db->get()->result();
-	
-	return $result;
-
-
 	}
 
 	//Alert compliance
 	public function get_AlertCompliance($custid='',$act_code='')
 	{
-		$this->db->select('*');
-		$this->db->from('compliance_working_prior a');
-		$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
-
-		if ($custid !== "ALL" && $act_code !=="ALL") {
-			$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
-
+		if (IS_SPG== TRUE)
+		{
+			$this->db->select('*');
+			$this->db->from('compliance_working_prior a');
+			$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+			if ($custid !== "ALL" && $act_code !=="ALL") {
+				$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+			}
+			elseif ($custid !== "ALL" && $act_code =="ALL") {
+				$this->db->where('a.custid',$custid);
+			}
+			elseif ($custid == "ALL" && $act_code !=="ALL") {
+				$this->db->where('a.act_code',$act_code);
+			}
+			$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE()) AND (`Statutory_due_date`<=timestampadd(day, 10, now())) AND (`Statutory_due_date` >= now())");		
+			$result=$this->db->get()->result();
+			return $result;
+		} 
+		elseif (IS_COMPANY== TRUE)
+		{
+			$this->db->select('*');
+			$this->db->from('compliance_working_prior a');
+			$this->db->join('`customer_master` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+			if ($custid !== "ALL" && $act_code !=="ALL") {
+				$this->db->where(array('a.custid'=>$custid,'a.act_code'=>$act_code));
+			}
+			elseif ($custid !== "ALL" && $act_code =="ALL") {
+				$this->db->where('a.custid',$custid);
+			}
+			elseif ($custid == "ALL" && $act_code !=="ALL") {
+				$this->db->where('a.act_code',$act_code);
+			}
+			$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE()) AND (`Statutory_due_date`<=timestampadd(day, 10, now())) AND (`Statutory_due_date` >= now())");		
+			$result=$this->db->get()->result();	
+			return $result;
+		} 
+		elseif (IS_SPGUSER== TRUE)
+		{
+			$this->db->select('*');
+			$this->db->from('compliance_working_prior a');
+			$this->db->join('`uu_companyselection` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+			if ($custid !== "ALL" && $act_code !=="ALL") {
+				$this->db->where(array(	'a.custid'=>$custid,
+										'a.act_code'=>$act_code,
+										'b.username'=>USERNAME     ));
+			}		
+			elseif ($custid !== "ALL" && $act_code =="ALL") {
+				$this->db->where(array(	'a.custid'=>$custid,
+										'b.username'=>USERNAME  	));
+			}
+			elseif ($custid == "ALL" && $act_code !=="ALL") {
+				$this->db->where(array(	'a.act_code'=>$act_code,
+										'b.username'=>USERNAME 		));
+			}
+			$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE()) AND (`Statutory_due_date`<=timestampadd(day, 10, now())) AND (`Statutory_due_date` >= now())");		
+			$result=$this->db->get()->result();		
+			return $result;		
 		}
-		elseif ($custid !== "ALL" && $act_code =="ALL") {
-			$this->db->where('a.custid',$custid);
-		}
-		elseif ($custid == "ALL" && $act_code !=="ALL") {
-			$this->db->where('a.act_code',$act_code);
-		}
-		$this->db->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE()) AND (`Statutory_due_date`<=timestampadd(day, 10, now())) AND (`Statutory_due_date` >= now())");		
-	$result=$this->db->get()->result();
-	
-	return $result;
-
-
 	}
 
 	// //graph count for employee salary pf and esic

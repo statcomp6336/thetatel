@@ -349,3 +349,121 @@ $route['company/logout'] 				= 'role/Company/logout';// logout and redirect to l
 // $route['spg/Alert-Compliance'] = 'spg/Spg/show_dashAlertCompliance';// display  view of Pending Compliance
 
 
+
+//==============================================//
+//work with spgusers//
+$route['Spg_user'] = 'role/Spg_user';
+$route['Spg_user/logout']= 'role/Spg_user/logout';// logout and redirect to login page
+
+//============================================//
+// work on Dashboard
+$route['Spg_user/total-scope'] = 'role/Spg_user/show_totalScope';// display Total companyies acts and particuler
+$route['Spg_user/download/totalscope/(:num)'] = 'role/Spg_user/download_totalScope';//download totalscope
+$route['Spg_user/current-scope'] = 'role/Spg_user/show_currentScope';// display current companyies acts and particuler
+$route['Spg_user/Complilnce-Done'] = 'role/Spg_user/show_complianceDone';// display Complinece Done view 
+$route['Spg_user/Non-Compliance'] = 'role/Spg_user/show_dashNonCompliance';// display  view Non-Compliance
+$route['Spg_user/Pending-Compliance'] = 'role/Spg_user/show_dashPendingCompliance';// display  view of Pending Compliance
+$route['Spg_user/Alert-Compliance'] = 'role/Spg_user/show_dashAlertCompliance';// display  view of Pending Compliancee
+
+//=========================================//
+/* work with Employee*/
+$route['Spg_user/employee/create']		= 'role/Spg_user/view_employee_form'; // show Employee master form
+$route['Spg_user/employee/save']		= 'role/Spg_user/save_employee'; // insert Employee master form
+$route['Spg_user/employee/show']		= 'role/Spg_user/view_employee_master'; // show Employee master table
+$route['Spg_user/employee/show/(:num)']	= 'role/Spg_user/view_employee_master'; // show Employee master table
+$route['Spg_user/employee/missing-uan']	= 'role/Spg_user/view_missing_uan'; // show Employee master table
+
+//========================================//
+
+/* work with salary*/
+$route['Spg_user/salary/import']	= 'role/Spg_user/import_salary';//display salary file upload form
+
+//======================================//
+
+/* export missing uan no*/
+$route['Spg_user/export/missing-uan'] = 'role/Spg_user/show_missing_uan';
+$route['Spg_user/download/missinguan/(:num)/(:num)'] = 'role/Spg_user/download_missinguan';
+
+//=====================================//
+/*export PF Template report start*/
+$route['Spg_user/export/pf'] = 'role/Spg_user/show_company_pf';
+$route['Spg_user/download/pf/(:num)/(:num)'] = 'role/Spg_user/download_pf';
+
+/*export PF new joinee report start*/
+$route['Spg_user/export/pfnewjoinee'] = 'role/Spg_user/show_pf_newjoinee';
+$route['Spg_user/download/pfnewjoin/(:num)/(:num)']= 'role/Spg_user/download_pfnewjoinee';
+
+/*export PF Summary report start*/
+$route['Spg_user/export/pfsummary'] = 'role/Spg_user/show_pf_summary';
+$route['Spg_user/download/pfsummary/(:num)/(:num)/(:any)/(:num)']= 'role/Spg_user/download_pfsummary';
+
+/*export esic new joinee report start*/
+$route['Spg_user/export/esicnewjoinee'] = 'role/Spg_user/show_esic_newjoinee';
+$route['Spg_user/download/esicnewjoin/(:num)/(:num)']= 'role/Spg_user/download_esicnewjoinee';
+
+/*export esic Template report start*/
+$route['Spg_user/export/esictemplate'] = 'role/Spg_user/show_esic_template';
+$route['Spg_user/download/esictemplate/(:num)/(:num)/(:any)/(:num)']= 'role/Spg_user/download_esic_template';
+
+/*export esic Template empid report start*/
+$route['Spg_user/export/esictemplateempid']='role/Spg_user/show_esic_template_empid';
+$route['Spg_user/download/esictemplateempid/(:num)/(:num)/(:any)/(:num)/(:any)']= 'role/Spg_user/download_esic_template_empid';
+
+/*export esic Summary report start*/
+$route['Spg_user/export/esicsummary'] = 'role/Spg_user/show_esic_summary';
+$route['Spg_user/download/esicsummary/(:num)/(:num)/(:any)/(:num)']= 'role/Spg_user/download_esic_summary';
+
+//=====================================//
+
+/* work with Group Reconcile Reports */
+$route['Spg_user/report/sanitize']= 'role/Spg_user/genrate_santize_rec';//display sanitize report
+$route['Spg_user/report/sanitize/genrate']='role/Spg_user/sanitize_process';//genrate santizing report
+$route['Spg_user/report/process']='role/Spg_user/genrate_process_report';//display process table data for pf
+$route['Spg_user/report/proccess/genrate/pf/(:num)/(:num)']='role/Spg_user/process_for_pf';//display process table data for pf
+$route['Spg_user/report/proccess/genrate/esic/(:num)/(:num)']='role/Spg_user/process_for_esic';//display process table data for esic
+$route['Spg_user/report/backlog']='role/Spg_user/genrate_backloag_report';//display backlog table data 
+$route['Spg_user/report/backlog/employee/edit/(:num)/(:num)']='role/Spg_user/edit_backlog_emp';//display backlog table data  edit and correct
+$route['Spg_user/report/backlog/salary/edit/(:num)/(:num)']	= 'role/Spg_user/edit_backlog_sal';//display backlog table data  edit and correct
+
+//========================================================//
+
+/* work with Bulk compliance */
+$route['Spg_user/compliance/bulk-update']= 'role/Spg_user/show_bulk_update'; //display bulk update view for company
+$route['Spg_user/compliance/bulk-compliance']= 'role/Spg_user/show_bulk_compliance'; //display bulk compliance view for company
+$route['Spg_user/compliance/bulk-compliance/comment/(:any)/(:num)/(:any)']= 'role/Spg_user/show_bulk_compliance'; //display bulk compliance view for company
+$route['Spg_user/compliance/bulk-compliance/update']= 'role/Spg_user/edit_bulk_compliance'; //display bulk compliance view for company
+
+//===========================================================//
+
+/*export compliance report start*/
+$route['Spg_user/export/compliance'] = 'role/Spg_user/show_compliance';
+$route['Spg_user/download/compliance/(:num)/(:num)']= 'role/Spg_user/download_compliance';
+
+/*export non compliance report start*/
+$route['Spg_user/export/noncompliance'] = 'role/Spg_user/show_noncompliance';
+$route['Spg_user/download/noncompliance/(:num)/(:num)']= 'role/Spg_user/download_noncompliance';
+
+/*export approval(current month(duedate) approved) report start*/
+$route['Spg_user/export/approval'] = 'role/Spg_user/show_approval';
+
+/*export Rejected report start*/
+$route['Spg_user/export/rejected'] = 'role/Spg_user/show_rejected';
+
+/*export Compliance Document report start*/
+$route['Spg_user/export/compliancedocument']='role/Spg_user/show_compliance_document';
+
+/*export entity details(company registered details) report start*/
+$route['Spg_user/export/entitydetails'] = 'role/Spg_user/show_entity_details';
+
+/*export Employee Details report start*/
+$route['Spg_user/export/employeedetails'] = 'role/Spg_user/show_employee_details';
+
+/*export Compliance Request Details report start*/
+$route['Spg_user/export/compliancerequest'] = 'role/Spg_user/Show_compliance_request_details';
+
+/*export Salary Details report start*/
+$route['Spg_user/export/salarydetails'] = 'role/Spg_user/show_salary_details';
+
+
+
+
