@@ -246,7 +246,9 @@ class Report_model extends Base_model
 	}
 	private function getCust()
 	{
-		$cust=$this->newdb->select('b.custid,b.entity_name')
+		if (IS_SPG== TRUE)
+		{
+			$cust=$this->newdb->select('b.custid,b.entity_name')
 						// ->from('compliance_scope a')
 						->from('customer_master a')
 						->join('customer_master b', 'a.custid=b.custid')
@@ -254,7 +256,21 @@ class Report_model extends Base_model
 						->group_by('a.custid')
 						->order_by('b.entity_name')
 						->get()->result();
-		return $cust;
+			return $cust;
+		}  
+		elseif (IS_SPGUSER== TRUE)
+		{
+			$cust=$this->newdb->select('b.custid,b.entity_name')
+						// ->from('compliance_scope a')
+						->from('customer_master a')
+						->join('add_companies_for_users b', 'a.custid=b.custid')
+						->where(array('a.allianceid'=>user_id(),'b.username'=>USERNAME))
+						->group_by('a.custid')
+						->order_by('b.entity_name')
+						->get()->result();
+			return $cust;
+		}
+		
 	}
 
 	private function emp_data($id='')
@@ -1098,10 +1114,20 @@ class Report_model extends Base_model
 	{
 		//displaying data from table
 		// $spgid=$this->session->SESS_CUST_ID;
+		if (IS_SPG== TRUE)
+		{
 			return $this->db->select("custid,entity_name")
 					->from('customer_master')
 					->where(array(	'spgid' =>user_id()))
 					->get()->result();
+		} 		 
+		elseif (IS_SPGUSER== TRUE)
+		{
+			return $this->db->select("custid,entity_name")
+					->from('uu_companyselection')
+					->where(array(	'spgid' =>user_id(),'username'=>USERNAME ))
+					->get()->result();
+		} 					
 	}
 
 	/* get Employee Details data from employee_master_new table */

@@ -64,7 +64,15 @@ class Spg extends Base_controller {
       "myapproval_access"   =>TRUE,
       "userprofile_access"  =>TRUE,
       "managefiles_access"  =>TRUE,
-      "report_access"       =>TRUE,
+      
+      "report_access"       			=>TRUE,
+      "reportcompliance_access"   		=>TRUE,
+      "reportemplyoee_access"   		=>TRUE,
+      "reportsalary_access"   			=>TRUE,
+      "reportentities_access"   		=>TRUE,
+      "reportcompliancerequest_access"	=>TRUE,
+      "reportuser_access"   			=>TRUE,
+      "reportregister_access"   		=>TRUE,
 
       );
 

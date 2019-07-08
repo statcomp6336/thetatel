@@ -648,7 +648,7 @@ trait Employee {
       $location =!empty($this->input->post('location'))?$this->input->post('location'):NULL;
       //echo $spgid;
 
-        if ($$this->data['access'][$this->session->TYPE] == TRUE) 
+        if ($this->data['access'][$this->session->TYPE] == TRUE) 
         {
            
               $this->data['where'] = 'Employee';
@@ -688,8 +688,10 @@ trait Employee {
             $this->load->library("pagination");
            
              $this->data['where'] = 'Employee';
-             $this->data['sub_menu'] = 'Missing-uan';             
+             $this->data['sub_menu'] = 'Missing-uan';
 
+             // All Company data
+             $this->data['result1']=$this->emp->get_entitydetails();              
              // location data
              $this->data['result']=$this->emp->get_location();      
             

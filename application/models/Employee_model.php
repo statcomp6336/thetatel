@@ -111,6 +111,27 @@ public function emp_error()
 							->group_by(array("location"))
 							->get()->result();
 	}
+
+	/* get entity Details data from customer_master table */
+	public function get_entitydetails()
+	{
+		//displaying data from table
+		/// $spgid=$this->session->SESS_CUST_ID;
+		if (IS_SPG== TRUE)
+		{
+			return $this->db->select("custid,entity_name")
+					->from('customer_master')
+					->where(array(	'spgid' =>user_id()))
+					->get()->result();
+		} 		 
+		elseif (IS_SPGUSER== TRUE)
+		{
+			return $this->db->select("custid,entity_name")
+					->from('uu_companyselection')
+					->where(array(	'spgid' =>user_id(),'username'=>USERNAME ))
+					->get()->result();
+		} 					
+	}
 	// check excel upload company is exist or not
 	public function company_exist($custid='')
 	{

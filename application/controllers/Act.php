@@ -258,12 +258,12 @@ trait Act {
 		}
 		
 			
-			 if ($page_data['access'][$this->session->TYPE] == TRUE) {
-			 	 $this->data['page_title'] = $page_data['page_title'];
+			 if ($this->data['access'][$this->session->TYPE] == TRUE) {
+			 	 //$this->data['page_title'] = $page_data['page_title'];
 				 $this->data['where'] = 'Compilance';
 				 $this->data['sub_menu'] = 'Bulk-Compliance';
-				 $this->data['user_type'] = $page_data['user_type'];
-				 $this->data['menu'] = $page_data['menu'];
+				 //$this->data['user_type'] = $page_data['user_type'];
+				 //$this->data['menu'] = $page_data['menu'];
 
 				 // act detatails data
 				  $this->data['bulk_data']=array('companys'=> $this->act->get_compActs(user_id()),
@@ -273,7 +273,7 @@ trait Act {
 			 }
 			 else
 			 {
-			 	echo "404 no access";
+			 	$this->load->view('404');
 			 }
 		
 	}

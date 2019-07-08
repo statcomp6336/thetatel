@@ -23,7 +23,16 @@
 								</div>
 								<div class="col-sm-5">
 									<input type="hidden" name="spgid" value="<?php echo user_id();?>">
-									<input type="text"  name="comp_name" placeholder="Type something&hellip;" class="form-control required" />
+									<!-- <input type="text"  name="comp_name" placeholder="Type something&hellip;" class="form-control required" /> -->
+									<input type="text" id="comp_name" class="width-100" name="cust_name" required list="comp" />
+									
+									<datalist id="comp">
+									<?php 
+									foreach ($result1 as $key) {
+										echo "<option data-value='".$key->custid."' value='".$key->entity_name."' />";
+									}
+									?>
+									</datalist>
 									
 									<span class="help-block hide">Example block-level help text here.</span>
 								</div>
@@ -38,8 +47,8 @@
 									<label>Company Register Id</label>
 								</div>
 								<div class="col-sm-5">
-
-									<input type="text" name="custid" placeholder="Type something&hellip;" class="form-control required" />
+									<input type="text" name="custid" placeholder="Type something&hellip;" id="custid" class="form-control required" />
+									<!-- <input type="text" name="custid" placeholder="Type something&hellip;" class="form-control required" /> -->
 									<span class="help-block hide">Example block-level help text here.</span>
 								</div>
 							</div>
@@ -83,3 +92,21 @@
 		</div>
 	</div>
 </div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function(){
+	 
+  $("#comp_name").on('input', function(){
+
+  	var datalist=$('#comp option');
+  	var val=$(this).val();
+  	var optionvalue= datalist.filter(function() {
+            return this.value == val;
+        }).data('value');
+
+    $('#custid').val(optionvalue);    
+  });
+
+});
+</script>

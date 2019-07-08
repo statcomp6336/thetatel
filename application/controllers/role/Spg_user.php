@@ -64,16 +64,22 @@ class Spg_user extends Base_controller {
 		// menubare access setting
 		$this->data['menu']=array(
       // dashbord access if true to dispaly and flase it hide
-      "dashboard_access"    => TRUE,
-      "notification_access" => FALSE,//
-      "setup_access"        =>FALSE,
-      "myactivity_access"   =>TRUE,
-      "mycompliance_access" =>TRUE,
-      "myapproval_access"   =>FALSE,
-      "userprofile_access"  =>FALSE,
-      "managefiles_access"  =>FALSE,
-      "report_access"       =>TRUE,
-
+      "dashboard_access"    			=> TRUE,
+      "notification_access" 			=> FALSE,//
+      "setup_access"        			=>FALSE,
+      "myactivity_access"   			=>TRUE,
+      "mycompliance_access" 			=>TRUE,
+      "myapproval_access"   			=>FALSE,
+      "userprofile_access"  			=>FALSE,
+      "managefiles_access"  			=>FALSE,
+      "report_access"       			=>TRUE,
+      "reportcompliance_access"   		=>TRUE,
+      "reportemplyoee_access"   		=>FALSE,
+      "reportsalary_access"   			=>FALSE,
+      "reportentities_access"   		=>FALSE,
+      "reportcompliancerequest_access"	=>FALSE,
+      "reportuser_access"   			=>FALSE,
+      "reportregister_access"   		=>FALSE,
       );
 
 		$this->load->model('Dashboard_model','dash');

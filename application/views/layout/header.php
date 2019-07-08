@@ -1013,6 +1013,8 @@ if ( $menu['report_access'] == TRUE)
 							
 
 							<!-- +++++++++++++ -->
+				<?php if ( $menu['reportcompliance_access'] == TRUE) {					
+						?>
 									<li class="hover">
 
 								<a href="#" class="dropdown-toggle">
@@ -1067,6 +1069,9 @@ if ( $menu['report_access'] == TRUE)
 									</li>
 								</ul>
 							</li>
+			
+			<?php } if ( $menu['reportemplyoee_access'] == TRUE) { ?>
+
 							<!-- +++++++++++++ -->
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/export/employeedetails'); ?>">
@@ -1076,6 +1081,8 @@ if ( $menu['report_access'] == TRUE)
 
 								<b class="arrow"></b>
 							</li>
+	
+			<?php } if ( $menu['reportsalary_access'] == TRUE) { ?>
 
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/export/salarydetails'); ?>">
@@ -1086,6 +1093,8 @@ if ( $menu['report_access'] == TRUE)
 								<b class="arrow"></b>
 							</li>
 
+			<?php } if ( $menu['reportentities_access'] == TRUE) { ?>
+
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/export/entitydetails'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -1094,6 +1103,8 @@ if ( $menu['report_access'] == TRUE)
 
 								<b class="arrow"></b>
 							</li>
+
+			<?php } if ( $menu['reportcompliancerequest_access'] == TRUE) { ?>
 
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/export/compliancerequest'); ?>">
@@ -1104,6 +1115,8 @@ if ( $menu['report_access'] == TRUE)
 								<b class="arrow"></b>
 							</li>
 
+			<?php } if ( $menu['reportuser_access'] == TRUE) { ?>
+
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/export/spguserdetails'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -1112,6 +1125,8 @@ if ( $menu['report_access'] == TRUE)
 
 								<b class="arrow"></b>
 							</li>
+
+			<?php } if ( $menu['reportregister_access'] == TRUE) { ?>
 
 							<li class="hover" >
 								<a href="error-404.html" class="dropdown-toggle">
@@ -1163,6 +1178,7 @@ if ( $menu['report_access'] == TRUE)
 									</li>									
 								</ul>							
 							</li>
+			<?php } ?>
 							<!-- +++++++++++++ -->
 							
 							<!-- +++++++++++++ -->

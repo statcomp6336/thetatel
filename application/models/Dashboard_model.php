@@ -277,10 +277,10 @@ class Dashboard_model extends Base_model
 		}
 		elseif (IS_SPGUSER== TRUE) 
 		{
-			//echo "hii";
+			//select * from compliance_working_prior a INNER JOIN `customer_master` b on(a.custid=b.custid) where EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())
 			$this->db->select('*');
-			$this->db->from('compliance_working_priore a');		
-			$this->db->join('`uu_companyselection` b','a.custid=b.custid AND a.spg_id='.user_id().'');
+			$this->db->from('compliance_working_prior a');		
+			$this->db->join('`uu_companyselection` b','a.custid=b.custid AND a.spg_id='.user_id().'','inner');
 			if ($custid !== "ALL" && $act_code !=="ALL") {
 				$this->db->where(array(	'a.custid'=>$custid,
 										'a.act_code'=>$act_code,
