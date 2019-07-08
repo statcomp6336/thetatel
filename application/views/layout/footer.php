@@ -192,6 +192,12 @@
         $parent.addClass('active');
         
     });
+
+  //   $(" .submenu li a").on("click", function(e) {
+   
+  //   $('.nav li.active').removeClass("active");
+  //   $(this).parents('..nav li').addClass("active");
+  // });
 });
 		</script>
 	</body>

@@ -748,8 +748,34 @@
 [02-Jul-2019 12:40:35 Europe/Berlin] PHP Fatal error:  Call to a member function get() on null in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Salary.php on line 160
 [02-Jul-2019 12:41:04 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\newstatcomp\thetatel\application\views\edit_salary.php on line 108
 [02-Jul-2019 12:45:37 Europe/Berlin] PHP Parse error:  syntax error, unexpected ']', expecting ',' or ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\views\edit_salary.php on line 111
+<<<<<<< HEAD
+[03-Jul-2019 08:46:26 Europe/Berlin] PHP Parse error:  syntax error, unexpected ',' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Users.php on line 60
+[03-Jul-2019 10:19:28 Europe/Berlin] PHP Parse error:  syntax error, unexpected '?>' in C:\xampp\htdocs\newstatcomp\thetatel\application\views\edit_salary.php on line 126
+[03-Jul-2019 10:51:18 Europe/Berlin] PHP Parse error:  syntax error, unexpected '{' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Employee_model.php on line 123
+[03-Jul-2019 12:33:56 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Employee_model.php on line 135
+[03-Jul-2019 12:43:01 Europe/Berlin] PHP Fatal error:  Call to undefined function show() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Salary.php on line 164
+[03-Jul-2019 12:46:44 Europe/Berlin] PHP Fatal error:  Call to undefined function arrya() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Salary.php on line 63
+[03-Jul-2019 13:11:14 Europe/Berlin] PHP Fatal error:  Maximum execution time of 300 seconds exceeded in C:\xampp\htdocs\newstatcomp\thetatel\application\views\edit_salary.php on line 99
+[04-Jul-2019 06:35:51 Europe/Berlin] PHP Fatal error:  Out of memory (allocated 1035730944) (tried to allocate 176422912 bytes) in C:\xampp\htdocs\newstatcomp\thetatel\application\views\edit_salary.php on line 97
+[04-Jul-2019 06:38:53 Europe/Berlin] PHP Fatal error:  Allowed memory size of 1048576000 bytes exhausted (tried to allocate 128 bytes) in C:\xampp\htdocs\newstatcomp\thetatel\system\database\drivers\mysqli\mysqli_result.php on line 229
+[04-Jul-2019 07:08:53 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Salary.php on line 162
+[04-Jul-2019 10:34:52 Europe/Berlin] PHP Fatal error:  Call to undefined method CI_DB_mysqli_driver::save_employeesData() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Employee.php on line 283
+[04-Jul-2019 13:03:03 Europe/Berlin] PHP Parse error:  syntax error, unexpected '''' (T_CONSTANT_ENCAPSED_STRING) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 276
+[05-Jul-2019 07:55:08 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\spg\Spg.php on line 76
+[05-Jul-2019 08:14:46 Europe/Berlin] PHP Fatal error:  Call to a member function search_blog() on null in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\spg\Spg.php on line 63
+[05-Jul-2019 14:32:32 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Company_ext.php on line 471
+[07-Jul-2019 16:38:26 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')', expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in C:\xampp\htdocs\newstatcomp\thetatel\application\views\bulk_timeline.php on line 54
+[07-Jul-2019 16:38:39 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')', expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in C:\xampp\htdocs\newstatcomp\thetatel\application\views\bulk_timeline.php on line 54
+[08-Jul-2019 06:51:28 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$key' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\views\bulk_timeline.php on line 62
+[08-Jul-2019 06:52:08 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$key' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\views\bulk_timeline.php on line 62
+[08-Jul-2019 10:29:55 Europe/Berlin] PHP Fatal error:  Cannot redeclare DB_install::CreateTable_salary_master() in C:\xampp\htdocs\newstatcomp\thetatel\application\models\DB_install.php on line 1057
+=======
 [04-Jul-2019 10:54:31 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<' in C:\xampp\htdocs\newstatcomp\thetatel\application\views\dashboard.php on line 197
 [05-Jul-2019 11:11:13 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '=', expecting ')' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Dashboard_model.php on line 217
 [05-Jul-2019 11:12:22 Asia/Kolkata] PHP Fatal error:  Call to undefined method Dashboard_model::is_spg() in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Dashboard_model.php on line 167
+<<<<<<< HEAD
 [08-Jul-2019 11:24:51 Asia/Kolkata] PHP Parse error:  syntax error, unexpected end of file in C:\xampp\htdocs\newstatcomp\thetatel\application\views\layout\header.php on line 1364
 [08-Jul-2019 16:12:36 Asia/Kolkata] PHP Fatal error:  Call to a member function get_entitydetails() on a non-object in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Employee.php on line 694
+=======
+>>>>>>> 20d6903230619ac99ca452fe9bb72afe4cced3d0
+>>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b

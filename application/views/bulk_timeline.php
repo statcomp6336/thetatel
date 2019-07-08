@@ -51,7 +51,8 @@
     <?php $count =0;
     foreach ($companies as $key) {
       $count++; 
-      if($key->)    
+    
+     
     ?>
     <tr>
       <td class="center">
@@ -64,20 +65,89 @@
       <td>
         <a href="<?php echo base_url(''.$user_type.'/compliance/bulk-timeline/'.hash_id($key->custid).'');?>"><?php echo $key->entity_name;?></a>
       </td>
-      <td class="center"><i class="fa fa-check" style="font-size:25px;color:<?php echo 'red';?>"></td>
-      <td class="center"><i class="fa fa-check" style="font-size:25px;color:green"></i></td>
-      <td class="center"><i class="fa fa-check" style="font-size:25px;color:skyblue"></i></td>
+      <td class="center">
+        <?php
+          if ($key->IS_FileRecive == 0 ) {
+           echo "<i class='fa fa-times' style='font-size:25px;color:red'>";
+          }
+          else
+          {
+             echo "<i class='fa fa-check' style='font-size:25px;color:green'>";
+          }
+
+        ?>        
+      </td>
+       <td class="center">
+        <?php
+          if ($key->IS_FileUpload == 0 ) {
+           echo "<i class='fa fa-times' style='font-size:25px;color:red'>";
+          }
+          else
+          {
+             echo "<i class='fa fa-check' style='font-size:25px;color:green'>";
+          }
+
+        ?>        
+      </td>
+      <td class="center">
+        <?php
+          if ($key->IS_PfProcess == 0 ) {
+           echo "<i class='fa fa-times' style='font-size:25px;color:red'>";
+          }
+          else
+          {
+             echo "<i class='fa fa-check' style='font-size:25px;color:green'>";
+          }
+
+        ?>        
+      </td>
 
       
       <td class="center">
-         <i class="fa fa-check" style="font-size:25px;color:orange"></i>
+        <?php
+          if ($key->IS_Compliation == 0 ) {
+           echo "<i class='fa fa-times' style='font-size:25px;color:red'>";
+          }
+          elseif ($key->IS_Compliation == 2 ) {
+            echo "<i class='fa fa-check' style='font-size:25px;color:skyblue'>";
+          }
+           elseif ($key->IS_Compliation == 3 ) {
+            echo "<i class='fa fa-check' style='font-size:25px;color:orange'>";
+          }
+          else
+          {
+             echo "<i class='fa fa-check' style='font-size:25px;color:green'>";
+          }
+
+        ?>        
       </td>
       <td class="center">
-         <i class="fa fa-times" style="font-size:25px;color:red"></i>
+        <?php
+          if ($key->IS_Approve == 0 ) {
+           echo "<i class='fa fa-times' style='font-size:25px;color:red'>";
+          }
+          elseif ($key->IS_Approve == 2) {
+            echo "<i class='fa fa-check' style='font-size:25px;color:orange'>";
+          }
+          else
+          {
+             echo "<i class='fa fa-check' style='font-size:25px;color:green'>";
+          }
+
+        ?>        
       </td>
-      <td class="center">          
-          <i class="fa fa-check" style="font-size:25px;color:green"></i>        
-      </td>      
+      <td class="center">
+        <?php
+          if ($key->IS_Complete == 0 ) {
+           echo "<i class='fa fa-times' style='font-size:25px;color:red'>";
+          }
+          else
+          {
+             echo "<i class='fa fa-check' style='font-size:25px;color:green'>";
+          }
+
+        ?>        
+      </td>   
     </tr>    
   <?php }?>
     

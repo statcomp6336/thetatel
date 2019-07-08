@@ -10,8 +10,12 @@
     display: block;
 	}
 </style>
-<?php echo show_msg();?>
-
+<?php 
+ if (!empty(show_msg())) {     
+        $data['msg'] =array('msg' => show_msg());
+        $this->load->view('alert',$data);
+    }
+?>
 <link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/css/jquery-ui.custom.min.css" />
 <link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/css/chosen.min.css" />		
  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
@@ -67,7 +71,7 @@
 		}
 		else
 		{
-			echo " Data Not Found";
+			echo "<tr><td> Data Not Found</td><tr>";
 		}				
 		?>			
 		</tr>	

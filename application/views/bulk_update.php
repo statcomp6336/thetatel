@@ -1,4 +1,15 @@
-<!-- <div class="col-sm-5"> -->
+<style type="text/css">
+	.widget-main{
+		height: fit-content;
+	}
+</style>
+
+<?php 
+    if (!empty(show_msg())) {     
+        $data['msg'] =array('msg' => show_msg());
+        $this->load->view('alert',$data);
+    }
+ ?>	<!-- <div class="col-sm-5"> -->
 	<div class="container">
 	<div class="widget-box ">
 		<div class="widget-header">
@@ -23,9 +34,17 @@
 								</div>
 								<div class="col-sm-5">
 
-									<input type="text"  name="comp_name" placeholder="Type something&hellip;" class="form-control required" />
+								<input type="text" id="comp_name" class="width-100" name="cust_name" required list="comp" />
 									
-									<span class="help-block hide">Example block-level help text here.</span>
+									<datalist id="comp">
+									<?php 
+									foreach ($companys as $key) {
+										echo "<option data-value='".$key->custid."' value='".$key->entity_name."' />";
+									}
+									?>
+
+								</datalist>
+									
 								</div>
 							</div>
 						</div>						
@@ -39,7 +58,7 @@
 								</div>
 								<div class="col-sm-5">
 
-									<input type="text" name="custid" placeholder="Type something&hellip;" class="form-control required" />
+									<input type="text" name="custid" placeholder="Type something&hellip;" id="custid" class="form-control required" />
 									<span class="help-block hide">Example block-level help text here.</span>
 								</div>
 							</div>
@@ -75,3 +94,17 @@
 		</div>
 	</div>
 </div>
+<script>
+$(document).ready(function(){
+  $("#comp_name").on('input', function(){
+  	var datalist=$('#comp option');
+  	var val=$(this).val();
+  	var optionvalue= datalist.filter(function() {
+            return this.value == val;
+        }).data('value');
+
+    $('#custid').val(optionvalue);    
+  });
+
+});
+</script>

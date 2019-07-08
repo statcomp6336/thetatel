@@ -88,7 +88,7 @@ class Home extends Base_controller {
 
 	/*----------------------*/
 	public function is_valid($data)
-		{
+		{ 
 
 			$set = array('cid' => $data['cid'],
 					  	  'username' => $data['username'],

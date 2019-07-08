@@ -61,13 +61,13 @@ public function emp_error()
     }
     public function is_uploaded_salary($custid,$empid,$year,$month)
     {
-    	$sql=$this->db->select('*')->from('salary_master')->where(array('custid'=>$custid,'empid' =>$empid,'year'=>$year,'month'=>$month))->get();
+    	$sql=$this->newdb->select('*')->from('salary_master')->where(array('custid'=>$custid,'empid' =>$empid,'year'=>$year,'month'=>$month))->get();
     	if ($sql->num_rows() > 0) {
-    		return TRUE;
+    		return FALSE;
     	}
     	else
     	{
-    		return FALSE;
+    		return TRUE;
     	}
 
     }
@@ -77,24 +77,23 @@ public function emp_error()
     	//return $result;
 
     	//displaying data from table		
-			$this->db->select("entity_name,custid,emp_name,emp_id,gender,marital_status,pf_deduct,ul_pf,esic_deduct,esic_no,uan_no,branch,dept,designation,fath_hus_name,reldob,reladhr,relname,relage,nom1,nom2,nom3,nom4,email,mob,per_address,temp_address,pan,namepan,adhaar,nameadhr,bank_ac,ifsc,bank_name,bank_branch,dobadhr,education,emp_status,phy_handi,phy_handi_cat,birth_date,join_date,member_date,exit_date,int_worker,vendor_id,contractor_name,location");
-			$this->db->from('employee_master_new');
+			$this->newdb->select("entity_name,custid,emp_name,emp_id,gender,marital_status,pf_deduct,ul_pf,esic_deduct,esic_no,uan_no,branch,dept,designation,fath_hus_name,reldob,reladhr,relname,relage,nom1,nom2,nom3,nom4,email,mob,per_address,temp_address,pan,namepan,adhaar,nameadhr,bank_ac,ifsc,bank_name,bank_branch,dobadhr,education,emp_status,phy_handi,phy_handi_cat,birth_date,join_date,member_date,exit_date,int_worker,vendor_id,contractor_name,location");
+			$this->newdb->from('employee_master_new');
 			if($location=="ALL")
 			{
-				$this->db->where(array(	'custid'=>$custid,
+				$this->newdb->where(array(	'custid'=>$custid,
 										'spgid' =>user_id(),
-										'uan_no'=>'0',
-										'uan_no'=>' '));
+										'uan_no'=>'N/A',
+										));
 			}
 			else
 			{
-				$this->db->where(array(	'custid'	=>	$custid,
+				$this->newdb->where(array(	'custid'	=>	$custid,
 										'spgid' 	=>	user_id(),
 										'location'	=>	$location,
-										'uan_no'	=>	'0',
-										'uan_no'	=>	' '			));
+										'uan_no'=>'N/A',		));
 			}		
-			$result=$this->db->get()->result();
+			$result=$this->newdb->get()->result();
 			return $result;
     }
 
@@ -104,7 +103,7 @@ public function emp_error()
 	{
 		//displaying data from table
 		
-			return $this->db->select("location")
+			return $this->newdb->select("location")
 							->from('employee_master_new')
 							//->where('location != ',NULL,FALSE);
 							->where(array(	'location!=' =>NULL))
@@ -112,6 +111,7 @@ public function emp_error()
 							->get()->result();
 	}
 
+<<<<<<< HEAD
 	/* get entity Details data from customer_master table */
 	public function get_entitydetails()
 	{
@@ -132,10 +132,67 @@ public function emp_error()
 					->get()->result();
 		} 					
 	}
+=======
+    /* get companyies data from customer table */
+	public function get_companyies()
+	{
+		//displaying data from table
+		
+			return $this->newdb->select("entity_name,custid,allianceid")
+							->from('customer_master')							
+							->group_by(array("custid"))
+							->get()->result();
+	}
+	
+>>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
 	// check excel upload company is exist or not
 	public function company_exist($custid='')
 	{
 		return $this->is_exist('customer_master',array('custid'=>$custid));
 	}
+	// Store Salary on salary master table
+	public function storeSalary($value='')
+	{
+		if($this->newdb->query("INSERT IGNORE INTO salary_master (`srno`, `spgid`, `custid`, `entity_name`, `empid`, `pfno`, `esicno`, `name`, `Month_days`, `paid_days`, `fixgross`, `basic`, `DA`, `HRA`, `CA`, `CCA`, `EA`, `Other_reimb`, `OA`, `OT`, `WA`, `LTA`, `monthly_gross`, `PF`, `VPF`, `ESIC`, `PT`, `IT`, `LWF`, `OD`, `net_pay`, `paymentmode`, `year`, `month`, `epf_wages`, `total_deduction`, `present_date`) SELECT DISTINCT `srno`, `spgid`, `custid`, `entity_name`, `empid`, `pfno`, `esicno`, `name`, `Month_days`, `paid_days`, `fixgross`, `basic`, `DA`, `HRA`, `CA`, `CCA`, `EA`, `Other_reimb`, `OA`, `OT`, `WA`, `LTA`, `monthly_gross`, `PF`, `VPF`, `ESIC`, `PT`, `IT`, `LWF`, `OD`, `net_pay`, `paymentmode`, `year`, `month`, `epf_wages`, `total_deduction`, `present_date` FROM temp_salary_master"))	
+		{	
+		$this->remove('temp_salary_master');		
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
+	}
+	public function save_TemSal($saveExcelData,$id='')
+	{
+		 $this->newdb->insert_batch('temp_salary_master',$saveExcelData);
+				 if($this->edit('timeline',array('custid'=>$id,'spgid'=>user_id()),array('IS_FileUpload'=>3)))
+				 {
+
+				 	return TRUE;
+				 }
+				 else
+				 {
+				 	return FALSE;
+				 }
+				 
+
+	}
+	public function save_employeesData($saveExcelData,$id='')
+	{
+		 $this->newdb->insert_batch('employee_master_new',$saveExcelData);
+				 if($this->edit('timeline',array('custid'=>$id,'spgid'=>user_id()),array('IS_FileUpload'=>2)))
+				 {
+
+				 	return TRUE;
+				 }
+				 else
+				 {
+				 	return FALSE;
+				 }
+				 
+
+	}
+
 
 }	

@@ -36,7 +36,10 @@ trait Salary {
             $this->upload->initialize($config);            
             if (!$this->upload->do_upload('file')) {
             	put_msg($this->upload->display_errors());
+
                 $error = array('error' => $this->upload->display_errors());
+              redirect(base_url(''.$user.'/salary/import'));
+                exit();
             } else {
                 $data = array('upload_data' => $this->upload->data());
             }
@@ -45,6 +48,8 @@ trait Salary {
                 $import_xls_file = $data['upload_data']['file_name'];
             } else {
                 $import_xls_file = 0;
+                 redirect(base_url(''.$user.'/salary/import'));
+                exit();
             }
             $inputFileName = $path . $import_xls_file;
             
@@ -55,17 +60,20 @@ trait Salary {
                 $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
                 $flag = true;
                 $i=0;
+                $data_count=0;
+                $exist_record=0;
                 foreach ($allDataInSheet as $value) {
+                	$data_count++;
                   if($flag){
                     $flag =false;
                     continue;
                   }
-                //   if ($this->emp->company_exist($value['A'])== FALSE) {
-                //     unlink($inputFileName);
-                //     put_msg("company is not register your not file uploaded");  
-                //     goto_back();            
-                //     exit();
-                // }
+                  if ($this->emp->company_exist($value['A'])== FALSE) {
+                    unlink($inputFileName);
+                    put_msg("company is not register your not file uploaded");  
+                      redirect(base_url(''.$user.'/salary/import'));            
+                    exit();
+                }
             $e_code = $this->emp->is_uploaded_salary($value['A'],$value['C'],$value['AE'],$value['AF']);
                   if ($e_code == TRUE) {
 
@@ -107,7 +115,7 @@ trait Salary {
                     'is_uploaded'=> $e_code
                       );
                   $i++;
-               
+               $custid=is($value['A']);
                  	$saveExcelData[$i] = array(
 									'entity_name' 	=> is($value['B']), 
 									'custid' 		=> is($value['A']), 
@@ -144,18 +152,28 @@ trait Salary {
 									'month' 		=> $value['AF'],//
 									'epf_wages' 	=> $value['AG'],//
 									'total_deduction'=> $value['AH'],//
-									
+								 	
 									
 								); 
-				 } 
+				 		}
+				 		else
+				 		{
+				 			$exist_record++;
+				 			put_msg('some data has already uploaded..!');
+				 		}
+				}
 				 if (!empty($saveExcelData)) {
 				 
-				 $this->newdb->insert_batch('temp_salary_master',$saveExcelData);
+					$this->emp->save_TemSal($saveExcelData,$custid);
+					if ($data_count == $exist_record) {
+						put_msg("All Records are already updated");
+					}
+
+					
 				 }
 				  
-				}
-							
-                
+					
+              
 		       $this->data['where'] = 'Employee';
 		       $this->data['sub_menu'] = 'Salary';
 		      
@@ -168,7 +186,9 @@ trait Salary {
                         . '": ' .$e->getMessage());
             }
           }else{
-              echo $error['error'];
+              put_msg($error['error']);
+               redirect(base_url(''.$user.'/salary/import'));
+              exit();
             }
 		}
 		elseif (!empty($process) && $process == 'U') {
@@ -287,5 +307,20 @@ trait Salary {
 		// echo "<pre>";
 		// var_dump(is($saveExcelData));
 		// var_dump(is($editExcelData));
+	}
+	public function GetSalaryFromTempSal($user='')
+	{
+		$this->load->model('Employee_model','emp');
+		if($this->emp->storeSalary())
+		{
+			put_msg('Save Salary');
+			 redirect(base_url(''.$user.'/salary/import'));
+		}
+		else
+		{
+			put_msg('Something has error..!');
+			 redirect(base_url(''.$user.'/salary/import'));
+		}
+
 	}
 }

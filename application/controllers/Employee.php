@@ -99,7 +99,7 @@ trait Employee {
                     goto_back();            
                     exit();
                 }
-                             
+                  $excelid=$value['A'];       
 
     $e_code = $this->emp->is_uniqemployee(is($value['A']),is($value['D']),is($value['AB']),is($value['K']),is($value['AD']))?$value['D']:"N/A";
                   if ($e_code !== "N/A") {
@@ -140,7 +140,7 @@ trait Employee {
                                         'ul_pf'           => $value['H'],
                                         'esic_deduct'     => $value['I'],
                                         'esic_no'         => $value['J'],
-                                        'uan_no'          => $value['K'],
+                                        'uan_no'          => is($value['K'],'N/A'),
                                         'dobadhr'         => $value['AK'],
                                         'entity_name'     => $value['B'],
                                         'branch'          => $value['L'],
@@ -202,7 +202,7 @@ trait Employee {
                                         'ul_pf'           => $value['H'],
                                         'esic_deduct'     => $value['I'],
                                         'esic_no'         => $value['J'],
-                                        'uan_no'          => $value['K'],
+                                        'uan_no'          => is($value['K'],'N/A'),
                                         'dobadhr'         => $value['AK'],
                                         'entity_name'     => $value['B'],
                                         'branch'          => $value['L'],
@@ -266,7 +266,7 @@ trait Employee {
                     'ul_pf'           => $value['H'],
                     'esic_deduct'     => $value['I'],
                     'esic_no'         => $value['J'],
-                    'uan_no'          => $value['K'],
+                    'uan_no'          => is($value['K'],'N/A'),
                     'dobadhr'         => date('Y-m-d',strtotime($value['AK'])),
                     'entity_name'     => $value['B'],
                     'branch'          => $value['L'],
@@ -290,7 +290,10 @@ trait Employee {
                  $this->newdb=$this->load->database('db1',TRUE);     
                if (!empty($inserdata)) {
                 put_msg('save employee data successfully...!');
-                 $this->newdb->insert_batch('employee_master_new',$inserdata);
+                 $this->load->model('Employee_model','emp');
+                 $this->emp->save_employeesData($inserdata,$excelid);
+                  
+                 
                }
                elseif (!empty($inserErrorData)) {
                 put_msg('some data has an error ..!');
@@ -660,7 +663,7 @@ trait Employee {
               $this->data['tableTools'] = array(
                           0 =>array(
                             //'link'=> base_url(''.$page_data['user_type'].'/download/missinguan/'.$custid.''),
-                            'link'=> base_url(''.$this->data['user_type'].'/download/missinguan/'.$spgid.'/'.$custid.''),
+                            'link'=> base_url(''.$this->data['user_type'].'/download/missinguan/'.hash_id($custid).''),
                             'button' =>'Download in Excel',
                             'class'  =>'btn-success'
                               )
@@ -670,7 +673,7 @@ trait Employee {
             $this->data['tableCol'] = array("Entity Name","Entity Code","Employee Name","Employee Code","Gender","Marital Status","PF Deduction","Upper Limit","ESIC Deduction","Existing ESIC No."," Existing UAN No","Branch","Department","Designation","Father/Husband Name","Relation DOB","Relation Adhar No","Relation Name","Relation Age","Nomination 1","Nomination 2","Nomination 3","Nomination 4","Email","Phone","Permanent Address","Temporary Address","Pan No","Name as per Pan Card","Aadhar No","Name as per Adhar Card","Bank A/c No","IFSC Code","Bank Name","Bank Branch","DOB as per Adhar Card","Education Qualifications","Employee Status","Physically Handicap","Physically Handicap Category","Birth Date","Joining Date","Membership Date","Existing Date","International Worker","Vendor ID","Contractor Name","Location");    
 
             //data  
-            $this->data['tableData']=$this->checkmissinguan();//
+            $this->data['tableData']=$this->checkmissinguan($spgid,$custid,$location);//
             // $this->data['tableButtons']  = array();
         
             $this->render('export_table');
@@ -693,7 +696,10 @@ trait Employee {
              // All Company data
              $this->data['result1']=$this->emp->get_entitydetails();              
              // location data
-             $this->data['result']=$this->emp->get_location();      
+             $this->data['result']=$this->emp->get_location();
+             
+             $this->data['companys']=$this->emp->get_companyies();
+
             
              $this->render('export_missing_uan');
            }
@@ -705,13 +711,9 @@ trait Employee {
    }
 
    /* Check missing uan no with validation */
-   public function checkmissinguan($value='')
+   public function checkmissinguan($spgid,$custid,$location)
    {
-    $this->load->model('Employee_model','emp');
-    
-      $custid =!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
-      $spgid  =!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
-      $location   =!empty($this->input->post('location'))?$this->input->post('location'):NULL;
+    $this->load->model('Employee_model','emp');   
      
      if ($custid !== NULL && $spgid !== NULL) 
       {
@@ -738,10 +740,9 @@ trait Employee {
    {
     //echo "hello";
     $this->load->model('Export');
-    $spg = $this->uri->segment(4);
-    $cust = $this->uri->segment(5);
-     // echo $cust;
-     // exit();
+    $spg = user_id();
+    $cust = verify_id($this->uri->segment(4));
+   
     $this->Export->MissingUAN($spg,$cust);
    }
 

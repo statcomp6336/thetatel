@@ -536,9 +536,9 @@ class Export extends Base_model
 			$col++;
 		}
 
-		$emp_data=$this->db->select("entity_name,custid,emp_name,emp_id,gender,marital_status,pf_deduct,ul_pf,esic_deduct,esic_no,uan_no,branch,dept,designation,fath_hus_name,reldob,reladhr,relname,relage,nom1,nom2,nom3,nom4,email,mob,per_address,temp_address,pan,namepan,adhaar,nameadhr,bank_ac,ifsc,bank_name,bank_branch,dobadhr,education,emp_status,phy_handi,phy_handi_cat,birth_date,join_date,member_date,exit_date,int_worker,vendor_id,contractor_name,location")
+		$emp_data=$this->newdb->select("entity_name,custid,emp_name,emp_id,gender,marital_status,pf_deduct,ul_pf,esic_deduct,esic_no,uan_no,branch,dept,designation,fath_hus_name,reldob,reladhr,relname,relage,nom1,nom2,nom3,nom4,email,mob,per_address,temp_address,pan,namepan,adhaar,nameadhr,bank_ac,ifsc,bank_name,bank_branch,dobadhr,education,emp_status,phy_handi,phy_handi_cat,birth_date,join_date,member_date,exit_date,int_worker,vendor_id,contractor_name,location")
 							  ->from('employee_master_new')							  
-							  ->where(array('spgid' =>$spgid,'custid' => $custid,'uan_no'=>'0','uan_no'=>' '))
+							  ->where(array('spgid' =>$spgid,'custid' => $custid,'uan_no'=>'N/A'))
 							  ->get()
 							  ->result();	
 							 
@@ -598,12 +598,13 @@ class Export extends Base_model
 			
 			$start_row++;
 			$comp_name=$key->entity_name;
-			//echo $comp_name;
+			
 		}
-
+		// echo $comp_name;
+		// exit();
 		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
 	 	header("Content-Type: application/vnd.ms-excel");
-	  header('Content-Disposition: attachment;filename="'.$comp_name.'PFnewJoinee.xlsx"');
+	  header('Content-Disposition: attachment;filename="'.$comp_name.'-MissingUan.xlsx"');
 		$obj_writer->save('php://output');
 	}
 

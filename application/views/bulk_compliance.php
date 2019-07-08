@@ -340,7 +340,21 @@ $attributes = array('name' => 'frmRegistration', 'id' => 'signup-form');
 			
 			})
 		</script>
+<script>
+$(document).ready(function(){
+  $("#comp_name").on('input', function(){
 
+  	var datalist=$('#comp option');
+  	var val=$(this).val();
+  	var optionvalue= datalist.filter(function() {
+            return this.value == val;
+        }).data('value');
+
+    $('#custid').val(optionvalue);    
+  });
+
+});
+</script>
 
 
 		<script src="<?php echo base_url();?>assets/dashboard/js/jquery-ui.custom.min.js"></script>
@@ -381,8 +395,16 @@ $attributes = array('name' => 'frmRegistration', 'id' => 'signup-form');
 
 						<div class="col-xs-12 col-sm-5">
 							<span class="block input-icon input-icon-right">
-								<input type="text" id="inputWarning" class="width-100" />
+								<input type="text" id="comp_name" name="comp_name" class="width-100" list="comp" />
 								<i class="ace-icon fa fa-leaf green"></i>
+								<datalist id="comp">
+								<?php 
+								foreach ($companys as $key) {
+									echo "<option data-value='".$key->custid."' value='".$key->entity_name."' />";
+								}
+								?>
+
+							</datalist>
 							</span>
 						</div>
 						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
@@ -394,7 +416,7 @@ $attributes = array('name' => 'frmRegistration', 'id' => 'signup-form');
 
 						<div class="col-xs-12 col-sm-5">
 							<span class="block input-icon input-icon-right">
-								<input type="text" id="inputWarning" name="custid" class="width-100 require" required />
+								<input type="text" id="custid" name="custid" class="width-100 require" required />
 								<i class="ace-icon fa fa-leaf green"></i>
 							</span>
 						</div>

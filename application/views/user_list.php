@@ -52,8 +52,13 @@
 
 }
 </style>
-<?php echo show_msg();?>
-<link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/css/jquery-ui.custom.min.css" />
+
+<?php 
+    if (!empty(show_msg())) {     
+        $data['msg'] =array('msg' => show_msg());
+        $this->load->view('alert',$data);
+    }
+ ?><link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/css/jquery-ui.custom.min.css" />
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/css/chosen.min.css" />
 		
  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
@@ -397,12 +402,41 @@
 
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+ <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<link rel="stylesheet" href="<?php echo base_url('assets/form_wizard/css/style1.css');?>">
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 
 
 
 
+<script>
+$(document).ready(function() {
+    $("#signup-form1").validate({
+        rules: {
+        	password:"required",
+ 			conf_pass:{ 
+                    equalTo: "#password",
+                     minlength: 6,
+                     maxlength: 40
+               },
+ 			 },
+        messages: {
+            password: "Please Enter password",
+            conf_pass: "Please Enter Confirm password"
 
+        }
+         })
+       $('#main-user').click(function() {
+        $("#signup-form1").valid();
+    });
+});
 
+jQuery.validator.addMethod("pan", function(value, element)
+    {
+        return this.optional(element) || /^[A-Z]{5}\d{4}[A-Z]{1}$/.test(value);
+    }, "Please enter a valid PAN");
+</script>
 
 
 
@@ -516,7 +550,7 @@
 			<div class="modal-footer wizard-actions">
 				
 
-				<input class="btn btn-success btn-sm btn-next" data-last="Finish" type="submit" name="spg_user" value="Submit">
+				<input class="btn btn-success btn-sm btn-next" data-last="Finish" type="submit" name="spg_user" value="Submit" id="main-user">
 					
 					<i class="ace-icon fa fa-arrow-right icon-on-right"></i>
 				</button>
@@ -545,14 +579,32 @@
 		$attributes = array('name' => 'frmRegistration', 'id' => 'signup-form');
 		 echo form_open_multipart(base_url(''.$user_type.'/user/save'),$attributes );?>	
 				<div class="modal-body">
-					
+					<div class="form-group">
+						<label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">Company Name</label>
+
+						<div class="col-xs-12 col-sm-5">
+							<span class="block input-icon input-icon-right">
+								<input type="text"  id="comp_name" list="comp" class="width-100" name="cust_name" required />
+								<i class="ace-icon fa fa-leaf green"></i>
+								<datalist id="comp">
+								<?php 
+									foreach ($companys as $key) {
+										echo "<option data-value='".$key->custid."' value='".$key->entity_name."' />";
+									}
+								?>
+
+								</datalist>
+							</span>
+						</div>
+						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+					</div>
 
 					<div class="form-group">
 						<label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">Company Register Id.</label>
 
 						<div class="col-xs-12 col-sm-5">
 							<span class="block input-icon input-icon-right">
-								<input type="text" id="inputWarning" class="width-100" name="custid" required />
+								<input type="text" id="custid" class="width-100" name="custid" required />
 								<i class="ace-icon fa fa-leaf green"></i>
 							</span>
 						</div>
@@ -560,17 +612,7 @@
 					</div>
 
 					
-					<div class="form-group">
-						<label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">Company Name</label>
-
-						<div class="col-xs-12 col-sm-5">
-							<span class="block input-icon input-icon-right">
-								<input type="text" id="inputWarning" class="width-100" name="cust_name" required />
-								<i class="ace-icon fa fa-leaf green"></i>
-							</span>
-						</div>
-						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
-					</div>
+					
 
 					
 					<div class="form-group ">
@@ -630,7 +672,11 @@
 
 						<div class="col-xs-12 col-sm-5">
 							<span class="block input-icon input-icon-right">
-								<input type="text" id="inputWarning" class="width-100" name="code" value="1" required />
+								<select id="inputWarning" class="width-100" name="code" required >
+									<option value="">Select The Access</option>
+									<option value="0">Suspend Access</option>
+									<option value="1">Restore Access</option>
+								</select>
 								<i class="ace-icon fa fa-leaf green"></i>
 							</span>
 						</div>
@@ -712,3 +758,19 @@
 		</div>
 	</div>
 </div><!-- PAGE CONTENT ENDS -->
+
+<script>
+$(document).ready(function(){
+  $("#comp_name").on('input', function(){
+
+  	var datalist=$('#comp option');
+  	var val=$(this).val();
+  	var optionvalue= datalist.filter(function() {
+            return this.value == val;
+        }).data('value');
+
+    $('#custid').val(optionvalue);    
+  });
+
+});
+</script>

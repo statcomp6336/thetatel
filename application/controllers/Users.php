@@ -24,6 +24,8 @@ trait Users {
         $this->data["links"] = $this->pagination->create_links();
 
         $this->data['result'] = $this->users->get_users($config["per_page"], $page);
+        $this->load->model('Employee_model','emp');
+        $this->data['companys']=$this->emp->get_companyies(); 
 
         
        $this->render('user_list');
@@ -42,7 +44,23 @@ trait Users {
     $this->load->model('User_model','users');
      $this->load->helper('Password');
     $hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
+
+    $this->form_validation->set_rules('custid', 'Customer id', 'required|trim|numeric|xss_clean|strip_tags');
+      $this->form_validation->set_rules('username', 'User Name', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('mailid', 'User Email Id', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('code', 'Entity Code', 'required|trim|xss_clean|strip_tags');
+      $this->form_validation->set_rules('cust_name', 'Company Name', 'required|trim|xss_clean|strip_tags');
+
+          $this->form_validation->set_rules('password', 'Password', 'required|xss_clean|strip_tags|callback_valid_password');  
+           $this->form_validation->set_rules('conf_pass', 'Confirm Password', 'required|xss_clean|strip_tags|matches[password]');       
+      
+           if ($this->form_validation->run() == FALSE) {            
+            put_msg(validation_errors());
+           goto_back(); 
+           exit();
+          }           
     if (!empty($this->input->post('spg_user'))) {
+
 
       $saveUser = array("custid"    => is($this->input->post('custid'),'NULL'), 
                         "email"     => is($this->input->post('mailid'),'NULL'), 
@@ -57,7 +75,7 @@ trait Users {
     elseif (!empty($this->input->post('user'))) {
       $saveUser = array("custid"    => is($this->input->post('custid'),'NULL'), 
                         "email"     => is($this->input->post('mailid'),'NULL'), 
-                        "username"  => is($this->encrypt->encode($this->input->post('username')),'NULL'), 
+                        "username"  => is($this->input->post('username'),'NULL'), 
                         "password"  => is($hasher->HashPassword($this->input->post('password')),'NULL'), 
                         "access_code"=> is($this->input->post('code'),'NULL'), 
                         "user_type" => is($this->input->post('type'),'NULL'), 
@@ -66,12 +84,15 @@ trait Users {
     }
     if ($this->users->saveUser($saveUser)) {
           put_msg('User successfully save..!!');
-          
+          goto_back();
+
       }
       else
       {
          put_msg('something is wrong..!!');
+         goto_back();
       }
+      goto_back();
   }
 
    /* edit the user */
@@ -82,7 +103,7 @@ trait Users {
 
       $saveUser = array("custid"    => is($this->input->post('custid'),'NULL'), 
                         "email"     => is($this->input->post('mailid'),'NULL'), 
-                        "username"  => is($this->encrypt->encode($this->input->post('username')),'NULL'), 
+                        "username"  => is($this->input->post('username'),'NULL'), 
                         // "password"  => is($hasher->HashPassword($this->input->post('password')),'NULL'), 
                         "access_code"=> is($this->input->post('code'),'NULL'), 
                         "user_type" => is($this->input->post('type'),'NULL'), 
@@ -227,8 +248,10 @@ trait Users {
   public function RestePassword($page_data='')
   {
      $this->load->model('User_model','users');
-     $getmessage="";
-    if (!empty($this->input->post('submit'))) {        
+    
+    if (!empty($this->input->post('submit'))) {  
+   
+
         $user=is($this->input->post('username'),'N/A');
         $oldpassword=is($this->input->post('oldpassword'),'N/A');
         $newpassword=is($this->input->post('newpassword'),'N/A');
@@ -236,32 +259,25 @@ trait Users {
         $email=is($this->input->post('email'),'N/A');
         
         $getmessage=$this->users->set_password($custid,$user,$email,$oldpassword,$newpassword); 
-        echo $getmessage;
-        exit();     
+         put_msg($getmessage);
+         // echo $getmessage;
+         // exit(); 
+
 
     }
-    else
-    {
-      $getmessage=NULL;
-    }
-      if ($page_data['access'][$this->session->TYPE] == TRUE) {
+    
+      if ($this->data['access'][$this->session->TYPE] == TRUE) {
      
-
-       $this->data['page_title'] = $page_data['page_title'];
        $this->data['where'] = 'Users';
        $this->data['sub_menu'] = 'Rest-Password';
-       $this->data['user_type'] = $page_data['user_type'];
-       $this->data['menu'] = $page_data['menu'];
-       $this->data['result'] = $getmessage;
-        
-
-        
+        $this->load->model('Employee_model','emp');
+        $this->data['companys']=$this->emp->get_companyies();      
        $this->render('reset_password');
        
      }
      else
      {
-      echo "404 no access";
+        $this->load->view('404');
      }
     
   }
@@ -269,7 +285,7 @@ trait Users {
   public function SetAccess($page_data='')
   {
     $this->load->model('User_model','users');
-     $getmessage="";
+    
     if (!empty($this->input->post('submit'))) {        
        
       
@@ -277,33 +293,68 @@ trait Users {
         $code=is($this->input->post('code'),'N/A');
         
         $getmessage=$this->users->set_access($custid,$code); 
-        echo $getmessage;
-        exit();     
+        put_msg($getmessage);     
 
-    }
-    else
-    {
-      $getmessage=NULL;
-    }
-      if ($page_data['access'][$this->session->TYPE] == TRUE) {
+    }   
+      if ($this->data['access'][$this->session->TYPE] == TRUE) {
      
-
-       $this->data['page_title'] = $page_data['page_title'];
        $this->data['where'] = 'Users';
-       $this->data['sub_menu'] = 'Rest-Password';
-       $this->data['user_type'] = $page_data['user_type'];
-       $this->data['menu'] = $page_data['menu'];
-       $this->data['result'] = $getmessage;
-        
+       $this->data['sub_menu'] = 'Rest-Password';       
+    $this->load->model('Employee_model','emp');
+    $this->data['companys']=$this->emp->get_companyies();
 
-        
        $this->render('access');
        
      }
      else
      {
-      echo "404 no access";
+       $this->load->view('404');
      }
   }
+  public function valid_password($password = '')
+  {
+    $password = trim($password);
+    $regex_lowercase = '/[a-z]/';
+    // $regex_uppercase = '/[A-Z]/';
+    $regex_number = '/[0-9]/';
+    $regex_special = '/[!@#$%^&*()\-_=+;:,.§~]/';
+    if (empty($password))
+    {
+      $this->form_validation->set_message('valid_password', 'The {field} field is required.');
+      return FALSE;
+    }
+    if (preg_match_all($regex_lowercase, $password) < 1)
+    {
+      $this->form_validation->set_message('valid_password', 'The {field} field must be at least one lowercase letter.');
+      return FALSE;
+    }
+    // if (preg_match_all($regex_uppercase, $password) < 1)
+    // {
+    //  $this->form_validation->set_message('valid_password', 'The {field} field must be at least one uppercase letter.');
+    //  return FALSE;
+    // }
+    if (preg_match_all($regex_number, $password) < 1)
+    {
+      $this->form_validation->set_message('valid_password', 'The {field} field must have at least one number.');
+      return FALSE;
+    }
+    if (preg_match_all($regex_special, $password) < 1)
+    {
+      $this->form_validation->set_message('valid_password', 'The {field} field must have at least one special character.' . ' ' . htmlentities('!@#$%^&*()\-_=+;:,.§~'));
+      return FALSE;
+    }
+    if (strlen($password) < 5)
+    {
+      $this->form_validation->set_message('valid_password', 'The {field} field must be at least 5 characters in length.');
+      return FALSE;
+    }
+    if (strlen($password) > 32)
+    {
+      $this->form_validation->set_message('valid_password', 'The {field} field cannot exceed 32 characters in length.');
+      return FALSE;
+    }
+    return TRUE;
+  }
+
 
 }

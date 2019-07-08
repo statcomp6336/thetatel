@@ -6,7 +6,7 @@ trait Files {
 
 	public function ShowExplore($page_data='')
 	{
-		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		 if ($this->data['access'][$this->session->TYPE] == TRUE) {
       $this->load->model('Files_model','files');
       $this->load->library("pagination");
        $page=is($this->uri->segment(2),'N/A');
@@ -15,11 +15,10 @@ trait Files {
        $sub_menu="explore";       
       }
 
-       $this->data['page_title'] = $page_data['page_title'];
+       
        $this->data['where'] = 'Files';
        $this->data['sub_menu'] = is($sub_menu,'share-files');
-       $this->data['user_type'] = $page_data['user_type'];
-       $this->data['menu'] = $page_data['menu'];
+       
        $this->data['page'] = $page;
        $this->data['start_year'] = 2019;
       
@@ -27,13 +26,13 @@ trait Files {
      }
      else
      {
-      echo "404 no access";
+     $this->load->view('404');
      }
 	}
   // show companies in explore with year
   public function ShowCompaniesWithYear($page_data='')
   {
-    if ($page_data['access'][$this->session->TYPE] == TRUE) {
+    if ($this->data['access'][$this->session->TYPE] == TRUE) {
       $this->load->model('Files_model','files');
       $this->load->library("pagination");
        $year=is($this->uri->segment(4),NULL);
@@ -44,11 +43,10 @@ trait Files {
        $sub_menu="explore";
        $get = $this->files->get_companiesForExplore($year);       
       }
-       $this->data['page_title'] = $page_data['page_title'];
+      
        $this->data['where'] = 'Files';
        $this->data['sub_menu'] = is($sub_menu,'share-files').'-<strong>'.$year.'</strong>';
-       $this->data['user_type'] = $page_data['user_type'];
-       $this->data['menu'] = $page_data['menu'];
+      
        $this->data['page'] = $page;
       ;
        $this->data['result'] = is($get,$this->files->get_companiesForSharing($year));
@@ -58,22 +56,21 @@ trait Files {
      }
      else
      {
-      echo "404 no access";
+      $this->load->view('404');
      }
   }
   // show Companies act releted files in explore with year
   public function ShowCompaniesActWithYear($page_data='')
   {
-    if ($page_data['access'][$this->session->TYPE] == TRUE) {
+    if ($this->data['access'][$this->session->TYPE] == TRUE) {
       $this->load->model('Files_model','files');
       $this->load->library("pagination");
       $year=is($this->uri->segment(4),NULL);
        $custid=is(verify_id($this->uri->segment(5)),NULL);
-       $this->data['page_title'] = $page_data['page_title'];
+      
        $this->data['where'] = 'Files';
        $this->data['sub_menu'] = 'Explore-<strong>'.$year.'</strong>';
-       $this->data['user_type'] = $page_data['user_type'];
-       $this->data['menu'] = $page_data['menu'];
+      
       
       
 
@@ -83,7 +80,7 @@ trait Files {
      }
      else
      {
-      echo "404 no access";
+      $this->load->view('404');
      }
   }
 

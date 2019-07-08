@@ -54,7 +54,7 @@ class Company extends Base_controller {
 	public function index()
 	{
 		if ($this->data['menu']['dashboard_access'] == TRUE) {
-		$this->dashboard($this->page);
+		$this->dashboard();
 		}
 		else
 		{

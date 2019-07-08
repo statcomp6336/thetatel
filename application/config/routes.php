@@ -59,6 +59,7 @@ $route['spg/employee/missing-uan']	= 'spg/Spg/view_missing_uan'; // show Employe
 
 /* work with salary*/
 $route['spg/salary/import']	= 'spg/Spg/import_salary';//display salary file upload form
+$route['spg/save/salary']	= 'spg/Spg/save_salary';//display salary file upload form
 
 
 /* work with Reports */
@@ -76,7 +77,7 @@ $route['spg/export/pf'] = 'spg/Spg/show_company_pf';
 $route['spg/download/pf/(:num)/(:num)'] = 'spg/Spg/download_pf';
 /* export missing uan no*/
 $route['spg/export/missing-uan'] = 'spg/Spg/show_missing_uan';
-$route['spg/download/missinguan/(:num)/(:num)'] = 'spg/Spg/download_missinguan';
+$route['spg/download/missinguan/(:any)'] = 'spg/Spg/download_missinguan';
 
 /*export PF new joinee report start*/
 $route['spg/export/pfnewjoinee'] = 'spg/Spg/show_pf_newjoinee';
@@ -175,7 +176,7 @@ $route['spg/Complilnce-Done'] = 'spg/Spg/show_complianceDone';// display Complin
 $route['spg/Non-Compliance'] = 'spg/Spg/show_dashNonCompliance';// display  view Non-Compliance
 $route['spg/Pending-Compliance'] = 'spg/Spg/show_dashPendingCompliance';// display  view of Pending Compliance
 $route['spg/Alert-Compliance'] = 'spg/Spg/show_dashAlertCompliance';// display  view of Pending Compliancee
-
+ 
 
 
 

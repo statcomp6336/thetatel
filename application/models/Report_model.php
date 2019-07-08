@@ -229,6 +229,7 @@ class Report_model extends Base_model
 
 	public function get_SanitizeTable($value='')
 	{
+		//all custid get form customer master
 		$getData=$this->getCust();
 		$returnData=[];
 		foreach ($getData as $key ) {
@@ -275,20 +276,20 @@ class Report_model extends Base_model
 
 	private function emp_data($id='')
 	{
-		$emps=$this->newdb->select('count(emp_id) emp')->from('employee_master_new')->where('custid',$id)->get()->row()->emp;
+		$emps=$this->newdb->select('count(emp_id) as emp')->from('employee_master_new')->where('custid',$id)->where('uan_no !=','N/A')->get()->row()->emp;
 		return $emps;
 	}
 	private function sal_data($id='')
 	{
-		$sal=$this->newdb->select('count(empid) salary')->from('salary_master')->where(array('custid' => $id, 'month' =>$this->lastmonth(),'year'=>$this->get_year()))->get()->row()->salary;
+		$sal=$this->newdb->select('count(empid) AS salary')->from('salary_master')->where(array('custid' => $id, 'month' =>$this->lastmonth(),'year'=>$this->get_year()))->get()->row()->salary;
 		return $sal;
 	}
 	private function diff_sal($id='',$d='')
-	{
-		
+	{		
 		$this->newdb->select('emp_id');
 		$this->newdb->from('employee_master_new');
 		$this->newdb->where('custid',$id);
+		$this->newdb->where('uan_no !=','N/A');
 		$where_clause = $this->newdb->get_compiled_select();
 
 		#Create main query
@@ -319,7 +320,8 @@ class Report_model extends Base_model
 		#Create main query
 		$this->newdb->select('count(a.emp_id) as emp_id');//
 		$this->newdb->from('employee_master_new a');
-		$this->newdb->where('a.custid',$id);	
+		$this->newdb->where('a.custid',$id);
+		$this->newdb->where('a.uan_no !=','N/A');	
 		if (!empty($d) && $d == 'IN') {		
 		$this->newdb->where("a.emp_id IN ($where_clause)", NULL, FALSE);
 		}
@@ -365,6 +367,8 @@ class Report_model extends Base_model
 						->where('c.empid',$key->empid)
 						->where('c.custid',$cust)
 						->where('b.custid',$cust)
+						->where('b.pf_deduct','Yes')
+						->where('b.uan_no !=','N/A')
 						->where('month',$this->lastmonth())	
 						->where('year',$this->get_year())	
 						->get()->result();
@@ -565,7 +569,8 @@ class Report_model extends Base_model
 						->where('b.emp_id',$key->empid)		
 						->where('c.empid',$key->empid)
 						->where('c.custid',$cust)
-						->where('b.custid',$cust)
+						->where('b.esic_deduct','Yes')
+						->where('b.uan_no !=','N/A')
 						->where('month',$this->lastmonth())	
 						->where('year',$this->get_year())	
 						->get()->result();
@@ -1018,32 +1023,32 @@ class Report_model extends Base_model
 	/* get Esic Summary data from esic_template table */
 	public function get_newEsicSummary($spgid,$custid,$month,$year)
 	{
-		$this->db->select("CAST(sum((a.monthly_wages*(1.75/100))) as UNSIGNED) as eps_contri,CAST(sum((a.monthly_wages)*4.75/100) as UNSIGNED) as total_contri,CAST(((sum((a.monthly_wages*(1.75/100))))+(sum((a.monthly_wages)*4.75/100))) as UNSIGNED) as grand,if(monthly_wages!=NULL,`monthly_wages`,'-'),sum(a.monthly_wages) as gross_wages");
-						$this->db->from('esic_template a');
-						$this->db->join('employee_master_new b', 'a.empid=b.emp_id AND a.custid=b.custid');
+		$this->newdb->select("CAST(sum((a.monthly_wages*(1.75/100))) as UNSIGNED) as eps_contri,CAST(sum((a.monthly_wages)*4.75/100) as UNSIGNED) as total_contri,CAST(((sum((a.monthly_wages*(1.75/100))))+(sum((a.monthly_wages)*4.75/100))) as UNSIGNED) as grand,if(monthly_wages!=NULL,`monthly_wages`,'-'),sum(a.monthly_wages) as gross_wages");
+						$this->newdb->from('esic_template a');
+						$this->newdb->join('employee_master_new b', 'a.empid=b.emp_id AND a.custid=b.custid');
 						
-						$this->db->where(array(	'a.spgid' => $spgid,
+						$this->newdb->where(array(	'a.spgid' => $spgid,
 										'a.custid' => $custid,
 										'a.month'	 => $month,
 										'a.year'	 => $year,
 										'b.esic_deduct'=>'Yes'   ));
-						$result=$this->db->get()->result();
+						$result=$this->newdb->get()->result();
 						return $result;
 	}
 
 	/* get Esic Summary data from esic_template_history table */
 	public function get_oldEsicSummary($spgid,$custid,$month,$year)
 	{
-		 $this->db->select("CAST(sum((a.monthly_wages*(1.75/100))) as UNSIGNED) as eps_contri,CAST(sum((a.monthly_wages)*4.75/100) as UNSIGNED) as total_contri,CAST(((sum((a.monthly_wages*(1.75/100))))+(sum((a.monthly_wages)*4.75/100))) as UNSIGNED) as grand,if(monthly_wages!=NULL,`monthly_wages`,'-'),sum(a.monthly_wages) as gross_wages");
-						$this->db->from('esic_template_history a');
-						$this->db->join('employee_master_new b', 'a.empid=b.emp_id AND a.custid=b.custid');
+		 $this->newdb->select("CAST(sum((a.monthly_wages*(1.75/100))) as UNSIGNED) as eps_contri,CAST(sum((a.monthly_wages)*4.75/100) as UNSIGNED) as total_contri,CAST(((sum((a.monthly_wages*(1.75/100))))+(sum((a.monthly_wages)*4.75/100))) as UNSIGNED) as grand,if(monthly_wages!=NULL,`monthly_wages`,'-'),sum(a.monthly_wages) as gross_wages");
+						$this->newdb->from('esic_template_history a');
+						$this->newdb->join('employee_master_new b', 'a.empid=b.emp_id AND a.custid=b.custid');
 						
-						$this->db->where(array(	'a.spgid' => $spgid,
+						$this->newdb->where(array(	'a.spgid' => $spgid,
 										'a.custid' => $custid,
 										'a.month'	 => $month,
 										'a.year'	 => $year,
 										'b.esic_deduct'=>'Yes'   ));
-						$result=$this->db->get()->result();
+						$result=$this->newdb->get()->result();
 						return $result;
 
 	}
@@ -1052,7 +1057,7 @@ class Report_model extends Base_model
 	public function get_compliance($spgid,$custid)
 	{
 		//displaying data from table		
-	return $this->db->select("a.custid,a.entity_name,b.Particular,b.Statutory_due_date,b.Task_complitn_date,b.`Retrn/Challan_genrtn_date`,b.`Submisn/Pay_date`,b.Docu_submit_to_GOVT_in_nos,b.Pend_docu_in_nos,b.Copy_of_docu,b.Resp_prsn_frm_client,b.Resp_prsn,b.Remarks")
+	return $this->newdb->select("a.custid,a.entity_name,b.Particular,b.Statutory_due_date,b.Task_complitn_date,b.`Retrn_Challan_genrtn_date`,b.`Submisn_Pay_date`,b.Docu_submit_to_GOVT_in_nos,b.Pend_docu_in_nos,b.Copy_of_docu,b.Resp_prsn_frm_client,b.Resp_prsn,b.Remarks")
 						->from('customer_master a')
 						->join('completed_compliance b', 'a.custid=b.custid')
 						->where(array(	'b.spg_id' =>$spgid,
@@ -1064,12 +1069,12 @@ class Report_model extends Base_model
 	public function get_approval($spgid,$custid)
 	{
 		//displaying data from table		
-			$this->db->select("a.custid ,b.entity_name,a.year,a.act,a.Particular,a.Reg_freq,a.Statutory_due_date,a.act_type,a.Certi_rece_date");
-			$this->db->from('customer_master b');
-			$this->db->join('completed_compliance a', 'a.custid=b.custid');
+			$this->newdb->select("a.custid ,b.entity_name,a.year,a.act,a.Particular,a.Reg_freq,a.Statutory_due_date,a.act_type,a.Certi_rece_date");
+			$this->newdb->from('customer_master b');
+			$this->newdb->join('completed_compliance a', 'a.custid=b.custid');
 			$where="`a`.`spg_id` =".$spgid." AND a.custid =".$custid." AND MONTH(a.due_date) = MONTH(CURRENT_DATE())";
-			$this->db->where($where);
-			$result = $this->db->get()->result();
+			$this->newdb->where($where);
+			$result = $this->newdb->get()->result();
 		 	return $result;
 	}
 
@@ -1077,7 +1082,7 @@ class Report_model extends Base_model
 	public function get_rejected($spgid,$custid)
 	{
 		//displaying data from table		
-		 	return $this->db->select("a.custid ,b.entity_name,a.year,a.act,a.Particular,a.Reg_freq,a.Statutory_due_date,a.act_type,a.Certi_rece_date")
+		 	return $this->newdb->select("a.custid ,b.entity_name,a.year,a.act,a.Particular,a.Reg_freq,a.Statutory_due_date,a.act_type,a.Certi_rece_date")
 						->from('customer_master b')
 						->join('compliance_working_prior a', 'a.custid=b.custid')
 						->where(array(	'a.spg_id' =>$spgid,
@@ -1090,7 +1095,7 @@ class Report_model extends Base_model
 	public function get_noncompliance($spgid,$custid)
 	{
 		//displaying data from table		
-	return $this->db->select("a.custid,a.entity_name,b.Particular,b.Statutory_due_date,b.Task_complitn_date,b.`Retrn/Challan_genrtn_date`,b.`Submisn/Pay_date`,b.Docu_submit_to_GOVT_in_nos,b.Pend_docu_in_nos,b.Copy_of_docu,b.Resp_prsn_frm_client,b.Resp_prsn,b.Remarks")
+	return $this->newdb->select("a.custid,a.entity_name,b.Particular,b.Statutory_due_date,b.Task_complitn_date,b.`Retrn/Challan_genrtn_date`,b.`Submisn/Pay_date`,b.Docu_submit_to_GOVT_in_nos,b.Pend_docu_in_nos,b.Copy_of_docu,b.Resp_prsn_frm_client,b.Resp_prsn,b.Remarks")
 						->from('customer_master a')
 						->join('compliance_working_prior b', 'a.custid=b.custid')
 						->where(array(	'b.spg_id' =>$spgid,
@@ -1102,21 +1107,25 @@ class Report_model extends Base_model
 	public function get_compliancedocument($spgid,$custid,$cname)
 	{
 		//displaying data from table
-			$this->db->select("*");
-			$this->db->from('DOC_UP');
-			$this->db->like('custid', $custid);
-			$result=$this->db->get()->result();
+			$this->newdb->select("*");
+			$this->newdb->from('DOC_UP');
+			$this->newdb->like('custid', $custid);
+			$result=$this->newdb->get()->result();
 			return $result;
 	}
 
 	/* get entity Details data from customer_master table */
 	public function get_entitydetails()
 	{
+<<<<<<< HEAD
 		//displaying data from table
 		// $spgid=$this->session->SESS_CUST_ID;
 		if (IS_SPG== TRUE)
 		{
 			return $this->db->select("custid,entity_name")
+=======
+			return $this->newdb->select("custid,entity_name")
+>>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
 					->from('customer_master')
 					->where(array(	'spgid' =>user_id()))
 					->get()->result();
@@ -1134,17 +1143,17 @@ class Report_model extends Base_model
 	public function get_employeedetails($spgid,$custid,$location)
 	{
 		//displaying data from table		
-			$this->db->select("custid,entity_name,emp_id,emp_name,gender,fath_hus_name,marital_status,designation,mob,email,join_date,birth_date,uan_no,esic_no,pan,bank_name,bank_branch,ifsc,bank_ac,adhaar,location");
-			$this->db->from('employee_master_new');
+			$this->newdb->select("custid,entity_name,emp_id,emp_name,gender,fath_hus_name,marital_status,designation,mob,email,join_date,birth_date,uan_no,esic_no,pan,bank_name,bank_branch,ifsc,bank_ac,adhaar,location");
+			$this->newdb->from('employee_master_new');
 			if($location=="ALL")
 			{
-				$this->db->where(array(	'custid'=>$custid,'spgid' =>$spgid));
+				$this->newdb->where(array(	'custid'=>$custid,'spgid' =>$spgid));
 			}
 			else
 			{
-				$this->db->where(array(	'custid'=>$custid,'spgid' =>$spgid,'location'=>$location));
+				$this->newdb->where(array(	'custid'=>$custid,'spgid' =>$spgid,'location'=>$location));
 			}			
-			$result=$this->db->get()->result();
+			$result=$this->newdb->get()->result();
 			return $result;
 	}
 
@@ -1152,7 +1161,7 @@ class Report_model extends Base_model
 	public function get_location()
 	{
 		//displaying data from table
-			return $this->db->select("location")
+			return $this->newdb->select("location")
 							->from('employee_master_new')
 							//->where('location != ',NULL,FALSE);
 							->where(array(	'location!=' =>NULL))
@@ -1164,7 +1173,7 @@ class Report_model extends Base_model
 	public function get_compliancerequest()
 	{
 		//displaying data from table
-			return $this->db->select("a.act,a.particular,b.name")
+			return $this->newdb->select("a.act,a.particular,b.name")
 							->from('act_particular a')
 							->join('act_applicable_to_customer b', 'a.act_code=b.act_code')
 							->where(array(	'a.comp_req' =>'YES'))
@@ -1175,11 +1184,11 @@ class Report_model extends Base_model
 	public function get_salarydetails($spgid,$custid)
 	{
 		//displaying data from table
-				$this->db->select("custid,entity_name,count(empid) emp,month,year");
-				$this->db->from('salary_master_history');
-				$this->db->where(array(	'custid'=>$custid,'spgid' =>$spgid));
-				$this->db->group_by(array("MONTH(present_date)"));
-				$result=$this->db->get()->result();			
+				$this->newdb->select("custid,entity_name,count(empid) emp,month,year");
+				$this->newdb->from('salary_master_history');
+				$this->newdb->where(array(	'custid'=>$custid,'spgid' =>$spgid));
+				$this->newdb->group_by(array("MONTH(present_date)"));
+				$result=$this->newdb->get()->result();			
 				return $result;
 	}
 
@@ -1187,8 +1196,8 @@ class Report_model extends Base_model
 	public function get_spgusers()
 	{
 		//displaying data from table     
-			return $this->db->select("a.username,count(*) as total,date(b.date) as date")
-							->from('uu_companyselection a')
+			return $this->newdb->select("a.username,count(*) as total,date(b.date) as date")
+							->from('add_companies_for_users a')
 							->join('compliance_working_prior b', 'a.custid=b.custid')
 							->where(array(	'b.status' =>'3'))
 							->group_by(array(	'date(b.date)' ,'a.username'))
@@ -1202,57 +1211,57 @@ class Report_model extends Base_model
 		//displaying data from table      
 			return $this->db->select("*")
 							->from('employee_master_new')
-							->where(array('uan_no'=>0,'custid'=>$custid,'spgid'=>$spgid))
+							->where(array('uan_no'=>'N/A','custid'=>$custid,'spgid'=>$spgid))
 							->get()->result();
 	}
 
 	/* get form-q data from employee_master_new,salary_master table */
 	public function get_newformq($spgid,$custid,$month,$year,$location)
 	{
-			$this->db->select("*");
-			$this->db->from('employee_master_new a');
-			$this->db->join('salary_master b', 'a.emp_id=b.empid AND a.custid=b.custid');
+			$this->newdb->select("*");
+			$this->newdb->from('employee_master_new a');
+			$this->newdb->join('salary_master b', 'a.emp_id=b.empid AND a.custid=b.custid');
 			if($location=="ALL")
 			{
-			$this->db->where(array(	'a.spgid'    => $spgid,
+			$this->newdb->where(array(	'a.spgid'    => $spgid,
 									'a.custid'   => $custid,
 									'b.month'	 => $month,
 									'b.year'	 => $year   ));
 			}
 			else
 			{
-			$this->db->where(array(	'a.spgid'    => $spgid,
+			$this->newdb->where(array(	'a.spgid'    => $spgid,
 									'a.custid'   => $custid,
 									'b.month'	 => $month,
 									'b.year'	 => $year,
 									'a.location' => $location  ));
 			}
-			$result=$this->db->get()->result();
+			$result=$this->newdb->get()->result();
 			return $result;
 	}
 
 	/* get form-q data from employee_master_new,salary_master_history table */
 	public function get_oldformq($spgid,$custid,$month,$year,$location)
 	{
-			$this->db->select("*");
-			$this->db->from('employee_master_new a');
-			$this->db->join('salary_master_history b','a.emp_id=b.empid AND a.custid=b.custid');
+			$this->newdb->select("*");
+			$this->newdb->from('employee_master_new a');
+			$this->newdb->join('salary_master_history b','a.emp_id=b.empid AND a.custid=b.custid');
 			if($location=="ALL")
 			{
-			$this->db->where(array(	'a.spgid'    => $spgid,
+			$this->newdb->where(array(	'a.spgid'    => $spgid,
 									'a.custid'   => $custid,
 									'b.month'	 => $month,
 									'b.year'	 => $year   ));
 			}
 			else
 			{
-			$this->db->where(array(	'a.spgid'    => $spgid,
+			$this->newdb->where(array(	'a.spgid'    => $spgid,
 									'a.custid'   => $custid,
 									'b.month'	 => $month,
 									'b.year'	 => $year,
 									'a.location' => $location  ));
 			}
-			$result=$this->db->get()->result();
+			$result=$this->newdb->get()->result();
 			return $result;
 	}
 
