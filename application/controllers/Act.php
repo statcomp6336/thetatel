@@ -221,22 +221,23 @@ trait Act {
 			$this->bulk_update($page_data);
 		}else{
 		$this->load->model('Act_model');
-		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
-		 	 $this->data['page_title'] = $page_data['page_title'];
+		 if ($this->data['access'][$this->session->TYPE] == TRUE) {
+		 	
 			 $this->data['where'] = 'Compilance';
 			 $this->data['sub_menu'] = 'Bulk-Update';
-			 $this->data['user_type'] = $page_data['user_type'];
-			 $this->data['menu'] = $page_data['menu'];
+			 
 
 			 // act detatails data
 			  $this->data['act_data']=array('act_code'=> $this->Act_model->get_act_code(),
 			  								'data'    => $this->Act_model->get_actss()
 											);
+			   	$this->load->model('Employee_model','emp');
+				$this->data['companys']=$this->emp->get_companyies();
 			 $this->render('bulk_update');
 		 }
 		 else
 		 {
-		 	echo "404 no access";
+		 	$this->load->view('404');
 		 }
 		 }	
 	}
@@ -258,47 +259,43 @@ trait Act {
 		}
 		
 			
-			 if ($page_data['access'][$this->session->TYPE] == TRUE) {
-			 	 $this->data['page_title'] = $page_data['page_title'];
-				 $this->data['where'] = 'Compilance';
+			 if ($this->data['access'][$this->session->TYPE] == TRUE) {
+			 	 $this->data['where'] = 'Compilance';
 				 $this->data['sub_menu'] = 'Bulk-Compliance';
-				 $this->data['user_type'] = $page_data['user_type'];
-				 $this->data['menu'] = $page_data['menu'];
-
-				 // act detatails data
-				  $this->data['bulk_data']=array('companys'=> $this->act->get_compActs(user_id()),
-				  								'data'    => $extract
+				// act detatails data
+				  $this->data['bulk_data']=array('data'    => $extract
 												);
+				  	$this->load->model('Employee_model','emp');
+				$this->data['companys']=$this->emp->get_companyies();
 				 $this->render('bulk_compliance');
 			 }
 			 else
 			 {
-			 	echo "404 no access";
+			 	$this->load->view('404');
 			 }
 		
 	}
 	private function bulk_update($page_data='')
 	{
 		$custid =!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;		
- 		if ($page_data['access'][$this->session->TYPE] == TRUE) {
+ 		if ($this->data['access'][$this->session->TYPE] == TRUE) {
  			$this->load->model('Act_model','act');
-            $this->data['page_title'] = $page_data['page_title'];
+           
               $this->data['where'] = 'Compilance';
               $this->data['sub_menu'] = 'Bulk-Update';
-              $this->data['user_type'] = $page_data['user_type'];
-              $this->data['menu'] = $page_data['menu'];
+              
               /* table data */	
               // Table header name
           $this->data['tableHeading'] = "Show Company compliance "; 
           // tools data
           $this->data['tableTools'] = array(
                           0 =>array(
-                            'link'=> base_url(''.$page_data['user_type'].'/download/pf/'.$custid.''),
+                            'link'=> base_url(''.$this->data['user_type'].'/download/pf/'.$custid.''),
                             'button' =>'Download in Excel',
                             'class'  =>'btn-success'
                               ),
                           1 =>array(
-                            'link'=> base_url(''.$page_data['user_type'].'/compliance/bulk-update'),
+                            'link'=> base_url(''.$this->data['user_type'].'/compliance/bulk-update'),
                             'button' =>'Bulk-Update',
                             'class'  =>'btn-warning'
                               )
@@ -348,34 +345,34 @@ trait Act {
 		else{
 			$extract=NULL;
 		}			
-			 if ($page_data['access'][$this->session->TYPE] == TRUE) {
-			 	 $this->data['page_title'] = $page_data['page_title'];
+			 if ($this->data['access'][$this->session->TYPE] == TRUE) {
+			 	 
 				 $this->data['where'] = 'Compilance';
 				 $this->data['sub_menu'] = 'Bulk-Approval';
-				 $this->data['user_type'] = $page_data['user_type'];
-				 $this->data['menu'] = $page_data['menu'];
+				
 
 				 // act detatails data
 				  $this->data['bulk_data']=array('acts'=> $this->act->get_actss(),
 				  								'data'    => $extract
 												);
-				 $this->render('my_approval');
+				$this->load->model('Employee_model','emp');
+				$this->data['companys']=$this->emp->get_companyies();
+				$this->render('my_approval');
 			 }
 			 else
 			 {
-			 	echo "404 no access";
+			 	$this->load->view('404');
 			 }
 	}
 	//display view bulk timeline
 	public function ShowBulkTimeline($page_data='')
 	{
 		$this->load->model('Act_model');
-		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
-		 	 $this->data['page_title'] = $page_data['page_title'];
+		 if ($this->data['access'][$this->session->TYPE] == TRUE) {
+		 
 			 $this->data['where'] = 'Compilance';
 			 $this->data['sub_menu'] = 'Bulk-Timeline';
-			 $this->data['user_type'] = $page_data['user_type'];
-			 $this->data['menu'] = $page_data['menu'];
+			 
 
 			 // act detatails data
 			  $this->data['companies']=$this->Act_model->get_companies();
@@ -390,16 +387,16 @@ trait Act {
 	public function ShowTimeline($page_data='')
 	{
 		$this->load->model('Act_model');
-		 if ($page_data['access'][$this->session->TYPE] == TRUE) {
-		 	 $this->data['page_title'] = $page_data['page_title'];
+		 if ($this->data['access'][$this->session->TYPE] == TRUE) {
+		 	
 			 $this->data['where'] = 'Compilance';
 			 $this->data['sub_menu'] = 'Bulk-Timeline';
-			 $this->data['user_type'] = $page_data['user_type'];
-			 $this->data['menu'] = $page_data['menu'];
+			
 
 			$custid=is(verify_id($this->uri->segment(4)),'N/A');	
 			// echo $custid;		 
 			  $this->data['result']=$this->Act_model->get_timelineData($custid);
+			  $this->data['timeline']=$this->Act_model->get_comp_timeline($custid);
 			 $this->render('timeline');
 		 }
 		 else

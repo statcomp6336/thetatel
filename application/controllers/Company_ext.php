@@ -344,7 +344,8 @@ trait Company_ext {
 							'dh_vp_email' 	=> $this->input->post('sp_vp_mail') ,
 							'dh_vp_ph' 		=> $this->input->post('sp_vp_phone') ,
 							'state' 		=> $this->input->post('comp_state'), 
-							'branch_code' 	=> $branch_code 
+							'branch_code' 	=> $branch_code,
+							'spgid'			=> user_id(), 
 							
 		 );
 		return $save_data;
@@ -460,14 +461,23 @@ trait Company_ext {
 	public function company_act($page_data='')
 	{
 		$this->load->model('Company_model');
+		$result='';
+		if(!empty($this->input->post('submit')))
+		{
+			$custid=is($this->input->post('custid'),'N/A');
+			// $result=$this->Company_model->get_attachActs($custid);
+			$result=$this->Company_model->get_acts($custid);
+		}
 		 if ($this->data['access'][$this->session->TYPE] == TRUE) {
 		 	
 			 $this->data['where'] = 'Company';
 			 $this->data['sub_menu'] = 'Select Act for Compailation';
 			
 			 /*main act data*/
-			 $this->data['source']=$this->Company_model->all_companys();
-			 $this->render('act_view');
+			 $this->data['result']=$result;
+			 $this->data['companys']=$this->Company_model->all_companys();
+			 // $this->render('act_view');
+			 $this->render('view_ActsForBulkUpdate');
 		 }
 		 else
 		 {
@@ -480,31 +490,22 @@ trait Company_ext {
 	public function put_on_act_to_company($user)
 	{
 		$this->load->model('Company_model');
-		$save_acts=array('custid'	 => $this->input->post('custId') ,
+		$save_acts=array('custid'	 => is($this->input->post('custId')) ,
 						  'name'	 => $this->input->post('compName'),
 						  'act_code' => $this->input->post('actCode'),
-						  'spgid'	 => user_id()
+						 
 						  );
-		$save_ats = $this->security->xss_clean($save_acts);
-		 // if ($this->form_validation->run() == FALSE) { 
-	  //        	// echo validation_errors();
-	  //        	 put_msg(validation_errors());
-	  //        	// redirect(base_url( $user.'/company/act'));   
-	  //       } 
-	  //       else
-	        // {	
-	        	$this->Company_model->attach_act_to_company($save_acts);
-	        echo show_msg();         
-	         	// if ($this->Company_model->attach_act_to_company($save_acts)) {
+
+		$save_acts = $this->security->xss_clean($save_acts);	              
+	         	if ($this->Company_model->attach_act_to_company($save_acts)) {
 	         		
-	         	// 	 put_msg("your Company Acts is registerd successfully..!!");
-	         	// 	 redirect(base_url( $user.'/company/act'));
-	         	// }
-	         	// else
-	         	// {
-	         	// 	put_msg("somthing went wronge...!");
-	         	// 	 redirect(base_url( $user.'/company/act'));
-	         	// }
+	         		 put_msg("your Company Acts is registerd successfully..!!");
+	         		 redirect(base_url( $user.'/company/act'));
+	         	}
+	         	else
+	         	{
+	         		 redirect(base_url( $user.'/company/act'));
+	         	}
 	        // }
 	}
 

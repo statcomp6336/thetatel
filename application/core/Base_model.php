@@ -68,27 +68,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		return $query;
 
 	}
-	protected function remove($table,$where)
+	protected function remove($table,$where="")
 	{
-		return $this->newdb->delete($table,$where);
+		if (!empty($where)) {
+			return $this->newdb->delete($table,$where);
+		}
+		else
+		{
+			return $this->newdb->empty_table($table);
+		}
+		
 	}
 	protected function join($f_table,$s_table,$match,$select='',$where='',$id='' )
 	{
 		$select=!empty($select)?$select:'*';
 
-			$this->db->select($select);
-			$this->db->from($f_table);
+			$this->newdb->select($select);
+			$this->newdb->from($f_table);
 		
-		$this->db->join($s_table,$match);
+		$this->newdb->join($s_table,$match);
 		if (!empty($where)) {
 			if (!empty($id)) {
 					
-			$this->db->where($where,$id);
+			$this->newdb->where($where,$id);
 			}else{
-				$this->db->where($where);
+				$this->newdb->where($where);
 			}		
 		}
-			return $query=$this->db->get();
+			return $query=$this->newdb->get();
 	}
 	protected function is_uniq($table,$arr)
 	{

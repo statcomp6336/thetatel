@@ -437,7 +437,7 @@
 					</div>
 				</div><!-- /.sidebar-shortcuts -->
 
-				<ul class="nav nav-list">
+				<ul class="nav nav-list"> 
 					<li class="active hover">
 						<?php if ( $menu['dashboard_access'] == TRUE) {
 						

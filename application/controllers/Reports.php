@@ -6,15 +6,12 @@ trait Reports {
 	
 	public function GenrateSantizeRec($page_data='')
 	{
-		if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		if ($this->data['access'][$this->session->TYPE] == TRUE) {
 		    $this->load->model('Report_model','report');
-		    $this->load->library("pagination");
-
-	       $this->data['page_title'] = $page_data['page_title'];
+		    $this->load->library("pagination");	      
 	       $this->data['where'] = 'Reports';
 	       $this->data['sub_menu'] = 'Sanitize';
-	       $this->data['user_type'] = $page_data['user_type'];
-	       $this->data['menu'] = $page_data['menu'];
+	     
 	    
 	       	// $config["base_url"] = base_url() .$page_data['user_type']."/employee/show";
 	        // $config["total_rows"] = $this->emp->get_count();
@@ -34,7 +31,7 @@ trait Reports {
 	     }
 	     else
 	     {
-	      echo "404 no access";
+	     $this->view->load('404');
 	     }
 	}
 	public function CreateSanitize($value='')
@@ -43,10 +40,9 @@ trait Reports {
 		$show=$this->report->CreateSanitizeReport();
 		if ($show == TRUE) {
 			$this->load->model('Act_model','timeline');
-			$this->timeline->update_timeline($custid,array('IS_PfProcess'=>1));
-					// redirect(base_url(''.$user.'/compliance/bulk-approval/comment/'.hash_id($custid).'/5/'.hash_id($url)));
+			
 	
-			$send['redirect']='spg';
+			$send['redirect']=$this->data['user_type'];
 			// $send['custid']=hash_id($custid);
 			// $send['url']='spg';
 			// $send['event']=3;
@@ -63,15 +59,14 @@ trait Reports {
 	/* genrate process report*/
 	public function GenrateProccessReport($page_data='')
 	{
-		if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		if ($this->data['access'][$this->session->TYPE] == TRUE) {
 		    $this->load->model('Report_model','report');
 		    $this->load->library("pagination");
 
-	       $this->data['page_title'] = $page_data['page_title'];
+	      
 	       $this->data['where'] = 'Reports';
 	       $this->data['sub_menu'] = 'Process';
-	       $this->data['user_type'] = $page_data['user_type'];
-	       $this->data['menu'] = $page_data['menu'];
+	       
 	    
 	       	// $config["base_url"] = base_url() .$page_data['user_type']."/employee/show";
 	        // $config["total_rows"] = $this->emp->get_count();
@@ -91,7 +86,7 @@ trait Reports {
 	     }
 	     else
 	     {
-	      echo "404 no access";
+	     $this->load->view('404');
 	     }
 	}
 
@@ -102,6 +97,7 @@ trait Reports {
 	 	 $spg = ($this->uri->segment(6)) ? $this->uri->segment(6) : 0;
 	 	 $cust = ($this->uri->segment(7)) ? $this->uri->segment(7) : 0;
 	 	$proc=$this->report->CreatePfProcess($spg,$cust);
+	 	$this->timeline->update_timeline($cust,array('IS_PfProcess'=>2));
 	 	$this->report->DownloadPFReport($spg,$cust);
 	 	
 
@@ -120,6 +116,7 @@ trait Reports {
 	 	$this->load->model('Report_model','report');
 	 	$spg = ($this->uri->segment(6)) ? $this->uri->segment(6) : 0;
 	 	$cust = ($this->uri->segment(7)) ? $this->uri->segment(7) : 0;
+	 	$this->timeline->update_timeline($cust,array('IS_PfProcess'=>3));
 	 	$proc=$this->report->CreateESICProcess($spg,$cust);
 	 		$this->report->DownloadESICReport($spg,$cust);
 	 }
@@ -127,15 +124,14 @@ trait Reports {
 	 /* genrate process report*/
 	public function GenrateBacklogReport($page_data='')
 	{
-		if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		if ($this->data['access'][$this->session->TYPE] == TRUE) {
 		    $this->load->model('Report_model','report');
 		    $this->load->library("pagination");
 
-	       $this->data['page_title'] = $page_data['page_title'];
+	      
 	       $this->data['where'] = 'Reports';
 	       $this->data['sub_menu'] = 'Backlog';
-	       $this->data['user_type'] = $page_data['user_type'];
-	       $this->data['menu'] = $page_data['menu'];
+	      
 	    
 	       	// $config["base_url"] = base_url() .$page_data['user_type']."/employee/show";
 	        // $config["total_rows"] = $this->emp->get_count();
@@ -155,7 +151,7 @@ trait Reports {
 	     }
 	     else
 	     {
-	      echo "404 no access";
+	      $this->load->view('404');
 	     }
 	}
 
@@ -191,17 +187,16 @@ $spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 $month 		=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
 $year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
 $location 	=!empty($this->input->post('location'))?$this->input->post('location'):NULL;
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) {
-		 		    $this->data['page_title'] = $page_data['page_title'];
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) {
+		 		   
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'PF Company';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			      
 			        /* table data */
 			 		$this->data['tableHeading'] = "PF Template Reports";	// colomns name
 			 		$this->data['tableTools'] = array(
 			 										0 =>array(
-			 											'link'=> base_url(''.$page_data['user_type'].'/download/pf/'.$spgid.'/'.$custid.''),
+			 											'link'=> base_url(''.$this->data['user_type'].'/download/pf/'.$spgid.'/'.$custid.''),
 														'button' =>'Download pf Excel',
 														'class'	 =>'btn-success'
 			 												),
@@ -227,15 +222,13 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	}
 	 	else
 	 	{
-		 	if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		 	if ($this->data['access'][$this->session->TYPE] == TRUE) {
 			    $this->load->model('Report_model','report');
 			    $this->load->library("pagination");
 
-		       $this->data['page_title'] = $page_data['page_title'];
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'PF Company';
-		       $this->data['user_type'] = $page_data['user_type'];
-		       $this->data['menu'] = $page_data['menu'];
+		       
 		    
 		       	// $config["base_url"] = base_url() .$page_data['user_type']."/employee/show";
 		        // $config["total_rows"] = $this->emp->get_count();
@@ -255,7 +248,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 		     }
 		     else
 		     {
-		      echo "404 no access";
+		      $this->load->view('404');
 		     }
 		}     
 	 }
@@ -336,18 +329,17 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
 			$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-		 		    $this->data['page_title'] = $page_data['page_title'];
+		 		    
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'PF New Joinee';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			      
 			        /* table data */
 			 		$this->data['tableHeading'] = "PF New Joinee Report";	// colomns name
 			 		$this->data['tableTools'] = array(
 			 										0 =>array(
-			 											'link'=> base_url(''.$page_data['user_type'].'/download/pfnewjoin/'.$spgid.'/'.$custid.''),
+			 											'link'=> base_url(''.$this->data['user_type'].'/download/pfnewjoin/'.$spgid.'/'.$custid.''),
 														'button' =>'Download',
 														'class'	 =>'btn-success'
 			 												)
@@ -368,23 +360,18 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	}
 	 	else
 	 	{
-		 	if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 	if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 	{
 			    $this->load->model('Report_model','report');
 			    $this->load->library("pagination");
-
-		       $this->data['page_title'] = $page_data['page_title'];
 		       $this->data['where'] = 'Reports';
-		       $this->data['sub_menu'] = 'PF New Joinee';
-		       $this->data['user_type'] = $page_data['user_type'];
-		       $this->data['menu'] = $page_data['menu'];
-		    
+		       $this->data['sub_menu'] = 'PF New Joinee';    
 		      
 		       $this->render('export_pfnewjoinee');
 		     }
 		     else
 		     {
-		      echo "404 no access";
+		      $this->load->view('404');
 		     }
 		 }
 	 }
@@ -434,19 +421,18 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			$year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
 			//$location 	=!empty($this->input->post('location'))?$this->input->post('location'):NULL;
 
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-		 		    $this->data['page_title'] = $page_data['page_title'];
+		 		 
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'PF Summmary';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			        
 			        /* table data */
 			 		$this->data['tableHeading'] = "PF Summary Report";	// colomns name
 			 		$this->data['tableTools'] = array(
 			 										0 =>array(
 			 											//'link'=> base_url(''.$page_data['user_type'].'/download/esictemplate/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.''),
-			 											'link'=> base_url(''.$page_data['user_type'].'/download/pfsummary/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.''),
+			 											'link'=> base_url(''.$this->data['user_type'].'/download/pfsummary/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.''),
 														'button' =>'Download',
 														'class'	 =>'btn-success'
 			 												)
@@ -467,22 +453,19 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	}
 	 	else
 	 	{
-			if ($page_data['access'][$this->session->TYPE] == TRUE) 
+			if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 	{
 			    $this->load->model('Report_model','report');
 			    $this->load->library("pagination");
 
-		       $this->data['page_title'] = $page_data['page_title'];
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'PF Summary';
-		       $this->data['user_type'] = $page_data['user_type'];
-		       $this->data['menu'] = $page_data['menu'];
-		    	      
+		      
 		       $this->render('export_pfsummary');
 		     }
 		     else
 		     {
-		      echo "404 no access";
+		      $this->load->view('404');
 		     }
 		}
 	 }
@@ -589,18 +572,17 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			//$year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
 			//$location 	=!empty($this->input->post('location'))?$this->input->post('location'):NULL;
 
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-		 		    $this->data['page_title'] = $page_data['page_title'];
+		 		   
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'ESIC New Joinee';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			       
 			        /* table data */
 			 		$this->data['tableHeading'] = "ESIC New Joinee Report";	// colomns name
 			 		$this->data['tableTools'] = array(
 			 										0 =>array(
-			 											'link'=> base_url(''.$page_data['user_type'].'/download/esicnewjoin/'.$spgid.'/'.$custid.''),
+			 											'link'=> base_url(''.$this->data['user_type'].'/download/esicnewjoin/'.$spgid.'/'.$custid.''),
 														'button' =>'Download',
 														'class'	 =>'btn-success'
 			 												)
@@ -621,18 +603,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	}
 	 	else
 	 	{
-		 	if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 	if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 	{
 			    $this->load->model('Report_model','report');
 			    $this->load->library("pagination");
-
-		       $this->data['page_title'] = $page_data['page_title'];
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'ESIC New Joinee';
-		       $this->data['user_type'] = $page_data['user_type'];
-		       $this->data['menu'] = $page_data['menu'];
-		    
-		      
 		       $this->render('export_esicnewjoinee');
 		     }
 		     else
@@ -690,19 +666,18 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			$year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
 			//$location 	=!empty($this->input->post('location'))?$this->input->post('location'):NULL;
 
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-		 		    $this->data['page_title'] = $page_data['page_title'];
+		 		  
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'ESIC Template';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			       
 			        /* table data */
 			 		$this->data['tableHeading'] = "ESIC Template Report";	// colomns name
 			 		$this->data['tableTools'] = array(
 			 										0 =>array(
 			 					
-			 											'link'=> base_url(''.$page_data['user_type'].'/download/esictemplate/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.''),
+			 											'link'=> base_url(''.$this->data['user_type'].'/download/esictemplate/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.''),
 														'button' =>'Download',
 														'class'	 =>'btn-success'
 			 												)
@@ -723,17 +698,15 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	}
 	 	else
 	 	{
-			if ($page_data['access'][$this->session->TYPE] == TRUE) 
+			if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 	{
 			    $this->load->model('Report_model','report');
 			    $this->load->library("pagination");
 
-		       $this->data['page_title'] = $page_data['page_title'];
+		     
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'ESIC Template';
-		       $this->data['user_type'] = $page_data['user_type'];
-		       $this->data['menu'] = $page_data['menu'];
-		    	      
+		      
 		       $this->render('export_esictemplate');
 		     }
 		     else
@@ -846,18 +819,17 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			$year 	=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
 		$location =!empty($this->input->post('location'))?$this->input->post('location'):NULL;
 
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-		 		    $this->data['page_title'] = $page_data['page_title'];
+		 		   
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'ESIC Template(Emp ID)';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			       
 			        /* table data */
 			 		$this->data['tableHeading'] = "ESIC Template(Emp ID) Reports";	// colomns name
 			 		$this->data['tableTools'] = array(
 			 										0 =>array(
-			 											'link'=> base_url(''.$page_data['user_type'].'/download/esictemplateempid/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.'/'.$location.''),
+			 											'link'=> base_url(''.$this->data['user_type'].'/download/esictemplateempid/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.'/'.$location.''),
 														'button' =>'Download ESIC',
 														'class'	 =>'btn-success'
 			 												)
@@ -879,16 +851,13 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	}
 	 	else
 	 	{
-		 	if ($page_data['access'][$this->session->TYPE] == TRUE) {
+		 	if ($this->data['access'][$this->session->TYPE] == TRUE) {
 			    $this->load->model('Report_model','report');
 			    $this->load->library("pagination");
 
-		       $this->data['page_title'] = $page_data['page_title'];
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'ESIC Template(Emp ID)';
-		       $this->data['user_type'] = $page_data['user_type'];
-		       $this->data['menu'] = $page_data['menu'];
-
+		       
 		       $this->data['result']=$this->report->get_location();
 
 		       $this->render('export_esictemplate_empid');
@@ -1019,7 +988,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			$year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
 			//$location 	=!empty($this->input->post('location'))?$this->input->post('location'):NULL;
 
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
 		 		    $this->data['page_title'] = $page_data['page_title'];
 			        $this->data['where'] = 'Reports';
@@ -1030,7 +999,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			 		$this->data['tableHeading'] = "ESIC Summary Report";	// colomns name
 			 		$this->data['tableTools'] = array(
 			 										0 =>array(							
-			 											'link'=> base_url(''.$page_data['user_type'].'/download/esicsummary/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.''),
+			 											'link'=> base_url(''.$this->data['user_type'].'/download/esicsummary/'.$spgid.'/'.$custid.'/'.$month.'/'.$year.''),
 														'button' =>'Download',
 														'class'	 =>'btn-success'
 			 												)
@@ -1051,17 +1020,14 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	}
 	 	else
 	 	{
-			if ($page_data['access'][$this->session->TYPE] == TRUE) 
+			if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 	{
 			    $this->load->model('Report_model','report');
 			    $this->load->library("pagination");
 
-		       $this->data['page_title'] = $page_data['page_title'];
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'ESIC Summary';
-		       $this->data['user_type'] = $page_data['user_type'];
-		       $this->data['menu'] = $page_data['menu'];
-		    	      
+		        
 		       $this->render('export_esicsummary');
 		     }
 		     else
@@ -1170,18 +1136,17 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
 			$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-		 		    $this->data['page_title'] = $page_data['page_title'];
+		 		    
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Compliance';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			       
 			        /* table data */
 			 		$this->data['tableHeading'] = "Compliance Report";	// colomns name
 			 		$this->data['tableTools'] = array(
 			 										0 =>array(
-			 											'link'=> base_url(''.$page_data['user_type'].'/download/compliance/'.$spgid.'/'.$custid.''),
+			 											'link'=> base_url(''.$this->data['user_type'].'/download/compliance/'.$spgid.'/'.$custid.''),
 														'button' =>'Download',
 														'class'	 =>'btn-success'
 			 												)
@@ -1202,17 +1167,13 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	}
 	 	else
 	 	{
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 			 	{
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
 
-			       $this->data['page_title'] = $page_data['page_title'];
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Compliance';
-			       $this->data['user_type'] = $page_data['user_type'];
-			       $this->data['menu'] = $page_data['menu'];
-			    
 			      
 			       $this->render('export_compliance');
 			     }
@@ -1266,18 +1227,17 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
 			$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-		 		    $this->data['page_title'] = $page_data['page_title'];
+		 		  
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Non Compliance';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			        
 			        /* table data */
 			 		$this->data['tableHeading'] = "Non Compliance Report";	// colomns name
 			 		$this->data['tableTools'] = array(
 			 										0 =>array(
-			 											'link'=> base_url(''.$page_data['user_type'].'/download/noncompliance/'.$spgid.'/'.$custid.''),
+			 											'link'=> base_url(''.$this->data['user_type'].'/download/noncompliance/'.$spgid.'/'.$custid.''),
 														'button' =>'Download',
 														'class'	 =>'btn-success'
 			 												)
@@ -1298,18 +1258,14 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	}
 	 	else
 	 	{
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 			 	{
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
 
-			       $this->data['page_title'] = $page_data['page_title'];
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Non Compliance';
-			       $this->data['user_type'] = $page_data['user_type'];
-			       $this->data['menu'] = $page_data['menu'];
-			    
-			      
+			  
 			       $this->render('export_noncompliance');
 			     }
 			     else
@@ -1358,13 +1314,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
 			$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-		 		    $this->data['page_title'] = $page_data['page_title'];
+		 		  
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Approval';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			       
 			        /* table data */
 			 		$this->data['tableHeading'] = "Approval This Month Report";	// colomns name
 			 			
@@ -1384,16 +1339,14 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	}
 	 	else
 	 	{
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 			 	{
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
 
-			       $this->data['page_title'] = $page_data['page_title'];
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Approval';
-			       $this->data['user_type'] = $page_data['user_type'];
-			       $this->data['menu'] = $page_data['menu'];
+			     
 			    
 			      
 			       $this->render('export_approval');
@@ -1433,13 +1386,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			$custid		=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
 			$spgid 		=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-		 		    $this->data['page_title'] = $page_data['page_title'];
+		 		  
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Rejected';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			   
 			        /* table data */
 			 		$this->data['tableHeading'] = "Rejected Report";	// colomns name
 			 			
@@ -1459,17 +1411,14 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	}
 	 	else
 	 	{
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 			 	{
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
 
-			       $this->data['page_title'] = $page_data['page_title'];
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Rejected';
-			       $this->data['user_type'] = $page_data['user_type'];
-			       $this->data['menu'] = $page_data['menu'];			    
-			      
+			     
 			       $this->render('export_rejected');
 			     }
 			     else
@@ -1510,13 +1459,11 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
 			$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-		 		    $this->data['page_title'] = $page_data['page_title'];
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Compliance Documents';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			       
 			        /* table data */
 			 		$this->data['tableHeading'] = "Compliance Document Report";	// colomns name			 		
 			 		// colomns name				
@@ -1531,16 +1478,13 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	}
 	 	else
 	 	{
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 			 	{
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
 
-			       $this->data['page_title'] = $page_data['page_title'];
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Compliance Documents';
-			       $this->data['user_type'] = $page_data['user_type'];
-			       $this->data['menu'] = $page_data['menu'];
 			      
 			       $this->render('export_compliance_document');
 			     }
@@ -1554,13 +1498,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 /* Show Entity Details Report*/
 	 public function ShowEntityDetails($page_data = '')
 	 {
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-		 		    $this->data['page_title'] = $page_data['page_title'];
+		 		   
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Entity Details';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			        
 			        /* table data */
 			 		$this->data['tableHeading'] = "Entity Details Report";	// colomns name
 			 		
@@ -1596,13 +1539,11 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 		  $location =!empty($this->input->post('location'))?$this->input->post('location'):NULL;
 
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-		 		    $this->data['page_title'] = $page_data['page_title'];
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Employee Details';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			       
 			        /* table data */
 			 		$this->data['tableHeading'] = "Employee Details Report";	// colomns name
 			 			
@@ -1622,16 +1563,15 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	}
 	 	else
 	 	{
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 			 	{
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
 
-			       $this->data['page_title'] = $page_data['page_title'];
+			    
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Employee Details';
-			       $this->data['user_type'] = $page_data['user_type'];
-			       $this->data['menu'] = $page_data['menu'];	
+			      
 
 			       // location data
 			       $this->data['result']=$this->report->get_location();		    
@@ -1677,13 +1617,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 /* Show Compliance Request Details Report*/
 	 public function ShowComplianceRequestDetails($page_data = '')
 	 {
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-		 		    $this->data['page_title'] = $page_data['page_title'];
+		 		   
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Compliance Request Details';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			     
 			        /* table data */
 			 		$this->data['tableHeading'] = "Compliance Request Details Report";	// colomns name
 			 		
@@ -1719,13 +1658,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
 			$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-		 		    $this->data['page_title'] = $page_data['page_title'];
+		 		  
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Salary Details';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			        
 			        /* table data */
 			 		$this->data['tableHeading'] = "Salary Details Report";	// colomns name
 			 			
@@ -1744,17 +1682,15 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	}
 	 	else
 	 	{
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 			 	{
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
 
-			       $this->data['page_title'] = $page_data['page_title'];
+			     
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Salary Details';
-			       $this->data['user_type'] = $page_data['user_type'];
-			       $this->data['menu'] = $page_data['menu'];		    
-			      
+			    
 			       $this->render('export_salarydetails');
 			     }
 			     else
@@ -1788,17 +1724,14 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 /* Show FAQ Details Report companiwise */
 	 public function ShowFAQDetails($page_data = '')
 	 {	 	
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 			 	{
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
 
-			       $this->data['page_title'] = $page_data['page_title'];
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'FAQ Details';
-			       $this->data['user_type'] = $page_data['user_type'];
-			       $this->data['menu'] = $page_data['menu'];		    
-			      
+			       
 			       $this->render('export_faq');
 			     }
 			     else
@@ -1811,13 +1744,11 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 /* Show Entity Details Report*/
 	 public function ShowSpgUsersDetails($page_data = '')
 	 {
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-		 		    $this->data['page_title'] = $page_data['page_title'];
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'SPG Users Details';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			     
 			        /* table data */
 			 		$this->data['tableHeading'] = "SPG Users Report";	// colomns name
 			 		
@@ -1854,13 +1785,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
 			$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
 
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-		 		    $this->data['page_title'] = $page_data['page_title'];
+		 		    
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Form-D';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			       
 			        /* table data */
 			 		$this->data['tableHeading'] = "Form-D Report";	// colomns name
 			 			
@@ -1878,16 +1808,14 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	}
 	 	else
 	 	{
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 			 	{
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
 
-			       $this->data['page_title'] = $page_data['page_title'];
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Form-D';
-			       $this->data['user_type'] = $page_data['user_type'];
-			       $this->data['menu'] = $page_data['menu'];		    
+			      	    
 			      
 			       $this->render('export_formd');
 			     }
@@ -1904,20 +1832,13 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 	if (!empty($this->input->post('submit'))) 
 	 	{
 	 		$this->load->model('Report_model','report');
-	 		$entity_name=!empty($this->input->post('entity_name'))?$this->input->post('entity_name'):NULL;
-			$custid	=!empty($this->input->post('custid'))?$this->input->post('custid'):NULL;
-			$spgid 	=!empty($this->input->post('spgid'))?$this->input->post('spgid'):NULL;
-			$month 	=!empty($this->input->post('month'))?$this->input->post('month'):NULL;
-	 		$year 	=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
-	 	$location =!empty($this->input->post('location'))?$this->input->post('location'):NULL;
-
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+	 	
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-		 		    $this->data['page_title'] = $page_data['page_title'];
+		 		  
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Form-Q';
-			        $this->data['user_type'] = $page_data['user_type'];
-			        $this->data['menu'] = $page_data['menu'];
+			     
 			        /* table data */
 			 		$this->data['tableHeading'] = "Form-Q Report";	// colomns name
 
@@ -1929,33 +1850,31 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			 		$this->data['location']=is($this->input->post('location'),"N/A");
 
 			 		$this->data['result']=$this->GenrateFormQ();//		
-					$this->render('show_formq',$this->data);
+					$this->render('show_formq');
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     } 		 	
 	 	}
 	 	else
 	 	{
-		 		if ($page_data['access'][$this->session->TYPE] == TRUE) 
+		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 			 	{
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
 
-			       $this->data['page_title'] = $page_data['page_title'];
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Form-Q';
-			       $this->data['user_type'] = $page_data['user_type'];
-			       $this->data['menu'] = $page_data['menu'];		    
-			      
+			     
 			       $this->data['result']=$this->report->get_location();
+			       $this->data['companys']=$this->report->get_entitydetails();
 
 			       $this->render('export_formq');
 			     }
 			     else
 			     {
-			      echo "404 no access";
+			      $this->load->view('404');
 			     }
 		}
 	 }
@@ -1977,29 +1896,35 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 				if ($year == "ALL" && $month == "ALL") {
 	 					// echo "1year and month are ALL";	 					
 	 					put_msg('Please Select Year and Month');
-	 					goto_back();
+	 					redirect(base_url(''.$this->data['user_type'].'/export/formq'));
+	 					exit();
+
 	 				}
 	 				elseif ($year !== "ALL" && $month !== "ALL") {
 	 					// echo "2year is".$year."and month is ".$month;
 	 					
 	 					if (is_last_month($month,$year) == TRUE) {
 
-	 						 //echo "is last month";
+	 						 // echo "is last month";
+
 	 						if ($location == "ALL") 
 				 			{
 				 				$result=$this->report->get_newformq($spgid,$custid,$month,$year,"ALL");
+				 				
 	 							return $result;
 				 			}
 				 			else
 				 			{
 				 				$result=$this->report->get_newformq($spgid,$custid,$month,$year,$location);
+				 				
 	 							return $result;
-				 			}
+				 			}				 			
 	 						
 	 					}
 	 					elseif (this_month($month,$year) == TRUE) {
-	 						put_msg('till not genrate pf and esic report');
-	 						goto_back();
+	 						put_msg('till not genrate report');
+	 						redirect(base_url(''.$this->data['user_type'].'/export/formq'));
+	 					exit();
 	 					}
 	 					// elseif (before_months($month,$year) == TRUE) {
 	 					// 	put_msg('till not genrate pf and esic report');
@@ -2024,12 +1949,14 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 				elseif ($year !== "ALL" && $month == "ALL") {
 	 					// echo "3year is".$year."and month is ".$month;
 	 					put_msg('Please Select Month');
-	 					goto_back();
+	 					redirect(base_url(''.$this->data['user_type'].'/export/formq'));
+	 					exit();
 	 				}
 	 				elseif ($year == "ALL" && $month !== "ALL") {
 	 					// echo "4year is".$year."and month is ".$month;
 	 					put_msg('Please Select Year');
-	 					goto_back();
+	 					redirect(base_url(''.$this->data['user_type'].'/export/formq'));
+	 					exit();
 
 	 				}
 
@@ -2037,12 +1964,14 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 			else
 	 			{
 	 				put_msg('Sorry month and year is invalid');
-	 				goto_back();
+	 				redirect(base_url(''.$this->data['user_type'].'/export/formq'));
+	 					exit();
 	 			}
 	 		}
 	 		else{
 	 			put_msg('Sorry custid and user are invalid');
-	 				goto_back();
+	 				redirect(base_url(''.$this->data['user_type'].'/export/formq'));
+	 					exit();
 	 		}	 	
 	 }
 

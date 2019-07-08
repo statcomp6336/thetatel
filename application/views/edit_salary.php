@@ -1,52 +1,18 @@
-<!-- <style type="text/css">
-	#t{
-		display: block;
-		overflow: scroll;
-	}
-	input[type=text] {
- 
-  box-sizing: border-box;
-  border: 0px ;
-  border-radius: 0px;
-   background-color : yellow; 
-}
-input[readonly] {
-    color: black;
-    /*background: #3dc91a!important;*/
-    
-}
-
-
-</style> -->
-< <?php 
+ <?php 
     if (!empty(show_msg())) {
      
         $data['msg'] =array('msg' => show_msg());
         $this->load->view('alert',$data);
     }
  ?>
-<!-- <script type="text/javascript">
-	
-$(document).ready(function(){
 
-	$('#edit').click(function(){
-		 var prev = $('input'),
-        ro   = prev.prop('readonly');
-		    prev.prop('readonly', !ro);
-		    $(this).val(ro ? 'Save' : 'Edit');
-	});
-
-});
-
-</script> -->
-
- <div class="conatiner"  >
+ <div class="container" >
  	<div class="widget-box">
 		<div class="widget-header">
 			<h4 class="widget-title">Employee Master Salary Table</h4>
 
 		<div class="widget-toolbar">
-			<a href="#" data-action="collapse">
+			<a href="<?php echo base_url(''.$user_type.'/save/salary'); ?>">
 				
 				<button class="btn btn-success" id="edit" >Save Employees Salary</button> 
 			</a>			
@@ -104,13 +70,9 @@ $(document).ready(function(){
 	    <th>EPF Wages</th>
 	    <th>Total Deduction</th>
     </thead>
-    <?php
-		$attributes = array('name' => 'frmRegistration', 'id' => 'signup-form');
-		 echo form_open_multipart('spg/Spg/edit_import_salary',$attributes );?>
+    
     <tbody>
-    	<?php echo show_msg();
-
-foreach ($result as $key) { 
+    	<?php foreach ($result as $key) { 
 	// $bgcolor =$key->is_uploaded']==TRUE?'#3dc91a':'';
 	
 	?>
@@ -158,11 +120,12 @@ foreach ($result as $key) {
 			
 	<?php } ?>
     </tbody>
-    <input type="submit" value="upload"/>
-    <?php echo form_close(); ?>	
+<!--     <input type="submit" value="upload"/>-->
+    
 </table>
 </div>
 </div>
 	</div>
+</div>
 </div>
 </div>

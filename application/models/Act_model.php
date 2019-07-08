@@ -38,7 +38,12 @@ class Act_model extends Base_model
 
 	public function get_companies($value='')
 	{
-		return $this->db->select('custid,entity_name')->from('customer_master')->get()->result();
+		return $this->newdb->select('*')->from('timeline')->where('spgid',user_id())->get()->result();
+	}
+
+	public function get_comp_timeline($id='')
+	{
+		return $this->newdb->select('*')->from('timeline')->where('spgid',user_id())->where('custid',$id)->get()->row();
 	}
 	public function set_acts($id='')
 	{
@@ -82,25 +87,25 @@ class Act_model extends Base_model
 	public function bulk_compliance($id,$type,$month)
 	{
 		
-		$this->db->select("a.act_type,a.Particular,a.Remarks,a.status,a.Task_complitn_date,a.Retrn_Challan_genrtn_date,a.Submisn_Pay_date,a.Pend_docu_in_nos,a.srno,b.obligation,b.act,b.act_code,a.registration_no,a.Application_date,a.Applicable_date,a.Valid_upto,a.Renewal_date");
-		$this->db->from('compliance_working_prior a');
-		$this->db->join('act_particular b','a.act=b.act AND a.Particular=b.Particular');
-		$this->db->where(array('a.custid' => $id, 'a.spg_id'=>user_id(),'a.status !=' => '3'));		
+		$this->newdb->select("a.act_type,a.Particular,a.Remarks,a.status,a.Task_complitn_date,a.Retrn_Challan_genrtn_date,a.Submisn_Pay_date,a.Pend_docu_in_nos,a.srno,b.obligation,b.act,b.act_code,a.registration_no,a.Application_date,a.Applicable_date,a.Valid_upto,a.Renewal_date");
+		$this->newdb->from('compliance_working_prior a');
+		$this->newdb->join('act_particular b','a.act=b.act AND a.Particular=b.Particular');
+		$this->newdb->where(array('a.custid' => $id, 'a.spg_id'=>user_id(),'a.status !=' => '3'));		
 		if ($type == 'Preventive_Compliance') {
-		$this->db->where(array('a.act_type' => 'Preventive Compliance'));
+		$this->newdb->where(array('a.act_type' => 'Preventive Compliance'));
 
 		}
 		elseif ($type == 'Compliance') {		
-			$this->db->where(array('a.act_type' => 'Compliance'));
+			$this->newdb->where(array('a.act_type' => 'Compliance'));
 		}
 		elseif ($type == 'Registration') {
-			$this->db->where(array('a.act_type' => 'Registration'));
+			$this->newdb->where(array('a.act_type' => 'Registration'));
 		}
 
 		if (!empty($month) && $month!=="ALL") {
-				$this->db->where("monthname(a.due_date)",$month);
+				$this->newdb->where("monthname(a.due_date)",$month);
 			}
-		$result=$this->db->limit(10)->get();
+		$result=$this->newdb->limit(10)->get();
 
 	$result= $result->result();
 
@@ -112,26 +117,26 @@ class Act_model extends Base_model
 	/* start bulk_approval */
 	public function bulk_approval($id,$act,$type)
 	{
-		$this->db->select("*");
-		$this->db->from('compliance_working_prior');
+		$this->newdb->select("*");
+		$this->newdb->from('compliance_working_prior');
 		// $this->db->join('act_particular b','a.act=b.act AND a.Particular=b.Particular');
-		$this->db->where(array('custid' => $id, 'spg_id'=>user_id(),'status' => '3' ));
+		$this->newdb->where(array('custid' => $id, 'spg_id'=>user_id(),'status' => '3' ));
 
 		if ($type == 'Preventive_Compliance') {
-		$this->db->where(array('act_type' => 'Preventive Compliance'));
+		$this->newdb->where(array('act_type' => 'Preventive Compliance'));
 
 		}
 		elseif ($type == 'Compliance') {		
-			$this->db->where(array('act_type' => 'Compliance'));
+			$this->newdb->where(array('act_type' => 'Compliance'));
 		}
 		elseif ($type == 'Registration') {
-			$this->db->where(array('act_type' => 'Registration'));
+			$this->newdb->where(array('act_type' => 'Registration'));
 		}
 
 		if (!empty($act) && $act!=="ALL") {
-				$this->db->where("act_code",$act);
+				$this->newdb->where("act_code",$act);
 			}
-		$result=$this->db->limit(10)->get();
+		$result=$this->newdb->limit(10)->get();
 
 	$result= $result->result();
 

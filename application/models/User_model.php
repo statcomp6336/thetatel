@@ -43,7 +43,7 @@ class User_model extends Base_model
     public function select_companys($id)
     {
     	// echo $id='minal';
-    	$select="a.entity_name, a.custid,IF(b.userid = '".$id."','check','uncheck') as is_check";;
+    	$select="a.entity_name, a.custid,IF(b.userid = '".$id."','check','uncheck') as is_check";
     	
 
     	$result=$this->newdb->select($select)
@@ -90,7 +90,7 @@ class User_model extends Base_model
         $this->load->helper('Password');
         $hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
         $reset=array(
-                      'password'=>is( $hasher->HashPassword($newpassword))
+                      'password'=>is($hasher->HashPassword($newpassword))
                     );
         $username=$this->get_id('users','password,username',array('email'=>$email,'custid'=>$custid));       
 
@@ -127,6 +127,11 @@ class User_model extends Base_model
                      $msg="Invalid User..!";
                     return $msg;                 
                 }
+            }
+            else
+            {
+                $msg="This is Invalid useraname..!";
+                    return $msg; 
             }
 
 

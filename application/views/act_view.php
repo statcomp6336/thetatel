@@ -20,31 +20,7 @@
 
 
   } );
-   $(document).ready(function(){
-   	$('#store').click(function(){
-   		$.ajax({
-			  type: 'GET',
-			  url: '<?php echo base_url('spg/Spg/get_act_table');?>',
-			  // data: {get_param: 'value'},
-			  // dataType: 'json',
-			  success: function (data) {
-			  	$("#t").removeClass("hide");
-			  // 	var json = $.parseJSON(data);
-			  // 	var r="";
-					// $(json).each(function(i,val){
-					//     $.each(val,function(k,v){
-					//     	$('tbody').append("<tr><td class='center'><label class='pos-rel'><input type='checkbox' name='check_act[]' value='"+val['act_code']+"' class='ace' /><span class='lbl'></span></label></td><td>"+val['act']+" <input type ='hidden' name='act' value='"+val['act']+"' ></td><td>"+val['act_code']+"</td></tr>");
 
-					//         // console.log(val['act']+" : "+ val['act_code']);       
-					// });
-					// });
-					$('tbody').html(data);
-
-			   
-			  }
-			});
-   	});
-   });
      </script>
 
    

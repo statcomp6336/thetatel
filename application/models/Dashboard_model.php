@@ -11,6 +11,12 @@ class Dashboard_model extends Base_model
 	{
 		parent::__construct();
 	}
+	function search_blog($title){
+		$this->db->like('entity_name', $title , 'both');
+		$this->db->order_by('entity_name', 'ASC');
+		$this->db->limit(10);
+		return $this->db->get('customer_master')->result();
+	}
 
 	public function countOfScope()
 	{

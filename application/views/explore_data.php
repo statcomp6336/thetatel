@@ -6,6 +6,9 @@
 <div class="container">
 <ul class="ace-thumbnails clearfix">
 	<?php $count =0;
+	if (!empty($result)) {
+		
+	
 		foreach ($result as $key) {
 			$count++;
 					
@@ -41,7 +44,7 @@
 
 	</li>
 	<?php
-}
+} }
 	?>
 
 	

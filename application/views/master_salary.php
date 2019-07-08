@@ -1,4 +1,4 @@
-< <?php 
+<?php 
     if (!empty(show_msg())) {
      
         $data['msg'] =array('msg' => show_msg());

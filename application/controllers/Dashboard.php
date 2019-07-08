@@ -46,13 +46,9 @@ trait Dashboard {
 	public function showInbox($page_data='')
 	{
 		$this->load->model('Dashboard_model','dash');
-		if ($page_data['access'][$this->session->TYPE] == TRUE) {
-
-		 	 $this->data['page_title'] = $page_data['page_title'];
+		if ($this->data['access'][$this->session->TYPE] == TRUE) {	 	 
 			 $this->data['where'] = 'Message';
-			 $this->data['sub_menu'] = 'Inbox';
-			 $this->data['user_type'] = $page_data['user_type'];
-			 $this->data['menu'] = $page_data['menu'];
+			 $this->data['sub_menu'] = 'Inbox';		
 			 $this->data['inbox'] = $this->dash->get_allMail();
 			 $this->data['sendMail'] = $this->dash->get_allSendMail();
 			 $this->render('inbox');

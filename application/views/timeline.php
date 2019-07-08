@@ -14,7 +14,7 @@
 .timeline {
   width: 100%;
   height: 100px;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   display: flex;      
   justify-content: center;    
@@ -41,7 +41,7 @@
 
 .timeline .events ul li {
   display: inline-block;
-  width: 18%;
+  width: 16.29%;
   margin: 0;
   padding: 0;
 }
@@ -88,9 +88,13 @@
   background-color: orange;
   border-color: orange;
 }
-.timeline .events ul li .yellow:after {
-  background-color: yellow;
-  border-color: yellow;
+.timeline .events ul li .skyblue:after {
+  background-color: skyblue;
+  border-color: skyblue;
+}
+.timeline .events ul li .red:after {
+  background-color: red;
+  border-color: red;
 }
 .timeline .events ul li .green:hover::after {
   background-color: red;
@@ -121,14 +125,16 @@
   font-size: 2.5em;
 }
 
-.timeline .name{
-   font-family: 'Frank Ruhl Libre', serif;
-  font-weight: 500;
-  color: #919191;
-  font-size: 23.25px;
-  position: relative;
+.name{
+       font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 500;
+    color: #281e1e;
+    font-size: 23.25px;
+    position: relative;
     top: 38%;
     left: -5%;
+    text-align: -webkit-center;
+    font-size: xx-large;
 }
 .widget-main {
     padding: 12px;
@@ -142,34 +148,107 @@
 
     
     <div class="timeline">
-       <div class="name">df</div>
+      
       <div class="events">
         <ol>
           <ul>
-            <li >
-              <a href="#0" class="blue">File Recived</a>
+            <li>
+             <?php
+                if ($timeline->IS_FileRecive == 0 ) {
+                 echo "<a href='#0' class='red'>File Recived</a>";
+                }
+                else
+                {
+                   echo "<a href='#0' class='green'>File Recived</a>";
+                }
+
+              ?>
+            </li>
+            <li>
+              <?php
+                if ($timeline->IS_FileUpload == 0 ) {
+                  echo "<a href='#1' class='red'>File Upload</a>";
+                }
+                else
+                {
+                   echo "<a href='#1' class='green'>File Upload</a>";
+                }
+
+              ?>  
+              
             </li>
 
             <li>
-              <a href="#1" class="orange">File Upload</a>
+               <?php
+                  if ($timeline->IS_PfProcess == 0 ) {
+                    echo "<a href='#2' class='red'>PF & ESIC</a>";
+                  }
+
+                  else
+                  {
+                     echo "<a href='#2' class='green'>PF & ESIC</a>";
+                  }
+
+                ?>  
+             
             </li>
 
             <li>
-              <a href="#2">PF & ESIC </a>
-            </li>
+                 <?php
+                    if ($timeline->IS_Compliation == 0 ) {
+                      echo "<a href='#3' class='red'>Bulk Compilation</a>";
+                    }
+                     elseif ($timeline->IS_Compliation == 2 ) {
+                     echo "<a href='#3' class='skyblue'>Bulk Compilation</a>";
+                    }
+                     elseif ($timeline->IS_Compliation == 3 ) {
+                      echo "<a href='#3' class='orange'>Bulk Compilation</a>";
+                    }
+                    else
+                    {
+                       echo "<a href='#3' class='green'>Bulk Compilation</a>";
+                    }
 
-            <li>              
-              <a href="#3">Bulk Compilation</a>
+                  ?> 
             </li>
 
             <li>
-              <a href="#4">Bulk Complete</a>
+              <?php
+                if ($timeline->IS_Approve == 0 ) {
+                 echo "<a href='#4' class='red'>Bulk Approve</a>";
+                }
+                elseif ($timeline->IS_Approve == 2) {
+                  echo "<a href='#4' class='orange'>Bulk Approve</a>";
+                }
+                else
+                {
+                   echo "<a href='#4' class='green'>Bulk Approve</a>";
+                }
+
+              ?>  
+
+              
+            </li>
+            <li>
+              <?php
+                  if ($timeline->IS_Complete == 0 ) {
+                   echo "<a href='#5' class='red'>Complete</a>";
+                  }
+                  else
+                  {
+                     echo "<a href='#5' class='green'>Complete</a>";
+                  }
+
+                ?> 
+            
+              
             </li>
 
           </ul>
         </ol>
       </div>
     </div>
+     <div class="name"><?php echo $timeline->entity_name;?></div>
 
 </div>
 <!-- horizontal timeline end -->

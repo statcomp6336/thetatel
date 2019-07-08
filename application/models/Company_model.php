@@ -85,102 +85,96 @@ class Company_model extends Base_model
 
 	 public function all_companys($key='')
 	 {	
-	 	$result =$this->db->select('custid,entity_name')
+	 	$result =$this->newdb->select('custid,entity_name')
 	 					  ->from('customer_master')
-	 					  ->where('spgid',user_id())
-	 					  ->like('entity_name',$key)
+	 					  // ->where('spgid',user_id())	 					 
 	 					  ->get();
 	 		$result = $result->result();
 	 		
-	 		 return json_encode($result);
+	 		 return $result;
 	 }
 	 public function acts($value='')
 	 {	 	
 	 	return $this->db->get('act_particular')->result();	 	
 	 }
-	 public function get_acts($cust_id='')
+	 public function get_acts($id='')
 	 {
-	 	$returnActs=[];
-	 	$getActs =$this->db->query('SELECT DISTINCT act,act_code FROM `act_particular`');
-	 	if ($getActs->num_rows() >0) {
-	 		foreach ($getActs->result() as $key ) {
-	 			$getCheckAct=$this->db->distinct()->select(' act_code')->from('act_applicable_to_customer')-> where(' custid',$cust_id)-> where(' act_code',$key->act_code)->get();	 			
-	 			
-	 			if ($getCheckAct->num_rows()>0 ) {				
-	 					
-	 				$returnActs[]=array('act'=> $key->act, 'act_code'=>$key->act_code,'is_act' => TRUE);	
-	 			}
-	 			else
-	 			{
-	 				$returnActs[]=array('act'=> $key->act, 'act_code'=>$key->act_code,'is_act' => FALSE);	
-	 			} 			
+	 	// $returnActs=[];
+	 	$select="a.act,a.act_code,IF(b.custid = '".$id."','check','uncheck') as is_check";
+	 	$result=$this->newdb->select($select)
+    					 ->from('act_particular as a')
+    					 ->join('act_applicable_to_customer as b','a.act_code=b.act_code AND b.custid="'.$id.'"','left')
+    					 ->group_by('a.act_code')
+                        
+    					 ->order_by('a.act','desc')
 
-	 		}
-	 	}
-	 	return $returnActs;
+    					 ->get()
+    					 ->result();
+    	return $result;	
+
+	 	
 	 }
 	 public function attach_act_to_company($value='')
 	 {
-	 	$len=count($value['act_code']);	
-	 	// $valuesArr1=[];
-	 	// $valuesArr=[];
+	 	
+	 	if (!empty($value['act_code'])) {
+	 			$len=count($value['act_code']);
+	 	
 	 	for ($i=0; $i < $len ; $i++) {
 
 	 		$valuesArr1 = array('custid' => $value['custid'],
 	 							'name'=>$value['name'],
 	 							'act_code'=>$value['act_code'][$i],
-	 							'spgid'=>$value['spgid']	 );
+	 							'spgid'=>user_id());
 
 	 			if($this->newdb->insert('act_applicable_to_customer', $valuesArr1))
 				 	{
-				 		$get_act_data=$this->join('act_applicable_to_customer as A','act_particular as B','B.act_code = A.act_code','A.custid as id, A.act_code as code, B.act as act, B.particular as p',array('A.custid' =>$value['custid'], 'A.act_code' => $value['act_code'][$i] ));
-	 		 	$get_act_data=$get_act_data->result();
-	 		 // 	echo "<pre>";
-	 			// var_dump($get_act_data);
+				 		$get_act_data=$this->join('act_applicable_to_customer as A','act_particular as B',' B.act_code = A.act_code','A.custid as id, A.act_code as code, B.act as act, B.particular as p',array('A.custid' =>$value['custid'], 'A.act_code' => $value['act_code'][$i] ));
+	 		 	$get_act_data=$get_act_data->row();
+	 		 
 				 		$valuesArr = array('custid' => $get_act_data->id,
 	 							'act'=>$get_act_data->act,
 	 							'act_code'=>$get_act_data->code,
-	 							'spg_id'=>$value['spgid'],	 	
-	 							'Particular'=>$get_act_data->p);
-	 					$this->newdb->insert('compliance_scope', $valuesArr1);	
-	 					return TRUE;		 	
+	 							'spg_id'=>user_id(),	 	
+	 							'Particular'=>$get_act_data->p
+	 						);
+	 					$this->newdb->insert('compliance_scope', $valuesArr);
+	 					$r=TRUE;				
 				 	}
-				 	else
-				 	{
-				 		return FALSE;
-				 	}
+				 } 
+	 	}
+	 	else
+	 	{
+	 		put_msg('Please Act selected....!');
+	 		$r=FALSE;	 	
+	 	}
 
-	 		} 	
-	 	
-	 	// implode(',', $valuesArr);
-	 	/*
-SELECT A.custid ,'$spgid', A.act_code, B.act, B.particular
-	  FROM act_applicable_to_customer A
-	INNER   JOIN act_particular B
-		ON B.act_code = A.act_code
-	 WHERE A.custid  ='$entid' and A.act_code='$act_code'";
-	 	*/
-	 	
-
-	 	
+	 		return $r;
 	 }
 
 	public function get_allCompanydetails($reg_type)
 	{
-	 				$this->db->select("entity_name,custid,allianceid");
-					$this->db->from('customer_master');
+	 				$this->newdb->select("entity_name,custid,allianceid");
+					$this->newdb->from('customer_master');
 					if($reg_type=="subcontractor")
 					{
-						$this->db->where(array(	'spgid' =>user_id(),'custtype' => 3));
+						$this->newdb->where(array(	'spgid' =>user_id(),'custtype' => 3));
 					}
 					else
 					{
-						$this->db->where(array(	'spgid' =>user_id(),'custtype' => 1));
+						$this->newdb->where(array(	'spgid' =>user_id(),'custtype' => 1));
 					}
 					
-					$result=$this->db->get()->result();
+					$result=$this->newdb->get()->result();
+					
 
 					return $result;
+	}
+
+	// get act for for attact company
+	public function get_attachActs($custid='')
+	{
+		return $custid;
 	}
 
 }	

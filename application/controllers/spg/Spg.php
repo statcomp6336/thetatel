@@ -57,6 +57,8 @@ class Spg extends Base_controller {
 		
 
 	}
+
+	
 	
 	/*----- display the dashboard of spg -----*/
 	public function index()
@@ -151,7 +153,7 @@ class Spg extends Base_controller {
 	}
 	public function show_company_details()
 	{	
-		$this->ShowCompanyDetails($this->page);
+		$this->ShowCompanyDetails($this->page);//branch registration company list
 	}
 	public function branch_registration_view($value='')
 	{
@@ -286,6 +288,10 @@ class Spg extends Base_controller {
 	{
 		$this->ShowSalaryExcel($this->page);// salary trait class
 	}
+	public function save_salary()
+	{
+		$this->GetSalaryFromTempSal('spg');// salary trait class
+	}
 	public function save_import_salary($value='')
 	{
 		$this->SaveSalary($this->page,'spg');
@@ -301,7 +307,7 @@ class Spg extends Base_controller {
 	{
 		ini_set('max_execution_time', 0); 
 		ini_set('memory_limit','2048M');
-		$this->GenrateSantizeRec($this->page); // this function include in report class
+		$this->GenrateSantizeRec(); // this function include in report class
 	}
 	public function sanitize_process($value='')
 	{

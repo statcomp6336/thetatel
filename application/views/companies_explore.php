@@ -1,7 +1,9 @@
-<?php echo show_msg();
-
-
-?>
+<?php 
+    if (!empty(show_msg())) {     
+        $data['msg'] =array('msg' => show_msg());
+        $this->load->view('alert',$data);
+    }
+ ?>	
  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
  <div class="container">
  <div class="widget-box">
@@ -25,6 +27,9 @@
 
 	<tbody>
 		<?php $count =0;
+		if (!empty($result) && $result !== " ") {
+			
+		
 		foreach ($result as $key) {
 			$count++;
 			if ($page=='explore') {
@@ -57,7 +62,7 @@
 		</tr>
 
 		
-	<?php }?>
+	<?php } } ?>
 		
 	</tbody>
 </table>

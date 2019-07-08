@@ -25,6 +25,7 @@ class DB_install extends Base_model
 			$this->CreateTable_employee_master_new();
 			$this->CreateTable_employee_error();
 			$this->CreateTable_salary_master();
+			$this->CreateTable_salary_master_history();
 			$this->CreateTable_temp_salary_master();
 			$this->CreateTable_master_process();
 			$this->CreateTable_backlog_process();
@@ -51,6 +52,7 @@ class DB_install extends Base_model
 			$this->DropTable_employee_error();
 			$this->DropTable_temp_salary_master();
 			$this->DropTable_salary_master();
+			$this->DropTable_salary_master_history();
 			$this->DropTable_master_process();
 			$this->DropTable_backlog_process();
 			$this->DropTable_pf_template();
@@ -1051,6 +1053,152 @@ class DB_install extends Base_model
 	public function DropTable_salary_master()
 	{
 		$this->dbforge->drop_table('salary_master');
+	}
+	public function CreateTable_salary_master_history()
+	{
+		$fields = array(
+	'srno' 			=> array(
+	                    'type' => 'INT',                 
+	                    'auto_increment' => TRUE
+			            ),
+    'spgid'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'					                    
+			            ),
+    'custid'		=> array(
+	                    'type' =>'BIGINT',
+	                    'constraint' => '20'
+	                    			                    
+			            ),
+    'entity_name'		=> array(
+	                    'type' =>'TEXT'
+	                						                    
+			            ),
+    'empid'			=> array(
+	                    'type' =>'TEXT'                  
+			            ),
+    'pfno'			=> array(
+	                    'type' =>'VARCHAR',
+	                    'constraint' => '20'                  
+			            ),
+    'esicno'			=> array(
+	                     'type' =>'VARCHAR',
+	                    'constraint' => '20'            
+			            ),
+    'name'			=> array(
+	                     'type' =>'VARCHAR',
+	                    'constraint' => '50'          
+			            ),
+    'Month_days'			=> array(
+	                    'type' =>'INT',
+	                    'constraint' => '11'                  
+			            ),
+    'paid_days'			=> array(
+	                     'type' =>'VARCHAR',
+	                    'constraint' => '20'                
+			            ),
+    'fixgross'			=> array(
+	                     'type' =>'VARCHAR',
+	                    'constraint' => '20'               
+			            ),
+    'basic'			=> array(
+	                  'type' =>'TEXT'                 
+			            ),
+    'DA'			=> array(
+	                    'type' =>'TEXT'                 
+			            ),
+    'HRA'			=> array(
+	                    'type' =>'TEXT'                
+			            ),
+    'CA'			=> array(
+	                    'type' =>'TEXT'               
+			            ),
+    'CCA'			=> array(
+	                    'type' =>'TEXT'                 
+			            ),
+    'EA'			=> array(
+	                    'type' =>'TEXT'                  
+			            ),
+    'Other_reimb'			=> array(
+	                    'type' =>'TEXT'                
+			            ),
+    'OA'			=> array(
+	                   'type' =>'TEXT'                
+			            ),
+    'OT'			=> array(
+	                   'type' =>'TEXT'             
+			            ),
+    'WA'			=> array(
+	                   'type' =>'TEXT'                  
+			            ),
+    'LTA'			=> array(
+	                    'type' =>'TEXT'                 
+			            ),
+    'monthly_gross'			=> array(
+	                    'type' =>'TEXT'                  
+			            ),
+    'PF'			=> array(
+	                    'type' =>'TEXT'                
+			            ),
+    'VPF'			=> array(
+	                    'type' =>'VARCHAR',
+	                    'constraint' => '20'                
+			            ),
+    'ESIC'			=> array(
+	                     'type' =>'TEXT'                    
+			            ),
+    'PT'			=> array(
+	                    'type' =>'TEXT'                  
+			            ),
+    'IT'			=> array(
+	                   'type' =>'INT',
+	                    'constraint' => '20'                  
+			            ),
+    'LWF'			=> array(
+	                   'type' =>'INT',
+	                    'constraint' => '20'                  
+			            ),
+    'OD'			=> array(
+	                    'type' =>'INT',
+	                    'constraint' => '20'                  
+			            ),
+    'net_pay'			=> array(
+	                   'type' =>'INT',
+	                    'constraint' => '20'                 
+			            ),
+    'paymentmode'			=> array(
+	                   'type' =>'VARCHAR',
+	                    'constraint' => '20'                
+			            ),
+    'year'			=> array(
+	                  'type' =>'VARCHAR',
+	                    'constraint' => '20'                   
+			            ),
+    'month'			=> array(
+	                   'type' =>'VARCHAR',
+	                    'constraint' => '20'         
+			            ),
+    'epf_wages'			=> array(
+	                   'type' =>'VARCHAR',
+	                    'constraint' => '20'                    
+			            ),
+    'total_deduction'			=> array(
+	                    'type' =>'VARCHAR',
+	                    'constraint' => '20'                     
+			            ),
+  
+    
+
+		            'present_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		        );
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('salary_master_history',TRUE);
+	}
+
+	public function DropTable_salary_master_history()
+	{
+		$this->dbforge->drop_table('salary_master_history');
 	}
 
 	public function CreateTable_temp_salary_master()
