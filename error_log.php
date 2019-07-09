@@ -774,3 +774,9 @@
 [05-Jul-2019 11:11:13 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '=', expecting ')' in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Dashboard_model.php on line 217
 [05-Jul-2019 11:12:22 Asia/Kolkata] PHP Fatal error:  Call to undefined method Dashboard_model::is_spg() in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Dashboard_model.php on line 167
 >>>>>>> 20d6903230619ac99ca452fe9bb72afe4cced3d0
+[08-Jul-2019 13:07:01 Europe/Berlin] PHP Fatal error:  Call to undefined method CI_DB_mysqli_driver::result() in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Files_model.php on line 31
+[08-Jul-2019 13:35:46 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Files_model.php on line 53
+[08-Jul-2019 14:17:47 Europe/Berlin] PHP Parse error:  syntax error, unexpected '''' (T_CONSTANT_ENCAPSED_STRING) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Files.php on line 122
+[08-Jul-2019 14:18:03 Europe/Berlin] PHP Parse error:  syntax error, unexpected '''' (T_CONSTANT_ENCAPSED_STRING) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Files.php on line 122
+[08-Jul-2019 14:18:14 Europe/Berlin] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Files.php on line 133
+[08-Jul-2019 15:07:29 Europe/Berlin] PHP Fatal error:  Call to a member function select() on null in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Files_model.php on line 65

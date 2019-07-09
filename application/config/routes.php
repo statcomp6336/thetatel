@@ -166,6 +166,7 @@ $route['spg/share-files']	= 'spg/Spg/show_explore';//display salary file upload 
 $route['spg/explore/companies/(:num)']	= 'spg/Spg/show_companiesExplore';//display companies for explore view  
 $route['spg/share-files/companies/(:num)']	= 'spg/Spg/show_companiesExplore';//display companies for explore view  
 $route['spg/explore/companies/(:num)/(:any)']	= 'spg/Spg/show_companiesActExplore';//display companies for explore view 
+$route['spg/share-files/companies/(:num)/(:any)']	= 'spg/Spg/show_companiesActExplore';//display companies for explore view 
 
 
 // work on Dashboard
@@ -185,24 +186,10 @@ $route['spg/Alert-Compliance'] = 'spg/Spg/show_dashAlertCompliance';// display  
 //dashboard
 $route['company'] 						= 'role/Company';
 $route['company/logout'] 				= 'role/Company/logout';// logout and redirect to login page
-// $route['spg/notification']			= 'spg/Spg/notification_view';// display notification
-// $route['spg/inbox']			= 'spg/Spg/show_inbox';// display mail messages
-// $route['spg/send-mail']			= 'spg/Spg/send_mail';// display mail messages
-// $route['spg/mail_checked']			= 'spg/Spg/check_mail';// display mail messages
-// $route['spg/company/registration']	= 'spg/Spg/company_registration_view';// display company registration view
-// //===================================================
-// //$route['spg/branch/registration']	= 'spg/Spg/branch_registration_view';
-// $route['spg/branch/registration']	= 'spg/Spg/show_company_details';// display branch registration  view
-// $route['spg/branch/registration/(:any)/(:any)']	= 'spg/Spg/branch_registration_view';
-
-// $route['spg/contractor/registration']	= 'spg/Spg/show_company_details';// display contractor registration  view
-// $route['spg/contractor/registration/(:any)/(:any)']	= 'spg/Spg/contractor_registration_view';
-
-// $route['spg/subcontractor/registration']	= 'spg/Spg/show_company_details';// display subcontractor registration  view
-// $route['spg/subcontractor/registration/(:any)/(:any)']	= 'spg/Spg/subcontractor_registration_view';// display subcontractor registration  view
-// //====================================================
-
-// $route['spg/company/save']			= 'spg/Spg/add_company';// display company registration view
+$route['company/notification']			= 'role/Company/notification_view';// display notification
+$route['company/inbox']			= 'role/Company/show_inbox';// display mail messages
+$route['company/send-mail']			= 'role/Company/send_mail';// display mail messages
+$route['company/mail_checked']			= 'role/Company/check_mail';// display mail messages
 
 // /* work with act */
 // $route['spg/company/act']			= 'spg/Spg/act_view'; //display act view for company
@@ -217,19 +204,6 @@ $route['company/logout'] 				= 'role/Company/logout';// logout and redirect to l
 // $route['spg/compliance/bulk-approval/update']= 'spg/Spg/edit_bulk_approval'; //display bulk approval view for company 
 // $route['spg/compliance/bulk-timeline']= 'spg/Spg/show_bulk_timeline'; //display bulk timeline view for company
 // $route['spg/compliance/bulk-timeline/(:any)']= 'spg/Spg/show_timeline'; //display bulk timeline view for company
-
-// /* create acts*/
-// $route['spg/act/create']		= 'spg/Spg/create_Act'; // display register act form
-// $route['spg/act/save']			= 'spg/Spg/save_Act'; // insert act to database
-
-// /* work with Employee*/
-// $route['spg/employee/create']		= 'spg/Spg/view_employee_form'; // show Employee master form
-// $route['spg/employee/save']			= 'spg/Spg/save_employee'; // insert Employee master form
-// $route['spg/employee/show']			= 'spg/Spg/view_employee_master'; // show Employee master table
-// $route['spg/employee/show/(:num)']	= 'spg/Spg/view_employee_master'; // show Employee master table
-// $route['spg/employee/missing-uan']	= 'spg/Spg/view_missing_uan'; // show Employee master table
-
-
 // /* work with salary*/
 // $route['spg/salary/import']	= 'spg/Spg/import_salary';//display salary file upload form
 
@@ -333,11 +307,13 @@ $route['company/logout'] 				= 'role/Company/logout';// logout and redirect to l
 
 
 // /* work with users */
-// $route['spg/explore']	= 'spg/Spg/show_explore';//display salary file upload form
-// $route['spg/share-files']	= 'spg/Spg/show_explore';//display salary file upload form
-// $route['spg/explore/companies/(:num)']	= 'spg/Spg/show_companiesExplore';//display companies for explore view  
-// $route['spg/share-files/companies/(:num)']	= 'spg/Spg/show_companiesExplore';//display companies for explore view  
-// $route['spg/explore/companies/(:num)/(:any)']	= 'spg/Spg/show_companiesActExplore';//display companies for explore view 
+$route['company/explore']	= 'role/Company/show_explore';//display salary file upload form
+$route['company/share-files']	= 'role/Company/show_explore';//display salary file upload form
+$route['company/explore/companies/(:num)']	= 'role/Company/show_companiesExplore';//display companies for explore view  
+$route['company/share-files/companies/(:num)']	= 'role/Company/show_companiesExplore';//display companies for explore view  
+$route['company/explore/companies/(:num)/(:any)']	= 'role/Company/show_companiesActExplore';//display companies for explore view 
+$route['company/share-files/companies/(:num)/(:any)']	= 'role/Company/show_companiesActExplore';//display companies for explore view 
+$route['company/save/share-files']	= 'role/Company/save_share_files';//display companies for explore view  
 
 
 // // work on Dashboard

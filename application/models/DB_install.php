@@ -40,6 +40,7 @@ class DB_install extends Base_model
 			$this->CreateTable_customer_dump();
 			$this->CreateTable_timeline_data();
 			$this->CreateTable_compose_email();
+			$this->CreateTable_comp_doc_temp();
 		}
 	public function drop_tables($value='')
 		{
@@ -66,6 +67,7 @@ class DB_install extends Base_model
 			$this->DropTable_customer_dump();
 			$this->DropTable_timeline_data();
 			$this->DropTable_compose_email();
+			$this->DropTable_comp_doc_temp();
 		}	
 
 	public function CreateTable_customer_master()
@@ -1947,6 +1949,27 @@ class DB_install extends Base_model
 	}
 
 
+
+	public function CreateTable_comp_doc_temp($value='')
+	{
+		$fields = array(
+			"srno"			=> array('type' =>'INT',
+		 							 'auto_increment' => TRUE),
+		 	'sl'		=>array('type' =>'BIGINT',
+									'constraint' => '10'),		
+			
+			"doc_path"	=>array('type' =>'LONGTEXT'),
+			
+			'created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+		        );
+		$this->dbforge->add_key('srno', TRUE);
+	    $this->dbforge->add_field($fields);
+	    return $this->dbforge->create_table('comp_doc_temp',TRUE);
+	}
+	public function DropTable_comp_doc_temp()
+	{
+		$this->dbforge->drop_table('comp_doc_temp');
+	}
 
 
 

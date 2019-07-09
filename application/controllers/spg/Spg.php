@@ -69,6 +69,13 @@ class Spg extends Base_controller {
       );
 
 		$this->data['menu']['dashboard_access'] = TRUE;
+		$this->data['menu']['report_access'] = TRUE;
+		$this->data['menu']['salary_report'] = TRUE;
+		$this->data['menu']['compliance_report'] = TRUE;
+		$this->data['menu']['non_compliance_report'] = TRUE;
+		$this->data['menu']['compliance_doc'] = TRUE;
+		$this->data['menu']['emp_compliance'] = TRUE;
+		$this->data['menu']['compliance_reject'] = TRUE;
 
 	}
 

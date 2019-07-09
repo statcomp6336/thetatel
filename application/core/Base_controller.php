@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+  <?php defined('BASEPATH') OR exit('No direct script access allowed');
  require_once APPPATH."controllers\Dashboard.php";
  require_once APPPATH."controllers\Notification.php";
  require_once APPPATH."controllers\Company_ext.php";
@@ -53,6 +53,21 @@ class Base_controller extends CI_Controller
       "pf_new_joinee_report"=>FALSE,
       "pf_template"         =>FALSE,
       "pf_summary"          =>FALSE,
+
+      "report_access"          =>FALSE,
+      "salary_report"          =>FALSE,
+      "compliance_report"      =>FALSE,
+      "employee_info"      =>FALSE,
+      "register_menu"      =>FALSE,
+      "entity_report"      =>FALSE,
+      "compliance_req"      =>FALSE,
+      "user_info"      =>FALSE,
+
+      "non_compliance_report"   =>FALSE,
+      "compliance_doc"          =>FALSE,
+      "emp_compliance"          =>FALSE,
+      "compliance_reject"          =>FALSE,
+      "approval_report"          =>FALSE,
 
       );
 
