@@ -35,7 +35,7 @@ class Login_model extends CI_Model
 
 			$spg_result=$this->newdb->where('spg_id',$cid)->get('spg_master')->row();
 			$cust_result=$this->newdb->where('custid',$cid)->get('customer_master')->row();
-			// echo $hasher->HashPassword('statcomp12#$');
+			// echo $hasher->HashPassword('demo@123');
 			// var_dump($hasher->CheckPassword($password, $hashpass));
 			// exit();
 

@@ -111,6 +111,28 @@ public function emp_error()
 							->get()->result();
 	}
 
+<<<<<<< HEAD
+	/* get entity Details data from customer_master table */
+	public function get_entitydetails()
+	{
+		//displaying data from table
+		/// $spgid=$this->session->SESS_CUST_ID;
+		if (IS_SPG== TRUE)
+		{
+			return $this->db->select("custid,entity_name")
+					->from('customer_master')
+					->where(array(	'spgid' =>user_id()))
+					->get()->result();
+		} 		 
+		elseif (IS_SPGUSER== TRUE)
+		{
+			return $this->db->select("custid,entity_name")
+					->from('uu_companyselection')
+					->where(array(	'spgid' =>user_id(),'username'=>USERNAME ))
+					->get()->result();
+		} 					
+	}
+=======
     /* get companyies data from customer table */
 	public function get_companyies()
 	{
@@ -122,6 +144,7 @@ public function emp_error()
 							->get()->result();
 	}
 	
+>>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
 	// check excel upload company is exist or not
 	public function company_exist($custid='')
 	{

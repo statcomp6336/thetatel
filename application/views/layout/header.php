@@ -1013,6 +1013,7 @@ if (!empty($menu['report_access']) &&  $menu['report_access'] == TRUE)
 							
 
 							<!-- +++++++++++++ -->
+
 							<?php 
 if (!empty($menu['compliance_report']) &&  $menu['compliance_report'] == TRUE) 
 {						
@@ -1093,23 +1094,27 @@ if (!empty($menu['compliance_reject']) &&  $menu['compliance_reject'] == TRUE)
 								<?php } ?>
 								</ul>
 							</li>
+
 						<?php }
 if (!empty($menu['employee_info']) &&  $menu['employee_info'] == TRUE) 
 {						
 ?>
+
 							<!-- +++++++++++++ -->
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/export/employeedetails'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Emplyoee details
+									Employee details
 								</a>
 
 								<b class="arrow"></b>
 							</li>
+
 							<?php }
 if (!empty($menu['salary_report']) &&  $menu['salary_report'] == TRUE) 
 {						
 ?>
+
 
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/export/salarydetails'); ?>">
@@ -1124,6 +1129,8 @@ if (!empty($menu['entity_report']) &&  $menu['entity_report'] == TRUE)
 {						
 ?>
 
+			<?php } if ( $menu['reportentities_access'] == TRUE) { ?>
+
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/export/entitydetails'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -1137,6 +1144,8 @@ if (!empty($menu['compliance_req']) &&  $menu['compliance_req'] == TRUE)
 {						
 ?>
 
+			<?php } if ( $menu['reportcompliancerequest_access'] == TRUE) { ?>
+
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/export/compliancerequest'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -1145,11 +1154,13 @@ if (!empty($menu['compliance_req']) &&  $menu['compliance_req'] == TRUE)
 
 								<b class="arrow"></b>
 							</li>
+
 								<?php }
 if (!empty($menu['user_info']) &&  $menu['user_info'] == TRUE) 
 {						
 ?>
 		
+
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/export/spguserdetails'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -1163,6 +1174,8 @@ if (!empty($menu['register_menu']) &&  $menu['register_menu'] == TRUE)
 {						
 ?>
 
+
+			<?php } if ( $menu['reportregister_access'] == TRUE) { ?>
 
 							<li class="hover" >
 								<a href="error-404.html" class="dropdown-toggle">
@@ -1214,7 +1227,8 @@ if (!empty($menu['register_menu']) &&  $menu['register_menu'] == TRUE)
 									</li>									
 								</ul>							
 							</li>
-						<?php } ?>
+		<?php } ?>
+
 							<!-- +++++++++++++ -->
 							
 							<!-- +++++++++++++ -->

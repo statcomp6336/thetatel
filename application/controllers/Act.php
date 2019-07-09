@@ -260,10 +260,12 @@ trait Act {
 		
 			
 			 if ($this->data['access'][$this->session->TYPE] == TRUE) {
+
 			 	 $this->data['where'] = 'Compilance';
 				 $this->data['sub_menu'] = 'Bulk-Compliance';
 				// act detatails data
 				  $this->data['bulk_data']=array('data'    => $extract
+
 												);
 				  	$this->load->model('Employee_model','emp');
 				$this->data['companys']=$this->emp->get_companyies();

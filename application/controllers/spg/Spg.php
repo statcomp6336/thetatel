@@ -64,7 +64,15 @@ class Spg extends Base_controller {
       "myapproval_access"   =>TRUE,
       "userprofile_access"  =>TRUE,
       "managefiles_access"  =>TRUE,
-      "report_access"       =>TRUE,
+      
+      "report_access"       			=>TRUE,
+      "reportcompliance_access"   		=>TRUE,
+      "reportemplyoee_access"   		=>TRUE,
+      "reportsalary_access"   			=>TRUE,
+      "reportentities_access"   		=>TRUE,
+      "reportcompliancerequest_access"	=>TRUE,
+      "reportuser_access"   			=>TRUE,
+      "reportregister_access"   		=>TRUE,
 
       );
 
@@ -76,6 +84,9 @@ class Spg extends Base_controller {
 		$this->data['menu']['compliance_doc'] = TRUE;
 		$this->data['menu']['emp_compliance'] = TRUE;
 		$this->data['menu']['compliance_reject'] = TRUE;
+		$this->data['menu']['approval_report'] = TRUE;
+		$this->data['menu']['user_info'] = TRUE;
+		$this->data['menu']['employee_info'] = TRUE;
 
 	}
 
