@@ -4,14 +4,18 @@
         $this->load->view('alert',$data);
     }
  ?>	
+ <link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/css/jquery-ui.custom.min.css" />
+		
+	
  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
  <div class="container">
  <div class="widget-box">
 	<div class="widget-header">
 		<h4 class="widget-title"> Companies explore  </h4>
-	
+		
 	</div>
 	<div class="widget-body ">
+		
 		<div class="widget-main" >	
 		
 <table id="simple-table" class="table table-bordered table-hover w3-table-all w3-hoverable">
@@ -33,8 +37,10 @@
 		foreach ($result as $key) {
 			$count++;
 			if ($page=='explore') {
-				$year=date('Y', strtotime(''.$key->Statutory_due_date.''));
-				$date=$key->Statutory_due_date;
+				// $year=date('Y', strtotime(''.$key->Statutory_due_date.''));
+				$year=date('Y');
+				// $date=$key->Statutory_due_date;
+				$date=date('M');
 			}
 			else
 			{
@@ -70,4 +76,12 @@
 </div>	
 	</div>
 </div>	
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#import').on('click', function(){
+					
+					 $('.main').toggle();
+				});
+	});
+</script>
 

@@ -49,12 +49,67 @@ class Company extends Base_controller {
 		$this->load->model('Dashboard_model','dash');
 
 		$this->data['new_mail']=$this->dash->countOfNewMail();
+		/*menu Access*/
+		$this->data['menu']['dashboard_access'] = TRUE;
+		$this->data['menu']['managefiles_access'] = TRUE;
+
+		$this->data['menu']['report_access'] = TRUE;
+		$this->data['menu']['salary_report'] = TRUE;
+		$this->data['menu']['compliance_report'] = TRUE;
+		$this->data['menu']['non_compliance_report'] = TRUE;
+		$this->data['menu']['compliance_doc'] = TRUE;
+		$this->data['menu']['emp_compliance'] = TRUE;
+		$this->data['menu']['compliance_reject'] = TRUE;
 
 	}
 	public function index()
 	{
 		if ($this->data['menu']['dashboard_access'] == TRUE) {
 		$this->dashboard();
+		}
+		else
+		{
+			$this->load->view('404');
+		}
+	}
+	/* work with File-Explore*/
+	public function show_explore($value='')
+	{
+		if ($this->data['menu']['managefiles_access'] == TRUE) {
+		$this->ShowExplore();
+		}
+		else
+		{
+			$this->load->view('404');
+		}
+	}
+	//get companies for explore
+	public function show_companiesExplore($value='')
+	{
+		if ($this->data['menu']['managefiles_access'] == TRUE) {
+		$this->ShowCompaniesWithYear();
+		}
+		else
+		{
+			$this->load->view('404');
+		}
+	}
+	//get companies act files with year in explore
+	public function show_companiesActExplore($value='')
+	{
+		if ($this->data['menu']['managefiles_access'] == TRUE) {
+		$this->ShowCompaniesActWithYear();
+		}
+		else
+		{
+			$this->load->view('404');
+		}
+	}
+	//get upload files to spg user
+	public function save_share_files($value='')
+	{
+		if ($this->data['menu']['managefiles_access'] == TRUE) {
+		$this->upload_companyDocs('company');
 		}
 		else
 		{

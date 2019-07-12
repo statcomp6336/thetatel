@@ -445,18 +445,7 @@ elseif (IS_SUBCONTRACTOR == TRUE) {
                       </div>
         </div> -->
 
-                      <div id="chart_div"  style="margin-left:50px;"></div>
-                    
-<!--Startv graph-->
-
-<?php 
-//if (IS_SPG == TRUE) {
-    ?>
-
-        <div id="graph"></div>
-<?php //} ?> 
-        
-<!--End graph-->
+      
 
         <div class="hr hr8 hr-double"></div>
 

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 [21-Jun-2019 10:15:24 Asia/Kolkata] PHP Fatal error:  Call to undefined method Act_model::get_act() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 364
 [21-Jun-2019 12:32:15 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Company_ext::branch_registration() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Company_ext.php on line 396
 [21-Jun-2019 16:14:19 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Company_ext.php on line 378
@@ -827,3 +828,7 @@
 [11-Jul-2019 15:53:11 Asia/Kolkata] PHP Fatal error:  Cannot access empty property in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Dashboard.php on line 15
 [11-Jul-2019 15:53:32 Asia/Kolkata] PHP Fatal error:  Cannot access empty property in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Dashboard.php on line 15
 [11-Jul-2019 16:28:34 Asia/Kolkata] PHP Parse error:  syntax error, unexpected ',' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Dashboard.php on line 54
+=======
+[09-Jul-2019 08:49:26 Europe/Berlin] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 263
+[09-Jul-2019 08:51:26 Europe/Berlin] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 12
+>>>>>>> b6df151ed74649213a0b7f2cfa4f1e45d75c3dc3

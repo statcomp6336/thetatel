@@ -439,7 +439,7 @@
 
 				<ul class="nav nav-list"> 
 					<li class="active hover">
-						<?php if ( $menu['dashboard_access'] == TRUE) {
+						<?php if (!empty($menu['dashboard_access']) && $menu['dashboard_access'] == TRUE) {
 						
 						?>
 						<a href="<?php echo base_url(''.$user_type.'');?>">
@@ -449,7 +449,7 @@
 					<?php } ?>
 						<b class="arrow"></b>
 					</li>
-					<?php if ( $menu['setup_access'] == TRUE) {					
+					<?php if ( !empty($menu['setup_access']) && $menu['setup_access'] == TRUE) {					
 						?>
 					<li class="hover">
 						<a href="#" class="dropdown-toggle">
@@ -576,7 +576,7 @@
 
 <!-- start my activity  -->
 <?php 
-if ( $menu['myactivity_access'] == TRUE) 
+if ( !empty($menu['myactivity_access']) && $menu['myactivity_access'] == TRUE) 
 {						
 ?>
 					<li class="hover">
@@ -786,7 +786,7 @@ if ( $menu['myactivity_access'] == TRUE)
 <?php } ?>
 <!--  end my activity -->
 <?php 
-if ( $menu['mycompliance_access'] == TRUE) 
+if (!empty($menu['mycompliance_access']) &&  $menu['mycompliance_access'] == TRUE) 
 {						
 ?>					
 
@@ -829,7 +829,7 @@ if ( $menu['mycompliance_access'] == TRUE)
 					</li>
 <?php } ?>
 <?php 
-if ( $menu['myapproval_access'] == TRUE) 
+if (!empty($menu['myapproval_access']) && $menu['myapproval_access'] == TRUE) 
 {						
 ?>
 					<li class="hover">
@@ -859,7 +859,7 @@ if ( $menu['myapproval_access'] == TRUE)
 					</li> -->
 
 <?php 
-if ( $menu['userprofile_access'] == TRUE) 
+if (!empty($menu['userprofile_access']) &&  $menu['userprofile_access'] == TRUE) 
 {						
 ?>					
 					<li class="hover">
@@ -911,7 +911,7 @@ if ( $menu['userprofile_access'] == TRUE)
 						<b class="arrow"></b>
 					</li> -->
 <?php 
-if ( $menu['managefiles_access'] == TRUE) 
+if (!empty($menu['managefiles_access']) &&  $menu['managefiles_access'] == TRUE) 
 {						
 ?>
 					<li class="hover">
@@ -1000,7 +1000,7 @@ if ( $menu['managefiles_access'] == TRUE)
 					</li>
 <?php } ?>
 <?php 
-if ( $menu['report_access'] == TRUE) 
+if (!empty($menu['report_access']) &&  $menu['report_access'] == TRUE) 
 {						
 ?>
 					<li class="hover">
@@ -1020,9 +1020,12 @@ if ( $menu['report_access'] == TRUE)
 							
 
 							<!-- +++++++++++++ -->
-				<?php if ( $menu['reportcompliance_access'] == TRUE) {					
-						?>
-									<li class="hover">
+
+							<?php 
+if (!empty($menu['compliance_report']) &&  $menu['compliance_report'] == TRUE) 
+{						
+?>
+							<li class="hover">
 
 								<a href="#" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -1033,6 +1036,10 @@ if ( $menu['report_access'] == TRUE)
 								<b class="arrow"></b>
 
 								<ul class="submenu">
+									<?php 
+if (!empty($menu['compliance_report']) &&  $menu['compliance_report'] == TRUE) 
+{						
+?>
 									<li class="hover">
 										<a href="<?php echo base_url(''.$user_type.'/export/compliance'); ?>">
 											<i class="menu-icon fa fa-leaf green"></i>
@@ -1041,6 +1048,10 @@ if ( $menu['report_access'] == TRUE)
 
 										<b class="arrow"></b>
 									</li>
+								<?php }
+if (!empty($menu['non_compliance_report']) &&  $menu['non_compliance_report'] == TRUE) 
+{						
+?>
 
 									<li class="hover">
 										<a href="<?php echo base_url(''.$user_type.'/export/noncompliance'); ?>">
@@ -1050,6 +1061,10 @@ if ( $menu['report_access'] == TRUE)
 										</a>
 										<b class="arrow"></b>
 									</li>
+									<?php }
+if (!empty($menu['compliance_doc']) &&  $menu['compliance_doc'] == TRUE) 
+{						
+?>
 									<li class="hover">
 										<a href="<?php echo base_url(''.$user_type.'/export/compliancedocument'); ?>">
 											<i class="menu-icon fa fa-leaf green"></i>
@@ -1058,6 +1073,10 @@ if ( $menu['report_access'] == TRUE)
 
 										<b class="arrow"></b>
 									</li>
+									<?php }
+if (!empty($menu['approval_report']) &&  $menu['approval_report'] == TRUE) 
+{						
+?>
 									<li class="hover">
 										<a href="<?php echo base_url(''.$user_type.'/export/approval'); ?>">
 											<i class="menu-icon fa fa-leaf green"></i>
@@ -1066,6 +1085,11 @@ if ( $menu['report_access'] == TRUE)
 
 										<b class="arrow"></b>
 									</li>
+									<?php }
+if (!empty($menu['compliance_reject']) &&  $menu['compliance_reject'] == TRUE) 
+{						
+?>
+
 									<li class="hover">
 										<a href="<?php echo base_url(''.$user_type.'/export/rejected'); ?>">
 											<i class="menu-icon fa fa-leaf green"></i>
@@ -1074,22 +1098,30 @@ if ( $menu['report_access'] == TRUE)
 
 										<b class="arrow"></b>
 									</li>
+								<?php } ?>
 								</ul>
 							</li>
-			
-			<?php } if ( $menu['reportemplyoee_access'] == TRUE) { ?>
+
+						<?php }
+if (!empty($menu['employee_info']) &&  $menu['employee_info'] == TRUE) 
+{						
+?>
 
 							<!-- +++++++++++++ -->
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/export/employeedetails'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Emplyoee details
+									Employee details
 								</a>
 
 								<b class="arrow"></b>
 							</li>
-	
-			<?php } if ( $menu['reportsalary_access'] == TRUE) { ?>
+
+							<?php }
+if (!empty($menu['salary_report']) &&  $menu['salary_report'] == TRUE) 
+{						
+?>
+
 
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/export/salarydetails'); ?>">
@@ -1099,6 +1131,10 @@ if ( $menu['report_access'] == TRUE)
 
 								<b class="arrow"></b>
 							</li>
+										<?php }
+if (!empty($menu['entity_report']) &&  $menu['entity_report'] == TRUE) 
+{						
+?>
 
 			<?php } if ( $menu['reportentities_access'] == TRUE) { ?>
 
@@ -1110,6 +1146,10 @@ if ( $menu['report_access'] == TRUE)
 
 								<b class="arrow"></b>
 							</li>
+							<?php }
+if (!empty($menu['compliance_req']) &&  $menu['compliance_req'] == TRUE) 
+{						
+?>
 
 			<?php } if ( $menu['reportcompliancerequest_access'] == TRUE) { ?>
 
@@ -1122,7 +1162,11 @@ if ( $menu['report_access'] == TRUE)
 								<b class="arrow"></b>
 							</li>
 
-			<?php } if ( $menu['reportuser_access'] == TRUE) { ?>
+								<?php }
+if (!empty($menu['user_info']) &&  $menu['user_info'] == TRUE) 
+{						
+?>
+		
 
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/export/spguserdetails'); ?>">
@@ -1132,6 +1176,11 @@ if ( $menu['report_access'] == TRUE)
 
 								<b class="arrow"></b>
 							</li>
+										<?php }
+if (!empty($menu['register_menu']) &&  $menu['register_menu'] == TRUE) 
+{						
+?>
+
 
 			<?php } if ( $menu['reportregister_access'] == TRUE) { ?>
 
@@ -1185,7 +1234,8 @@ if ( $menu['report_access'] == TRUE)
 									</li>									
 								</ul>							
 							</li>
-			<?php } ?>
+		<?php } ?>
+
 							<!-- +++++++++++++ -->
 							
 							<!-- +++++++++++++ -->

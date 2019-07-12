@@ -25,6 +25,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 
 	}
+	protected function add_batch($table, $data)
+	{
+		$insert = $this->newdb->insert_batch($table,$data);
+        return $insert?TRUE:FALSE;
+
+	}
 	protected function edit($table,$where,$data)
 	{
 		$this->newdb->where($where);
