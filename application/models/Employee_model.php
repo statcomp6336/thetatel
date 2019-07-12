@@ -111,7 +111,7 @@ public function emp_error()
 							->get()->result();
 	}
 
-<<<<<<< HEAD
+
 	/* get entity Details data from customer_master table */
 	public function get_entitydetails()
 	{
@@ -132,19 +132,29 @@ public function emp_error()
 					->get()->result();
 		} 					
 	}
-=======
+
     /* get companyies data from customer table */
 	public function get_companyies()
 	{
 		//displaying data from table
-		
+		if (IS_SPG == TRUE)
+		{
 			return $this->newdb->select("entity_name,custid,allianceid")
 							->from('customer_master')							
 							->group_by(array("custid"))
 							->get()->result();
+		}
+		elseif (IS_SPGUSER == TRUE)
+		{
+			return $this->db->select("custid,entity_name,spgid")
+					->from('uu_companyselection')
+					->where(array(	'spgid' =>user_id(),'username'=>USERNAME ))
+					->get()->result();
+		}
+
 	}
 	
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
 	// check excel upload company is exist or not
 	public function company_exist($custid='')
 	{

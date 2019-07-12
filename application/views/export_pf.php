@@ -120,7 +120,17 @@
 								</div>
 								<div class="col-sm-5">
 
-									<select class="form-control required" ></select>
+									<select class="form-control required" name="location">
+										
+										<option value='ALL' selected>ALL</option>
+										<?php
+										foreach ($result1 as $key) {
+											
+										?>
+										<option value='<?php echo $key->location; ?>'><?php echo $key->location; ?></option>
+										<?php } ?>
+										
+									</select>
 									<span class="help-block hide" name="location">Example block-level help text here.</span>
 								</div>
 							</div>

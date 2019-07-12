@@ -9,11 +9,11 @@ trait Reports {
 		if ($this->data['access'][$this->session->TYPE] == TRUE) {
 		    $this->load->model('Report_model','report');
 
-<<<<<<< HEAD
+
 	       ///$this->data['page_title'] = $page_data['page_title'];
-=======
+
 		    $this->load->library("pagination");	      
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
 	       $this->data['where'] = 'Reports';
 	       $this->data['sub_menu'] = 'Sanitize';
 	     
@@ -203,19 +203,19 @@ $year 		=!empty($this->input->post('year'))?$this->input->post('year'):NULL;
 $location 	=!empty($this->input->post('location'))?$this->input->post('location'):NULL;
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) {
-<<<<<<< HEAD
+
 		 		    
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'PF Company';
 			        
 			        
-=======
+
 		 		   
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'PF Company';
 			      
 
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "PF Template Reports";	// colomns name
 			 		$this->data['tableTools'] = array(
@@ -250,17 +250,17 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			    $this->load->model('Report_model','report');
 			    $this->load->library("pagination");
 
-<<<<<<< HEAD
+
 		       
-		       $this->data['where'] = 'Reports';
-		       $this->data['sub_menu'] = 'PF Company';
-		       
-=======
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'PF Company';
 		       
 
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+		       $this->data['where'] = 'Reports';
+		       $this->data['sub_menu'] = 'PF Company';
+		       
+
+
 		    
 		       	// $config["base_url"] = base_url() .$page_data['user_type']."/employee/show";
 		        // $config["total_rows"] = $this->emp->get_count();
@@ -279,6 +279,9 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		       // All Company data
 			       	$this->data['result']=$this->report->get_entitydetails();
+
+			       	// All Location data
+			       	$this->data['result1']=$this->report->get_location();
 
 		       $this->render('export_pf');
 		     }
@@ -367,19 +370,19 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-<<<<<<< HEAD
+
 		 		    
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'PF New Joinee';
 			        
-=======
+
 
 		 		    
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'PF New Joinee';
 			      
 
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "PF New Joinee Report";	// colomns name
 			 		$this->data['tableTools'] = array(
@@ -410,7 +413,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			    $this->load->model('Report_model','report');
 			    $this->load->library("pagination");
 
-<<<<<<< HEAD
+
 		       
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'PF New Joinee';
@@ -418,12 +421,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 		    
 		      // All Company data
 			       	$this->data['result']=$this->report->get_entitydetails();
-=======
+
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'PF New Joinee';    
 
 		      
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
 		       $this->render('export_pfnewjoinee');
 		     }
 		     else
@@ -520,16 +523,16 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'PF Summary';
-<<<<<<< HEAD
+
 		       //$this->data['user_type'] = $page_data['user_type'];
 		       //$this->data['menu'] = $page_data['menu'];
 		    	
 		    	// All Company data
 			       	$this->data['result']=$this->report->get_entitydetails();      
-=======
+
 		      
 
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
 		       $this->render('export_pfsummary');
 		     }
 		     else
@@ -677,15 +680,13 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'ESIC New Joinee';
-<<<<<<< HEAD
+
 		      // $this->data['user_type'] = $page_data['user_type'];
 		       //$this->data['menu'] = $page_data['menu'];
 		    
 		    // All Company data
 			       	$this->data['result']=$this->report->get_entitydetails();  
-=======
 
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
 		       $this->render('export_esicnewjoinee');
 		     }
 		     else
@@ -784,16 +785,13 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 		     
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'ESIC Template';
-<<<<<<< HEAD
+
 		      // $this->data['user_type'] = $page_data['user_type'];
 		       //$this->data['menu'] = $page_data['menu'];
 		    	
 		    	// All Company data
 			       	$this->data['result']=$this->report->get_entitydetails();      
-=======
-		      
 
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
 		       $this->render('export_esictemplate');
 		     }
 		     else
@@ -947,12 +945,13 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'ESIC Template(Emp ID)';
-		       
-
-		       $this->data['result']=$this->report->get_location();
 
 		       // All Company data
 			       	$this->data['result']=$this->report->get_entitydetails();
+			     // All Location data
+			       	$this->data['result1']=$this->report->get_location();
+			       	// print_r($location);
+			       	// exit();
 		       $this->render('export_esictemplate_empid');
 		     }
 		     else
@@ -1120,16 +1119,14 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		       $this->data['where'] = 'Reports';
 		       $this->data['sub_menu'] = 'ESIC Summary';
-<<<<<<< HEAD
+
 		       //$this->data['user_type'] = $page_data['user_type'];
 		       //$this->data['menu'] = $page_data['menu'];
 		    	    
 		    // All Company data
 			       	$this->data['result']=$this->report->get_entitydetails();  
-=======
-		        
 
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
 		       $this->render('export_esicsummary');
 		     }
 		     else
@@ -1275,16 +1272,17 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			 	{
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
-<<<<<<< HEAD
+
 			       	$this->data['where'] = 'Reports';
 			       	$this->data['sub_menu'] = 'Compliance';
-=======
+
 
 
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Compliance';
 
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
+
 			      
 			      	// All Company data
 			       	$this->data['result']=$this->report->get_entitydetails();	
@@ -1342,17 +1340,17 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-<<<<<<< HEAD
+
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Non Compliance';
-=======
+
 
 		 		  
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Non Compliance';
 			        
 
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "Non Compliance Report";	// colomns name
 			 		$this->data['tableTools'] = array(
@@ -1380,7 +1378,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 			 	{
 				    $this->load->model('Report_model','report');
-<<<<<<< HEAD
+
 				    $this->load->library("pagination");			       
 			       	$this->data['where'] = 'Reports';
 			       	$this->data['sub_menu'] = 'Non Compliance';
@@ -1388,7 +1386,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			      	// All Company data
 			       	$this->data['result']=$this->report->get_entitydetails();	
 			       	$this->render('export_noncompliance');
-=======
+
 				    $this->load->library("pagination");
 
 
@@ -1397,7 +1395,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			  
 
 			       $this->render('export_noncompliance');
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
 			     }
 			     else
 			     {
@@ -1447,17 +1445,17 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-<<<<<<< HEAD
+
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Approval';
-=======
+
 
 		 		  
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Approval';
 			       
 
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "Approval This Month Report";			 			
 			 		// colomns name
@@ -1479,18 +1477,16 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			 	{
 				    $this->load->model('Report_model','report');
 				    $this->load->library("pagination");
-<<<<<<< HEAD
+
 			       	$this->data['where'] = 'Reports';
 			       	$this->data['sub_menu'] = 'Approval';			
-=======
+
 
 
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Approval';
 			     
 
-			    
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
 			      
 			      // All Company data
 			       	$this->data['result']=$this->report->get_entitydetails();
@@ -1533,17 +1529,17 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-<<<<<<< HEAD
+
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Rejected';
-=======
+
 
 		 		  
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Rejected';
 			   
 
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "Rejected Report";
 			 			
@@ -1569,18 +1565,18 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			       	$this->data['where'] = 'Reports';
 			       	$this->data['sub_menu'] = 'Rejected';			   			
 
-<<<<<<< HEAD
+
 			       	// All Company data
 			       	$this->data['result']=$this->report->get_entitydetails();    
 			       	$this->render('export_rejected');
-=======
+
 
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Rejected';
 			     
 
 			       $this->render('export_rejected');
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
 			     }
 			     else
 			     {
@@ -1622,16 +1618,16 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-<<<<<<< HEAD
+
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Compliance Documents';
-=======
+
 
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Compliance Documents';
 			       
 
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "Compliance Document Report"; 		
 			 		// colomns name				
@@ -1649,7 +1645,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 			 	{
 				    $this->load->model('Report_model','report');
-<<<<<<< HEAD
+
 				    $this->load->library("pagination");			    
 			       	$this->data['where'] = 'Reports';
 			       	$this->data['sub_menu'] = 'Compliance Documents';
@@ -1657,7 +1653,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			    	// All Company data
 			       	$this->data['result']=$this->report->get_entitydetails(); 
 			       	$this->render('export_compliance_document');
-=======
+
 				    $this->load->library("pagination");
 
 
@@ -1666,7 +1662,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 			      
 			       $this->render('export_compliance_document');
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
 			     }
 			     else
 			     {
@@ -1680,17 +1676,17 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 	 {
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-<<<<<<< HEAD
+
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Entity Details';
-=======
+
 
 		 		   
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Entity Details';
 			        
 
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "Entity Details Report";			 		
 			 		// colomns name
@@ -1726,16 +1722,16 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 		 		{
-<<<<<<< HEAD
+
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Employee Details';
-=======
+
 
 			        $this->data['where'] = 'Reports';
 			        $this->data['sub_menu'] = 'Employee Details';
 			       
 
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
 			        /* table data */
 			 		$this->data['tableHeading'] = "Employee Details Report";
 			 			
@@ -1758,12 +1754,12 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 		 		if ($this->data['access'][$this->session->TYPE] == TRUE) 
 			 	{
 				    $this->load->model('Report_model','report');
-<<<<<<< HEAD
+
 				    $this->load->library("pagination");			       
 			       $this->data['where'] = 'Reports';
 			       $this->data['sub_menu'] = 'Employee Details';
 			     
-=======
+
 				    $this->load->library("pagination");
 
 			    
@@ -1772,7 +1768,7 @@ $location 	=!empty($this->input->post('location'))?$this->input->post('location'
 			      
 
 
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
 			       // location data
 			       $this->data['result']=$this->report->get_location();		    
 			      

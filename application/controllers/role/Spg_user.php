@@ -69,6 +69,8 @@ class Spg_user extends Base_controller {
       "setup_access"        			=>FALSE,
       "myactivity_access"   			=>TRUE,
       "mycompliance_access" 			=>TRUE,
+      	"bulkcompliance_access"			=>TRUE,
+      	"compliancetimeline_access"		=>FALSE,
       "myapproval_access"   			=>FALSE,
       "userprofile_access"  			=>FALSE,
       "managefiles_access"  			=>FALSE,

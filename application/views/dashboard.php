@@ -1,7 +1,7 @@
 
 
 
-
+<?php include('graphscript_data.php');?>
 <?php if (IS_SPG == TRUE) { ?>
  
 <div class="col-sm-7 infobox-container">
@@ -439,11 +439,24 @@ elseif (IS_SUBCONTRACTOR == TRUE) {
     <div class="widget-body">
       <div class="widget-main">
         <!-- <div id="piechart-placeholder"></div> -->
-         <div class="dasharea2">
+         <!-- <div class="dasharea2">
                       <div id="chart_div" class="chart" style="margin-left:50px;">
                         
                       </div>
-                    </div>
+        </div> -->
+
+                      <div id="chart_div"  style="margin-left:50px;"></div>
+                    
+<!--Startv graph-->
+
+<?php 
+//if (IS_SPG == TRUE) {
+    ?>
+
+        <div id="graph"></div>
+<?php //} ?> 
+        
+<!--End graph-->
 
         <div class="hr hr8 hr-double"></div>
 
@@ -476,7 +489,7 @@ elseif (IS_SUBCONTRACTOR == TRUE) {
     </div><!-- /.widget-body -->
   </div><!-- /.widget-box -->
 </div><!-- /.col -->
- <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+ <!-- <script type="text/javascript" src="https://www.google.com/jsapi"></script>
  <script src="<?php echo base_url();?>assets/dashboard/js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
            google.load('visualization', '1.0', {'packages':['corechart']});
@@ -553,7 +566,24 @@ $('.window').hide();
   
 });
 
-</script>
+</script> -->
+
+
+
+
+<!-- <link rel="stylesheet" href="<?php echo base_url().'assets/dashboard/css/morris.css'?>">
+<script src="<?php echo base_url().'assets/dashboard/js/jquery.min.js'?>"></script>
+        <script src="<?php echo base_url().'assets/dashboard/js/raphael-min.js'?>"></script>
+        <script src="<?php echo base_url().'assets/dashboard/js/morris.min.js'?>"></script>
+        <script>
+        Morris.Bar({
+          element: 'graph',
+          data: <?php echo $data;?>,
+          xkey: 'year',
+          ykeys: ['total_sal', 'total_pf', 'total_emp','total_esic'],
+          labels: ['Purchase', 'Sale', 'Profit' , 'esic']
+        });
+    </script> -->
   
 
 

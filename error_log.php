@@ -779,3 +779,51 @@
 =======
 >>>>>>> 20d6903230619ac99ca452fe9bb72afe4cced3d0
 >>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+[08-Jul-2019 17:14:36 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 263
+[08-Jul-2019 17:14:41 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 263
+[08-Jul-2019 17:14:42 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 263
+[08-Jul-2019 17:14:43 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 263
+[08-Jul-2019 17:14:44 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 263
+[08-Jul-2019 17:14:45 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 263
+[08-Jul-2019 17:14:45 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 263
+[08-Jul-2019 17:14:46 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 263
+[08-Jul-2019 17:14:47 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 263
+[08-Jul-2019 17:14:48 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 263
+[08-Jul-2019 17:14:48 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 263
+[08-Jul-2019 17:14:54 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 263
+[08-Jul-2019 17:15:33 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE), expecting ')' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 274
+[08-Jul-2019 17:16:35 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 12
+[08-Jul-2019 17:16:52 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 206
+[08-Jul-2019 17:22:01 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 370
+[08-Jul-2019 17:22:03 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 370
+[08-Jul-2019 17:22:03 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 370
+[08-Jul-2019 17:22:13 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 1126
+[08-Jul-2019 17:49:33 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1127
+[08-Jul-2019 17:50:59 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1127
+[08-Jul-2019 17:51:17 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1127
+[08-Jul-2019 17:54:09 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1127
+[08-Jul-2019 17:56:42 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1127
+[08-Jul-2019 17:57:57 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1127
+[08-Jul-2019 17:58:00 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1127
+[08-Jul-2019 17:58:07 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1127
+[08-Jul-2019 17:59:45 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1127
+[08-Jul-2019 18:03:49 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1127
+[08-Jul-2019 18:05:19 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1127
+[08-Jul-2019 18:05:21 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1127
+[08-Jul-2019 18:05:21 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1127
+[08-Jul-2019 18:06:25 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1127
+[08-Jul-2019 18:06:27 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1127
+[08-Jul-2019 18:06:27 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1127
+[08-Jul-2019 18:06:28 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1127
+[08-Jul-2019 18:06:28 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1127
+[08-Jul-2019 18:07:43 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1128
+[08-Jul-2019 18:07:44 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1128
+[08-Jul-2019 18:07:45 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1128
+[08-Jul-2019 18:07:45 Asia/Kolkata] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1128
+[09-Jul-2019 10:23:06 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 955
+[09-Jul-2019 13:01:27 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '3' (T_LNUMBER) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Dashboard_model.php on line 124
+[09-Jul-2019 13:02:26 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '$result' (T_VARIABLE) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Dashboard_model.php on line 129
+[09-Jul-2019 13:27:07 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '2' (T_LNUMBER) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Dashboard_model.php on line 89
+[11-Jul-2019 15:53:11 Asia/Kolkata] PHP Fatal error:  Cannot access empty property in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Dashboard.php on line 15
+[11-Jul-2019 15:53:32 Asia/Kolkata] PHP Fatal error:  Cannot access empty property in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Dashboard.php on line 15
+[11-Jul-2019 16:28:34 Asia/Kolkata] PHP Parse error:  syntax error, unexpected ',' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Dashboard.php on line 54

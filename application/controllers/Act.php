@@ -260,7 +260,7 @@ trait Act {
 		
 			
 			 if ($this->data['access'][$this->session->TYPE] == TRUE) {
-<<<<<<< HEAD
+
 			 	 //$this->data['page_title'] = $page_data['page_title'];
 				 $this->data['where'] = 'Compilance';
 				 $this->data['sub_menu'] = 'Bulk-Compliance';
@@ -269,13 +269,13 @@ trait Act {
 
 				 // act detatails data
 				  $this->data['bulk_data']=array('companys'=> $this->act->get_compActs(user_id()),
-				  								'data'    => $extract
-=======
+				  								'data'    => $extract);
+
 			 	 $this->data['where'] = 'Compilance';
 				 $this->data['sub_menu'] = 'Bulk-Compliance';
 				// act detatails data
 				  $this->data['bulk_data']=array('data'    => $extract
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
 												);
 				  	$this->load->model('Employee_model','emp');
 				$this->data['companys']=$this->emp->get_companyies();
