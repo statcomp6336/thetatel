@@ -51,7 +51,7 @@ trait Dashboard {
 				$this->data['total_approves'] = $this->dash->countOfMyApprovals();
 				$this->data['total_notis'] = $this->dash->countOfNewMail();
 			}			 		
-		$this->render('dashboard',$data);	
+		$this->render('dashboard');	
 		}	
 		else
 		 {

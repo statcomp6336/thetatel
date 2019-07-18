@@ -120,7 +120,7 @@ class Home extends Base_controller {
 					
 					case '1':
 						echo "1";
-						redirect(base_url('company'));
+						redirect(base_url('Company'));
 						break;
 					case '2':
 						echo "2";

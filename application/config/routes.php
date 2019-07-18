@@ -184,12 +184,12 @@ $route['spg/Alert-Compliance'] = 'spg/Spg/show_dashAlertCompliance';// display  
 
 /*Company role controller*/
 //dashboard
-$route['company'] 						= 'role/Company';
-$route['company/logout'] 				= 'role/Company/logout';// logout and redirect to login page
-$route['company/notification']			= 'role/Company/notification_view';// display notification
-$route['company/inbox']			= 'role/Company/show_inbox';// display mail messages
-$route['company/send-mail']			= 'role/Company/send_mail';// display mail messages
-$route['company/mail_checked']			= 'role/Company/check_mail';// display mail messages
+$route['Company'] 						= 'role/Company';
+$route['Company/logout'] 				= 'role/Company/logout';// logout and redirect to login page
+$route['Company/notification']			= 'role/Company/notification_view';// display notification
+$route['Company/inbox']			= 'role/Company/show_inbox';// display mail messages
+$route['Company/send-mail']			= 'role/Company/send_mail';// display mail messages
+$route['Company/mail_checked']			= 'role/Company/check_mail';// display mail messages
 
 // /* work with act */
 // $route['spg/company/act']			= 'spg/Spg/act_view'; //display act view for company
@@ -250,21 +250,21 @@ $route['company/mail_checked']			= 'role/Company/check_mail';// display mail mes
 // $route['spg/download/esicsummary/(:num)/(:num)']= 'spg/Spg/download_esic_summary';
 
 // /*export compliance report start*/
-// $route['spg/export/compliance'] = 'spg/Spg/show_compliance';
-// $route['spg/download/compliance/(:num)/(:num)']= 'spg/Spg/download_compliance';
+ $route['Company/export/compliance'] = 'role/Company/show_compliance';
+ $route['Company/download/compliance/(:num)/(:num)']= 'role/Company/download_compliance';
 
 // /*export non compliance report start*/
-// $route['spg/export/noncompliance'] = 'spg/Spg/show_noncompliance';
-// $route['spg/download/noncompliance/(:num)/(:num)']= 'spg/Spg/download_noncompliance';
+ $route['Company/export/noncompliance'] = 'role/Company/show_noncompliance';
+ $route['Company/download/noncompliance/(:num)/(:num)']= 'role/Company/download_noncompliance';
 
 // /*export approval(current month(duedate) approved) report start*/
 // $route['spg/export/approval'] = 'spg/Spg/show_approval';
 
 // /*export Rejected report start*/
-// $route['spg/export/rejected'] = 'spg/Spg/show_rejected';
+ $route['Company/export/rejected'] = 'role/Company/show_rejected';
 
 // /*export Compliance Document report start*/
-// $route['spg/export/compliancedocument'] = 'spg/Spg/show_compliance_document';
+ $route['Company/export/compliancedocument'] = 'role/Company/show_compliance_document';
 
 // /*export entity details(company registered details) report start*/
 // $route['spg/export/entitydetails'] = 'spg/Spg/show_entity_details';
@@ -276,10 +276,10 @@ $route['company/mail_checked']			= 'role/Company/check_mail';// display mail mes
 // $route['spg/export/compliancerequest'] = 'spg/Spg/Show_compliance_request_details';
 
 // /*export Salary Details report start*/
-// $route['spg/export/salarydetails'] = 'spg/Spg/show_salary_details';
+ $route['Company/export/salarydetails'] = 'role/Company/show_salary_details';
 
 // /*export FAQ Details report start*/
-// $route['spg/export/faqdetails'] = 'spg/Spg/show_faq_details';
+ $route['Company/export/faqdetails'] = 'role/Company/show_faq_details';
 
 // /*export Spg user Details report start*/
 // $route['spg/export/spguserdetails'] = 'spg/Spg/show_spgusers_details';
@@ -307,13 +307,13 @@ $route['company/mail_checked']			= 'role/Company/check_mail';// display mail mes
 
 
 // /* work with users */
-$route['company/explore']	= 'role/Company/show_explore';//display salary file upload form
-$route['company/share-files']	= 'role/Company/show_explore';//display salary file upload form
-$route['company/explore/companies/(:num)']	= 'role/Company/show_companiesExplore';//display companies for explore view  
-$route['company/share-files/companies/(:num)']	= 'role/Company/show_companiesExplore';//display companies for explore view  
-$route['company/explore/companies/(:num)/(:any)']	= 'role/Company/show_companiesActExplore';//display companies for explore view 
-$route['company/share-files/companies/(:num)/(:any)']	= 'role/Company/show_companiesActExplore';//display companies for explore view 
-$route['company/save/share-files']	= 'role/Company/save_share_files';//display companies for explore view  
+$route['Company/explore']	= 'role/Company/show_explore';//display salary file upload form
+$route['Company/share-files']	= 'role/Company/show_explore';//display salary file upload form
+$route['Company/explore/companies/(:num)']	= 'role/Company/show_companiesExplore';//display companies for explore view  
+$route['Company/share-files/companies/(:num)']	= 'role/Company/show_companiesExplore';//display companies for explore view  
+$route['Company/explore/companies/(:num)/(:any)']	= 'role/Company/show_companiesActExplore';//display companies for explore view 
+$route['Company/share-files/companies/(:num)/(:any)']	= 'role/Company/show_companiesActExplore';//display companies for explore view 
+$route['Company/save/share-files']	= 'role/Company/save_share_files';//display companies for explore view  
 
 
 // // work on Dashboard
