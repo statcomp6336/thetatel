@@ -104,6 +104,40 @@ class Company extends Base_controller {
 			$this->load->view('404');
 		}
 	}
+
+	//work with dashboard 
+	public function show_totalScope($value='')
+	{
+		$this->ShowTotalScope($this->page);
+	}
+	//Current Scope
+	public function show_currentScope($value='')
+	{
+		$this->ShowDashCurrentScope($this->page);
+	}
+	//Compilence Done
+	public function show_complianceDone($value='')
+	{
+		$this->ShowDashComplianceDone($this->page);
+	}
+	//Non Compliance
+	public function show_dashNonCompliance($value='')
+	{
+		$this->ShowDashNonCompliance($this->page);
+	}
+	//Pending Compliance
+	public function show_dashPendingCompliance($value='')
+	{
+		$this->ShowDashPendingCompliance($this->page);
+	}
+	//Pending Compliance
+	public function show_dashAlertCompliance($value='')
+	{
+		$this->ShowDashAlertCompliance($this->page);
+	}
+
+	//=========================================================//
+
 	/* work with File-Explore*/
 	public function show_explore($value='')
 	{
@@ -148,6 +182,7 @@ class Company extends Base_controller {
 			$this->load->view('404');
 		}
 	}
+   //==================================================//
 
 	/*working with compliance report*/
 	public function show_compliance()
@@ -166,10 +201,6 @@ class Company extends Base_controller {
 	{
 		$this->DownloadNonCompliance();
 	}
-	// public function show_approval()
-	// {
-	// 	$this->ShowApproval($this->page);
-	// }
 	public function show_rejected()
 	{
 		$this->ShowRejected($this->page);
@@ -178,18 +209,6 @@ class Company extends Base_controller {
 	 {
 	 	$this->ShowComplianceDocument($this->page);
 	 }
-	// public function show_entity_details()
-	// {
-	// 	$this->ShowEntityDetails($this->page);
-	// }
-	// public function show_employee_details()
-	// {
-	// 	$this->ShowEmployeeDetails($this->page);
-	// }
-	// public function Show_compliance_request_details()
-	// {
-	// 	$this->ShowComplianceRequestDetails($this->page);
-	// }
 	public function show_salary_details()
 	{
 		$this->ShowSalaryDetails($this->page);
@@ -199,8 +218,25 @@ class Company extends Base_controller {
 		$this->ShowFAQDetails($this->page);
 	}
 
+	//=========================================================//
+	/* ------- Display the post box view of spg*/
+	public function show_inbox()
+	{
+		$this->showInbox($this->page);//this function store in dashboard controller		
+	}
+	public function send_mail($value='')
+	{
+		$this->SendMail('spg');//this function store in dashboard controller	
+	}
+	public function check_mail($value='')
+	{
+		$this->dash->update_mail_status();
 
-	
+	}
+	public function save_comment()
+	{
+		$this->SaveComment($this->page);//this function store in dashboard controller		
+	}
 
 	//=========================================================//
 	public function logout()
@@ -208,20 +244,5 @@ class Company extends Base_controller {
 		redirect('Home/quite');
 	}
 	//=======================================================//
-	// public function show_spgusers_details()
-	// {
-	// 	$this->ShowSpgUsersDetails($this->page);
-	// }
-	// public function show_formd()
-	// {
-	// 	$this->ShowFormD($this->page);
-	// }
-	// public function show_formq()
-	// {
-	// 	$this->ShowFormQ($this->page);
-	// }
-	// public function download_formq($value='')
-	// {
-	// 	$this->DownloadFormQ();
-	// }
+	
 }	

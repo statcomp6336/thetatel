@@ -178,9 +178,7 @@ $route['spg/Non-Compliance'] = 'spg/Spg/show_dashNonCompliance';// display  view
 $route['spg/Pending-Compliance'] = 'spg/Spg/show_dashPendingCompliance';// display  view of Pending Compliance
 $route['spg/Alert-Compliance'] = 'spg/Spg/show_dashAlertCompliance';// display  view of Pending Compliancee
  
-
-
-
+//=============================================//
 
 /*Company role controller*/
 //dashboard
@@ -191,122 +189,25 @@ $route['Company/inbox']			= 'role/Company/show_inbox';// display mail messages
 $route['Company/send-mail']			= 'role/Company/send_mail';// display mail messages
 $route['Company/mail_checked']			= 'role/Company/check_mail';// display mail messages
 
-// /* work with act */
-// $route['spg/company/act']			= 'spg/Spg/act_view'; //display act view for company
-// $route['spg/company/attachAct']		= 'spg/Spg/attachAct'; //display act view for company
-// /* work with complince */
-// $route['spg/compliance/bulk-update']= 'spg/Spg/show_bulk_update'; //display bulk update view for company
-// $route['spg/compliance/bulk-compliance']= 'spg/Spg/show_bulk_compliance'; //display bulk compliance view for company
-// $route['spg/compliance/bulk-compliance/comment/(:any)/(:num)/(:any)']= 'spg/Spg/show_bulk_compliance'; //display bulk compliance view for company
-// $route['spg/compliance/bulk-compliance/update']= 'spg/Spg/edit_bulk_compliance'; //display bulk compliance view for company
-// $route['spg/compliance/bulk-approval']= 'spg/Spg/show_bulk_approval'; //display bulk approval view for company 
-// $route['spg/compliance/bulk-approval/comment/(:any)/(:num)/(:any)']= 'spg/Spg/show_bulk_approval'; //display bulk approval view for company 
-// $route['spg/compliance/bulk-approval/update']= 'spg/Spg/edit_bulk_approval'; //display bulk approval view for company 
-// $route['spg/compliance/bulk-timeline']= 'spg/Spg/show_bulk_timeline'; //display bulk timeline view for company
-// $route['spg/compliance/bulk-timeline/(:any)']= 'spg/Spg/show_timeline'; //display bulk timeline view for company
-// /* work with salary*/
-// $route['spg/salary/import']	= 'spg/Spg/import_salary';//display salary file upload form
-
-
-// /* work with Reports */
-// $route['spg/report/sanitize']			= 'spg/Spg/genrate_santize_rec';//display sanitize report
-// $route['spg/report/sanitize/genrate']	= 'spg/Spg/sanitize_process';//genrate santizing report
-// $route['spg/report/process']			= 'spg/Spg/genrate_process_report';//display process table data for pf
-// $route['spg/report/proccess/genrate/pf/(:num)/(:num)']	= 'spg/Spg/process_for_pf';//display process table data for pf
-// $route['spg/report/proccess/genrate/esic/(:num)/(:num)']	= 'spg/Spg/process_for_esic';//display process table data for esic
-// $route['spg/report/backlog']	= 'spg/Spg/genrate_backloag_report';//display backlog table data 
-// $route['spg/report/backlog/employee/edit/(:num)/(:num)']	= 'spg/Spg/edit_backlog_emp';//display backlog table data  edit and correct
-// $route['spg/report/backlog/salary/edit/(:num)/(:num)']	= 'spg/Spg/edit_backlog_sal';//display backlog table data  edit and correct
-
-// /*export report start*/
-// $route['spg/export/pf'] = 'spg/Spg/show_company_pf';
-// $route['spg/download/pf/(:num)/(:num)'] = 'spg/Spg/download_pf';
-// /* export missing uan no*/
-// $route['spg/export/missing-uan'] = 'spg/Spg/show_missing_uan';
-// $route['spg/download/missinguan/(:num)/(:num)'] = 'spg/Spg/download_missinguan';
-
-// /*export PF new joinee report start*/
-// $route['spg/export/pfnewjoinee'] = 'spg/Spg/show_pf_newjoinee';
-// $route['spg/download/pfnewjoin/(:num)/(:num)']= 'spg/Spg/download_pfnewjoinee';
-
-// /*export PF Summary report start*/
-// $route['spg/export/pfsummary'] = 'spg/Spg/show_pf_summary';
-// $route['spg/download/pfsummary/(:num)/(:num)']= 'spg/Spg/download_pfsummary';
-
-// /*export esic new joinee report start*/
-// $route['spg/export/esicnewjoinee'] = 'spg/Spg/show_esic_newjoinee';
-// $route['spg/download/esicnewjoin/(:num)/(:num)']= 'spg/Spg/download_esicnewjoinee';
-
-// /*export esic Template report start*/
-// $route['spg/export/esictemplate'] = 'spg/Spg/show_esic_template';
-// $route['spg/download/esictemplate/(:num)/(:num)']= 'spg/Spg/download_esic_template';
-
-// /*export esic Template empid report start*/
-// $route['spg/export/esictemplateempid'] = 'spg/Spg/show_esic_template_empid';
-// $route['spg/download/esictemplateempid/(:num)/(:num)']= 'spg/Spg/download_esic_template_empid';
-
-// /*export esic Summary report start*/
-// $route['spg/export/esicsummary'] = 'spg/Spg/show_esic_summary';
-// $route['spg/download/esicsummary/(:num)/(:num)']= 'spg/Spg/download_esic_summary';
-
-// /*export compliance report start*/
+//===============================================//
+/* work with Reports */
+/*export compliance report start*/
  $route['Company/export/compliance'] = 'role/Company/show_compliance';
  $route['Company/download/compliance/(:num)/(:num)']= 'role/Company/download_compliance';
-
-// /*export non compliance report start*/
+ /*export non compliance report start*/
  $route['Company/export/noncompliance'] = 'role/Company/show_noncompliance';
  $route['Company/download/noncompliance/(:num)/(:num)']= 'role/Company/download_noncompliance';
-
-// /*export approval(current month(duedate) approved) report start*/
-// $route['spg/export/approval'] = 'spg/Spg/show_approval';
-
-// /*export Rejected report start*/
+/*export Rejected report start*/
  $route['Company/export/rejected'] = 'role/Company/show_rejected';
-
-// /*export Compliance Document report start*/
+/*export Compliance Document report start*/
  $route['Company/export/compliancedocument'] = 'role/Company/show_compliance_document';
-
-// /*export entity details(company registered details) report start*/
-// $route['spg/export/entitydetails'] = 'spg/Spg/show_entity_details';
-
-// /*export Employee Details report start*/
-// $route['spg/export/employeedetails'] = 'spg/Spg/show_employee_details';
-
-// /*export Compliance Request Details report start*/
-// $route['spg/export/compliancerequest'] = 'spg/Spg/Show_compliance_request_details';
-
-// /*export Salary Details report start*/
+/*export Salary Details report start*/
  $route['Company/export/salarydetails'] = 'role/Company/show_salary_details';
-
-// /*export FAQ Details report start*/
+/*export FAQ Details report start*/
  $route['Company/export/faqdetails'] = 'role/Company/show_faq_details';
 
-// /*export Spg user Details report start*/
-// $route['spg/export/spguserdetails'] = 'spg/Spg/show_spgusers_details';
-
-// /*export Form D report start*/
-// $route['spg/export/formd'] = 'spg/Spg/show_formd';
-
-// /*export Form D report start*/
-// $route['spg/export/formq'] = 'spg/Spg/show_formq';
-// $route['spg/download/formq/(:num)/(:num)']= 'spg/Spg/download_formq';
-
-
-
-// /* work with users */
-// $route['spg/users']	= 'spg/Spg/show_user_list';//display salary file upload form
-// $route['spg/user/save']	= 'spg/Spg/create_user';//Save the user detailes in db
-// $route['spg/user/update']	= 'spg/Spg/edit_user';//Save the user detailes in db
-// $route['spg/user/remove/(:any)']	= 'spg/Spg/remove_user';//Save the user detailes in db
-
-// $route['spg/user/remove-companys/(:any)']	= 'spg/Spg/user_remove_companys';//Save the user detailes in db
-// $route['spg/user/get-companys/(:any)']	= 'spg/Spg/user_get_companys';//Save the user detailes in db
-// $route['spg/user/add-remove-comany']	= 'spg/Spg/user_AddRemove_companys';//Save the user detailes in db
-// $route['spg/user/reset-password']	= 'spg/Spg/reset_password';//Reset the password
-// $route['spg/user/company-access']	= 'spg/Spg/company_access';//Reset the password
-
-
-// /* work with users */
+//=================================================//
+// /* work with files */
 $route['Company/explore']	= 'role/Company/show_explore';//display salary file upload form
 $route['Company/share-files']	= 'role/Company/show_explore';//display salary file upload form
 $route['Company/explore/companies/(:num)']	= 'role/Company/show_companiesExplore';//display companies for explore view  
@@ -315,14 +216,14 @@ $route['Company/explore/companies/(:num)/(:any)']	= 'role/Company/show_companies
 $route['Company/share-files/companies/(:num)/(:any)']	= 'role/Company/show_companiesActExplore';//display companies for explore view 
 $route['Company/save/share-files']	= 'role/Company/save_share_files';//display companies for explore view  
 
-
-// // work on Dashboard
-// $route['spg/total-scope'] = 'spg/Spg/show_totalScope';// display Total companyies acts and particuler
-// $route['spg/current-scope'] = 'spg/Spg/show_currentScope';// display current companyies acts and particuler
-// $route['spg/Complilnce-Done'] = 'spg/Spg/show_complianceDone';// display Complinece Done view 
-// $route['spg/Non-Compliance'] = 'spg/Spg/show_dashNonCompliance';// display  view Non-Compliance
-// $route['spg/Pending-Compliance'] = 'spg/Spg/show_dashPendingCompliance';// display  view of Pending Compliance
-// $route['spg/Alert-Compliance'] = 'spg/Spg/show_dashAlertCompliance';// display  view of Pending Compliance
+//===============================================//
+// work on Dashboard
+$route['Company/total-scope'] = 'role/Company/show_totalScope';// display Total companyies acts and particuler
+$route['Company/current-scope'] = 'role/Company/show_currentScope';// display current companyies acts and particuler
+$route['Company/Complilnce-Done'] = 'role/Company/show_complianceDone';// display Complinece Done view 
+$route['Company/Non-Compliance'] = 'role/Company/show_dashNonCompliance';// display  view Non-Compliance
+$route['Company/Pending-Compliance'] = 'role/Company/show_dashPendingCompliance';// display  view of Pending Compliance
+$route['Company/Alert-Compliance'] = 'role/Company/show_dashAlertCompliance';// display  view of Pending Compliance
 
 
 
