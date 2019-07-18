@@ -1026,7 +1026,8 @@ class Report_model extends Base_model
 	/* get Esic Summary data from esic_template table */
 	public function get_newEsicSummary($spgid,$custid,$month,$year)
 	{
-		$this->newdb->select("CAST(sum((a.monthly_wages*(1.75/100))) as UNSIGNED) as eps_contri,CAST(sum((a.monthly_wages)*4.75/100) as UNSIGNED) as total_contri,CAST(((sum((a.monthly_wages*(1.75/100))))+(sum((a.monthly_wages)*4.75/100))) as UNSIGNED) as grand,if(monthly_wages!=NULL,`monthly_wages`,'-'),sum(a.monthly_wages) as gross_wages");
+		//echo "hi";
+		$this->newdb->select("CAST(sum(a.monthly_wages*(1.75/100))) as UNSIGNED) as eps_contri,CAST(sum((a.monthly_wages)*4.75/100) as UNSIGNED) as total_contri,CAST(((sum((a.monthly_wages*(1.75/100))))+(sum((a.monthly_wages)*4.75/100))) as UNSIGNED) as grand,if(monthly_wages!=NULL,`monthly_wages`,'-'),sum(a.monthly_wages) as gross_wages");
 						$this->newdb->from('esic_template a');
 						$this->newdb->join('employee_master_new b', 'a.empid=b.emp_id AND a.custid=b.custid');
 						
@@ -1035,8 +1036,8 @@ class Report_model extends Base_model
 										'a.month'	 => $month,
 										'a.year'	 => $year,
 										'b.esic_deduct'=>'Yes'   ));
-						$result=$this->newdb->get()->result();
-						return $result;
+						return $result=$this->newdb->get()->result();
+						
 	}
 
 	/* get Esic Summary data from esic_template_history table */
@@ -1098,7 +1099,7 @@ class Report_model extends Base_model
 	public function get_noncompliance($spgid,$custid)
 	{
 		//displaying data from table		
-	return $this->newdb->select("a.custid,a.entity_name,b.Particular,b.Statutory_due_date,b.Task_complitn_date,b.`Retrn/Challan_genrtn_date`,b.`Submisn/Pay_date`,b.Docu_submit_to_GOVT_in_nos,b.Pend_docu_in_nos,b.Copy_of_docu,b.Resp_prsn_frm_client,b.Resp_prsn,b.Remarks")
+	return $this->newdb->select("a.custid,a.entity_name,b.Particular,b.Statutory_due_date,b.Task_complitn_date,b.`Retrn_Challan_genrtn_date`,b.`Submisn_Pay_date`,b.Docu_submit_to_GOVT_in_nos,b.Pend_docu_in_nos,b.Copy_of_docu,b.Resp_prsn_frm_client,b.Resp_prsn,b.Remarks")
 						->from('customer_master a')
 						->join('compliance_working_prior b', 'a.custid=b.custid')
 						->where(array(	'b.spg_id' =>$spgid,
@@ -1110,10 +1111,10 @@ class Report_model extends Base_model
 	public function get_compliancedocument($spgid,$custid,$cname)
 	{
 		//displaying data from table
-			$this->newdb->select("*");
-			$this->newdb->from('DOC_UP');
-			$this->newdb->like('custid', $custid);
-			$result=$this->newdb->get()->result();
+			$this->db->select("*");
+			$this->db->from('DOC_UP');
+			$this->db->like('custid', $custid);
+			$result=$this->db->get()->result();
 			return $result;
 	}
 
@@ -1125,6 +1126,7 @@ class Report_model extends Base_model
 		// $spgid=$this->session->SESS_CUST_ID;
 		if (IS_SPG== TRUE)
 		{
+
 			
 			return $this->newdb->select("custid,entity_name")
 					->from('customer_master')

@@ -137,11 +137,21 @@ public function emp_error()
 	public function get_companyies()
 	{
 		//displaying data from table
-		
+		if (IS_SPG == TRUE)
+		{
 			return $this->newdb->select("entity_name,custid,allianceid")
 							->from('customer_master')							
 							->group_by(array("custid"))
 							->get()->result();
+		}
+		elseif (IS_SPGUSER == TRUE)
+		{
+			return $this->db->select("custid,entity_name,spgid")
+					->from('uu_companyselection')
+					->where(array(	'spgid' =>user_id(),'username'=>USERNAME ))
+					->get()->result();
+		}
+
 	}
 	
 

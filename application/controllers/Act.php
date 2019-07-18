@@ -260,7 +260,21 @@ trait Act {
 		
 			
 			 if ($this->data['access'][$this->session->TYPE] == TRUE) {
+<<<<<<< HEAD
 
+			 	 //$this->data['page_title'] = $page_data['page_title'];
+				 $this->data['where'] = 'Compilance';
+				 $this->data['sub_menu'] = 'Bulk-Compliance';
+				 //$this->data['user_type'] = $page_data['user_type'];
+				 //$this->data['menu'] = $page_data['menu'];
+
+				 // act detatails data
+				  $this->data['bulk_data']=array('companys'=> $this->act->get_compActs(user_id()),
+				  								'data'    => $extract);
+
+=======
+
+>>>>>>> b6df151ed74649213a0b7f2cfa4f1e45d75c3dc3
 			 	 $this->data['where'] = 'Compilance';
 				 $this->data['sub_menu'] = 'Bulk-Compliance';
 				// act detatails data

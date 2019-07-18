@@ -124,7 +124,7 @@
 										
 										<option value='ALL' selected>ALL</option>
 										<?php
-										foreach ($result as $key) {
+										foreach ($result1 as $key) {
 											
 										?>
 										<option value='<?php echo $key->location; ?>'><?php echo $key->location; ?></option>

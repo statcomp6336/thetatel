@@ -11,6 +11,14 @@ trait Dashboard {
 			$this->data['where'] = 'Home';
 			$this->data['sub_menu'] = 'Dashboard';
 			if ($this->is_spg()== TRUE) {
+
+				$data = $this->dash->get_graphdata();
+				//print_r($graph);exit
+
+      			//$x['data'] = json_encode($data);
+      			//$this->load->view('chart_view',$x);
+
+
 				$this->data['total_scope'] = $this->dash->countOfScope();
 				$this->data['total_bulk_update'] = $this->dash->countOfBultUpdate();
 				$this->data['total_complience'] = $this->dash->countOfComplience();
@@ -43,7 +51,7 @@ trait Dashboard {
 				$this->data['total_approves'] = $this->dash->countOfMyApprovals();
 				$this->data['total_notis'] = $this->dash->countOfNewMail();
 			}			 		
-		$this->render('dashboard');	
+		$this->render('dashboard',$data);	
 		}	
 		else
 		 {

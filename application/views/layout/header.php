@@ -812,7 +812,11 @@ if (!empty($menu['mycompliance_access']) &&  $menu['mycompliance_access'] == TRU
 
 						<b class="arrow"></b>
 
-						<ul class="submenu">						
+						<ul class="submenu">
+				<?php 
+				if ( $menu['bulkcompliance_access'] == TRUE) 
+				{						
+				?>						
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/compliance/bulk-compliance'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -821,7 +825,9 @@ if (!empty($menu['mycompliance_access']) &&  $menu['mycompliance_access'] == TRU
 
 								<b class="arrow"></b>
 							</li>
-							
+
+				<?php } if ( $menu['compliancetimeline_access'] == TRUE) { ?>	
+
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/compliance/bulk-timeline'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -830,6 +836,7 @@ if (!empty($menu['mycompliance_access']) &&  $menu['mycompliance_access'] == TRU
 
 								<b class="arrow"></b>
 							</li>
+				<?php } ?>
 						</ul>
 					</li>
 <?php } ?>

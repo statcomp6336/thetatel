@@ -20,98 +20,259 @@ class Dashboard_model extends Base_model
 
 	public function countOfScope()
 	{
-		$f_table="compliance_scope a";
-		$s_table="customer_master b";
-		$match="a.custid=b.custid";
-		$select="COUNT(*) AS particular";
-		$where="a.spg_id";
-		$id=$this->session->SESS_CUST_ID;
-		$result=$this->join($f_table,$s_table,$match,$select,$where,$id);	
+		if (IS_SPG== TRUE)
+		{
+			$f_table="compliance_scope a";
+			$s_table="customer_master b";
+			$match="a.custid=b.custid";
+			$select="COUNT(*) AS particular";
+			$where="a.spg_id";
+			$id=$this->session->SESS_CUST_ID;
+			$result=$this->join($f_table,$s_table,$match,$select,$where,$id);	
 
-		return $result->row()->particular;	
+			return $result->row()->particular;
+		} 
+		elseif (IS_COMPANY== TRUE)
+		{
+			echo "HI";
+		} 
+		elseif (IS_SPGUSER== TRUE)
+		{
+			//$sql="select count(*) as particular from compliance_scope a INNER JOIN `uu_companyselection` b on (a.custid=b.custid) where b.username='$user' and  a.spg_id='$spgid'";
+			$id=$this->session->SESS_CUST_ID;
+			$result=$this->db->select('count(*) as particular')
+						->from('compliance_scope a')
+						->where('b.username',USERNAME)
+						->join('uu_companyselection b','a.custid=b.custid')
+						->get()
+						->row();
+		    return $result->particular;
+		}	
 	}
 	public function countOfBultUpdate()
 	{
-		$result=$this->db->select('count(*) c1 ')
+		
+
+		if (IS_SPG== TRUE)
+		{
+			$result=$this->db->select('count(*) c1 ')
 						->from('act_applicable_to_customer a')
 						->where(array('b.year'=>'', 'b.reg_freq'=> '','b.due_date'=>'0000-00-00','b.Statutory_due_date'=> '0000-00-00'))
 						->join('compliance_scope b','a.act_code = b.act_code  AND a.custid=b.custid')
 						->get()
 						->row();
-		return $result->c1;				
+			return $result->c1;	
+		} 
+		elseif (IS_COMPANY== TRUE)
+		{
+			echo "HI";
+		} 
+		elseif (IS_SPGUSER== TRUE)
+		{
+		//$sql1="select count(srno) as currmnt_particular from compliance_working_prior a inner join uu_companyselection b on(a.custid=b.custid) where a.spg_id='$spgid' and b.username='$user' and EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())";	
+			$result=$this->db->select('count(*) as currmnt_particular ')
+						->from('compliance_working_prior a')
+						
+						->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())")
+						->where('b.username',USERNAME)
+						->join('uu_companyselection b','a.custid=b.custid')
+						->get()
+						->row();
+			return $result->currmnt_particular;	
+		}				
 
 	}
 	public function countOfComplience()
 	{
-		$f_table="completed_compliance a";
-		$s_table="customer_master b";
-		$match="a.custid=b.custid";
-		$select="count(*) as compl_completed";
-		$where="a.spg_id";
-		$id=$this->session->SESS_CUST_ID;
-		$result=$this->join($f_table,$s_table,$match,$select,$where,$id);	
+		if (IS_SPG== TRUE)
+		{
+			$f_table="completed_compliance a";
+			$s_table="customer_master b";
+			$match="a.custid=b.custid";
+			$select="count(*) as compl_completed";
+			$where="a.spg_id";
+			$id=$this->session->SESS_CUST_ID;
+			$result=$this->join($f_table,$s_table,$match,$select,$where,$id);	
 
-		return $result->row()->compl_completed;	
+			return $result->row()->compl_completed;	
+		} 
+		elseif (IS_COMPANY== TRUE)
+		{
+			echo "HI";
+		} 
+		elseif (IS_SPGUSER== TRUE)
+		{
+			$id=$this->session->SESS_CUST_ID;
+			$result=$this->db->select('count(*) as compl_completed')
+						->from('completed_compliance a')
+						->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())")
+						->where('b.username',USERNAME)
+						->join('uu_companyselection b','a.custid=b.custid')
+						->get()
+						->row();
+		    return $result->compl_completed;
+		}	
 	}
 	public function countOfNonComplience()
 	{
-		$id=$this->session->SESS_CUST_ID;
+		if (IS_SPG== TRUE)
+		{
+			$id=$this->session->SESS_CUST_ID;
 			$result=$this->db->select('count(srno) as noncompliance')
 						->from('compliance_working_prior')
 						 ->where('spg_id',$id)
                     	 ->where(' status!=',5,FALSE)					
 						->get()
 						->row();
-		return $result->noncompliance;	
+			return $result->noncompliance;	
+		} 
+		elseif (IS_COMPANY== TRUE)
+		{
+			echo "HI";
+		} 
+		elseif (IS_SPGUSER== TRUE)
+		{
+			$id=$this->session->SESS_CUST_ID;
+			$result=$this->db->select('count(srno) as noncompliance')
+						->from('compliance_working_prior a')
+						->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())")
+						->where('b.username',USERNAME)
+						->where(' status!=',5,FALSE)
+						->where('spg_id',$id)	
+						->join('uu_companyselection b','a.custid=b.custid')
+						->get()
+						->row();
+		    return $result->noncompliance;
+		}	
 
 	}
 	public function countOfPending()
 	{
-		$f_table="compliance_working_prior a";
-		$s_table="customer_master b";
-		$match="a.custid=b.custid";
-		$select="sum(case when a.`status` = '2' then 1 else 0 end) as pending";
-		$where="a.spg_id";
-		$id=$this->session->SESS_CUST_ID;
-		$result=$this->join($f_table,$s_table,$match,$select,$where,$id);	
+		if (IS_SPG== TRUE)
+		{
+			$f_table="compliance_working_prior a";
+			$s_table="customer_master b";
+			$match="a.custid=b.custid";
+			$select="sum(case when a.`status` = '2' then 1 else 0 end) as pending";
+			$where="a.spg_id";
+			$id=$this->session->SESS_CUST_ID;
+			$result=$this->join($f_table,$s_table,$match,$select,$where,$id);	
 
-		return $result->row()->pending;
+			return $result->row()->pending;	
+		} 
+		elseif (IS_COMPANY== TRUE)
+		{
+			echo "HI";
+		} 
+		elseif (IS_SPGUSER== TRUE)
+		{
+			$id=$this->session->SESS_CUST_ID;
+			$result=$this->db->select('sum(case when a.`status` = 2 then 1 else 0 end) as pending')
+						->from('compliance_working_prior a')
+						->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())")
+						->where('b.username',USERNAME)
+						->join('uu_companyselection b','a.custid=b.custid')
+						->get()
+						->row();
+		    return $result->pending;
+		}	
 
 	}
 	public function countOfcomplatence()
 	{
-		$id=$this->session->SESS_CUST_ID;
-		$result=$this->db->select('count(*) as compliance ')
+		if (IS_SPG== TRUE)
+		{
+			$id=$this->session->SESS_CUST_ID;
+			$result=$this->db->select('count(*) as compliance ')
 						->from('completed_compliance a')
 						->where(array('a.due_date'=>'CURDATE()', 'a.spg_id'=> $id,))//error
 						->join('customer_master b','a.custid=b.custid')
 						->get()
 						->row();
-		return $result->compliance;		
+			return $result->compliance;	
+		} 
+		elseif (IS_COMPANY== TRUE)
+		{
+			echo "HI";
+		} 
+		elseif (IS_SPGUSER== TRUE)
+		{
+			$id=$this->session->SESS_CUST_ID;
+			$result=$this->db->select('count(*) as compliancedone')
+						->from('completed_compliance a')
+						->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())")
+						->where('b.username',USERNAME)
+						->join('uu_companyselection b','a.custid=b.custid')
+						->get()
+						->row();
+		    return $result->compliancedone;
+		}	
 	}
 	public function countOfAlert()
 	{
-		$f_table="compliance_working_prior a";
-		$s_table="customer_master b";
-		$match="a.custid=b.custid";
-		$select="sum(`Statutory_due_date`<=timestampadd(day, 10, now()) AND `Statutory_due_date` >= now())  as alert";
-		$where="a.spg_id";
-		$id=$this->session->SESS_CUST_ID;
-		$result=$this->join($f_table,$s_table,$match,$select,$where,$id);	
+		if (IS_SPG== TRUE)
+		{
+			$f_table="compliance_working_prior a";
+			$s_table="customer_master b";
+			$match="a.custid=b.custid";
+			$select="sum(`Statutory_due_date`<=timestampadd(day, 10, now()) AND `Statutory_due_date` >= now())  as alert";
+			$where="a.spg_id";
+			$id=$this->session->SESS_CUST_ID;
+			$result=$this->join($f_table,$s_table,$match,$select,$where,$id);	
 
-		return $result->row()->alert;
+			return $result->row()->alert;
+		} 
+		elseif (IS_COMPANY== TRUE)
+		{
+			echo "HI";
+		} 
+		elseif (IS_SPGUSER== TRUE)
+		{
+
+			$id=$this->session->SESS_CUST_ID;
+			$result=$this->db->select('sum(`Statutory_due_date`<=timestampadd(day, 10, now()) AND `Statutory_due_date` >= now())  as alert')
+						->from('compliance_working_prior a')
+						->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())")
+						->where('b.username',USERNAME)
+						->join('uu_companyselection b','a.custid=b.custid')
+						->get()
+						->row();
+		   return $result->alert;
+		}
+
+		
 	}
 	public function countOfMyApprovals()
 	{
-		$f_table="compliance_working_prior a";
-		$s_table="customer_master b";
-		$match="a.custid=b.custid";
-		$select="sum(case when a.`status` = '3' then 1 else 0 end)as view_compliance";
-		$where="a.spg_id";
-		$id=$this->session->SESS_CUST_ID;
-		$result=$this->join($f_table,$s_table,$match,$select,$where,$id);	
+		if (IS_SPG== TRUE)
+		{
+			$f_table="compliance_working_prior a";
+			$s_table="customer_master b";
+			$match="a.custid=b.custid";
+			$select="sum(case when a.`status` = '3' then 1 else 0 end)as view_compliance";
+			$where="a.spg_id";
+			$id=$this->session->SESS_CUST_ID;
+			$result=$this->join($f_table,$s_table,$match,$select,$where,$id);	
 
-		return $result->row()->view_compliance;
+			return $result->row()->view_compliance;
+		} 
+		elseif (IS_COMPANY== TRUE)
+		{
+			echo "HI";
+		} 
+		elseif (IS_SPGUSER== TRUE)
+		{
+			$id=$this->session->SESS_CUST_ID;
+			$result=$this->db->select('sum(case when a.`status` = 3 then 1 else 0 end)as view_compliance ')
+						->from('completed_compliance a')
+						->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())")
+						->where('b.username',USERNAME)
+						->join('uu_companyselection b','a.custid=b.custid')
+						->get()
+						->row();
+		   return $result->view_compliance;
+		}
+		
 	}
 	// public function countOfNotis()
 	// {
@@ -576,6 +737,15 @@ class Dashboard_model extends Base_model
         // $results['max_year'] = 'December';
         return $query;
     }
+
+		//get data from database
+	public function get_graphdata()
+	{
+	      $this->db->select('month,year,total_emp,total_sal,total_pf,total_esic');
+	      $this->db->from('graph_of_pf');
+	      $result=$this->db->get()->result();
+	      return $result;
+	}
 
 	// //graph count for employee salary pf and esic
 	// public function get_graphElements($value='')
