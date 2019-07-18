@@ -848,4 +848,21 @@
 [10-Jul-2019 12:44:17 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'private' (T_PRIVATE) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 211
 =======
 >>>>>>> b6df151ed74649213a0b7f2cfa4f1e45d75c3dc3
+<<<<<<< HEAD
 >>>>>>> a6363cd7383b6ca04a281e9ef514580d362ffce9
+=======
+[12-Jul-2019 10:37:43 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 263
+[12-Jul-2019 11:58:30 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 13
+[18-Jul-2019 10:06:34 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Company::show_explore() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\role\Company.php on line 204
+[18-Jul-2019 10:07:20 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Company::show_explore() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\role\Company.php on line 204
+[18-Jul-2019 10:07:21 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Company::show_explore() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\role\Company.php on line 204
+[18-Jul-2019 10:07:25 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Company::show_explore() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\role\Company.php on line 204
+[18-Jul-2019 10:09:41 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Company::show_explore() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\role\Company.php on line 204
+[18-Jul-2019 10:09:43 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Company::show_explore() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\role\Company.php on line 204
+[18-Jul-2019 10:09:44 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Company::show_explore() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\role\Company.php on line 204
+[18-Jul-2019 10:09:45 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Company::show_explore() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\role\Company.php on line 204
+[18-Jul-2019 10:09:49 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Company::show_explore() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\role\Company.php on line 204
+[18-Jul-2019 10:09:59 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Company::show_explore() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\role\Company.php on line 204
+[18-Jul-2019 10:10:26 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Company::show_companiesExplore() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\role\Company.php on line 209
+[18-Jul-2019 10:10:37 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Company::show_companiesActExplore() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\role\Company.php on line 214
+>>>>>>> be03bae8f1a336e517a540b70dfeb9ddc9faec68

@@ -1124,13 +1124,21 @@ class Report_model extends Base_model
 
 		//displaying data from table
 		// $spgid=$this->session->SESS_CUST_ID;
-		if (IS_SPG== TRUE)
+		if (IS_SPG == TRUE)
 		{
+
 
 			
 			return $this->newdb->select("custid,entity_name")
 					->from('customer_master')
 					->where(array(	'spgid' =>user_id()))
+					->get()->result();
+		}
+		elseif (IS_COMPANY == TRUE)
+		{
+			return $this->db->select("custid,entity_name")
+					->from('customer_master')
+					->where(array(	'custid' =>user_id()))
 					->get()->result();
 		} 		 
 		elseif (IS_SPGUSER== TRUE)

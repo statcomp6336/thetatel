@@ -34,7 +34,14 @@ class Dashboard_model extends Base_model
 		} 
 		elseif (IS_COMPANY== TRUE)
 		{
-			echo "HI";
+			$id=$this->session->SESS_CUST_ID;
+			$result=$this->db->select('count(*) as particular')
+						->from('compliance_scope a')
+						->where('a.custid',$id)
+						->join('customer_master b','a.custid=b.custid')
+						->get()
+						->row();
+		    return $result->particular;
 		} 
 		elseif (IS_SPGUSER== TRUE)
 		{
@@ -65,7 +72,7 @@ class Dashboard_model extends Base_model
 		} 
 		elseif (IS_COMPANY== TRUE)
 		{
-			echo "HI";
+			//echo "HI";
 		} 
 		elseif (IS_SPGUSER== TRUE)
 		{
@@ -98,7 +105,7 @@ class Dashboard_model extends Base_model
 		} 
 		elseif (IS_COMPANY== TRUE)
 		{
-			echo "HI";
+			//echo "HI";
 		} 
 		elseif (IS_SPGUSER== TRUE)
 		{
@@ -128,7 +135,7 @@ class Dashboard_model extends Base_model
 		} 
 		elseif (IS_COMPANY== TRUE)
 		{
-			echo "HI";
+			//echo "HI";
 		} 
 		elseif (IS_SPGUSER== TRUE)
 		{
@@ -162,7 +169,7 @@ class Dashboard_model extends Base_model
 		} 
 		elseif (IS_COMPANY== TRUE)
 		{
-			echo "HI";
+			//echo "HI";
 		} 
 		elseif (IS_SPGUSER== TRUE)
 		{
@@ -193,7 +200,7 @@ class Dashboard_model extends Base_model
 		} 
 		elseif (IS_COMPANY== TRUE)
 		{
-			echo "HI";
+			//echo "HI";
 		} 
 		elseif (IS_SPGUSER== TRUE)
 		{
@@ -224,7 +231,7 @@ class Dashboard_model extends Base_model
 		} 
 		elseif (IS_COMPANY== TRUE)
 		{
-			echo "HI";
+			//echo "HI";
 		} 
 		elseif (IS_SPGUSER== TRUE)
 		{
@@ -258,7 +265,15 @@ class Dashboard_model extends Base_model
 		} 
 		elseif (IS_COMPANY== TRUE)
 		{
-			echo "HI";
+			$id=$this->session->SESS_CUST_ID;
+			$result=$this->db->select('sum(case when a.`status` = 3 then 1 else 0 end)as view_compliance ')
+						->from('completed_compliance a')
+						->where("EXTRACT(YEAR_MONTH FROM a.`due_date`)=EXTRACT(YEAR_MONTH FROM CURDATE())")
+						->where('b.username',USERNAME)
+						->join('uu_companyselection b','a.custid=b.custid')
+						->get()
+						->row();
+		   return $result->view_compliance;
 		} 
 		elseif (IS_SPGUSER== TRUE)
 		{

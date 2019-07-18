@@ -1034,7 +1034,7 @@ if (!empty($menu['report_access']) &&  $menu['report_access'] == TRUE)
 							<!-- +++++++++++++ -->
 
 							<?php 
-if (!empty($menu['compliance_report']) &&  $menu['compliance_report'] == TRUE) 
+if (!empty($menu['reportcompliance_access']) &&  $menu['reportcompliance_access'] == TRUE) 
 {						
 ?>
 							<li class="hover">
@@ -1130,7 +1130,7 @@ if (!empty($menu['employee_info']) &&  $menu['employee_info'] == TRUE)
 							</li>
 
 							<?php }
-if (!empty($menu['salary_report']) &&  $menu['salary_report'] == TRUE) 
+if (!empty($menu['reportsalary_access']) &&  $menu['reportsalary_access'] == TRUE) 
 {						
 ?>
 
