@@ -814,7 +814,7 @@ if (!empty($menu['mycompliance_access']) &&  $menu['mycompliance_access'] == TRU
 
 						<ul class="submenu">
 				<?php 
-				if ( $menu['bulkcompliance_access'] == TRUE) 
+				if ( !empty($menu['bulkcompliance_access']) &&  $menu['bulkcompliance_access'] == TRUE) 
 				{						
 				?>						
 							<li class="hover">
@@ -826,7 +826,7 @@ if (!empty($menu['mycompliance_access']) &&  $menu['mycompliance_access'] == TRU
 								<b class="arrow"></b>
 							</li>
 
-				<?php } if ( $menu['compliancetimeline_access'] == TRUE) { ?>	
+				<?php } if (!empty($menu['compliancetimeline_access']) && $menu['compliancetimeline_access'] == TRUE ) { ?>	
 
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/compliance/bulk-timeline'); ?>">

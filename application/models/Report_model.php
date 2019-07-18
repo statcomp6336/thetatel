@@ -1136,15 +1136,15 @@ class Report_model extends Base_model
 		}
 		elseif (IS_COMPANY == TRUE)
 		{
-			return $this->db->select("custid,entity_name")
+			return $this->newdb->select("custid,entity_name")
 					->from('customer_master')
 					->where(array(	'custid' =>user_id()))
 					->get()->result();
 		} 		 
 		elseif (IS_SPGUSER== TRUE)
 		{
-			return $this->db->select("custid,entity_name")
-					->from('uu_companyselection')
+			return $this->newdb->select("custid,entity_name")
+					->from('add_companies_for_users')
 					->where(array(	'spgid' =>user_id(),'username'=>USERNAME ))
 					->get()->result();
 		} 					
@@ -1220,7 +1220,7 @@ class Report_model extends Base_model
 	public function get_formd($spgid,$custid)
 	{
 		//displaying data from table      
-			return $this->db->select("*")
+			return $this->newdb->select("*")
 							->from('employee_master_new')
 							->where(array('uan_no'=>'N/A','custid'=>$custid,'spgid'=>$spgid))
 							->get()->result();

@@ -82,7 +82,8 @@ trait Users {
                         "entity_name"=> is($this->input->post('cust_name'),'NULL')      
                       );
     }
-    if ($this->users->saveUser($saveUser)) {
+   
+      if ($this->users->saveUser($saveUser)) {
           put_msg('User successfully save..!!');
           goto_back();
 
@@ -206,7 +207,7 @@ trait Users {
     if (!empty($this->input->post('action')) && $this->input->post('action') == 'add') {
     
         for ($i=0; $i < $count ; $i++) {
-          $addCompanies[] = array('spgid' => is($this->input->post('spgid'),'N/A'),
+          $addCompanies[] = array('spgid' => is(user_id(),'N/A'),
                             'userid' => is($this->input->post('userid'),'N/A'),
                             'custid' => is($this->input->post('custid')[$i],'N/A'),
                             'username' => is($this->input->post('username'),'N/A'),

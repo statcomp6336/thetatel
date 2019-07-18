@@ -22,6 +22,21 @@
   top: 0;
   bottom: 0;
 }
+.deleteButton {
+background: transparent;
+border: 1px solid #f00;
+border-radius: 2em;
+display: inline-block;
+font-size: 12px;
+height: 20px;
+line-height: 2px;
+margin: 0 0 8px;
+padding: 0;
+text-align: center;
+width: 50px;
+  background-color :#d15b47;
+}
+
 
 #checkboxes {
   display: none;
@@ -161,7 +176,8 @@
 			</td>
 			<td class="center">
 					<a href="<?php echo base_url(''.$user_type.'/user/remove/'.hash_id($key->srno).'');?>" title="Remove User" onclick="return confirm('Are you sure?')">
-						<i class="ace-icon fa fa-times btn-danger"></i>
+						<button class="deleteButton"> 
+						<i class="ace-icon fa fa-times btn-danger"></i></button>
 						
 					</a>
 			</td>
@@ -284,6 +300,94 @@
 		<script src="<?php echo base_url();?>assets/dashboard/js/bootstrap-multiselect.min.js"></script>
 		<script src="<?php echo base_url();?>assets/dashboard/js/select2.min.js"></script>
 		<script src="<?php echo base_url();?>assets/dashboard/js/jquery-typeahead.js"></script>
+		   <script>
+            function validatePassword(password) {
+                
+                // Do not show anything when the length of password is zero.
+                if (password.length === 0) {
+                    document.getElementById("msg").innerHTML = "";
+                    return;
+                }
+                // Create an array and push all possible values that you want in password
+                var matchedCase = new Array();
+                matchedCase.push("[$@$!%*#?&]"); // Special Charector
+                matchedCase.push("[A-Z]");      // Uppercase Alpabates
+                matchedCase.push("[0-9]");      // Numbers
+                matchedCase.push("[a-z]");     // Lowercase Alphabates
+
+                // Check the conditions
+                var ctr = 0;
+                for (var i = 0; i < matchedCase.length; i++) {
+                    if (new RegExp(matchedCase[i]).test(password)) {
+                        ctr++;
+                    }
+                }
+                // Display it
+                var color = "";
+                var strength = "";
+                switch (ctr) {
+                    case 0:
+                    case 1:
+                    case 2:
+                        strength = "Very Weak";
+                        color = "red";
+                        break;
+                    case 3:
+                        strength = "Medium";
+                        color = "orange";
+                        break;
+                    case 4:
+                        strength = "Strong";
+                        color = "green";
+                        break;
+                }
+                document.getElementById("msg").innerHTML = strength;
+                document.getElementById("msg").style.color = color;
+            }
+            function validatePassworduser(password) {
+                
+                // Do not show anything when the length of password is zero.
+                if (password.length === 0) {
+                    document.getElementById("msg2").innerHTML = "";
+                    return;
+                }
+                // Create an array and push all possible values that you want in password
+                var matchedCase = new Array();
+                matchedCase.push("[$@$!%*#?&]"); // Special Charector
+                matchedCase.push("[A-Z]");      // Uppercase Alpabates
+                matchedCase.push("[0-9]");      // Numbers
+                matchedCase.push("[a-z]");     // Lowercase Alphabates
+
+                // Check the conditions
+                var ctr = 0;
+                for (var i = 0; i < matchedCase.length; i++) {
+                    if (new RegExp(matchedCase[i]).test(password)) {
+                        ctr++;
+                    }
+                }
+                // Display it
+                var color = "";
+                var strength = "";
+                switch (ctr) {
+                    case 0:
+                    case 1:
+                    case 2:
+                        strength = "Very Weak";
+                        color = "red";
+                        break;
+                    case 3:
+                        strength = "Medium";
+                        color = "orange";
+                        break;
+                    case 4:
+                        strength = "Strong";
+                        color = "green";
+                        break;
+                }
+                document.getElementById("msg2").innerHTML = strength;
+                document.getElementById("msg2").style.color = color;
+            }
+        </script>
 		<script type="text/javascript">
 			var expanded = false;
 
@@ -374,6 +478,20 @@
 					    });
 				});
 
+	$('#spg-user .confirm_password').on('keyup', function () {
+  if ($('#spg-user .password').val() == $('#spg-user .confirm_password').val()) {
+    $('#spg-user .conf_msg').html('Password Match').css('color', 'green');
+  } else 
+    $('#spg-user .conf_msg').html('Not Matching').css('color', 'red');
+});
+
+	$('#User .confirm_password').on('keyup', function () {
+  if ($('#User .password').val() == $('#User .confirm_password').val()) {
+    $('#User .conf_msg').html('Password Match').css('color', 'green');
+  } else 
+    $('#User .conf_msg').html('Not Matching').css('color', 'red');
+});
+
 
 				
 				
@@ -402,43 +520,6 @@
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
- <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<link rel="stylesheet" href="<?php echo base_url('assets/form_wizard/css/style1.css');?>">
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-
-
-
-
-<script>
-$(document).ready(function() {
-    $("#signup-form1").validate({
-        rules: {
-        	password:"required",
- 			conf_pass:{ 
-                    equalTo: "#password",
-                     minlength: 6,
-                     maxlength: 40
-               },
- 			 },
-        messages: {
-            password: "Please Enter password",
-            conf_pass: "Please Enter Confirm password"
-
-        }
-         })
-       $('#main-user').click(function() {
-        $("#signup-form1").valid();
-    });
-});
-
-jQuery.validator.addMethod("pan", function(value, element)
-    {
-        return this.optional(element) || /^[A-Z]{5}\d{4}[A-Z]{1}$/.test(value);
-    }, "Please enter a valid PAN");
-</script>
-
-
 
 
 <div id="modal-wizard-spg-user" class="modal">
@@ -449,13 +530,13 @@ jQuery.validator.addMethod("pan", function(value, element)
 					<h4>Create Spg User</h4>
 				</div>
 				 <?php 
-		$attributes = array('name' => 'frmRegistration', 'id' => 'signup-form');
+		$attributes = array('name' => 'frmRegistration', 'id' => 'spg-user');
 		 echo form_open_multipart(base_url(''.$user_type.'/user/save'),$attributes );?>	
 				<div class="modal-body">
 					
 
 					<div class="form-group">
-						<label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">Company Register Id.</label>
+						<label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">Company Code.</label>
 
 						<div class="col-xs-12 col-sm-5">
 							<span class="block input-icon input-icon-right">
@@ -463,7 +544,7 @@ jQuery.validator.addMethod("pan", function(value, element)
 								<i class="ace-icon fa fa-leaf green"></i>
 							</span>
 						</div>
-						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+						<div class="help-block col-xs-12 col-sm-reset inline"></div>
 					</div>
 
 					
@@ -476,7 +557,7 @@ jQuery.validator.addMethod("pan", function(value, element)
 								<i class="ace-icon fa fa-leaf green"></i>
 							</span>
 						</div>
-						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+						<div class="help-block col-xs-12 col-sm-reset inline"></div>
 					</div>
 
 					
@@ -489,7 +570,7 @@ jQuery.validator.addMethod("pan", function(value, element)
 								<i class="ace-icon fa fa-leaf green"></i>
 							</span>
 						</div>
-						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+						<div class="help-block col-xs-12 col-sm-reset inline"></div>
 					</div>
 
 					
@@ -502,7 +583,7 @@ jQuery.validator.addMethod("pan", function(value, element)
 								<i class="ace-icon fa fa-leaf green"></i>
 							</span>
 						</div>
-						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+						<div class="help-block col-xs-12 col-sm-reset inline"> </div>
 					</div>
 
 					
@@ -511,11 +592,11 @@ jQuery.validator.addMethod("pan", function(value, element)
 
 						<div class="col-xs-12 col-sm-5">
 							<span class="block input-icon input-icon-right">
-								<input type="password" id="inputWarning" class="width-100" name="password" required />
+								<input type="password" id="pwd" class="width-100 password" name="password" onkeyup="validatePassword(this.value);" required />
 								<i class="ace-icon fa fa-leaf green"></i>
 							</span>
 						</div>
-						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+						<div class="help-block col-xs-12 col-sm-reset inline msg" id="msg"> </div>
 					</div>
 
 					
@@ -524,11 +605,11 @@ jQuery.validator.addMethod("pan", function(value, element)
 
 						<div class="col-xs-12 col-sm-5">
 							<span class="block input-icon input-icon-right">
-								<input type="password" id="inputWarning" class="width-100" name="conf_pass" required/>
+								<input type="password"  class="width-100 confirm_password" name="conf_pass" required/>
 								<i class="ace-icon fa fa-leaf green"></i>
 							</span>
 						</div>
-						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+						<div class="help-block col-xs-12 col-sm-reset inline conf_msg">  </div>
 					</div>
 
 					
@@ -541,7 +622,7 @@ jQuery.validator.addMethod("pan", function(value, element)
 								<i class="ace-icon fa fa-leaf green"></i>
 							</span>
 						</div>
-						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+						<div class="help-block col-xs-12 col-sm-reset inline"> </div>
 					</div>
 					<input type="hidden" name="type" value="9">
 				</div>
@@ -576,7 +657,7 @@ jQuery.validator.addMethod("pan", function(value, element)
 					<h4>Create User</h4>
 				</div>
 <?php 
-		$attributes = array('name' => 'frmRegistration', 'id' => 'signup-form');
+		$attributes = array('name' => 'frmRegistration', 'id' => 'User');
 		 echo form_open_multipart(base_url(''.$user_type.'/user/save'),$attributes );?>	
 				<div class="modal-body">
 					<div class="form-group">
@@ -596,11 +677,11 @@ jQuery.validator.addMethod("pan", function(value, element)
 								</datalist>
 							</span>
 						</div>
-						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+						<div class="help-block col-xs-12 col-sm-reset inline"></div>
 					</div>
 
 					<div class="form-group">
-						<label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">Company Register Id.</label>
+						<label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">Company Code</label>
 
 						<div class="col-xs-12 col-sm-5">
 							<span class="block input-icon input-icon-right">
@@ -608,7 +689,7 @@ jQuery.validator.addMethod("pan", function(value, element)
 								<i class="ace-icon fa fa-leaf green"></i>
 							</span>
 						</div>
-						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+						<div class="help-block col-xs-12 col-sm-reset inline"></div>
 					</div>
 
 					
@@ -624,7 +705,7 @@ jQuery.validator.addMethod("pan", function(value, element)
 								<i class="ace-icon fa fa-leaf green"></i>
 							</span>
 						</div>
-						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+						<div class="help-block col-xs-12 col-sm-reset inline"></div>
 					</div>
 
 					
@@ -637,7 +718,7 @@ jQuery.validator.addMethod("pan", function(value, element)
 								<i class="ace-icon fa fa-leaf green"></i>
 							</span>
 						</div>
-						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+						<div class="help-block col-xs-12 col-sm-reset inline"></div>
 					</div>
 
 					
@@ -646,11 +727,11 @@ jQuery.validator.addMethod("pan", function(value, element)
 
 						<div class="col-xs-12 col-sm-5">
 							<span class="block input-icon input-icon-right">
-								<input type="password" id="inputWarning" class="width-100" name="password" required />
+								<input type="password" id="pwd" class="width-100 password" name="password" onkeyup="validatePassworduser(this.value);" required />
 								<i class="ace-icon fa fa-leaf green"></i>
 							</span>
 						</div>
-						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+						<div class="help-block col-xs-12 col-sm-reset inline msg" id="msg2"> </div>
 					</div>
 
 					
@@ -659,13 +740,12 @@ jQuery.validator.addMethod("pan", function(value, element)
 
 						<div class="col-xs-12 col-sm-5">
 							<span class="block input-icon input-icon-right">
-								<input type="password" id="inputWarning" class="width-100" name="conf_pass" required/>
+								<input type="password"  class="width-100 confirm_password" name="conf_pass" required/>
 								<i class="ace-icon fa fa-leaf green"></i>
 							</span>
 						</div>
-						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+						<div class="help-block col-xs-12 col-sm-reset inline conf_msg">  </div>
 					</div>
-
 					
 					<div class="form-group ">
 						<label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">Access Code</label>
@@ -680,7 +760,7 @@ jQuery.validator.addMethod("pan", function(value, element)
 								<i class="ace-icon fa fa-leaf green"></i>
 							</span>
 						</div>
-						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+						<div class="help-block col-xs-12 col-sm-reset inline"></div>
 					</div>
 					<div class="form-group ">
 						<label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">User Type</label>
@@ -697,7 +777,7 @@ jQuery.validator.addMethod("pan", function(value, element)
 								<i class="ace-icon fa fa-leaf green"></i>
 							</span>
 						</div>
-						<div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>
+						<div class="help-block col-xs-12 col-sm-reset inline"></div>
 					</div>
 					
 				</div>

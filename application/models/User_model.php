@@ -49,7 +49,7 @@ class User_model extends Base_model
     	$result=$this->newdb->select($select)
     					 ->from('customer_master as a')
     					 ->join('add_companies_for_users as b','a.allianceid=b.spgid AND a.custid=b.custid AND b.userid="'.$id.'"','left')
-                         ->where('a.allianceid',user_id())
+                         ->where('a.spgid',user_id())
     					 ->order_by('a.entity_name','desc')
     					 ->get()
     					 ->result();

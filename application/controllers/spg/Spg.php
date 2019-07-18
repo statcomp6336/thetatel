@@ -54,45 +54,43 @@ class Spg extends Base_controller {
 		$this->load->model('Dashboard_model','dash');
 
 		$this->data['new_mail']=$this->dash->countOfNewMail();
-		$this->data['menu']=array(
-      // dashbord access if true to dispaly and flase it hide
-      "dashboard_access"    			=>TRUE,
-      "notification_access" 			=>TRUE,
-      "setup_access"        			=>TRUE,
-      "myactivity_access"  			 	=>TRUE,
-
-      "mycompliance_access" 			=>TRUE,
-      "bulkcompliance_access"			=>TRUE,
-      "compliancetimeline_access"		=>TRUE,
-
-      "myapproval_access"   			=>TRUE,
-      "userprofile_access"  			=>TRUE,
-      "managefiles_access"  			=>TRUE,
-      
-      "report_access"       			=>TRUE,
-      "reportcompliance_access"   		=>TRUE,
-      "reportemplyoee_access"   		=>TRUE,
-      "reportsalary_access"   			=>TRUE,
-      "reportentities_access"   		=>TRUE,
-      "reportcompliancerequest_access"	=>TRUE,
-      "reportuser_access"   			=>TRUE,
-      "reportregister_access"   		=>TRUE,
-
-      );
-
+	
+		// Main Menu
 		$this->data['menu']['dashboard_access'] = TRUE;
+		$this->data['menu']['setup_access'] = TRUE;
+		$this->data['menu']['myactivity_access'] = TRUE;
+		$this->data['menu']['mycompliance_access'] = TRUE;
+			// Sub-menu 
+			$this->data['menu']['bulkcompliance_access'] = TRUE;
+			$this->data['menu']['compliancetimeline_access'] = TRUE;
+			// end
+
+		$this->data['menu']['myapproval_access'] = TRUE;
+		$this->data['menu']['userprofile_access'] = TRUE;
+		$this->data['menu']['managefiles_access'] = TRUE;		
 		$this->data['menu']['report_access'] = TRUE;
-		$this->data['menu']['salary_report'] = TRUE;
-		$this->data['menu']['compliance_report'] = TRUE;
-		$this->data['menu']['non_compliance_report'] = TRUE;
-		$this->data['menu']['compliance_doc'] = TRUE;
-		$this->data['menu']['emp_compliance'] = TRUE;
-		$this->data['menu']['compliance_reject'] = TRUE;
-		$this->data['menu']['approval_report'] = TRUE;
-		$this->data['menu']['user_info'] = TRUE;
-		$this->data['menu']['employee_info'] = TRUE;
-		$this->data['menu']['company_registration'] = TRUE;
-		$this->data['menu']['branch_registration'] = TRUE;
+			// sub-menu
+			$this->data['menu']['reportcompliance_access'] = TRUE;
+				// 3rd sub-menu
+				$this->data['menu']['compliance_report'] = TRUE;
+				$this->data['menu']['non_compliance_report'] = TRUE;
+				$this->data['menu']['compliance_doc'] = TRUE;
+				$this->data['menu']['compliance_reject'] = TRUE;
+				$this->data['menu']['approval_report'] = TRUE;
+				// end
+			$this->data['menu']['employee_info'] = TRUE;
+			$this->data['menu']['reportsalary_access'] = TRUE;
+			$this->data['menu']['entity_report'] = TRUE;			
+			$this->data['menu']['compliance_req'] = TRUE;
+			$this->data['menu']['user_info'] = TRUE;			
+			$this->data['menu']['register_menu'] = TRUE;			
+			
+			// $this->data['menu']['emp_compliance'] = TRUE;
+			
+			
+			
+			// $this->data['menu']['company_registration'] = TRUE;
+			// $this->data['menu']['branch_registration'] = TRUE;
 
 	}
 
