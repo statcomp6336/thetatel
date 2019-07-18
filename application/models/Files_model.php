@@ -53,18 +53,21 @@ class Files_model extends Base_model
 	//get companies for sharing
 	public function get_companiesForSharing($year='')
 	{
-		$this->newdb->select('a.entity_name,a.custid,b.year')->from('customer_master a')->join('customer_dump b','a.custid=b.custid')->where('b.year',$year);
+		$this->newdb->select('a.entity_name,a.custid')->from('customer_master a');
+		// ->join('customer_dump b','a.custid=b.custid')->where('b.year',$year);
 				 if (IS_COMPANY == TRUE) {
+				 	
 				 	$this->newdb->where('a.custid',user_id());
 				 }else
 				 {
+
 				 	$this->newdb->where('a.spgid',user_id());
 				 }
 
-				$companies= $this->newdb->where('flag',1)				
-				 ->order_by('a.entity_name','desc')
+				$companies= $this->newdb->order_by('a.entity_name','desc')
 				 ->get()
 				 ->result();
+				
 				 return $companies;	
 	}
 	public function get_company_name($id='')

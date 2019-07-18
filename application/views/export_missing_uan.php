@@ -23,26 +23,17 @@
 								</div>
 								<div class="col-sm-5">
 									<input type="hidden" name="spgid" value="<?php echo user_id();?>">
-<<<<<<< HEAD
-									<!-- <input type="text"  name="comp_name" placeholder="Type something&hellip;" class="form-control required" /> -->
+
+									
 									<input type="text" id="comp_name" class="width-100" name="cust_name" required list="comp" />
 									
 									<datalist id="comp">
 									<?php 
-									foreach ($result1 as $key) {
+									foreach ($companys as $key) {
 										echo "<option data-value='".$key->custid."' value='".$key->entity_name."' />";
 									}
 									?>
-=======
-									<input type="text" id="comp_name" name="comp_name" placeholder="Type something&hellip;" class="form-control required" list="comp"  />
-									<datalist id="comp">
-										<?php 
-										foreach ($companys as $key) {
-											echo "<option data-value='".$key->custid."' value='".$key->entity_name."' />";
-										}
-										?>
 
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
 									</datalist>
 									
 									<span class="help-block hide">Example block-level help text here.</span>
@@ -58,13 +49,10 @@
 									<label>Company Register Id</label>
 								</div>
 								<div class="col-sm-5">
-<<<<<<< HEAD
-									<input type="text" name="custid" placeholder="Type something&hellip;" id="custid" class="form-control required" />
-									<!-- <input type="text" name="custid" placeholder="Type something&hellip;" class="form-control required" /> -->
-=======
 
-									<input type="text" name="custid" placeholder="Type something&hellip;" class="form-control required" id="custid" />
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+									<input type="text" name="custid" placeholder="Type something&hellip;" id="custid" class="form-control required" />
+									
+
 									<span class="help-block hide">Example block-level help text here.</span>
 								</div>
 							</div>
@@ -109,15 +97,9 @@
 	</div>
 </div>
 
-<<<<<<< HEAD
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function(){
-	 
-=======
-<script>
-$(document).ready(function(){
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
+
   $("#comp_name").on('input', function(){
 
   	var datalist=$('#comp option');
@@ -130,8 +112,5 @@ $(document).ready(function(){
   });
 
 });
-<<<<<<< HEAD
+
 </script>
-=======
-</script>
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b

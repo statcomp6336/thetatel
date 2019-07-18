@@ -51,7 +51,7 @@ trait Files {
       ;
        $this->data['result'] = is($get,$this->files->get_companiesForSharing($year));
 
-      
+     
        $this->render('companies_explore');
      }
      else

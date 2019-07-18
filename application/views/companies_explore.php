@@ -33,7 +33,7 @@
 		<?php $count =0;
 		if (!empty($result) && $result !== " ") {
 			
-		
+
 		foreach ($result as $key) {
 			$count++;
 			if ($page=='explore') {
@@ -44,8 +44,10 @@
 			}
 			else
 			{
-				$year=$key->year;
-				$date=$year;
+				$year=date('Y');
+$date=date('M');
+				// $year=$key->year;
+				// $date=$year;
 			}
 					
 		?>
@@ -76,12 +78,5 @@
 </div>	
 	</div>
 </div>	
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('#import').on('click', function(){
-					
-					 $('.main').toggle();
-				});
-	});
-</script>
+
 

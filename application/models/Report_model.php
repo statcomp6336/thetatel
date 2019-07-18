@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * 
  */
- require_once APPPATH."core/Base_model.php";
+ require_once APPPATH."core\Base_model.php";
 class Report_model extends Base_model
 {
 	function __construct()
@@ -66,7 +66,7 @@ class Report_model extends Base_model
 							->join('salary_master AS s','s.spgid=e.spgid AND s.custid=e.custid AND s.empid=e.emp_id')
 							->where('s.month' ,$this->lastmonth())
 							->where('s.year' ,$this->get_year())
-							->group_by('s.empid ')
+							->group_by(array('s.empid,s.custid'))
 							->get()
 							->result();
 	// $select="SELECT DISTINCT `s`.`spgid`, `s`.`custid`, `s`.`entity_name`, `s`.`empid`, `s`.`month`, `s`.`year` FROM `employee_master_new` AS `e` JOIN `salary_master` AS `s` ON `s`.`spgid`=`e`.`spgid` AND `s`.`custid`=`e`.`custid` AND `s`.`empid`=`e`.`emp_id` WHERE `s`.`month` = '".$this->lastmonth()."' AND `s`.`year` = '".$this->get_year()."' GROUP BY `s`.`empid`";						
@@ -149,7 +149,7 @@ class Report_model extends Base_model
 		}
 
 		// echo "<pre>";
-		
+		$D=FALSE;
 		if (!empty($setData_master)) {
 			// echo "master process first time <br>";
 			// echo sizeof($setData_master);
@@ -545,7 +545,7 @@ class Report_model extends Base_model
 
 		// echo "<pre>";
 		// var_dump($pf);
-		$this->newdb->insert_batch('pf_template',$pf);
+		return $this->newdb->insert_batch('pf_template',$pf);
 	}
 
 
@@ -799,6 +799,7 @@ class Report_model extends Base_model
 							  ->result();	
 		$start_row = 2;
 
+
 		foreach ($emp_data as $key) {
 
 			
@@ -825,9 +826,11 @@ class Report_model extends Base_model
 			$comp_name=$key->entity_name;
 		}
 
+		ob_end_clean();
 		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
 	 	header("Content-Type: application/vnd.ms-excel");
-	  header('Content-Disposition: attachment;filename="'.$comp_name.'PFReport.xlsx"');
+	  	header("Content-Disposition: attachment;filename=PFReport.xlsx");
+	  	
 		$obj_writer->save('php://output');
 	}
 
@@ -1117,15 +1120,13 @@ class Report_model extends Base_model
 	/* get entity Details data from customer_master table */
 	public function get_entitydetails()
 	{
-<<<<<<< HEAD
+
 		//displaying data from table
 		// $spgid=$this->session->SESS_CUST_ID;
 		if (IS_SPG== TRUE)
 		{
-			return $this->db->select("custid,entity_name")
-=======
+			
 			return $this->newdb->select("custid,entity_name")
->>>>>>> 9c4e8967c6a26854583634930a4c3337bd51cc7b
 					->from('customer_master')
 					->where(array(	'spgid' =>user_id()))
 					->get()->result();

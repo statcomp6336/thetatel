@@ -128,11 +128,14 @@
     color: DarkOrange;
 }
 </style>
+<?php 
+        foreach ($msg as $key) {        
+    } ?>
 <div id="css-only-modals">
 	<input id="modal1" class="css-only-modal-check" type="checkbox" checked/>
 	<div class="css-only-modal">
 		<label for="modal1" class="css-only-modal-close"><i class="fa fa-times fa-2x"></i></label>
-		<h2> Alert</h2>
+		<h2> <?php echo strpos(strtolower($key), 'success')? "Congratulations!":"Alert"; ?></h2>
 		<hr><h4>
 		<?php 
 		foreach ($msg as $key) {

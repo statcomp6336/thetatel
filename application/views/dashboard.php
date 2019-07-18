@@ -1,6 +1,12 @@
 
 
 
+<style type="text/css">
+  .widget-main{
+    height: fit-content;
+  }
+</style>
+
 
 <?php if (IS_SPG == TRUE) { ?>
  
@@ -476,6 +482,67 @@ elseif (IS_SUBCONTRACTOR == TRUE) {
     </div><!-- /.widget-body -->
   </div><!-- /.widget-box -->
 </div><!-- /.col -->
+</span>
+</div>
+<div class="row"> 
+  <div class="col-sm-12">
+    <div id="bar_chart"></div>
+  </div>
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    <script type="text/javascript">
+      // Load the Visualization API and the line package.
+      google.charts.load('current', {'packages':['bar']});
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+  
+    function drawChart() {
+  
+        $.ajax({
+        type: 'POST',
+        url: 'http://localhost/newstatcomp/thetatel/spg/Spg/getdata',
+          
+        success: function (data1) {
+        // Create our data table out of JSON data loaded from server.
+        var data = new google.visualization.DataTable();
+  
+      data.addColumn('string', 'Month');
+      data.addColumn('number', 'employees');
+      data.addColumn('number', 'Salary');
+      data.addColumn('number', 'pf');
+      data.addColumn('number', 'esic');
+        
+      var jsonData = $.parseJSON(data1);
+      
+      for (var i = 0; i < jsonData.length; i++) {
+            data.addRow([jsonData[i].mnth, parseInt(jsonData[i].total_emp), parseInt(jsonData[i].total_sal), parseInt(jsonData[i].total_pf), parseInt(jsonData[i].total_esic)]);
+      }
+      var options = {
+        
+        width: 1200,
+        height: 400,
+        axes: {
+          x: {
+            0: {side: 'down'}
+          }
+        }
+         
+      };
+      console.log(data);
+      var chart = new google.charts.Bar(document.getElementById('bar_chart'));
+      chart.draw(data, options);
+       }
+     });
+    }
+  </script>
+  
+
+
+
+
+
+
  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
  <script src="<?php echo base_url();?>assets/dashboard/js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">

@@ -600,8 +600,7 @@ class Export extends Base_model
 			$comp_name=$key->entity_name;
 			
 		}
-		// echo $comp_name;
-		// exit();
+		ob_end_clean();
 		$obj_writer = PHPExcel_IOFactory::createWriter($obj,'Excel2007');
 	 	header("Content-Type: application/vnd.ms-excel");
 	  header('Content-Disposition: attachment;filename="'.$comp_name.'-MissingUan.xlsx"');

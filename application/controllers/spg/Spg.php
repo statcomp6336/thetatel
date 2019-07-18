@@ -87,6 +87,8 @@ class Spg extends Base_controller {
 		$this->data['menu']['approval_report'] = TRUE;
 		$this->data['menu']['user_info'] = TRUE;
 		$this->data['menu']['employee_info'] = TRUE;
+		$this->data['menu']['company_registration'] = TRUE;
+		$this->data['menu']['branch_registration'] = TRUE;
 
 	}
 
@@ -96,6 +98,8 @@ class Spg extends Base_controller {
 	public function index()
 	{	
 		if ($this->data['menu']['dashboard_access'] == TRUE) {
+
+			
 		$this->dashboard($this->page);
 		}
 		else
@@ -104,6 +108,10 @@ class Spg extends Base_controller {
 		}
 		
 	}
+	 function getdata(){
+        $data  = $this->dash->get_chart_data();
+        print_r(json_encode($data, true));
+    }
 	//work with dashboard d
 	public function show_totalScope($value='')
 	{
@@ -417,7 +425,7 @@ class Spg extends Base_controller {
 	public function download_missinguan($value='')
 	{
 
-		$this->DownloadMissingUan();
+		$this->DownloadMissingUan();		
 	}
 
 

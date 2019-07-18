@@ -1,2 +1,16 @@
 [09-Jul-2019 08:49:26 Europe/Berlin] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Act.php on line 263
 [09-Jul-2019 08:51:26 Europe/Berlin] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 12
+[09-Jul-2019 13:34:51 Europe/Berlin] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting function (T_FUNCTION) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Employee_model.php on line 114
+[09-Jul-2019 14:52:25 Europe/Berlin] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting function (T_FUNCTION) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Employee_model.php on line 114
+[09-Jul-2019 15:10:10 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Files_model.php on line 58
+[10-Jul-2019 08:32:00 Europe/Berlin] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 1120
+[10-Jul-2019 10:15:35 Europe/Berlin] PHP Fatal error:  Call to a member function update_timeline() on null in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 110
+[10-Jul-2019 10:23:01 Europe/Berlin] PHP Fatal error:  Call to undefined function erify_id() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 105
+[10-Jul-2019 10:23:26 Europe/Berlin] PHP Fatal error:  Call to a member function update_timeline() on null in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 107
+[10-Jul-2019 10:23:38 Europe/Berlin] PHP Fatal error:  Call to a member function update_timeline() on null in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 107
+[10-Jul-2019 11:57:16 Europe/Berlin] PHP Fatal error:  require_once(): Failed opening required 'C:\xampp\htdocs\newstatcomp\thetatel\application\core\Bafse_model.php' (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 6
+[10-Jul-2019 12:13:28 Europe/Berlin] PHP Fatal error:  require_once(): Failed opening required 'C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php' (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\newstatcomp\thetatel\application\core\Base_controller.php on line 8
+[10-Jul-2019 12:42:13 Europe/Berlin] PHP Fatal error:  Call to undefined method Report_model::get_ProcessTable() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Reports.php on line 89
+[10-Jul-2019 12:42:53 Europe/Berlin] PHP Fatal error:  Call to undefined method Report_model::lastmonth() in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 343
+[10-Jul-2019 12:43:53 Europe/Berlin] PHP Fatal error:  Call to undefined method Report_model::get_year() in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 344
+[10-Jul-2019 12:44:17 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'private' (T_PRIVATE) in C:\xampp\htdocs\newstatcomp\thetatel\application\models\Report_model.php on line 211

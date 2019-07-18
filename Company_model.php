@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * 
  */
- require_once APPPATH."core\Base_model.php";
+ require_once APPPATH."core/Base_model.php";
 class Company_model extends Base_model
 {
 	
@@ -15,9 +15,8 @@ class Company_model extends Base_model
 	/*+++++ save company details +++++*/
 	public function create_company($value='')
 	{
-		$save_details=$this->add('customer_master',$value);
+		$save_details=$this->newdb->insert('customer_master',$value);
 		if ($save_details) {
-			$this->add('timeline',array('spgid'=>user_id(),'custid'=>$value['custid'],'entity_name'=>$value['entity_name']));
 			return TRUE;
 		}
 		else
@@ -28,7 +27,7 @@ class Company_model extends Base_model
 
 	public function create_backup_company($value='')
 	{
-		$save_details=$this->add('custid_backup',$value);
+		$save_details=$this->newdb->insert('custid_backup',$value);
 		if ($save_details) {
 			return TRUE;
 		}

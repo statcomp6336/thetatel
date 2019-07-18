@@ -47,12 +47,17 @@ trait Company_ext {
 	         
 	         	if ($this->Company_model->create_company($this->fillup_data($cust_type,$custid))) {
 	         		$this->Company_model->create_backup_company($this->backup_fillup_data($cust_type,$custid));
-	         		 put_msg("your Company is registerd successfully..!!");
+	         		$html="Company is registerd successfully.<br> Please Note the following details for future reference.<br>";
+	         		$html.="<div class='row'><div class='col-sm-6 col-md-6 col-lg-6'>";
+	         		$html.="<lable class='pull-left'>Company Name : </lable></div><div class='col-sm-6 col-md-6 col-lg-6' style='text-align:center'>".$this->input->post('comp_name')."</div></div>";
+	         		$html.="<div class='row'><div class='col-sm-6 col-md-6 col-lg-6'>";
+	         		$html.="<lable class='pull-left'>Company Register Id : </lable></div><div class='col-sm-6 col-md-6 col-lg-6' style='text-align:center'>".$custid."</div></div><br>";
+	         		 put_msg($html);
 	         		 redirect(base_url( $user.'/company/registration'));
 	         	}
 	         	else
 	         	{
-	         		put_msg("somthing went wronge...!");
+	         		put_msg("something went wronge...!");
 	         		 redirect(base_url( $user.'/company/registration'));
 	         	}
 	        }
@@ -82,7 +87,12 @@ trait Company_ext {
 	         
 	         	if ($this->Company_model->create_company($this->fillup_data($cust_type,$custid))) {
 	         		$this->Company_model->create_backup_company($this->backup_fillup_data($cust_type,$custid));
-	         		 put_msg("your Company is registerd successfully..!!");
+	         		$html="Branch is registerd successfully.<br> Please Note the following details for future reference.<br>";
+	         		$html.="<div class='row'><div class='col-sm-6 col-md-6 col-lg-6'>";
+	         		$html.="<lable class='pull-left'>Branch Name : </lable></div><div class='col-sm-6 col-md-6 col-lg-6' style='text-align:center'>".$this->input->post('comp_name')."</div></div>";
+	         		$html.="<div class='row'><div class='col-sm-6 col-md-6 col-lg-6'>";
+	         		$html.="<lable class='pull-left'>Branch Register Id : </lable></div><div class='col-sm-6 col-md-6 col-lg-6' style='text-align:center'>".$custid."</div></div><br>";
+	         		 put_msg($html);
 	         		 redirect(base_url( $user.'/company/registration'));
 	         	}
 	         	else
@@ -117,7 +127,12 @@ trait Company_ext {
 	         
 	         	if ($this->Company_model->create_company($this->fillup_data($cust_type,$custid))) {
 	         		$this->Company_model->create_backup_company($this->backup_fillup_data($cust_type,$custid));
-	         		 put_msg("your Company is registerd successfully..!!");
+	         		 $html="Contractor is registerd successfully.<br> Please Note the following details for future reference.<br>";
+	         		$html.="<div class='row'><div class='col-sm-6 col-md-6 col-lg-6'>";
+	         		$html.="<lable class='pull-left'>Contractor Name : </lable></div><div class='col-sm-6 col-md-6 col-lg-6' style='text-align:center'>".$this->input->post('comp_name')."</div></div>";
+	         		$html.="<div class='row'><div class='col-sm-6 col-md-6 col-lg-6'>";
+	         		$html.="<lable class='pull-left'>Contractor Register Id : </lable></div><div class='col-sm-6 col-md-6 col-lg-6' style='text-align:center'>".$custid."</div></div><br>";
+	         		 put_msg($html);
 	         		 redirect(base_url( $user.'/company/registration'));
 	         	}
 	         	else
@@ -183,7 +198,7 @@ trait Company_ext {
                array(
                      'field'   => 'comp_pan', 
                      'label'   => 'Company PAN Number', 
-                     'rules'   => 'required|xss_clean'
+                     'rules'   => 'required|xss_clean|strtoupper'
                   ),   
                array(
                      'field'   => 'comp_name', 

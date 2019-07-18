@@ -54,7 +54,7 @@ $(document).ready(function() {
 });
 jQuery.validator.addMethod("pan", function(value, element)
     {
-        return this.optional(element) || /^[A-Z]{5}\d{4}[A-Z]{1}$/.test(value);
+        return this.optional(element) || /^[a-zA-Z]{5}\d{4}[a-zA-Z]{1}$/.test(value);
     }, "Please enter a valid PAN");
 jQuery.validator.addMethod("phone", function(value, element)
     {
@@ -73,15 +73,15 @@ jQuery.validator.addMethod("pin", function(value, element)
 });           
 </script>
 
-
-            <div class="container" ng-app="">             
+<div class="container">
+            <div ng-app="">             
         
-                    <div class=" form-wizard">					
-						<!-- Form Wizard -->
-                    	<?php      
-					        
-					        $attributes = array('name' => 'frmRegistration', 'id' => 'signup-form');
-					         echo form_open(base_url(''.$user_type.'/'.$reg_type.'/save'), $attributes);
+                    <div class=" form-wizard">                  
+                        <!-- Form Wizard -->
+                        <?php      
+                            
+                            $attributes = array('name' => 'frmRegistration', 'id' => 'signup-form');
+                             echo form_open(base_url(''.$user_type.'/'.$reg_type.'/save'), $attributes);
                              $name=!empty($name)?$name:$this->session->SESS_CUST_NAME;
                              $custid=!empty($custid)?$custid:user_id(); 
                              $cust_type="";
@@ -104,76 +104,103 @@ jQuery.validator.addMethod("pin", function(value, element)
 
 
 
-                             ?>                 			
-							
-							<!-- Form progress -->
-                    		<div class="form-wizard-steps form-wizard-tolal-steps-4">
-                    			<div class="form-wizard-progress">
-                    			    <div class="form-wizard-progress-line" data-now-value="12.25" data-number-of-steps="4" style="width: 12.25%;"></div>
-                    			</div>
-								<!-- Step 1 -->
-                    			<div class="form-wizard-step active">
-                    				<div class="form-wizard-step-icon"><i class="fa fa-user" aria-hidden="true"></i></div>
-                    				<p>Company Detatils</p>
-                    			</div>
-								<!-- Step 1 -->
-								
-								<!-- Step 2 -->
-                    			<div class="form-wizard-step">
-                    				<div class="form-wizard-step-icon"><i class="fa fa-location-arrow" aria-hidden="true"></i></div>
-                    				<p>HR Details</p>
-                    			</div>
-								<!-- Step 2 -->
-								
-								<!-- Step 3 -->
-								<div class="form-wizard-step">
-                    				<div class="form-wizard-step-icon"><i class="fa fa-briefcase" aria-hidden="true"></i></div>
-                    				<p>Service Provider Details</p>
-                    			</div>
-								<!-- Step 3 -->
-								
-								<!-- Step 4 -->
-								<div class="form-wizard-step">
-                    				<div class="form-wizard-step-icon"><i class="fa fa-money" aria-hidden="true"></i></div>
-                    				<p>Confirmation</p>
-                    			</div>
-								<!-- Step 4 -->
-                    		</div>
-							<!-- Form progress -->
-                    		
-							
-							<!-- Form Step 1 -->
+                             ?>                             
+                            
+                            <!-- Form progress -->
+                            <div class="form-wizard-steps form-wizard-tolal-steps-4">
+                                <div class="form-wizard-progress">
+                                    <div class="form-wizard-progress-line" data-now-value="12.25" data-number-of-steps="4" style="width: 12.25%;"></div>
+                                </div>
+                                <!-- Step 1 -->
+                                <div class="form-wizard-step active">
+                                    <div class="form-wizard-step-icon"><i class="fa fa-user" aria-hidden="true"></i></div>
+                                    <p>Company Detatils</p>
+                                </div>
+                                <!-- Step 1 -->
+                                
+                                <!-- Step 2 -->
+                                <div class="form-wizard-step">
+                                    <div class="form-wizard-step-icon"><i class="fa fa-location-arrow" aria-hidden="true"></i></div>
+                                    <p>HR Details</p>
+                                </div>
+                                <!-- Step 2 -->
+                                
+                                <!-- Step 3 -->
+                                <div class="form-wizard-step">
+                                    <div class="form-wizard-step-icon"><i class="fa fa-briefcase" aria-hidden="true"></i></div>
+                                    <p>Service Provider Details</p>
+                                </div>
+                                <!-- Step 3 -->
+                                
+                                <!-- Step 4 -->
+                                <div class="form-wizard-step">
+                                    <div class="form-wizard-step-icon"><i class="fa fa-money" aria-hidden="true"></i></div>
+                                    <p>Confirmation</p>
+                                </div>
+                                <!-- Step 4 -->
+                            </div>
+                            <!-- Form progress -->
+                            
+                            
+                            <!-- Form Step 1 -->
 
-            		<fieldset>
+                    <fieldset>
 
-        		    <h4>Company Information: <span>Step 1 - 4</span></h4>
-            		    <div class="row">
-            		    	<div class="col-sm-6 col-md-6  col-lg-6 ">
-            		    		<div class="form-group">
-                    			    <label>Entity Name: <span>*</span></label>
+                    <h4><span>Step 1 - 4</span></h4>
+                   
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6  col-lg-6 ">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                            <label>Entity Name: <span>*</span></label>
+                                        </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
+                                            <input type="text"  name="ent_name" id="ent_name" ng-model="ent_name"  ng-init="ent_name='<?php echo is($name);?>'" value="<?php echo is($name);?>" placeholder="Employee Name Name" class="form-control required" readonly>
+                                        </div>
+                                    </div>
+                                    
                                     <input type="hidden" name="cust_type" value="1">
-                                    <input type="text"  name="ent_name" id="ent_name" ng-model="ent_name"  ng-init="ent_name='<?php echo is($name);?>'" value="<?php echo is($name);?>" placeholder="Employee Name Name" class="form-control required">
+                                    
                                 </div>
                              </div>
                              <div class="col-sm-6 col-md-6  col-lg-6 ">
                                 <div class="form-group">
+                                     <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
                                     <label>Entity Code: <span>*</span></label>
-                                    <input type="text" name="ent_code" id="ent_code" ng-model="ent_code"  ng-init="ent_code='<?php echo is($custid);?>'" value="<?php echo is($custid);?>" placeholder="Employee Name Name" class="form-control required">
+                                    </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
+                                    <input type="text" name="ent_code" id="ent_code" ng-model="ent_code"  ng-init="ent_code='<?php echo is($custid);?>'" value="<?php echo is($custid);?>" placeholder="Employee Name Name" class="form-control required" readonly >
+                                    </div>
+                                    </div>
                                 </div>
                              </div>
                          </div>
                           <div class="row">
                             <div class="col-sm-6 col-md-6  col-lg-6 ">
                                 <div class="form-group">
+                                     <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
                                     <label>Company Name: <span>*</span></label>
+                                    </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="text" name="comp_name" id="comp_name" ng-model="comp_name" placeholder="Employee Name Name" class="form-control required">
+                                    </div>
+                                    </div>
                                     <span class="error" id="comp_name-error"></span>
                                 </div>
                              </div>
                              <div class="col-sm-6 col-md-6  col-lg-6 ">
                                 <div class="form-group">
+                                     <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
                                     <label>Company PAN No.: <span>*</span></label>
-                                    <input type="text" name="comp_pan"  title="Please Fill valid Match like (AAAAA0000A) " id="comp_pan" ng-model="comp_pan"placeholder="Company PAN Number" class="form-control required">
+                                    </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
+                                    <input type="text" name="comp_pan"  title="Please Fill valid Match like (AAAAA0000A) " id="comp_pan" ng-model="comp_pan"placeholder="Company PAN Number" class="form-control required" style="text-transform: uppercase;">
+                                    </div>
+                                    </div>
                                      <span class="error" id="comp_pan-error"></span>
                                 </div>
                              </div>
@@ -181,15 +208,27 @@ jQuery.validator.addMethod("pin", function(value, element)
                           <div class="row">
                             <div class="col-sm-6 col-md-6  col-lg-6 ">
                                 <div class="form-group">
+                                     <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
                                     <label>Address: <span>*</span></label>
+                                    </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="text" name="comp_addr" id="comp_addr" ng-model="comp_addr" placeholder="Company Address" class="form-control required">
+                                    </div>
+                                    </div>
                                     <span class="error" id="comp_addr-error"></span>
                                 </div>
                              </div>
                              <div class="col-sm-6 col-md-6  col-lg-6 ">
                                 <div class="form-group">
+                                     <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
                                     <label>Landmark: <span>*</span></label>
+                                    </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="text" name="comp_landmark" id="comp_landmark" ng-model="comp_landmark" placeholder="Company Landmark" class="form-control required">
+                                    </div>
+                                    </div>
                                     <span class="error" id="comp_landmark-error"></span>
                                 </div>
                              </div>
@@ -197,7 +236,11 @@ jQuery.validator.addMethod("pin", function(value, element)
                           <div class="row">
                             <div class="col-sm-6 col-md-6  col-lg-6 ">
                                 <div class="form-group">
-                                    <label>State: <span>*</span></label>                                    
+                                     <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>State: <span>*</span></label>
+                                    </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">                                    
                                       <select name="comp_state" id="comp_state" class="form-control required" ng-model="comp_state">          
                         <option value="Andhra Pradesh" selected>Andhra Pradesh</option>
                         <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -235,29 +278,49 @@ jQuery.validator.addMethod("pin", function(value, element)
                         <option value="West Bangal">West Bangal</option>
                                                                                              
                                     </select>
+                                    </div>
+                                    </div>
                                     <span class="error" id="comp_state-error"></span>
                                 </div>
                              </div>
                              <div class="col-sm-6 col-md-6  col-lg-6 ">
                                 <div class="form-group">
+                                     <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
                                     <label>Pincode: <span>*</span></label>
+                                    </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="text" name="comp_pin" ng-model="comp_pin" id="comp_pin" placeholder="Enter Pincode" class="form-control required">
                                     <span class="comp_pin-error"></span>
+                                    </div>
+                                    </div>
                                 </div>
                              </div>
                          </div>
                           <div class="row">
                             <div class="col-sm-6 col-md-6  col-lg-6 ">
                                 <div class="form-group">
+                                     <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
                                     <label>Corporate Phone Number: <span>*</span></label>
+                                    </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="text" name="comp_phone" id="comp_phone" ng-model="comp_phone" placeholder="Company Phone Number" class="form-control numeric required" >
+                                    </div>
+                                    </div>
                                     <span class="error" id="comp_phone-error"></span>
                                 </div>
                              </div>
                              <div class="col-sm-6 col-md-6  col-lg-6 ">
                                 <div class="form-group">
+                                     <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
                                     <label>Email address: <span>*</span></label>
+                                    </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="text" name="comp_mail" ng-model="comp_mail" id="comp_mail" placeholder="Email Address" class="form-control required">
+                                    </div>
+                                    </div>
                                     <span class="error" id="comp_mail-error"></span>
 
                                 </div>
@@ -265,39 +328,57 @@ jQuery.validator.addMethod("pin", function(value, element)
                          </div>
                                 
                                
-    		    		
-								
+                        
+                                
                     <div class="form-wizard-buttons">
                         <button type="button" class="btn btn-next comp-next" style="background-color: #044f7d!important;">Next</button>
                     </div>
                 </fieldset>
-							<!-- Form Step 1  completed-->
+                            <!-- Form Step 1  completed-->
 
-							<!-- Form Step 2 started-->
+                            <!-- Form Step 2 started-->
                 <fieldset>
 
-                    <h4>HR Information : <span>Step 2 - 4</span></h4>
+                    <h4><span>Step 2 - 4</span></h4>
                     <h3>HR EXCUTIVE Details</h3>
                     <div class="row">
                             <div class="col-sm-4 col-md-4  col-lg-4 ">
                                 <div class="form-group">
-                                    <label>Person Name : <span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>Name : <span>*</span></label>
+                                     </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="text"  name="hr_ex_name" ng-model="hr_ex_name" id="hr_ex_name"  placeholder="Enter Person Name" class="form-control required">
                                     <span class="error" id="hr_ex_name-error"></span>
+                                    </div>
+                                    </div>
                                 </div>
                              </div>
                              <div class="col-sm-4 col-md-4  col-lg-4 ">
                                 <div class="form-group">
-                                    <label>Phone Number: <span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>Phone No: <span>*</span></label>
+                                     </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="text" name="hr_ex_phone" ng-model="hr_ex_phone" id="hr_ex_phone"  placeholder="Enter Phone Number" class="form-control required">
                                     <span class="error" id="hr_ex_phone-error"></span>
+                                    </div>
+                                    </div>
                                 </div>
                              </div>
                              <div class="col-sm-4 col-md-4  col-lg-4 ">
                                 <div class="form-group">
-                                    <label>Email address: <span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>Email: <span>*</span></label>
+                                     </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="email" name="hr_ex_mail" ng-model="hr_ex_mail" id="hr_ex_mail"  placeholder="Enter Email" class="form-control required">
                                     <span class="error" id="hr_ex_mail-error"></span>
+                                    </div>
+                                    </div>
                                 </div>
                              </div>
                          </div>
@@ -305,23 +386,41 @@ jQuery.validator.addMethod("pin", function(value, element)
                     <div class="row">
                             <div class="col-sm-4 col-md-4  col-lg-4 ">
                                 <div class="form-group">
-                                    <label>Person Name : <span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>Name : <span>*</span></label>
+                                     </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="text" name="hr_mg_name" ng-model="hr_mg_name" id="hr_mg_name" placeholder="Enter Person Name" class="form-control required">
                                     <span class="error" id="hr_mg_name-error"></span>
+                                    </div>
+                                    </div>
                                 </div>
                              </div>
                              <div class="col-sm-4 col-md-4  col-lg-4 ">
                                 <div class="form-group">
-                                    <label>Phone Number: <span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>Phone No: <span>*</span></label>
+                                     </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="text" name="hr_mg_phone" ng-model="hr_mg_phone" id="hr_mg_phone" placeholder="Enter Phone Number" class="form-control required">
                                     <span class="error" id="hr_mg_phone-error"></span>
+                                    </div>
+                                    </div>
                                 </div>
                              </div>
                              <div class="col-sm-4 col-md-4  col-lg-4 ">
                                 <div class="form-group">
-                                    <label>Email address: <span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>Email: <span>*</span></label>
+                                     </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="email" name="hr_mg_mail" ng-model="hr_mg_mail" id="hr_mg_mail" placeholder="Enter Email Address" class="form-control required">
                                     <span class="error" id="hr_mg_mail-error"></span>
+                                    </div>
+                                    </div>
                                 </div>
                              </div>
                          </div>
@@ -329,23 +428,41 @@ jQuery.validator.addMethod("pin", function(value, element)
                     <div class="row">
                             <div class="col-sm-4 col-md-4  col-lg-4 ">
                                 <div class="form-group">
-                                    <label>Person Name : <span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>Name : <span>*</span></label>
+                                     </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="text" name="hr_vp_name" ng-model="hr_vp_name" id="hr_vp_name" placeholder="Enter Person Name" class="form-control required">
                                     <span class="error" id="hr_vp_name-error"></span>
+                                    </div>
+                                    </div>
                                 </div>
                              </div>
                              <div class="col-sm-4 col-md-4  col-lg-4 ">
                                 <div class="form-group">
-                                    <label>Phone Number: <span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>Phone No: <span>*</span></label>
+                                     </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="text" name="hr_vp_phone" ng-model="hr_vp_phone" id="hr_vp_phone" placeholder="Enter Phone Number" class="form-control required">
                                     <span class="error" id="hr_vp_phone-error"></span>
+                                    </div>
+                                    </div>
                                 </div>
                              </div>
                              <div class="col-sm-4 col-md-4  col-lg-4 ">
                                 <div class="form-group">
-                                    <label>Email address: <span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>Email: <span>*</span></label>
+                                     </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="email" name="hr_vp_mail" ng-model="hr_vp_mail" id="hr_vp_mail" placeholder="Enter Email Address" class="form-control required">
                                     <span class="error" id="hr_vp_mail-error"></span>
+                                    </div>
+                                    </div>
                                 </div>
                              </div>
                          </div>
@@ -353,40 +470,58 @@ jQuery.validator.addMethod("pin", function(value, element)
 
 
 
-					
+                    
                     <div class="form-wizard-buttons">
                         <button type="button" class="btn btn-previous">Previous</button>
                         <button type="button" class="btn btn-next" style="background-color: #044f7d!important;">Next</button>
                     </div>
                 </fieldset>
-							<!-- Form Step 2 completed-->
+                            <!-- Form Step 2 completed-->
 
-							<!-- Form Step 3 started-->
-		        <fieldset>
+                            <!-- Form Step 3 started-->
+                <fieldset>
 
-		            <h4>Service Provider Information: <span>Step 3 - 4</span></h4>
+                    <h4><span>Step 3 - 4</span></h4>
 
                      <h3>Service Provider Executive Details</h3>
                     <div class="row">
                             <div class="col-sm-4 col-md-4  col-lg-4 ">
                                 <div class="form-group">
-                                    <label>Person Name : <span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>Name : <span>*</span></label>
+                                     </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="text"  name="sp_ex_name" ng-model="sp_ex_name" id="sp_ex_name"  placeholder="Enter Person Name" class="form-control required">
                                      <span class="error" id="sp_ex_name-error"></span>
+                                     </div>
+                                    </div>
                                 </div>
                              </div>
                              <div class="col-sm-4 col-md-4  col-lg-4 ">
                                 <div class="form-group">
-                                    <label>Phone Number: <span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>Phone No: <span>*</span></label>
+                                     </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="text" name="sp_ex_phone" ng-model="sp_ex_phone" id="sp_ex_phone"placeholder="Enter Phone Number" class="form-control required">
                                      <span class="error" id="sp_ex_phone-error"></span>
+                                     </div>
+                                    </div>
                                 </div>
                              </div>
                              <div class="col-sm-4 col-md-4  col-lg-4 ">
                                 <div class="form-group">
-                                    <label>Email address: <span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>Email: <span>*</span></label>
+                                     </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="email" name="sp_ex_mail" ng-model="sp_ex_mail" id="sp_ex_mail" placeholder="Enter Email address" class="form-control required">
                                      <span class="error" id="sp_ex_mail-error"></span>
+                                     </div>
+                                    </div>
                                 </div>
                              </div>
                          </div>
@@ -394,23 +529,41 @@ jQuery.validator.addMethod("pin", function(value, element)
                     <div class="row">
                             <div class="col-sm-4 col-md-4  col-lg-4 ">
                                 <div class="form-group">
-                                    <label>Person Name : <span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>Name : <span>*</span></label>
+                                     </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="text"name="sp_mg_name" ng-model="sp_mg_name" id="sp_mg_name"  placeholder="Enter Person Name" class="form-control required">
                                      <span class="error" id="sp_mg_name-error"></span>
+                                     </div>
+                                    </div>
                                 </div>
                              </div>
                              <div class="col-sm-4 col-md-4  col-lg-4 ">
                                 <div class="form-group">
-                                    <label>Phone Number: <span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>Phone No: <span>*</span></label>
+                                     </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="text" name="sp_mg_phone" ng-model="sp_mg_phone" id="sp_mg_phone" placeholder="Enter Phone Number" class="form-control required">
                                      <span class="error" id="sp_mg_phone-error"></span>
+                                     </div>
+                                    </div>
                                 </div>
                              </div>
                              <div class="col-sm-4 col-md-4  col-lg-4 ">
                                 <div class="form-group">
-                                    <label>Email address: <span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>Email: <span>*</span></label>
+                                     </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="email" name="sp_mg_mail" ng-model="sp_mg_mail" id="sp_mg_mail" placeholder="Enter Email Address" class="form-control required">
                                      <span class="error" id="sp_mg_mail-error"></span>
+                                     </div>
+                                    </div>
                                 </div>
                              </div>
                          </div>
@@ -418,23 +571,41 @@ jQuery.validator.addMethod("pin", function(value, element)
                     <div class="row">
                             <div class="col-sm-4 col-md-4  col-lg-4 ">
                                 <div class="form-group">
-                                    <label>Person Name : <span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>Name : <span>*</span></label>
+                                     </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="text" name="sp_vp_name" ng-model="sp_vp_name" id="sp_vp_name" placeholder="Enter Person Name" class="form-control required">
                                      <span class="error" id="sp_vp_name-error"></span>
+                                     </div>
+                                    </div>
                                 </div>
                              </div>
                              <div class="col-sm-4 col-md-4  col-lg-4 ">
                                 <div class="form-group">
-                                    <label>Phone Number: <span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>Phone No: <span>*</span></label>
+                                     </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="text" name="sp_vp_phone" ng-model="sp_vp_phone" id="sp_vp_phone" placeholder="Enter Phone Number" class="form-control required">
                                      <span class="error" id="sp_vp_phone-error"></span>
+                                     </div>
+                                    </div>
                                 </div>
                              </div>
                              <div class="col-sm-4 col-md-4  col-lg-4 ">
                                 <div class="form-group">
-                                    <label>Email address: <span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                    <label>Email: <span>*</span></label>
+                                     </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 ">
                                     <input type="email" name="sp_vp_mail" ng-model="sp_vp_mail" id="sp_vp_mail" placeholder="Enter Email Addres" class="form-control required">
                                      <span class="error" id="sp_vp_mail-error"></span>
+                                     </div>
+                                    </div>
                                 </div>
                              </div>
                          </div>
@@ -442,104 +613,174 @@ jQuery.validator.addMethod("pin", function(value, element)
 
 
                         
-		    	
-		            <div class="form-wizard-buttons">
-		                <button type="button" class="btn btn-previous">Previous</button>
-		                <button type="button" class="btn btn-next" style="background-color: #044f7d!important;">Next</button>
-		            </div>
-		        </fieldset>
-							<!-- Form Step 3 -->
-							
-							<!-- Form Step 4 -->
-				<fieldset>
+                
+                    <div class="form-wizard-buttons">
+                        <button type="button" class="btn btn-previous">Previous</button>
+                        <button type="button" class="btn btn-next" style="background-color: #044f7d!important;">Next</button>
+                    </div>
+                </fieldset>
+                            <!-- Form Step 3 -->
+                            
+                            <!-- Form Step 4 -->
+                <fieldset>
 
-                    <h4>Confirmation: <span>Step 4 - 4</span></h4>
+                    <h4> <span>Step 4 - 4</span></h4>
 
-					<div style="clear:both;"></div>
-						<h3>*** Company  Information ***</h3>
-					<div class="row">
-        		    	<div class="col-sm-6 col-md-6 col-lg-6 ">
-        		    		<div class="form-group">
-        		    			 <label>Entity Name : </label><span class="form-control"><strong>{{ent_name}}</strong></span>
-        		    		</div>
-        		    	</div>
-        		    	<div class="col-sm-6 col-md-6 col-lg-6 ">
-        		    		<div class="form-group">
-        		    			 <label>Entity code : </label><span class="form-control"><strong>{{ent_code}}</strong></span>
-        		    		</div>
-        		    	</div>
-        		    </div>
+                    <div style="clear:both;"></div>
+                        <h3>*** Company  Information ***</h3>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6 ">
+                            <div class="form-group">
+                                 <div class="row">
+                                    <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                        <label>Entity Name : </label>
+                                    </div>
+                                    <div class="col-sm-9 col-md-9 col-lg-9 ">
+                                        <span class="form-control"><strong>{{ent_name}}</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 ">
+                            <div class="form-group">
+                                 <div class="row">
+                                    <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                        <label>Entity code : </label>
+                                    </div>
+                                    <div class="col-sm-9 col-md-9 col-lg-9 ">
+                                        <span class="form-control"><strong>{{ent_code}}</strong></span>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-					 <div class="row">
-        		    	<div class="col-sm-6 col-md-6 col-lg-6 ">
-        		    		<div class="form-group">
-        		    			 <label>Company Name : </label><span class="form-control"><strong>{{comp_name}}</strong></span>
-        		    		</div>
-        		    	</div>
-        		    	<div class="col-sm-6 col-md-6 col-lg-6 ">
-        		    		<div class="form-group">
-        		    			 <label>Company PAN number : </label><span class="form-control"><strong>{{comp_pan}}</strong></span>
-        		    		</div>
-        		    	</div>
-        		    </div>
+                     <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6 ">
+                            <div class="form-group">
+                                 <div class="row">
+                                    <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                        <label>Company Name : </label>
+                                    </div>
+                                    <div class="col-sm-9 col-md-9 col-lg-9 ">
+                                        <span class="form-control"><strong>{{comp_name}}</strong></span>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 ">
+                            <div class="form-group">
+                                 <div class="row">
+                                    <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                        <label>Company PAN number : </label>
+                                    </div>
+                                    <div class="col-sm-9 col-md-9 col-lg-9 ">
+                                        <span class="form-control"><strong>{{comp_pan}}</strong></span>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        		    <div class="row">
-        		    	<div class="col-sm-6 col-md-6 col-lg-6 ">
-        		    		<div class="form-group">
-        		    			 <label>Company Address : </label><span class="form-control"><strong>{{comp_addr}}</strong></span>
-        		    		</div>
-        		    	</div>
-        		    	<div class="col-sm-6 col-md-6 col-lg-6 ">
-        		    		<div class="form-group">
-        		    			 <label>Landmark : </label><span class="form-control"><strong>{{comp_landmark}}</strong></span>
-        		    		</div>
-        		    	</div>
-        		    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6 ">
+                            <div class="form-group">
+                                 <div class="row">
+                                    <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                        <label>Company Address : </label>
+                                    </div>
+                                    <div class="col-sm-9 col-md-9 col-lg-9 ">
+                                        <span class="form-control"><strong>{{comp_addr}}</strong></span>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 ">
+                            <div class="form-group">
+                                 <div class="row">
+                                    <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                        <label>Landmark : </label>
+                                    </div>
+                                    <div class="col-sm-9 col-md-9 col-lg-9 ">
+                                        <span class="form-control"><strong>{{comp_landmark}}</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        		    <div class="row">
-        		    	<div class="col-sm-6 col-md-6 col-lg-6 ">
-        		    		<div class="form-group">
-        		    			 <label>Company State : </label><span class="form-control"><strong>{{comp_state}}</strong></span>
-        		    		</div>
-        		    	</div>
-        		    	<div class="col-sm-6 col-md-6 col-lg-6 ">
-        		    		<div class="form-group">
-        		    			 <label> Pincode: </label><span class="form-control"><strong>{{comp_pin}}</strong></span>
-        		    		</div>
-        		    	</div>
-        		    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6 ">
+                            <div class="form-group">
+                                 <div class="row">
+                                    <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                        <label>Company State : </label>
+                                    </div>
+                                    <div class="col-sm-9 col-md-9 col-lg-9 ">
+                                        <span class="form-control"><strong>{{comp_state}}</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 ">
+                            <div class="form-group">
+                                 <div class="row">
+                                    <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                        <label> Pincode: </label>
+                                    </div>
+                                    <div class="col-sm-9 col-md-9 col-lg-9 ">
+                                        <span class="form-control"><strong>{{comp_pin}}</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        		    <div class="row">
-        		    	<div class="col-sm-6 col-md-6 col-lg-6 ">
-        		    		<div class="form-group">
-        		    			 <label>Company Phone Number : </label><span class="form-control"><strong>{{comp_phone}}</strong></span>
-        		    		</div>
-        		    	</div>
-        		    	<div class="col-sm-6 col-md-6 col-lg-6 ">
-        		    		<div class="form-group">
-        		    			 <label>Company mail address : </label><span class="form-control"><strong>{{comp_mail}}</strong></span>
-        		    		</div>
-        		    	</div>
-        		    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6 ">
+                            <div class="form-group">
+                                 <div class="row">
+                                    <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                        <label>Company Phone Number : </label>
+                                    </div>
+                                    <div class="col-sm-9 col-md-9 col-lg-9 ">
+                                        <span class="form-control"><strong>{{comp_phone}}</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 ">
+                            <div class="form-group">
+                                 <div class="row">
+                                    <div class="col-sm-3 col-md-3  col-lg-3 ">
+                                        <label>Company mail address : </label>
+                                    </div>
+                                    <div class="col-sm-9 col-md-9 col-lg-9 ">
+                                        <span class="form-control"><strong>{{comp_mail}}</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                    <h3>*** HR Details ***</h3>
 
-        		    <div class="row">
-        		    	<div class="col-sm-4 col-md-4 col-lg-4 ">
-        		    		<div class="form-group">
-        		    			 <label>Admin OR HR Executive Person Name: </label><span class="form-control"><strong>{{hr_ex_name}}</strong></span>
-        		    		</div>
-        		    	</div>
-        		    	<div class="col-sm-4 col-md-4 col-lg-4 ">
-        		    		<div class="form-group">
-        		    			 <label>Admin OR HR Executive Phone Number : </label><span class="form-control"><strong>{{hr_ex_phone}}</strong></span>
-        		    		</div>
-        		    	</div>
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4 col-lg-4 ">
+                            <div class="form-group">
+                                 <label>Admin OR HR Executive Person Name: </label><span class="form-control"><strong>{{hr_ex_name}}</strong></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4 ">
+                            <div class="form-group">
+                                 <label>Admin OR HR Executive Phone Number : </label><span class="form-control"><strong>{{hr_ex_phone}}</strong></span>
+                            </div>
+                        </div>
                         <div class="col-sm-4 col-md-4 col-lg-4 ">
                             <div class="form-group">
                                  <label>Admin OR HR Executive Email : </label><span class="form-control"><strong>{{hr_ex_mail}}</strong></span>
                             </div>
                         </div>
-        		    </div>
+                    </div>
 
                      <div class="row">
                         <div class="col-sm-4 col-md-4 col-lg-4 ">
@@ -632,18 +873,18 @@ jQuery.validator.addMethod("pin", function(value, element)
                     </div>
 
                     
-        		   
+                   
                     <div class="form-wizard-buttons">
                         <button type="button" class="btn btn-previous">Previous</button>
                         <button type="submit" class="btn btn-submit">Submit</button>
                     </div>
                 </fieldset>
-							<!-- Form Step 4 -->
-                    	
-                    	</form>
-						<!-- Form Wizard -->
+                            <!-- Form Step 4 -->
+                        
+                        </form>
+                        <!-- Form Wizard -->
                     </div>
-              
+              </div>
                     
       
       

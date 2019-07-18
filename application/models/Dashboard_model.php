@@ -561,6 +561,21 @@ class Dashboard_model extends Base_model
 			return $result;		
 		}
 	}
+	 function get_chart_data() {
+        $query = $this->newdb->group_by('mnth')->get('graph_of_pf')->result_array();
+        // $results['chart_data'] = $query->result();
+        // // $this->newdb->select_min('mnth');
+        // // $this->newdb->limit(1);
+        // // $query = $this->newdb->get('graph_of_pf');
+        // // $results['min_year'] = $query->row()->mnth;
+        // $results['min_year'] = 'January';
+        // // $this->newdb->select_max('month');
+        // // $this->newdb->limit(1);
+        // // $query = $this->newdb->get('graph_of_pf');
+        // // $results['max_year'] = $query->row()->performance_year;
+        // $results['max_year'] = 'December';
+        return $query;
+    }
 
 	// //graph count for employee salary pf and esic
 	// public function get_graphElements($value='')

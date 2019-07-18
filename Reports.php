@@ -68,6 +68,9 @@ trait Reports {
 		if ($this->data['access'][$this->session->TYPE] == TRUE) {
 		    $this->load->model('Report_model','report');
 		    $this->load->library("pagination");
+
+
+	      
 	       $this->data['where'] = 'Reports';
 	       $this->data['sub_menu'] = 'Process';
 	       
@@ -100,12 +103,10 @@ trait Reports {
 	public function CreatePFReport($value='')
 	 {
 	 	$this->load->model('Report_model','report');
-	 	$this->load->model('Act_model','timeline');
 	 	
-	 	 $spg = verify_id(($this->uri->segment(6)) ? $this->uri->segment(6) : 0);
-	 	 $cust = verify_id(($this->uri->segment(7)) ? $this->uri->segment(7) : 0);
-	 	$this->report->CreatePfProcess($spg,$cust);
-	 	
+	 	 $spg = ($this->uri->segment(6)) ? $this->uri->segment(6) : 0;
+	 	 $cust = ($this->uri->segment(7)) ? $this->uri->segment(7) : 0;
+	 	$proc=$this->report->CreatePfProcess($spg,$cust);
 	 	$this->timeline->update_timeline($cust,array('IS_PfProcess'=>2));
 	 	$this->report->DownloadPFReport($spg,$cust);
 	 	
@@ -123,9 +124,8 @@ trait Reports {
 	public function CreateESICReport($value='')
 	 {
 	 	$this->load->model('Report_model','report');
-	 	$this->load->model('Act_model','timeline');
-	 	$spg = verify_id(($this->uri->segment(6)) ? $this->uri->segment(6) : 0);
-	 	$cust = verify_id(($this->uri->segment(7)) ? $this->uri->segment(7) : 0);
+	 	$spg = ($this->uri->segment(6)) ? $this->uri->segment(6) : 0;
+	 	$cust = ($this->uri->segment(7)) ? $this->uri->segment(7) : 0;
 	 	$this->timeline->update_timeline($cust,array('IS_PfProcess'=>3));
 	 	$proc=$this->report->CreateESICProcess($spg,$cust);
 	 		$this->report->DownloadESICReport($spg,$cust);

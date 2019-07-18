@@ -2,7 +2,7 @@
 
 // var_dump($result);
 // exit();
-?>
+?> 
 
 	<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
@@ -57,7 +57,7 @@
 			<td class="hidden-480">
 				<span class="label label-sm label-warning"><?php echo $key->month.'/'.$key->year;?></span>
 			</td>
-			<td><a href="<?php echo base_url(''.$user_type.'/report/proccess/genrate/pf/'.$key->spgid.'/'.$key->custid.'');?>">
+			<td><a href="<?php echo base_url(''.$user_type.'/report/proccess/genrate/pf/'.hash_id($key->spgid).'/'.hash_id($key->custid).'');?>">
 					<button class="btn btn-success radius-1">
 						<i class="ace-icon fa fa-floppy-o "></i>
 						Create
@@ -65,7 +65,7 @@
 				</a>
 			</td>
 			<td>
-				<a href="<?php echo base_url(''.$user_type.'/report/proccess/genrate/esic/'.$key->spgid.'/'.$key->custid.'');?>">
+				<a href="<?php echo base_url(''.$user_type.'/report/proccess/genrate/esic/'.hash_id($key->spgid).'/'.hash_id($key->custid).'');?>">
 					<button class="btn btn-primary radius-1">
 						<i class="ace-icon fa fa-floppy-o"></i>
 						Create

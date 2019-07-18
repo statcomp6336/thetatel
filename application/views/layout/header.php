@@ -63,7 +63,16 @@
 				background-color: #f0f0f0;
 				margin: 10px;
 			}		    
-
+.logo
+{
+	width: 40px;
+	height: 25px;
+}
+.logo-name
+{
+	width: 180px;
+	height: 25px;
+}
 					    
 		</style>
 	</head>
@@ -73,11 +82,14 @@
 		<div id="navbar" class="navbar navbar-default    navbar-collapse       h-navbar ace-save-state">
 			<div class="navbar-container ace-save-state" id="navbar-container">
 				<div class="navbar-header pull-left">
-					<a href="index.html" class="navbar-brand">
+					<a href="<?php echo base_url();?>" class="navbar-brand">
 						<small>
-							<i class="fa fa-leaf"></i>
-							ComplianceTrack
+							<!-- <i class="fa fa-leaf"></i> -->
+							<img class="logo" src="<?php echo base_url();?>assets/logo.png"  />
+							<img class="logo-name" src="<?php echo base_url();?>assets/name.png"  />
+							
 						</small>
+						
 					</a>
 
 					<button class="pull-right navbar-toggle navbar-toggle-img collapsed" type="button" data-toggle="collapse" data-target=".navbar-buttons,.navbar-menu">
@@ -1128,10 +1140,7 @@ if (!empty($menu['salary_report']) &&  $menu['salary_report'] == TRUE)
 if (!empty($menu['entity_report']) &&  $menu['entity_report'] == TRUE) 
 {						
 ?>
-
-			<?php } if ( $menu['reportentities_access'] == TRUE) { ?>
-
-							<li class="hover">
+						<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/export/entitydetails'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Entities Details
@@ -1143,9 +1152,6 @@ if (!empty($menu['entity_report']) &&  $menu['entity_report'] == TRUE)
 if (!empty($menu['compliance_req']) &&  $menu['compliance_req'] == TRUE) 
 {						
 ?>
-
-			<?php } if ( $menu['reportcompliancerequest_access'] == TRUE) { ?>
-
 							<li class="hover">
 								<a href="<?php echo base_url(''.$user_type.'/export/compliancerequest'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -1173,10 +1179,6 @@ if (!empty($menu['user_info']) &&  $menu['user_info'] == TRUE)
 if (!empty($menu['register_menu']) &&  $menu['register_menu'] == TRUE) 
 {						
 ?>
-
-
-			<?php } if ( $menu['reportregister_access'] == TRUE) { ?>
-
 							<li class="hover" >
 								<a href="error-404.html" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
