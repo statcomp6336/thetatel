@@ -86,13 +86,25 @@ class Company_model extends Base_model
 
 	 public function all_companys($key='')
 	 {	
-	 	$result =$this->newdb->select('custid,entity_name')
+	 	if (!empty($key)) {
+	 		$result =$this->newdb->select('*')
 	 					  ->from('customer_master')
-	 					  // ->where('spgid',user_id())	 					 
+	 					  ->where('custid',$key)	 					 
+	 					  ->get();
+	 		$result = $result->row();
+	 		
+	 		 return $result;
+	 	}
+	 	else
+	 	{
+	 		$result =$this->newdb->select('custid,entity_name')
+	 					  ->from('customer_master')	 					 
 	 					  ->get();
 	 		$result = $result->result();
 	 		
 	 		 return $result;
+	 	}
+	 	
 	 }
 	 public function acts($value='')
 	 {	 	
@@ -177,5 +189,34 @@ class Company_model extends Base_model
 	{
 		return $custid;
 	}
+	public function get_Entities()
+	{
+		$select="entity_name,custid, custtype, CASE custtype 
+						WHEN  1 THEN 'COMPANY'
+						WHEN  2 THEN 'BRANCH'
+						WHEN  3 THEN 'CONTRACTOR'
+						WHEN  4 THEN 'SUB-CONTRACTOR'
+						WHEN  5 THEN 'SPG-USER'
+						WHEN  9 THEN 'SPG'
+						ELSE 'OTHER'
+						END AS catagory
+			";
+		$this->newdb->select($select);
+		$this->newdb->from('customer_master');	
+		$this->newdb->where(array('spgid' =>user_id()));	
+		$result=$this->newdb->get()->result();
+	
+
+		return $result;
+	}
+	public function update_entity($data,$id)
+	{
+		return	$this->edit('customer_master',array('custid'=>$id),$data);	
+	}
+	public function delete_entity($id='')
+	{
+		return $this->remove('customer_master',array('custid'=>$id));
+	}
+
 
 }	

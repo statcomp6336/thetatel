@@ -487,7 +487,7 @@
 
 								<ul class="submenu">
 									<li class="hover">
-										<a href="<?php echo base_url('spg/company/registration'); ?>">
+										<a href="<?php echo base_url(''.$user_type.'/company/registration'); ?>">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Company Registration
 										</a>
@@ -496,7 +496,7 @@
 									</li>
 
 									<li class="hover">
-										<a href="<?php echo base_url('spg/branch/registration'); ?>">
+										<a href="<?php echo base_url(''.$user_type.'/branch/registration'); ?>">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Branch Registration
 										</a>
@@ -509,7 +509,7 @@
 							</li>
 <!--  end company area -->
 <!--  start contractor area -->
-<li class="open hover">
+							<li class="open hover">
 								<a href="#" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Contractor
@@ -520,7 +520,7 @@
 
 								<ul class="submenu">
 									<li class="active hover">
-										<a href="<?php echo base_url('spg/contractor/registration'); ?>">
+										<a href="<?php echo base_url(''.$user_type.'/contractor/registration'); ?>">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Contractor Registration
 										</a>
@@ -529,7 +529,7 @@
 									</li>
 
 									<li class="hover">
-										<a href="<?php echo base_url('spg/subcontractor/registration'); ?>">
+										<a href="<?php echo base_url(''.$user_type.'/subcontractor/registration'); ?>">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Sub-Contractor Registration
 										</a>
@@ -553,7 +553,7 @@
 
 								<ul class="submenu">
 									<li class="hover">
-										<a href="<?php echo base_url('spg/act/create');?>">
+										<a href="<?php echo base_url(''.$user_type.'/act/create');?>">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Create Act
 										</a>
@@ -561,7 +561,7 @@
 										<b class="arrow"></b>
 									</li>
 									<li class="hover">
-										<a href="<?php echo base_url('spg/company/act');?>">
+										<a href="<?php echo base_url(''.$user_type.'/company/act');?>">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Act Selection
 										</a>
@@ -581,6 +581,14 @@
 									
 								</ul>
 							</li>
+							<li class="open hover">
+								<a href="<?php echo base_url(''.$user_type.'/entity-list'); ?>" >
+									<i class="menu-icon fa fa-caret-right"></i>
+									Entity List
+									
+								</a>
+							</li>
+
 						</ul>
 					</li>
 <?php } ?>

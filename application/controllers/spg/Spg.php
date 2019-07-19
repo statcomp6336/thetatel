@@ -58,6 +58,10 @@ class Spg extends Base_controller {
 		// Main Menu
 		$this->data['menu']['dashboard_access'] = TRUE;
 		$this->data['menu']['setup_access'] = TRUE;
+		// sub menu
+			$this->data['menu']['company_registration'] = TRUE;
+			$this->data['menu']['entity_list'] = TRUE;
+			
 		$this->data['menu']['myactivity_access'] = TRUE;
 		$this->data['menu']['mycompliance_access'] = TRUE;
 			// Sub-menu 
@@ -184,7 +188,7 @@ class Spg extends Base_controller {
 	{
 		//this function store in COMPANY_EXT controller	
 		if ($this->data['menu']['company_registration'] == TRUE) {
-		$this->company_registration($this->page);
+				$this->company_registration($this->page);
 		}
 		else
 		{
@@ -790,6 +794,23 @@ class Spg extends Base_controller {
    //              echo  $hasher->HashPassword('hitler');
    //              var_dump($hasher->CheckPassword('hitler', $hasher->HashPassword('hitler')));
 //$this->load->view('forgot_password');
+	}
+
+	public function show_entity_list($value='')
+	{
+		$this->ShowEntityList();// stored on company controler
+	}
+	public function edit_entity($value='')
+	{
+		$this->EditEntity();// stored on company controler
+	}
+	public function update_entity($value='')
+	{
+		$this->UpdateEntity('spg');// stored on company controler
+	}
+	public function remove_entity($value='')
+	{
+		$this->RemoveEntity('spg');// stored on company controler
 	}
 
 

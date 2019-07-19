@@ -326,13 +326,17 @@ trait Company_ext {
 			return $company_rules;
 	}
 
-	protected function fillup_data($custtype,$custid)
+	protected function fillup_data($custtype="",$custid="")
 	{
+		if (!empty($this->input->post('cust_id'))) {
+			$custid=$this->input->post('cust_id');
+		}
 
 		$branch_code= $this->Company_model->get_branchCode($this->input->post('comp_pan'));
 		$save_data = array('custtype' 		=> 1 ,
 							'custid'		=>$custid,
 							'allianceid'	=> $this->input->post('ent_code') ,
+							'alliance_name'	=> $this->input->post('ent_name') ,
 							'entity_pan' 	=> $this->input->post('comp_pan') ,
 							'entity_name' 	=> $this->input->post('comp_name') ,
 							'address' 		=> $this->input->post('comp_addr') ,
@@ -363,6 +367,12 @@ trait Company_ext {
 							'spgid'			=> user_id(), 
 							
 		 );
+		if (!empty($this->input->post('cust_id'))) {
+			unset($save_data['custid']);
+			unset($save_data['allianceid']);
+			unset($save_data['alliance_name']);
+			unset($save_data['pin']);
+		}
 		return $save_data;
 	}
 	 protected function backup_fillup_data($custtype, $custid)
@@ -522,6 +532,93 @@ trait Company_ext {
 	         		 redirect(base_url( $user.'/company/act'));
 	         	}
 	        // }
+	}
+	public function ShowEntityList()
+	{
+		if ($this->data['access'][$this->session->TYPE] == TRUE) {
+		 	
+			 $this->data['where'] = 'Company';
+			 $this->data['sub_menu'] = 'Entity Details';
+			
+			 /*main act data*/
+			
+			 $this->load->model('Company_model');
+ 					 
+ 			$this->data['result']= $this->Company_model->get_Entities();			 
+			 $this->render('entity_details');
+		 }
+		 else
+		 {
+		 	$this->load->view('404');
+		 }	
+	}
+
+
+	public function EditEntity($value='')
+	{		
+		if ($this->data['access'][$this->session->TYPE] == TRUE) {		 	
+			 $this->data['where'] = 'Company';
+			 $this->data['sub_menu'] = 'Entity Details';
+			
+			 /*main act data*/
+			$id=verify_id($this->uri->segment(3));
+
+			 $this->load->model('Company_model');
+ 					 
+ 			$this->data['entity']= $this->Company_model->all_companys($id);	
+
+			 $this->render('edit_entity');
+		 }
+		 else
+		 {
+		 	$this->load->view('404');
+		 }
+
+	}
+	public function UpdateEntity($user='')
+	{
+		$this->load->model('Company_model');		
+		$this->form_validation->set_rules($this->rules());	
+		
+		$save_data = $this->security->xss_clean($this->fillup_data());
+		 if ($this->form_validation->run() == FALSE) { 
+	         	// echo validation_errors();
+	         	 put_msg(validation_errors());
+	         	redirect(base_url(''.$user.'/entity-edit/'.hash_id($this->input->post('cust_id')).''));   
+	        } 
+	        else
+	        {
+
+	         	if ($this->Company_model->update_entity($this->fillup_data(),$this->input->post('cust_id'))) {
+	         	
+	         		 $html="Entity has updated successfully";
+	         		
+	         		 put_msg($html);
+	         		redirect(base_url(''.$user.'/entity-edit/'.hash_id($this->input->post('cust_id')).''));  
+	         	}
+	         	else
+	         	{
+	         		put_msg("somthing went wronge...!");
+	         		 redirect(base_url(''.$user.'/entity-edit/'.hash_id($this->input->post('cust_id')).''));  
+	         	}
+	        }
+	}
+	public function RemoveEntity($user='')
+	{
+		$id=verify_id($this->uri->segment(3));
+			 $this->load->model('Company_model');
+		if ($this->Company_model->delete_entity($id)) {
+	         	
+	         		 $html="Entity has remove successfully";
+	         		
+	         		 put_msg($html);
+	         		redirect(base_url(''.$user.'/entity-list'));  
+	         	}
+	         	else
+	         	{
+	         		put_msg("somthing went wronge...!");
+	         		 redirect(base_url(''.$user.'/entity-list')); 
+	         	}
 	}
 
 

@@ -866,3 +866,15 @@
 [18-Jul-2019 10:10:26 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Company::show_companiesExplore() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\role\Company.php on line 209
 [18-Jul-2019 10:10:37 Asia/Kolkata] PHP Fatal error:  Cannot redeclare Company::show_companiesActExplore() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\role\Company.php on line 214
 >>>>>>> be03bae8f1a336e517a540b70dfeb9ddc9faec68
+[18-Jul-2019 13:44:27 Europe/Berlin] PHP Fatal error:  Call to undefined method Company_model::get_Entities() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Company_ext.php on line 537
+[18-Jul-2019 13:45:42 Europe/Berlin] PHP Fatal error:  Call to undefined method Company_model::get_Entities() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Company_ext.php on line 537
+[18-Jul-2019 13:45:53 Europe/Berlin] PHP Fatal error:  Call to undefined method Company_model::get_Entities() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Company_ext.php on line 537
+[18-Jul-2019 13:46:10 Europe/Berlin] PHP Fatal error:  Call to undefined method Company_model::get_Entities() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Company_ext.php on line 537
+[18-Jul-2019 13:46:12 Europe/Berlin] PHP Fatal error:  Call to undefined method Company_model::get_Entities() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Company_ext.php on line 537
+[18-Jul-2019 13:47:24 Europe/Berlin] PHP Fatal error:  Call to undefined method Company_model::get_Entities() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Company_ext.php on line 537
+[18-Jul-2019 13:47:28 Europe/Berlin] PHP Fatal error:  Call to undefined method Company_model::get_Entities() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Company_ext.php on line 537
+[18-Jul-2019 13:48:37 Europe/Berlin] PHP Fatal error:  Call to undefined method Company_model::get_Entities() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Company_ext.php on line 537
+[18-Jul-2019 13:49:41 Europe/Berlin] PHP Fatal error:  Call to undefined method Company_model::get_Entities() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Company_ext.php on line 537
+[18-Jul-2019 13:50:01 Europe/Berlin] PHP Fatal error:  Call to undefined method Company_model::get_Entities() in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Company_ext.php on line 537
+[19-Jul-2019 08:21:03 Europe/Berlin] PHP Parse error:  syntax error, unexpected '{' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Company_ext.php on line 586
+[19-Jul-2019 09:20:23 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')' in C:\xampp\htdocs\newstatcomp\thetatel\application\controllers\Company_ext.php on line 610

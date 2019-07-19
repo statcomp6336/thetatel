@@ -756,9 +756,9 @@ class Dashboard_model extends Base_model
 		//get data from database
 	public function get_graphdata()
 	{
-	      $this->db->select('month,year,total_emp,total_sal,total_pf,total_esic');
-	      $this->db->from('graph_of_pf');
-	      $result=$this->db->get()->result();
+	      $this->newdb->select('mnth,yr,total_emp,total_sal,total_pf,total_esic');
+	      $this->newdb->from('graph_of_pf');
+	      $result=$this->newdb->get()->result();
 	      return $result;
 	}
 

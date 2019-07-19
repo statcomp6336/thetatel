@@ -29,6 +29,10 @@ $route['spg/subcontractor/registration/(:any)/(:any)']	= 'spg/Spg/subcontractor_
 //====================================================
 
 $route['spg/company/save']			= 'spg/Spg/add_company';// display company registration view
+$route['spg/entity-list']			= 'spg/Spg/show_entity_list';
+$route['spg/entity-edit/(:any)']			= 'spg/Spg/edit_entity';
+$route['spg/entity-update']			= 'spg/Spg/update_entity';
+$route['spg/entity-remove/(:any)']			= 'spg/Spg/remove_entity';
 
 /* work with act */
 $route['spg/company/act']			= 'spg/Spg/act_view'; //display act view for company

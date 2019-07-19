@@ -177,4 +177,25 @@ class Company_model extends Base_model
 		return $custid;
 	}
 
+	public function get_Entities()
+	{
+		$select="entity_name,custid, CASE custtype 
+						WHEN  1 THEN 'COMPANY'
+						WHEN  2 THEN 'BRANCH'
+						WHEN  3 THEN 'CONTRACTOR'
+						WHEN  4 THEN 'SUB-CONTRACTOR'
+						WHEN  5 THEN 'SPG-USER'
+						WHEN  9 THEN 'SPG'
+						ELSE 'OTHER'
+						END AS catagory
+			";
+		$this->newdb->select($select);
+		$this->newdb->from('customer_master');	
+		$this->newdb->where(array('spgid' =>user_id()));	
+		$result=$this->newdb->get()->result();
+	
+
+		return $result;
+	}
+
 }	
